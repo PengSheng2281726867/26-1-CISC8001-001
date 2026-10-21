@@ -1,0 +1,15 @@
+baseline_config: configs/alt_pusht_base.yaml
+baseline_run: alt_030_split42_model42_pilot_v1
+artifacts_root: artifacts/fixed_alt_encoder
+b1:
+  pose_hidden_dim: 64
+  pose_output_dim: 4
+  lambda_pose: 1.0
+  target: '[block_x/256-1, block_y/256-1, sin(theta), cos(theta)]'
+  pose_loss: average_two_views_xy_MSE_plus_sincos_MSE
+  checkpoint_selection: final_epoch
+diagnostics:
+  batch_size: 128
+  branch_probe_frames: 256
+  display_validation_episodes: 4
+  trace_same_position_tolerance_world_units: 0.001
