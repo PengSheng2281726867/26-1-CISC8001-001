@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "method": "ALT Image+Position; frozen baseline in configs/alt_pusht_base.yaml",
+  "split_manifest": "experiments/splits/pusht_v7_split42.json",
+  "split_manifest_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "dataset_fingerprint": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+  "episode_counts_requested": [
+    30,
+    100,
+    300,
+    500
+  ],
+  "subset_status": {
+    "30": "FEASIBLE",
+    "100": "FEASIBLE",
+    "300": "NOT_FEASIBLE_WITH_CURRENT_DATA",
+    "500": "NOT_FEASIBLE_WITH_CURRENT_DATA"
+  },
+  "feasible_training_frame_counts": {
+    "30": 3806,
+    "100": 12618
+  },
+  "pilot_model_seeds": [
+    42
+  ],
+  "planned_replication_model_seeds": [
+    43,
+    44
+  ],
+  "seed_mapping": {
+    "model": "model_seed",
+    "dataloader_shuffle": "model_seed+1",
+    "augmentation": "model_seed+2",
+    "heldout_validation_augmentation": "model_seed+3"
+  },
+  "test_seed_contract": "Use exact test_env_seeds from frozen split, unchanged across all scales/model seeds",
+  "checkpoint_selection": "final_epoch; 40 epochs; no test reward feedback",
+  "weight_initialization": "Fresh ImageNet ResNet18 initialization and controlled random fusion/position heads for every scale/model seed; never continue a smaller-scale model",
+  "primary_metric": "official PushTImageRunner mean of per-episode maximum clip(coverage/0.95,0,1)",
+  "replication_status": "Model seeds43/44 are planned, not completed. Consult registry.csv and per-run metadata for actual status.",
+  "infeasible_scale_resolution": "300/500 need additional independently collected demonstrations or an authorized alternative dataset. No new collection or synthetic episode expansion has been performed.",
+  "future_dp": "No DP training or implementation here. Future DP must consume identical episode-ID and evaluation-seed manifest."
+}

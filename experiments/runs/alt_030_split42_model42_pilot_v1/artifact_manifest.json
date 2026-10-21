@@ -1,0 +1,35 @@
+{
+  "files": [
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/encoder_final.pt",
+      "bytes": 45361011,
+      "sha256": "723a38f433bf7c1757e81f8015a0295bbe743322e69a55cc921a3885fc8ebd0a"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/evaluation/2026-10-21T024557.580142_0000/media/6l8g7u0o.mp4",
+      "bytes": 24101,
+      "sha256": "6406662cf85c668eda3b35908721bcf469e09a385265781f8ea1fb9212fd791a"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/evaluation/2026-10-21T024557.580142_0000/media/egzmc1ls.mp4",
+      "bytes": 40911,
+      "sha256": "340b33a4fcaa23b71bebbf8a88945169263ec215840c32a6d4ff7edb7aa17395"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/evaluation/2026-10-21T024557.580142_0000/media/ihqs8rvr.mp4",
+      "bytes": 35141,
+      "sha256": "65e19b0de243a33ce91d4fd28dbba2fdea5b37fc1565cc316a2413eb21fae2ac"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/evaluation/2026-10-21T024557.580142_0000/media/kr917q0k.mp4",
+      "bytes": 44669,
+      "sha256": "6e027841a315f9d96cab3032faff5d9e931c24d10aa031477d4dacae23635764"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/memory_bank.pt",
+      "bytes": 2042629,
+      "sha256": "b93aacc4b9fa37619152adabd40e9cf09716b3d85665ef86036eae71b6cd46c3"
+    }
+  ],
+  "backed_up_by_git": false
+}

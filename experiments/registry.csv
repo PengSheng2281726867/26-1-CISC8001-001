@@ -1,2 +1,3 @@
 run_id,status,scale,model_seed,reason,mean_score,notes
 alt_030_split42_model42_smoke_v1,completed,30,42,untrained_ImageNet_integration_smoke,0.39167831266120906,evaluated
+alt_030_split42_model42_pilot_v1,completed,30,42,single_model_seed_scale_pilot,0.27442389936027484,evaluated

@@ -38,6 +38,7 @@ Run the cheap untrained integration smoke before starting a fresh trained pilot.
 & $altPython -B scripts/run.py bank --run-id alt_030_split42_model42_pilot_v1
 & $altPython -B scripts/diagnose_bank.py --run-id alt_030_split42_model42_pilot_v1
 & $altPython -B scripts/run.py evaluate --run-id alt_030_split42_model42_pilot_v1
+& $altPython -B scripts/inspect_rollout.py --run-id alt_030_split42_model42_pilot_v1
 & $altPython -B scripts/run.py report
 ```
 
@@ -48,6 +49,10 @@ Run directories contain immutable resolved YAML, split/config references, event 
 `diagnose_bank.py` queries every stored embedding, re-encodes first/middle/last observations of each selected demonstration with deterministic preprocessing, and verifies every stored frame's eight-action source indexing and episode boundary. Exact self indices can differ for duplicate or floating-point-tied embeddings; the maximum similarity and embedding equivalence are checked and recorded explicitly in bank_validation.json. The smoke bank passes3806 self-queries,90 raw-frame re-encodings and3806 action-chunk checks;3801 self indices are exact and all3806 returned embeddings are equivalent within L2<1e-3.
 
 `report` writes results/scale_summary.csv, training-loss/official-score figures and a diagnostic contact sheet showing actual rollout video frames above the retrieved expert images. These figures describe completed saved runs only. Simulator-seed bootstrap intervals do not measure uncertainty across independently trained model seeds. Begin with one model seed per scale; model seeds42/43/44 are planned for a later controlled comparison if resources permit.
+
+## Measured milestone
+
+ALT-30 model42 has completed40 epochs and all50 fixed-seed official rollouts: mean score0.2744, SD0.2832, simulator-seed bootstrap95%CI[0.1997,0.3543]. This is a weak single-model-seed pilot, not a final claim that ALT reliably solves Push-T. The predefined failure video and traces show high-similarity retrievals with mismatched pusher positions and repeated action chunks. Full results/limitations are in experiments/runs/alt_030_split42_model42_pilot_v1/report.md; primary metrics are eval_metrics.json and eval_rollouts.csv. ALT-100 and additional model seeds are separate fresh runs, never continuations of this checkpoint.
 
 Architecture: ResNet18 image128 + position MLP2->64->32, fusion160->256->128, L2 normalization. Backbone fine-tuned; NT-Xent tau0.4; photometric changes only. Retrieval top1 cosine, no OOD/fallback/blending, eight original absolute target positions per query, same-episode last-action padding.
 

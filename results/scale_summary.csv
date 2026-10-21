@@ -1,0 +1,2 @@
+run_id,scale,model_seed,mean_score,score_std,n_rollouts,training_seconds,bank_entries,checkpoint_bytes,bank_bytes
+alt_030_split42_model42_pilot_v1,30,42,0.27442389936027484,0.2831968418883916,50,571.2815867000027,3806,45361011,2042629
