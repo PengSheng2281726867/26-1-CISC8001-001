@@ -1,4 +1,4 @@
 # Frozen split checksums refer to exact bytes, including existing line endings.
 # Preserve those bytes on every platform; never regenerate or reorder the IDs.
-experiments/splits/*.json -text
-experiments/splits/*.sha256 -text
+experiments/splits/*.json -text whitespace=cr-at-eol
+experiments/splits/*.sha256 -text whitespace=cr-at-eol
