@@ -2,5 +2,6 @@
 run.py -text
 b1alt/*.py -text
 tests/*.py -text
+scripts/*.py -text
 configs/*.yaml -text
 runs/** -text whitespace=cr-at-eol

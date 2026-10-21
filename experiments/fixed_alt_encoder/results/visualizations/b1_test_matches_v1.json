@@ -1,0 +1,415 @@
+{
+  "status": "completed",
+  "created_at": "2026-10-21T09:13:01.508904+00:00",
+  "run_id": "b1_alt030_split42_model42_pose1_pilot_v1",
+  "evaluation_seed": 100000,
+  "query_steps": [
+    8,
+    160,
+    296
+  ],
+  "repeat_start": 152,
+  "script_sha256": "be693ab81f4560f34b0bc55a90c4739cd6c71e6f0b550aaae7a60f22a80eef30",
+  "video_path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\fixed_alt_encoder\\b1_alt030_split42_model42_pose1_pilot_v1\\evaluation\\2026-10-21T090035.671347_0000\\media\\qxktlcfo.mp4",
+  "video_sha256": "d9406af1095803133279cc8bf8804a08a52cbabc0c59ca70d63358fc3eed2e42",
+  "trace_path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\fixed_alt_encoder\\b1_alt030_split42_model42_pose1_pilot_v1\\evaluation\\2026-10-21T090035.671347_0000\\retrieval_full.jsonl",
+  "trace_sha256": "12ac1bdea026af7dc62b1beaae8a8cfe0fa860b5cc5c61416dfb14dfa1665d0a",
+  "split_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "dataset_fingerprint": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+  "video_index": "query at current_step t -> video index t-1; no reset frame saved",
+  "source_note": "Existing saved rollout only. Video has lossy compression and action overlays; not archived lossless policy input tensors.",
+  "repetition_definition": "same bank source index on consecutive queries; same-position additionally uses L2 <=0.001 world units",
+  "selected_queries": [
+    {
+      "current_step": 8,
+      "matched_episode_id": 54,
+      "local_frame_index": 114,
+      "source_index": 6800,
+      "top1_cosine": 0.6861001253128052,
+      "agent_pos": [
+        328.0647277832031,
+        252.37451171875
+      ],
+      "matched_agent_pos": [
+        406.9223327636719,
+        202.10629272460938
+      ],
+      "commands": [
+        [
+          390.0,
+          215.0
+        ],
+        [
+          387.0,
+          215.0
+        ],
+        [
+          382.0,
+          215.0
+        ],
+        [
+          376.0,
+          213.0
+        ],
+        [
+          369.0,
+          211.0
+        ],
+        [
+          359.0,
+          208.0
+        ],
+        [
+          353.0,
+          203.0
+        ],
+        [
+          349.0,
+          201.0
+        ]
+      ],
+      "action_source_indices": [
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806,
+        6807
+      ],
+      "executed_actions": 8
+    },
+    {
+      "current_step": 160,
+      "matched_episode_id": 54,
+      "local_frame_index": 113,
+      "source_index": 6799,
+      "top1_cosine": 0.71400386095047,
+      "agent_pos": [
+        363.13897705078125,
+        208.19406127929688
+      ],
+      "matched_agent_pos": [
+        414.97467041015625,
+        193.0462188720703
+      ],
+      "commands": [
+        [
+          395.0,
+          213.0
+        ],
+        [
+          390.0,
+          215.0
+        ],
+        [
+          387.0,
+          215.0
+        ],
+        [
+          382.0,
+          215.0
+        ],
+        [
+          376.0,
+          213.0
+        ],
+        [
+          369.0,
+          211.0
+        ],
+        [
+          359.0,
+          208.0
+        ],
+        [
+          353.0,
+          203.0
+        ]
+      ],
+      "action_source_indices": [
+        6799,
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806
+      ],
+      "executed_actions": 8
+    },
+    {
+      "current_step": 296,
+      "matched_episode_id": 54,
+      "local_frame_index": 113,
+      "source_index": 6799,
+      "top1_cosine": 0.71400386095047,
+      "agent_pos": [
+        363.13897705078125,
+        208.19406127929688
+      ],
+      "matched_agent_pos": [
+        414.97467041015625,
+        193.0462188720703
+      ],
+      "commands": [
+        [
+          395.0,
+          213.0
+        ],
+        [
+          390.0,
+          215.0
+        ],
+        [
+          387.0,
+          215.0
+        ],
+        [
+          382.0,
+          215.0
+        ],
+        [
+          376.0,
+          213.0
+        ],
+        [
+          369.0,
+          211.0
+        ],
+        [
+          359.0,
+          208.0
+        ],
+        [
+          353.0,
+          203.0
+        ]
+      ],
+      "action_source_indices": [
+        6799,
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806
+      ],
+      "executed_actions": 4
+    }
+  ],
+  "repeated_queries": [
+    {
+      "current_step": 152,
+      "matched_episode_id": 54,
+      "local_frame_index": 113,
+      "source_index": 6799,
+      "top1_cosine": 0.71400386095047,
+      "agent_pos": [
+        363.13897705078125,
+        208.19406127929688
+      ],
+      "matched_agent_pos": [
+        414.97467041015625,
+        193.0462188720703
+      ],
+      "commands": [
+        [
+          395.0,
+          213.0
+        ],
+        [
+          390.0,
+          215.0
+        ],
+        [
+          387.0,
+          215.0
+        ],
+        [
+          382.0,
+          215.0
+        ],
+        [
+          376.0,
+          213.0
+        ],
+        [
+          369.0,
+          211.0
+        ],
+        [
+          359.0,
+          208.0
+        ],
+        [
+          353.0,
+          203.0
+        ]
+      ],
+      "action_source_indices": [
+        6799,
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806
+      ],
+      "executed_actions": 8
+    },
+    {
+      "current_step": 160,
+      "matched_episode_id": 54,
+      "local_frame_index": 113,
+      "source_index": 6799,
+      "top1_cosine": 0.71400386095047,
+      "agent_pos": [
+        363.13897705078125,
+        208.19406127929688
+      ],
+      "matched_agent_pos": [
+        414.97467041015625,
+        193.0462188720703
+      ],
+      "commands": [
+        [
+          395.0,
+          213.0
+        ],
+        [
+          390.0,
+          215.0
+        ],
+        [
+          387.0,
+          215.0
+        ],
+        [
+          382.0,
+          215.0
+        ],
+        [
+          376.0,
+          213.0
+        ],
+        [
+          369.0,
+          211.0
+        ],
+        [
+          359.0,
+          208.0
+        ],
+        [
+          353.0,
+          203.0
+        ]
+      ],
+      "action_source_indices": [
+        6799,
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806
+      ],
+      "executed_actions": 8
+    },
+    {
+      "current_step": 168,
+      "matched_episode_id": 54,
+      "local_frame_index": 113,
+      "source_index": 6799,
+      "top1_cosine": 0.71400386095047,
+      "agent_pos": [
+        363.13897705078125,
+        208.19406127929688
+      ],
+      "matched_agent_pos": [
+        414.97467041015625,
+        193.0462188720703
+      ],
+      "commands": [
+        [
+          395.0,
+          213.0
+        ],
+        [
+          390.0,
+          215.0
+        ],
+        [
+          387.0,
+          215.0
+        ],
+        [
+          382.0,
+          215.0
+        ],
+        [
+          376.0,
+          213.0
+        ],
+        [
+          369.0,
+          211.0
+        ],
+        [
+          359.0,
+          208.0
+        ],
+        [
+          353.0,
+          203.0
+        ]
+      ],
+      "action_source_indices": [
+        6799,
+        6800,
+        6801,
+        6802,
+        6803,
+        6804,
+        6805,
+        6806
+      ],
+      "executed_actions": 8
+    }
+  ],
+  "all50_trace_statistics": {
+    "baseline": {
+      "queries": 1875,
+      "transitions": 1825,
+      "consecutive_same_match_transitions": 400,
+      "same_match_and_same_position_transitions": 362,
+      "consecutive_same_match_fraction": 0.2191780821917808,
+      "same_match_and_same_position_fraction": 0.19835616438356166
+    },
+    "b1": {
+      "queries": 1886,
+      "transitions": 1836,
+      "consecutive_same_match_transitions": 1139,
+      "same_match_and_same_position_transitions": 1061,
+      "consecutive_same_match_fraction": 0.6203703703703703,
+      "same_match_and_same_position_fraction": 0.5778867102396514
+    }
+  },
+  "figures": [
+    {
+      "path": "results/visualizations/b1_test_matches_v1.png",
+      "sha256": "caf323e0ee121b98136c9da9142e70a68bf620bc5946d109c87d8f220fb4986c"
+    },
+    {
+      "path": "results/visualizations/b1_test_matches_v1_repetition.png",
+      "sha256": "181061c8f3ff5bb3804498dc11535f1b44ee08c299d9e1f455015bef907bfaa6"
+    }
+  ],
+  "no_new_model_or_rollout": true
+}

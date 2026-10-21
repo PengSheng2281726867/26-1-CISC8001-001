@@ -58,3 +58,9 @@ The directory also contains readable loss curves, heldout matches and a contact 
 decoded from the predefined first four rollout videos. All 7 regression tests passed;
 all 10 heavy artifact files were rehashed. Both diagnostic failures and fixes are retained
 in [failure log](docs/failure_log.md); training and formal evaluation each ran once.
+
+[Saved test matches and repeated-chunk explanation (Chinese)](docs/test_match_visualization.md)
+shows B1's actual test video beside the retrieved expert frames, plus consecutive
+replans that replay exactly the same eight-action chunk. Reproduce with
+`python -B scripts/visualize_test_matches.py` in the existing Push-T environment;
+use a new `--output-name` to preserve prior visualizations. No new model or rollout.

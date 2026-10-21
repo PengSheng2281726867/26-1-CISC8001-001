@@ -77,3 +77,33 @@ Recovery verified: the next diagnostic invocation completed all2426 frames per m
 exactly reproduced the original offline metrics, passed bank/index/independent FP64
 checks, and saved plots. A fresh check ID phase3_regression_v1 passed all7 tests and
 the official one-seed untrained smoke. Formal training was executed only once.
+
+## 2026-10-21T09:12:29.705637+00:00 saved-test visualization
+
+Command: `scripts/visualize_test_matches.py`
+
+```text
+Traceback (most recent call last):
+  File "D:\Code\Course_code\COURSE-HUZI-CODE\experiments\fixed_alt_encoder\scripts\visualize_test_matches.py", line 173, in <module>
+    main()
+  File "D:\Code\Course_code\COURSE-HUZI-CODE\experiments\fixed_alt_encoder\scripts\visualize_test_matches.py", line 84, in main
+    np.testing.assert_array_equal(data['data/action'][ids], q['commands'])
+  File "D:\Code\Course_code\DP\.conda\pusht\lib\site-packages\zarr\core.py", line 788, in __getitem__
+    result = self.get_basic_selection(pure_selection, fields=fields)
+  File "D:\Code\Course_code\DP\.conda\pusht\lib\site-packages\zarr\core.py", line 914, in get_basic_selection
+    return self._get_basic_selection_nd(selection=selection, out=out,
+  File "D:\Code\Course_code\DP\.conda\pusht\lib\site-packages\zarr\core.py", line 955, in _get_basic_selection_nd
+    indexer = BasicIndexer(selection, self)
+  File "D:\Code\Course_code\DP\.conda\pusht\lib\site-packages\zarr\indexing.py", line 345, in __init__
+    raise IndexError('unsupported selection item for basic indexing; '
+IndexError: unsupported selection item for basic indexing; expected integer or slice, got <class 'numpy.ndarray'>
+```
+Saved-test visualization indexing fix: the existing Zarr version supports only
+basic integer/slice indexing through `array[...]`; indexing with the eight-element
+NumPy source-index vector raised IndexError before any figure was written. Read the
+small source action array once into NumPy, then select/check those indices there.
+The original exception/command remains in this log. No model, source dataset or
+rollout was modified. Rerun the same visualization after this single adapter fix.
+
+Recovery: rerun completed both figures and the provenance manifest. Source action
+indices and all displayed commands agree exactly, and both PNGs passed visual inspection.

@@ -65,3 +65,9 @@ artifact files and verified the immutable resolved config hash. All93 original
 source/config/split/result files and both references remain unchanged. No further
 training, tuning, scale expansion, data collection or DP model was run. Heavy files
 remain local only; Git stores manifests, small logs, metrics and figures.
+
+2026-10-21: Added a saved-test visualization at user request: B1 seed100000 steps
+8/160/296 beside actual retrieved expert images; consecutive replans152/160/168
+demonstrate replaying expert54:113's actions113..120. Figure/provenance/action indexing
+checks pass and both figures were visually inspected. One old-Zarr NumPy-indexing
+adapter error was fixed and logged; no model, evaluation, split or prior run changed.
