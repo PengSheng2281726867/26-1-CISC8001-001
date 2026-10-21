@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-10-21T07:59:39.148560+00:00",
+  "status": "completed",
+  "source_run_id": "alt_030_split42_model42_pilot_v1",
+  "source_resolved_config_sha256": "60e234724e1d7995c02e82e5356fc18ac487d95969886ab69be64588cd7f76be",
+  "split_manifest_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "dataset_fingerprint": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+  "script_sha256": "3a0fcef4dc5c67f28829a05db37bcdb527ac15cf36e4be0064b08bc339678f23",
+  "batch_size": 32,
+  "shuffle_seed": 43,
+  "augmentation_seed": 44,
+  "augmentation": {
+    "brightness": 0.1,
+    "contrast": 0.1,
+    "hue": 0.02,
+    "saturation": 0.1
+  },
+  "selection": "first four frames in first reconstructed shuffled batch",
+  "shown_samples": [
+    {
+      "batch_index": 0,
+      "episode_id": 96,
+      "local_frame_index": 5,
+      "source_index": 11398,
+      "agent_pos": [
+        170.4644012451172,
+        408.9868469238281
+      ],
+      "view1_tensor_sha256": "a5ebd1d705391335985104eb7e9858eed6647448edfe6c2eebfc7a7af287ada7",
+      "view2_tensor_sha256": "3c59589de123255830784cd578179e88da2b11a586a77bd47d8dda7da72d4e3a"
+    },
+    {
+      "batch_index": 1,
+      "episode_id": 96,
+      "local_frame_index": 103,
+      "source_index": 11496,
+      "agent_pos": [
+        209.14865112304688,
+        353.0182800292969
+      ],
+      "view1_tensor_sha256": "e8cee7f0a5e2c0c8ffea661cce2cc0a1d5d2b2e9c274634c48ba76f772e273d5",
+      "view2_tensor_sha256": "072e154022b45ae1c69aa031e97d394d3950317d3a4fb4758c841cc9df0a30a5"
+    },
+    {
+      "batch_index": 2,
+      "episode_id": 107,
+      "local_frame_index": 140,
+      "source_index": 12786,
+      "agent_pos": [
+        187.40576171875,
+        199.41897583007812
+      ],
+      "view1_tensor_sha256": "0fce4fefc031958dd25a2e8617ef364905a74706e7aac3f445340c3b459044e5",
+      "view2_tensor_sha256": "8daa6520648d1643d7d2f085653065b0105153a88b05c055ec7d38d490aef442"
+    },
+    {
+      "batch_index": 3,
+      "episode_id": 70,
+      "local_frame_index": 63,
+      "source_index": 8585,
+      "agent_pos": [
+        216.61013793945312,
+        461.1491394042969
+      ],
+      "view1_tensor_sha256": "5effe713d5a39298f38ae5afe31e6bcad3cacfed76f10ae85d031a7f0aa894e7",
+      "view2_tensor_sha256": "2df2267fdb2dfd7385d70b6d9e0052d04a9934c1ae898e666af55402b7e3093d"
+    }
+  ],
+  "positive_for_anchor_view1": 32,
+  "negative_count_per_anchor": 62,
+  "positive_positions_identical": true,
+  "display": "RGB before encoder ImageNet normalization; positions shown in original world units",
+  "historical_limit": "Reconstructed with saved recipe/seeds, not an archived original training batch.",
+  "no_model_training_or_simulator_execution": true,
+  "figure_sha256": "89872105377db7ed535dd75a61fad5d47664a86ca6c935484cc1bce84e9cfc75"
+}
