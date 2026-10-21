@@ -1,0 +1,7 @@
+{
+  "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+  "sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "bytes": 46830571,
+  "weights": "ResNet18_Weights.IMAGENET1K_V1",
+  "path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\pretrained\\resnet18-f37072fd.pth"
+}

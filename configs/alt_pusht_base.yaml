@@ -1,0 +1,57 @@
+paths:
+  alt_source: D:/Code/Course_code/ACl/alt
+  dp_source: D:/Code/Course_code/DP/diffusion_policy
+  dataset: D:/Code/Course_code/DP/diffusion_policy/data/pusht/pusht_cchi_v7_replay.zarr
+  pretrained: artifacts/pretrained/resnet18-f37072fd.pth
+split:
+  manifest: experiments/splits/pusht_v7_split42.json
+  seed: 42
+  heldout_count: 20
+  scales: [30, 100, 300, 500]
+encoder:
+  image_dim: 128
+  position_dim: 32
+  embedding_dim: 128
+  image_size: 96
+  pretrained_weights: ResNet18_Weights.IMAGENET1K_V1
+  fine_tune: true
+  position_transform: x / 256 - 1
+augmentation:
+  brightness: 0.1
+  contrast: 0.1
+  saturation: 0.1
+  hue: 0.02
+training:
+  scale: 30
+  model_seed: 42
+  shuffle_seed: 43
+  augmentation_seed: 44
+  batch_size: 32
+  learning_rate: 0.0001
+  optimizer: Adam
+  epochs: 40
+  temperature: 0.4
+  num_workers: 0
+  device: cuda:0
+  torch_threads: 4
+  deterministic: true
+  checkpoint_selection: final_epoch
+retrieval:
+  metric: cosine
+  top_k: 1
+  ood_enabled: false
+  action_offset: 0
+  action_chunk_length: 8
+  boundary_policy: repeat_last_action
+evaluation:
+  n_test: 50
+  test_start_seed: 100000
+  max_steps: 300
+  n_obs_steps: 1
+  n_action_steps: 8
+  legacy_test: true
+  n_envs: 1
+  video_count: 4
+  fps: 10
+  bootstrap_seed: 2026
+  bootstrap_samples: 10000

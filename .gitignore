@@ -1,0 +1,14 @@
+artifacts/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+.env
+.env.*
+*.zarr/
+*.pth
+*.pt
+*.mp4
+*.zip
+*.log

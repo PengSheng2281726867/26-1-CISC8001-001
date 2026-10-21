@@ -1,0 +1,22 @@
+{
+  "alt_source": {
+    "path": "D:\\Code\\Course_code\\ACl\\alt",
+    "commit": "939ed620276f0088d7e86021dbf1bc37240f02e0",
+    "branch": "main",
+    "dirty_status": "",
+    "remote": "https://github.com/StanfordMSL/alt.git",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tracked_worktree_sha256": "0d1337e6c10bce8d6d0f80d0e92989f1cf81385f6628684000bd8e5df1e4ab55",
+    "tracked_file_count": 340
+  },
+  "dp_source": {
+    "path": "D:\\Code\\Course_code\\DP\\diffusion_policy",
+    "commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+    "branch": "main",
+    "dirty_status": "",
+    "remote": "https://github.com/real-stanford/diffusion_policy.git",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tracked_worktree_sha256": "10c91dee1e2d46b7e2425bc8f54e8c40a52cc755f5940b4af2ab993220d0a6b0",
+    "tracked_file_count": 369
+  }
+}

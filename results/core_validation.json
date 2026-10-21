@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-21T02:03:18.026325+00:00",
+  "status": "passed",
+  "tests_run": 5,
+  "failures": 0,
+  "errors": 0,
+  "failure_details": [],
+  "device": "cuda:0",
+  "pretrained_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec"
+}
