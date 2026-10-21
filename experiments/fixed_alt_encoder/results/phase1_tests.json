@@ -1,0 +1,8 @@
+{
+  "time": "2026-10-21T08:40:35.703479+00:00",
+  "tests_run": 7,
+  "failures": 0,
+  "errors": 0,
+  "output": "test_baseline_bank_policy_latest_frame_reset_and_no_pose_access (test_b1.B1Tests) ... ok\ntest_exact_loss_weighting_and_periodic_target (test_b1.B1Tests) ... ok\ntest_labels_first_middle_last_all_episodes_and_preprocessing (test_b1.B1Tests) ... ok\ntest_pose_head_independent_of_numeric_pusher_and_single_image_encode (test_b1.B1Tests) ... ok\ntest_pose_only_gradient_reaches_backbone_projection_and_head (test_b1.B1Tests) ... ok\ntest_shared_initialization_exact_and_inference_head_disabled (test_b1.B1Tests) ... ok\ntest_two_view_real_minibatch_backward_finite (test_b1.B1Tests) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 5.471s\n\nOK\n",
+  "status": "passed"
+}
