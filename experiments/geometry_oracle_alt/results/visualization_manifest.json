@@ -1,0 +1,50 @@
+[
+  {
+    "seed": 100000,
+    "query_step": 8,
+    "video_frame_index": 7,
+    "source_index": 6699
+  },
+  {
+    "seed": 100000,
+    "query_step": 296,
+    "video_frame_index": 295,
+    "source_index": 6718
+  },
+  {
+    "seed": 100001,
+    "query_step": 8,
+    "video_frame_index": 7,
+    "source_index": 11418
+  },
+  {
+    "seed": 100001,
+    "query_step": 296,
+    "video_frame_index": 295,
+    "source_index": 12679
+  },
+  {
+    "seed": 100002,
+    "query_step": 8,
+    "video_frame_index": 7,
+    "source_index": 25336
+  },
+  {
+    "seed": 100002,
+    "query_step": 296,
+    "video_frame_index": 295,
+    "source_index": 25341
+  },
+  {
+    "seed": 100003,
+    "query_step": 8,
+    "video_frame_index": 7,
+    "source_index": 18734
+  },
+  {
+    "seed": 100003,
+    "query_step": 296,
+    "video_frame_index": 295,
+    "source_index": 20652
+  }
+]

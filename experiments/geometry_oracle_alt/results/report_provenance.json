@@ -1,0 +1,9 @@
+{
+  "reporting_source_sha256": "aacfa1391c8ec536e1d086e0fdca59bac55a4942b1d7877ea84ce8bbdeef6a73",
+  "config_sha256": "ede908368dd44a6069ae558274ad7b538aa3fcb022f8b9708af99fb72e73ba81",
+  "inputs": {
+    "eval_metrics.json": "3b0f1ca6a8facd256187fcc82ddcd01250a2a4daade25bf489b085634e7ae2c6",
+    "eval_rollouts.csv": "d315d27fa52266060f2fbfa4e9420574c458161df8f4db0db55222e0d767342b",
+    "offline_diagnostics.json": "2bc66688d8ab60a72a68c8366ee445eb49e9d22bcb8ddb0ddc650f64c507c465"
+  }
+}

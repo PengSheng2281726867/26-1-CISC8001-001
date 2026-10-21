@@ -1,0 +1,37 @@
+[
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\5ku16mb8.mp4",
+    "bytes": 33854,
+    "sha256": "87273886ae88cf7d3e9d9643c62d303d321a8c29aa47e6e95f2a74b5c93ad7ee"
+  },
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\bymamreb.mp4",
+    "bytes": 34312,
+    "sha256": "929fe92ccac55e51e13bee57a27cc792808a36ed328734c942404d5fd4396af9"
+  },
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\otowpz79.mp4",
+    "bytes": 29621,
+    "sha256": "a6dcc92d92849f53984c25f8f39aec5942fb705a97da72c9e43cbd09ab53ad57"
+  },
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\ro76r38e.mp4",
+    "bytes": 30035,
+    "sha256": "ac8d2f892f005442bdc8950a04aa535c638f7c271fe8de9d638e9770e811fe30"
+  },
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\resolved_config.yaml",
+    "bytes": 944,
+    "sha256": "4aee94a71014058056ff8235c372c31c01a3414abfeb4b1431bbb4766ac93764"
+  },
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\retrieval_full.jsonl",
+    "bytes": 2464507,
+    "sha256": "8ef2955a96687c81400dc4f83c3cff70a90041c9de42a0d3e7a4f7605917462c"
+  },
+  {
+    "path": "experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\run_metadata.json",
+    "bytes": 8240,
+    "sha256": "c5864cfd8b75495df128cb64ffd791f020dfeff33eef1ab717244277ac1b5af2"
+  }
+]

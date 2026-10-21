@@ -4,6 +4,9 @@
 `[pusher_x, pusher_y, block_x, block_y, block_theta]`，超出原视觉 ALT 的信息条件。
 本实验不加载 ResNet、Embedding 或模型 Checkpoint，不是严格理论性能上界。
 
+已完成一次固定 50-seed 评测：Oracle Mean Score **0.224722502**（原 ALT 0.274423899，B1 0.178184988）。
+离线几何误差下降，但闭环没有明确提升；两项配对差异 95% CI 均跨零，重复检索仍然常见。
+
 ## 冻结方案
 
 - 数据路径复用 `configs/alt_pusht_base.yaml`；只读读取 Push-T v7 Zarr。

@@ -132,7 +132,13 @@ def report():
                 'oracle_minus_b1': methods['oracle']['scores'][j]-methods['b1']['scores'][j]}
                for j, seed in enumerate(manifest['test_env_seeds'])])
     figures(methods, paired, oracle, trace, base)
+    inspect_traces(oracle, trace)
     generate_report(methods, paired, oracle, offline)
+    save(HERE / 'results' / 'report_provenance.json',
+         {'reporting_source_sha256': sha(HERE / 'reporting.py'),
+          'config_sha256': sha(HERE / 'config.yaml'),
+          'inputs': {name: sha(HERE / 'results' / name) for name in
+                     ['eval_metrics.json', 'eval_rollouts.csv', 'offline_diagnostics.json']}})
     print(json.dumps({'scores': {k: m['score'] for k, m in methods.items()}, 'paired': paired}, indent=2))
 
 
@@ -204,6 +210,7 @@ def figures(methods, paired, oracle, trace, base):
 def generate_report(methods, paired, oracle, offline):
     lines = ['# Geometry-Oracle ALT-30 结果与分析', '',
              '本实验已完成；没有训练或加载任何神经网络。Oracle 在每次重规划时读取仿真器当前五维真实状态，属于 **Privileged Information**。它不是与视觉 ALT 同等输入的部署方案，也不是严格理论性能上界。', '',
+             '**主要结论：离线几何匹配和动作 RMSE 改善，但本轮闭环分数未优于原 ALT。相对原 ALT 与 B1 的两项配对置信区间都跨过零，不能声称闭环有明确提升。重复检索并未被真实状态输入消除。**', '',
              '## 设置与验证', '',
              '使用原冻结 split42 的 30 条训练 Episode、3,806 帧；20 条验证 Episode、2,426 帧仅用于离线查询。Bank 未包含验证帧。原始 float32 状态逐项一致，检索用 float64；周期角距离、确定性相同距离排序、自检索、全部帧动作边界、环境行为一致性和 Windows spawn AsyncVectorEnv 状态同步测试均通过。', '',
              '距离固定为 `(dp/512)^2 + (dT/512)^2 + (wrap(dtheta)/pi)^2`，权重 1:1:1。Top-1、绝对动作、offset=0、8 步重规划、repeat-last padding；无补偿、混合或 OOD fallback。', '',
@@ -220,7 +227,8 @@ def generate_report(methods, paired, oracle, offline):
     for key, label in [('alt', '原 ALT-30'), ('b1', 'B1'), ('oracle', 'Geometry Oracle')]:
         m, t = methods[key], methods[key]['trace']
         lines.append(f"| {label} | {m['score']:.9f} | {t['same_match_fraction']:.2%} | {t['same_match_and_same_position_fraction']:.2%} | {t['query_to_matched_pusher_distance']['mean']:.3f} |")
-    lines += ['', '重复比例分母排除每个回合首个查询，停滞定义为连续检索同一 Episode/Frame 且推杆移动 ≤0.001。它是描述性诊断，未用于策略决策。三个方法的闭环状态分布不同，匹配误差不能视作同一批查询上的比较。原 ALT/B1 没有保存闭环 T 块真实状态，因此其闭环 T 位置/角误差不可恢复；上表之外的 T 匹配比较使用离线验证集。', '',
+    lines += ['', '重复比例分母排除每个回合首个查询，停滞定义为连续检索同一 Episode/Frame 且查询时刻的推杆移动 ≤0.001。它是描述性诊断，未用于策略决策。**查询时刻不动不等于动作块内没有运动：推杆也可能在 8 步内移动后返回同一位置，形成周期回路。** 三个方法的闭环状态分布不同，匹配误差不能视作同一批查询上的比较。原 ALT/B1 没有保存闭环 T 块真实状态，因此其闭环 T 位置/角误差不可恢复；上表之外的 T 匹配比较使用离线验证集。', '',
+              f"Oracle 闭环 T 位置平均误差 {oracle['retrieval']['block_error']['mean']:.3f}、角度误差 {oracle['retrieval']['angle_error_degrees']['mean']:.3f}°，高于其离线验证均值；说明测试中最近候选也可能相距明显，不能把 Oracle 最近邻称为完全准确的物理匹配。", '',
               f"Oracle 的 Score 标准差 {oracle['score_std']:.6f}，均值 bootstrap 95% CI {oracle['mean_score_bootstrap_95ci']}；平均最终分数 {oracle['mean_final_score']:.6f}，总环境步数 {oracle['total_environment_steps']}。", '',
               '同一 50 Seeds 的配对差异；固定随机种子 2026，10,000 次按 Seed 成对重采样的 percentile 95% CI：', '']
     for key, label in [('alt', '原 ALT'), ('b1', 'B1')]:
@@ -229,8 +237,9 @@ def generate_report(methods, paired, oracle, offline):
     lines += ['', '该区间仅描述这些评测初始状态的不确定性，不涵盖视觉模型训练种子变化，也不代表调参后的总体最优结果。', '',
               '## 问题回答与解释边界', '',
               '1. **真实几何状态检索是否改善？** 相同离线查询上，Oracle 的推杆、T 位置、T 角度平均误差均低于原 ALT；动作 RMSE 也需单独看待。改善说明原视觉嵌入的几何区分确有不足，但直接读取真实状态本身也提供了更强的信息。', '',
-              f"2. **闭环是否随之改善？** 本轮 Oracle Mean Score 为 {oracle['mean_score']:.6f}，相对原 ALT 的差异为 {paired['oracle_minus_alt']['mean']:+.6f}；置信区间如上。应依据实际差异与区间判断，不能把离线更近直接等同于控制成功。", '',
+              f"2. **闭环是否随之改善？** 本轮 Oracle Mean Score 为 {oracle['mean_score']:.6f}，相对原 ALT 的差异为 {paired['oracle_minus_alt']['mean']:+.6f}；数值低于原 ALT、高于 B1，两项区间均跨零。本轮没有支持闭环明确改善的证据，不能把离线更近直接等同于控制成功。", '',
               '3. **剩余失败来自哪里？** 下列是分析推测，不能由本次单一实验确证因果：五维状态没有速度、接触历史和动作意图；最近示范帧仍有非零误差；8 步绝对目标回放在偏移状态上可能形成重复检索或循环。记录中的停滞/循环与这些机制相容，但不能单独区分它们。', '',
+              f"实际轨迹中有 {methods['oracle']['trace']['episodes_ending_in_3plus_same_match_queries']}/50 回合以至少 3 次同帧检索结束。前四个固定 Seed 中，100001/100002/100003 分别在末尾连续检索同帧 36/35/33 次；最后两次查询的五维状态差为零，但它们重复的动作块并非常量。`first_four_trace_inspection.json` 与 `seed100001_chunk_cycle.png` 给出可复核证据。100000 最后一次查询虽推杆误差约零，T 位置仍差约 58、角度约 35.8°，说明只让部分距离很小仍可能选到不相容动作。", '',
               '本轮没有改变执行长度、引入动作相对平移或进一步做对照；因此不会把剩余失败全部归因于 8 步回放，也不会声称真实状态检索保证动作相容。', '',
               '## 产物和后续建议', '',
               '- `results/offline_diagnostics.json`：Bank、源数据、自检索及离线误差。',
@@ -240,3 +249,38 @@ def generate_report(methods, paired, oracle, offline):
               '- `artifacts/geometry_oracle_alt030_v1/`：完整检索 JSONL、前四个 Seed 视频、冻结配置和运行记录；本地保留，Git 不包含这些大文件。', '',
               '建议先结合保存的轨迹和视频区分“匹配不近”“动作不相容”“重复回放”；若未来设计额外对照，应另立固定方案。此次实验到此停止，不训练 B2-B，不搜索权重或修改原 ALT/B1。', '']
     (HERE / 'analysis_report.md').write_text('\n'.join(lines), encoding='utf-8')
+
+
+def inspect_traces(oracle, trace):
+    """Fixed first-four-seed inspection, and within-chunk video phases of seed 100001."""
+    summary = []
+    for seed in range(100000, 100004):
+        episode = [r for r in trace if r['evaluation_seed'] == seed]
+        r = episode[-1]
+        commands = np.asarray(r['commands'])
+        summary.append({'seed': seed, 'last_step': r['current_step'],
+                        'match': [r['matched_episode'], r['local_frame']],
+                        'current_state': r['current_state'], 'matched_state': r['matched_state'],
+                        'commands': r['commands'], 'commands_span': np.ptp(commands, axis=0).tolist(),
+                        'last_query_pusher_motion': r['pusher_motion_since_last_query'],
+                        'last_query_block_motion': r['block_motion_since_last_query'],
+                        'last_query_angle_motion': r['angle_motion_since_last_query'],
+                        'same_final_match_count_all_episode': sum(q['bank_index'] == r['bank_index'] for q in episode)})
+    save(HERE / 'results' / 'first_four_trace_inspection.json', summary)
+    import cv2
+    import matplotlib.pyplot as plt
+    fig, axes = plt.subplots(2, 5, figsize=(11, 4.8))
+    cap = cv2.VideoCapture(oracle['video_paths_by_seed']['100001'])
+    for ax, step in zip(axes.flat, [64, 66, 68, 70, 72, 72, 74, 76, 78, 80]):
+        cap.set(cv2.CAP_PROP_POS_FRAMES, step-1)
+        ok, image = cap.read()
+        if not ok:
+            raise ValueError('Could not read fixed chunk inspection frame')
+        ax.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        ax.set_title(f'Step {step}')
+        ax.axis('off')
+    cap.release()
+    fig.suptitle('Seed 100001: repeated 8-action chunks; equal query states can hide motion within a chunk')
+    fig.tight_layout()
+    fig.savefig(HERE / 'results' / 'figures' / 'seed100001_chunk_cycle.png', dpi=150)
+    plt.close(fig)

@@ -1,0 +1,137 @@
+{
+  "status": "completed",
+  "completed_at": "2026-10-21T11:18:48.786226+00:00",
+  "n_rollouts": 50,
+  "evaluation_seeds": [
+    100000,
+    100001,
+    100002,
+    100003,
+    100004,
+    100005,
+    100006,
+    100007,
+    100008,
+    100009,
+    100010,
+    100011,
+    100012,
+    100013,
+    100014,
+    100015,
+    100016,
+    100017,
+    100018,
+    100019,
+    100020,
+    100021,
+    100022,
+    100023,
+    100024,
+    100025,
+    100026,
+    100027,
+    100028,
+    100029,
+    100030,
+    100031,
+    100032,
+    100033,
+    100034,
+    100035,
+    100036,
+    100037,
+    100038,
+    100039,
+    100040,
+    100041,
+    100042,
+    100043,
+    100044,
+    100045,
+    100046,
+    100047,
+    100048,
+    100049
+  ],
+  "mean_score": 0.22472250190183934,
+  "score_std": 0.3128979514355438,
+  "mean_score_bootstrap_95ci": [
+    0.14338580081400698,
+    0.314000753505627
+  ],
+  "score_definition": "official Runner mean(max_t clip(coverage_t/0.95,0,1))",
+  "mean_final_score": 0.1604925533629084,
+  "total_environment_steps": 14703,
+  "evaluation_seconds": 31.75078659999417,
+  "bank_entries": 3806,
+  "query_count": 1863,
+  "sync_checks": 1863,
+  "max_pusher_sync_error": 1.5225189372358727e-05,
+  "video_paths_by_seed": {
+    "100000": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\bymamreb.mp4",
+    "100001": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\otowpz79.mp4",
+    "100002": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\ro76r38e.mp4",
+    "100003": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\media\\5ku16mb8.mp4"
+  },
+  "retrieval_full_path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\geometry_oracle_alt\\artifacts\\geometry_oracle_alt030_v1\\retrieval_full.jsonl",
+  "retrieval": {
+    "pusher_error": {
+      "mean": 47.36902192995434,
+      "median": 44.83952800130431,
+      "p05": 0.03999967622163642,
+      "p95": 107.95369393493336,
+      "max": 158.28275791315363
+    },
+    "block_error": {
+      "mean": 64.44747382886554,
+      "median": 63.408030091798494,
+      "p05": 5.262062523543526,
+      "p95": 107.34444040235064,
+      "max": 165.31413534163113
+    },
+    "angle_error_degrees": {
+      "mean": 14.78226662916605,
+      "median": 12.401037734980738,
+      "p05": 0.4388822288908364,
+      "p95": 35.886874529053244,
+      "max": 54.4249803556356
+    },
+    "geometry_distance": {
+      "mean": 0.04365954264662462,
+      "median": 0.04117685578938567,
+      "p05": 0.00030946132342679416,
+      "p95": 0.09607317592756506,
+      "max": 0.1696500321969247
+    }
+  },
+  "transitions": 1813,
+  "same_match_transitions": 1273,
+  "same_match_and_same_position_transitions": 1191,
+  "state_stall_transitions": 1183,
+  "episode_switches": 195,
+  "padded_queries": 126,
+  "latency_ms": {
+    "state_read_ms": {
+      "mean": 0.41070917818217395,
+      "median": 0.2991999499499798,
+      "p05": 0.20150002092123032,
+      "p95": 1.1774499493185426,
+      "max": 2.6280999882146716
+    },
+    "search_ms": {
+      "mean": 0.48930386552623145,
+      "median": 0.4045999958179891,
+      "p05": 0.3142000059597194,
+      "p95": 1.1130999831948416,
+      "max": 2.670500020030886
+    },
+    "extraction_ms": {
+      "mean": 0.08649318264042474,
+      "median": 0.037999998312443495,
+      "p05": 0.027210026746615767,
+      "p95": 0.4106799897272134,
+      "max": 0.7502000080421567
+    }
+  }
+}
