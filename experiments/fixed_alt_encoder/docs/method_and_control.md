@@ -32,3 +32,8 @@ First four frozen seeds get videos. Score/bootstrap definitions reuse baseline c
 Inference consumes no pose labels. Offline label arrays support pose/retrieval error
 measurement only. A baseline without a trained pose head has no comparable pose-output
 accuracy; B1 heldout pose error alone cannot prove improvement over that baseline.
+
+Run files and experiment Python/config source use local .gitattributes `-text` so
+Git preserves the exact bytes used by saved checksums. No root attributes or frozen
+split storage are changed. Stage-specific code hashes distinguish post-training
+diagnostic/reporting additions from the committed training code used at launch.

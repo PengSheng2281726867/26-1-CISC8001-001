@@ -1,0 +1,6 @@
+# Preserve exact bytes used by run checksums and code provenance.
+run.py -text
+b1alt/*.py -text
+tests/*.py -text
+configs/*.yaml -text
+runs/** -text whitespace=cr-at-eol

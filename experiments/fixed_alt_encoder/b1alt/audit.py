@@ -5,7 +5,8 @@ import sys
 import numpy as np
 import torch
 from pusht.data import PushTData
-from pusht.repro import now, provenance, save_json, sha256, git
+from pusht.repro import now, save_json, sha256, git
+from b1alt.provenance import provenance
 from b1alt.common import EXPERIMENT, PROJECT, contract
 
 

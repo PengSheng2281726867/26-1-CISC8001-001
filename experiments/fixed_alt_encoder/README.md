@@ -25,6 +25,7 @@ data hashes and baseline provenance; [method/control](docs/method_and_control.md
 the exact loss and controlled differences. Seven necessary tests and the first-frozen-seed
 untrained integration smoke passed; reports are under results/. Neither is a trained B1 result.
 Audit/check outputs are immutable: the saved pilot's commands must not overwrite them.
+Repeat the gate without overwriting using `run.py check --check-id another_unique_id`.
 For a new formal training repeat, choose an unused run ID. The resolved baseline config
 is read and checked, and B1 settings come from configs/b1_pose_alt30_seed42.yaml.
 

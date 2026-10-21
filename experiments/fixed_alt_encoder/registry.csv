@@ -1,0 +1,2 @@
+run_id,status,stage,reason,mean_score
+b1_alt030_split42_model42_pose1_pilot_v1,running,offline_diagnosed,Prespecified B1 lambda1 seed42 pilot,

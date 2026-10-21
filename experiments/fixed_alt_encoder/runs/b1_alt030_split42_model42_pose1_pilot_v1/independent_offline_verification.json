@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "methods": {
+    "baseline": {
+      "frames_checked": 2426,
+      "max_abs_saved_fp32_minus_numpy_fp64": {
+        "pusher_error": 0.1403113624374244,
+        "block_error": 0.0468574752197585,
+        "angle_error_degrees": 3.694462698433654e-05,
+        "action_chunk_rmse": 7.626969733109945e-06
+      },
+      "independent_fp64_means": {
+        "pusher_error": 39.84665058799078,
+        "block_error": 46.41682902775356,
+        "angle_error_degrees": 38.31151361397671,
+        "action_chunk_rmse": 50.02798066871953
+      },
+      "csv_sha256": "3fec992fda4ffce36161607e3a82fb4c406e624656c10f200901538b33796b63"
+    },
+    "b1": {
+      "frames_checked": 2426,
+      "max_abs_saved_fp32_minus_numpy_fp64": {
+        "pusher_error": 0.1403113624374244,
+        "block_error": 0.0468574752197585,
+        "angle_error_degrees": 3.420251712782374e-05,
+        "action_chunk_rmse": 7.604312514786216e-06
+      },
+      "independent_fp64_means": {
+        "pusher_error": 46.62800667405956,
+        "block_error": 32.20086166683313,
+        "angle_error_degrees": 17.272521431412578,
+        "action_chunk_rmse": 47.13615068892178
+      },
+      "csv_sha256": "33612e3510d51ffb744fd328cb917abc2a240cd9ccb9f3c50a179dc0bfb9250f"
+    }
+  },
+  "verification_source_sha256": "a4d973e1c559a2cbd33027b90a10ccaafec91aac58f34e5085570af9e2ae6f3c",
+  "note": "Coordinate errors use world units; periodic angle degrees; same-episode 8-action RMSE."
+}

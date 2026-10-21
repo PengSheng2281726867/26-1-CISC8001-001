@@ -13,7 +13,8 @@ import yaml
 from alt.memory import MemoryBank, build_bank
 from pusht.data import PushTData
 from pusht.experiment import configure_torch, event
-from pusht.repro import now, provenance, save_json, sha256
+from pusht.repro import now, save_json, sha256
+from b1alt.provenance import provenance
 from b1alt.common import EXPERIMENT, PROJECT, contract
 from b1alt.encoder import B1FusionEncoder
 

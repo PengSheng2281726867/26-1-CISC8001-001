@@ -1,0 +1,161 @@
+{
+  "status": "passed",
+  "scope": "untrained integration only; not B1 result",
+  "rows": [
+    {
+      "evaluation_seed": 100000,
+      "official_episode_score": 0.39167831266120906,
+      "final_score": 0.39167831266120906,
+      "steps": 300,
+      "terminated": false,
+      "truncated": true,
+      "runtime_seconds": 1.055320199986454
+    }
+  ],
+  "seconds": 1.058562200050801,
+  "query_count": 38,
+  "pose_head_calls": 0,
+  "query_samples": [
+    {
+      "episode_index": 0,
+      "batch_index": 0,
+      "evaluation_seed": 100000,
+      "current_step": 0,
+      "matched_episode_id": 67,
+      "local_frame_index": 36,
+      "source_index": 8214,
+      "top1_cosine": 0.9737100005149841,
+      "agent_pos": [
+        235.0,
+        124.0
+      ],
+      "matched_agent_pos": [
+        221.6206817626953,
+        101.78499603271484
+      ],
+      "action_source_indices": [
+        8214,
+        8215,
+        8216,
+        8217,
+        8218,
+        8219,
+        8220,
+        8221
+      ],
+      "commands": [
+        [
+          191.0,
+          115.0
+        ],
+        [
+          185.0,
+          120.0
+        ],
+        [
+          177.0,
+          130.0
+        ],
+        [
+          174.0,
+          139.0
+        ],
+        [
+          171.0,
+          152.0
+        ],
+        [
+          171.0,
+          162.0
+        ],
+        [
+          171.0,
+          170.0
+        ],
+        [
+          171.0,
+          176.0
+        ]
+      ],
+      "episode_switch": false,
+      "frame_delta": null,
+      "boundary_padded": false,
+      "invalid": false,
+      "encoder_ms": 10.401599982287735,
+      "search_ms": 0.24449999909847975,
+      "extraction_ms": 0.48669998068362474,
+      "executed_actions": 8
+    },
+    {
+      "episode_index": 0,
+      "batch_index": 0,
+      "evaluation_seed": 100000,
+      "current_step": 8,
+      "matched_episode_id": 107,
+      "local_frame_index": 72,
+      "source_index": 12718,
+      "top1_cosine": 0.9722294211387634,
+      "agent_pos": [
+        171.84051513671875,
+        164.95401000976562
+      ],
+      "matched_agent_pos": [
+        281.07989501953125,
+        210.75526428222656
+      ],
+      "action_source_indices": [
+        12718,
+        12719,
+        12720,
+        12721,
+        12722,
+        12723,
+        12724,
+        12725
+      ],
+      "commands": [
+        [
+          262.0,
+          204.0
+        ],
+        [
+          259.0,
+          210.0
+        ],
+        [
+          254.0,
+          218.0
+        ],
+        [
+          251.0,
+          221.0
+        ],
+        [
+          250.0,
+          222.0
+        ],
+        [
+          241.0,
+          220.0
+        ],
+        [
+          231.0,
+          220.0
+        ],
+        [
+          221.0,
+          223.0
+        ]
+      ],
+      "episode_switch": true,
+      "frame_delta": null,
+      "boundary_padded": false,
+      "invalid": false,
+      "encoder_ms": 9.662099997512996,
+      "search_ms": 0.2300000051036477,
+      "extraction_ms": 0.7089999853633344,
+      "executed_actions": 8
+    }
+  ],
+  "only_first_frozen_seed": true
+}

@@ -174,13 +174,13 @@ def plot_matches(data, manifest, base_rows, b1_rows, rd):
               'source_indices': [base_rows[i]['source_index'] for i in selected]}, immutable=True)
 
 
-def diagnose(cfg, manifest, rd, heavy, meta):
+def _diagnose(cfg, manifest, rd, heavy, meta, model_artifacts):
     if (rd/'offline_diagnostics.json').exists():
         raise ValueError('Diagnostics already exist')
     if meta['training_status'] != 'completed':
         raise ValueError('Completed formal training required')
     data = PushTData(cfg['paths']['dataset'])
-    model, bank = load_model(cfg, heavy, meta), load_bank(heavy, meta)
+    model, bank = load_model(cfg, model_artifacts, meta), load_bank(model_artifacts, meta)
     validation = bank_validation(model, bank, data, manifest['train_subsets']['30'])
     validation.update(checkpoint_sha256=meta['checkpoint_sha256'], bank_sha256=meta['bank_sha256'])
     save_json(rd/'bank_validation.json', validation, immutable=True)
@@ -227,7 +227,27 @@ def diagnose(cfg, manifest, rd, heavy, meta):
         'settings': cfg['diagnostics'], 'baseline_reproduces_saved_diagnostics': True, 'baseline': base, 'b1': b1,
         'limitations': 'Pose errors are predictive diagnostics. Baseline has no trained pose head; no baseline pose-accuracy comparison. Retrieval action RMSE is descriptive, not accuracy. One model seed.'}
     save_json(rd/'offline_diagnostics.json', output, immutable=True)
+    from b1alt.verify import verify_offline
+    verify_offline(rd, heavy, data)
     meta.update(stage='offline_diagnosed', status='running', offline_diagnostics_sha256=sha256(rd/'offline_diagnostics.json'))
     event(rd, 'offline_diagnostics', 'completed', frames=b1['heldout_frames'])
     print(json.dumps({'pose': b1['pose_prediction'], 'baseline_retrieval': base['retrieval'], 'b1_retrieval': b1['retrieval'],
                       'position_top1_changed_fraction': b1['position_swap_probe']['top1_changed_fraction']}), flush=True)
+
+
+def diagnose(cfg, manifest, rd, heavy, meta):
+    if (rd/'offline_diagnostics.json').exists():
+        raise ValueError('Completed diagnostics exist; never overwrite')
+    attempt = now().replace(':', '').replace('+', '_')
+    work = rd/'diagnostic_attempts'/attempt
+    raw = heavy/'diagnostic_attempts'/attempt
+    work.mkdir(parents=True)
+    raw.mkdir(parents=True)
+    # Preserve all failed attempts; publish small result files only when all
+    # checks, prior-metric reproduction and independent FP64 verification pass.
+    _diagnose(cfg, manifest, work, raw, meta, model_artifacts=heavy)
+    for p in sorted(work.iterdir()):
+        if p.is_file() and p.name != 'events.jsonl':
+            with (rd/p.name).open('xb') as f:
+                f.write(p.read_bytes())
+    event(rd, 'offline_diagnostics', 'completed', attempt=attempt)

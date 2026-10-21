@@ -1,0 +1,30 @@
+{
+  "time": "2026-10-21T08:56:00.063775+00:00",
+  "command": "diagnose",
+  "code": {
+    "path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE",
+    "commit": "43ce685a988071e786179a9c9c99edce43476ef1",
+    "branch": "main",
+    "dirty_status": "M experiments/fixed_alt_encoder/README.md\n M experiments/fixed_alt_encoder/b1alt/check.py\n M experiments/fixed_alt_encoder/b1alt/cli.py\n M experiments/fixed_alt_encoder/b1alt/diagnose.py\n M experiments/fixed_alt_encoder/b1alt/evaluate.py\n M experiments/fixed_alt_encoder/docs/method_and_control.md\n M experiments/fixed_alt_encoder/tests/test_b1.py\n?? experiments/fixed_alt_encoder/.gitattributes\n?? experiments/fixed_alt_encoder/b1alt/report.py\n?? experiments/fixed_alt_encoder/b1alt/verify.py\n?? experiments/fixed_alt_encoder/registry.csv\n?? experiments/fixed_alt_encoder/runs/",
+    "remote": "https://github.com/PengSheng2281726867/26-1-CISC8001-001.git",
+    "tracked_diff_sha256": "42d84d525bb40995e49d4e837a9735facdadc68bc99df55dc6ca0909767066fd"
+  },
+  "source_hashes": {
+    "run.py": "7663d53e059abf45c32c883abd87596e1a8c4a809577f8c8644cf26a1a45e619",
+    "b1alt/__init__.py": "1af4d32622204294de3fe093576f11c3316da7160328f33aeb3b18cf5e5b54b7",
+    "b1alt/audit.py": "9a3f44278b76473812a7b863d7c220e8abdaca0cac574d94fd259324e7418577",
+    "b1alt/check.py": "9d5c09bcc8dbcbdf8a75a42e78a5e041a59f8828ab3759b940e0146e22c6fefe",
+    "b1alt/cli.py": "f06d68022ad1e871fdfb3b296bd3e9046a0be09c5b6df41192f93b8f1df3ac92",
+    "b1alt/common.py": "5e0662bf8bfb595dcbb96913d32f29d599d3a98dcc348d2341fdd8ef2311ed3e",
+    "b1alt/data_adapter.py": "f5b09a4dd44e2a43e37c5d9b8a9dcf6fc0797c3b9d9b4005162d939df7e06b8c",
+    "b1alt/diagnose.py": "1ee92eaabe624da8e496d1f1a25f984b38fe36b25d9178d1fcc902441e792e7d",
+    "b1alt/encoder.py": "0048bcdc5f4a15a89d418f1117c06f16128468bf0b37281a1a0de6f0752ae9a7",
+    "b1alt/evaluate.py": "70ce5f6f322ee5cde4ab4442d664de9db6aa3b801faf6b16a230f2d0634f60c3",
+    "b1alt/experiment.py": "77298c51c3112f8a12b376aeb4ffad5bb944af3536f524eb6f82f5adb474cbb6",
+    "b1alt/loss.py": "484294a0a58487b7c975052c4fc089c1a0f15f23fdc9250da3ee024f2de53ae4",
+    "b1alt/report.py": "6116003b3347241a141cc608a64dea9c7c3cd9792998ec6c8c4cbf5771aeae89",
+    "b1alt/train.py": "2d7cb2a45ec79d5ffe800d692a5051a20f119017cf28c3905d995b33ad4ae59b",
+    "b1alt/verify.py": "a4d973e1c559a2cbd33027b90a10ccaafec91aac58f34e5085570af9e2ae6f3c",
+    "configs/b1_pose_alt30_seed42.yaml": "d7a26ce4e1e6fbf6e4b0c37283ec682995357eedec00449cdc8e8ae475a0f234"
+  }
+}

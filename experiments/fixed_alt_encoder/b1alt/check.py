@@ -2,6 +2,7 @@
 import copy
 import io
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -15,8 +16,10 @@ from b1alt.common import EXPERIMENT, contract
 from b1alt.experiment import fresh
 
 
-def run(cfg):
-    output = EXPERIMENT/'results/phase1_tests.json'
+def run(cfg, check_id='phase1'):
+    if not re.fullmatch(r'[A-Za-z0-9_-]+', check_id):
+        raise ValueError('Use a fresh safe check ID')
+    output = EXPERIMENT/'results'/f'{check_id}_tests.json'
     if output.exists():
         raise ValueError('Test report exists; preserve old report before choosing another check ID')
     suite = unittest.defaultTestLoader.discover(str(EXPERIMENT/'tests'), pattern='test_*.py')
@@ -39,10 +42,10 @@ def run(cfg):
     from pusht.rollout import run_official
     calls = []
     hook = model.pose_head.register_forward_hook(lambda *args: calls.append(1))
-    rows, videos, elapsed = run_official(policy, settings, manifest['test_env_seeds'][:1], EXPERIMENT/'artifacts/phase1_smoke')
+    rows, videos, elapsed = run_official(policy, settings, manifest['test_env_seeds'][:1], EXPERIMENT/'artifacts'/f'{check_id}_smoke')
     hook.remove()
     assert not calls and len(rows) == 1 and policy.invalid_events == 0
-    save_json(EXPERIMENT/'results/phase1_smoke.json', {'status': 'passed', 'scope': 'untrained integration only; not B1 result',
+    save_json(EXPERIMENT/'results'/f'{check_id}_smoke.json', {'status': 'passed', 'scope': 'untrained integration only; not B1 result',
         'rows': rows, 'seconds': elapsed, 'query_count': len(policy.query_records), 'pose_head_calls': len(calls),
         'query_samples': policy.query_records[:2], 'only_first_frozen_seed': True}, immutable=True)
     print(json.dumps({'unit_tests': 'passed', 'smoke': 'passed', 'pose_head_calls': 0}), flush=True)

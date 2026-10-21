@@ -60,6 +60,8 @@ class B1Tests(unittest.TestCase):
             z2, p2 = model.forward_with_pose(image, torch.full_like(pos, 500))
         hook.remove()
         self.assertEqual(len(count), 2)
+        with torch.inference_mode():
+            torch.testing.assert_close(z1, model(image, pos), rtol=0, atol=0)
         self.assertTrue(torch.equal(p1, p2))
         self.assertFalse(torch.equal(z1, z2))
 

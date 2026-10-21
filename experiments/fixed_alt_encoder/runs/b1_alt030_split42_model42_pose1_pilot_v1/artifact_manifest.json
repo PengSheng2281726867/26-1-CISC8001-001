@@ -1,0 +1,30 @@
+{
+  "backed_up_by_git": false,
+  "files": [
+    {
+      "path": "artifacts/fixed_alt_encoder/b1_alt030_split42_model42_pose1_pilot_v1/diagnostic_attempts/2026-10-21T085722.716455_0000/b1_heldout_matches.csv",
+      "bytes": 269104,
+      "sha256": "33612e3510d51ffb744fd328cb917abc2a240cd9ccb9f3c50a179dc0bfb9250f"
+    },
+    {
+      "path": "artifacts/fixed_alt_encoder/b1_alt030_split42_model42_pose1_pilot_v1/diagnostic_attempts/2026-10-21T085722.716455_0000/b1_heldout_pose.csv",
+      "bytes": 240455,
+      "sha256": "9856959f615454c322305b9f97ed07dab3cce354ae435dba5f677c0b3b7bb446"
+    },
+    {
+      "path": "artifacts/fixed_alt_encoder/b1_alt030_split42_model42_pose1_pilot_v1/diagnostic_attempts/2026-10-21T085722.716455_0000/baseline_heldout_matches.csv",
+      "bytes": 268451,
+      "sha256": "3fec992fda4ffce36161607e3a82fb4c406e624656c10f200901538b33796b63"
+    },
+    {
+      "path": "artifacts/fixed_alt_encoder/b1_alt030_split42_model42_pose1_pilot_v1/encoder_final.pt",
+      "bytes": 45396739,
+      "sha256": "86d810168e5a501b39040074d7eb3fc474430c32c24855aac28f03bedbab5ec7"
+    },
+    {
+      "path": "artifacts/fixed_alt_encoder/b1_alt030_split42_model42_pose1_pilot_v1/memory_bank.pt",
+      "bytes": 2042629,
+      "sha256": "dfa97c7de682ab3429b5f078cdeec44648678398e006e1a2bddd6b24c962944f"
+    }
+  ]
+}

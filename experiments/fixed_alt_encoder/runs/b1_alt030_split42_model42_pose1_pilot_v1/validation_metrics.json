@@ -1,0 +1,26 @@
+{
+  "final_epoch": 40,
+  "batches": 75,
+  "augmented_two_view_losses": {
+    "contrast": 3.0169892183939617,
+    "xy": 0.005235174302166949,
+    "angle": 0.08099065956193954,
+    "pose": 0.08622583334489416,
+    "total": 3.103215045928955
+  },
+  "deterministic_pose_prediction": {
+    "xy_error": {
+      "mean": 20.340331132843883,
+      "median": 14.95662784576416,
+      "p05": 3.6491189002990723,
+      "p95": 57.025187492370605
+    },
+    "angle_error_degrees": {
+      "mean": 13.550008802223157,
+      "median": 3.4550578594207764,
+      "p05": 0.27995578944683075,
+      "p95": 77.90632438659668
+    }
+  },
+  "selection_uses_validation": false
+}

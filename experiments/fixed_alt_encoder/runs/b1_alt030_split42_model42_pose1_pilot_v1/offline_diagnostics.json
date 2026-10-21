@@ -1,0 +1,165 @@
+{
+  "status": "completed",
+  "completed_at": "2026-10-21T08:57:39.194219+00:00",
+  "split_manifest_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "checkpoint_sha256": "86d810168e5a501b39040074d7eb3fc474430c32c24855aac28f03bedbab5ec7",
+  "bank_sha256": "dfa97c7de682ab3429b5f078cdeec44648678398e006e1a2bddd6b24c962944f",
+  "diagnostic_helper_sha256": "94b5e3d50675a5976164d5130b73179cad60d5458ace17e0de5e12bc6dd34947",
+  "query_order_sha256": "8eaf1a44aaa0d16730594d64a7ea9cefd9a7397c75c3e7ee5631edc6dc0bec84",
+  "settings": {
+    "batch_size": 128,
+    "branch_probe_frames": 256,
+    "display_validation_episodes": 4,
+    "trace_same_position_tolerance_world_units": 0.001
+  },
+  "baseline_reproduces_saved_diagnostics": true,
+  "baseline": {
+    "heldout_frames": 2426,
+    "heldout_episode_ids": [
+      154,
+      26,
+      101,
+      46,
+      38,
+      7,
+      79,
+      104,
+      150,
+      56,
+      20,
+      184,
+      108,
+      24,
+      146,
+      98,
+      196,
+      37,
+      197,
+      50
+    ],
+    "retrieval": {
+      "pusher_error": {
+        "mean": 39.84657573219625,
+        "median": 25.47455883026123,
+        "p05": 3.4576058387756348,
+        "p95": 128.68932342529297
+      },
+      "block_error": {
+        "mean": 46.41686220718924,
+        "median": 31.832324981689453,
+        "p05": 3.3257354497909546,
+        "p95": 133.69873428344727
+      },
+      "angle_error_degrees": {
+        "mean": 38.311513346506274,
+        "median": 8.209764003753662,
+        "p05": 0.48298996686935425,
+        "p95": 162.51976013183594
+      },
+      "action_chunk_rmse": {
+        "mean": 50.027980679878006,
+        "median": 40.05462646484375,
+        "p05": 6.741893172264099,
+        "p95": 130.14563369750977
+      }
+    },
+    "position_swap_probe": {
+      "frames": 256,
+      "top1_changed_fraction": 0.015625,
+      "embedding_one_minus_cosine": {
+        "mean": 0.00039764191024005413,
+        "median": 0.0002543330192565918,
+        "p05": 2.002716064453125e-05,
+        "p95": 0.0012993663549423218
+      },
+      "interpretation": "Artificial inconsistent input probe, not a physically realizable intervention"
+    },
+    "full_matches": {
+      "path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\fixed_alt_encoder\\b1_alt030_split42_model42_pose1_pilot_v1\\diagnostic_attempts\\2026-10-21T085722.716455_0000\\baseline_heldout_matches.csv",
+      "sha256": "3fec992fda4ffce36161607e3a82fb4c406e624656c10f200901538b33796b63",
+      "bytes": 268451
+    }
+  },
+  "b1": {
+    "heldout_frames": 2426,
+    "heldout_episode_ids": [
+      154,
+      26,
+      101,
+      46,
+      38,
+      7,
+      79,
+      104,
+      150,
+      56,
+      20,
+      184,
+      108,
+      24,
+      146,
+      98,
+      196,
+      37,
+      197,
+      50
+    ],
+    "retrieval": {
+      "pusher_error": {
+        "mean": 46.62793652988473,
+        "median": 29.85380268096924,
+        "p05": 4.814690113067627,
+        "p95": 144.04296112060547
+      },
+      "block_error": {
+        "mean": 32.20098005830996,
+        "median": 21.66342067718506,
+        "p05": 2.513614535331726,
+        "p95": 94.23452568054199
+      },
+      "angle_error_degrees": {
+        "mean": 17.272521359719814,
+        "median": 4.336924076080322,
+        "p05": 0.23303239047527313,
+        "p95": 92.3652515411377
+      },
+      "action_chunk_rmse": {
+        "mean": 47.13615068500925,
+        "median": 34.32746505737305,
+        "p05": 6.690711617469788,
+        "p95": 128.03053665161133
+      }
+    },
+    "position_swap_probe": {
+      "frames": 256,
+      "top1_changed_fraction": 0.0234375,
+      "embedding_one_minus_cosine": {
+        "mean": 0.000742817297577858,
+        "median": 0.0005045533180236816,
+        "p05": 3.3020973205566406e-05,
+        "p95": 0.0022654086351394653
+      },
+      "interpretation": "Artificial inconsistent input probe, not a physically realizable intervention"
+    },
+    "full_matches": {
+      "path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\fixed_alt_encoder\\b1_alt030_split42_model42_pose1_pilot_v1\\diagnostic_attempts\\2026-10-21T085722.716455_0000\\b1_heldout_matches.csv",
+      "sha256": "33612e3510d51ffb744fd328cb917abc2a240cd9ccb9f3c50a179dc0bfb9250f",
+      "bytes": 269104
+    },
+    "pose_prediction": {
+      "xy_error": {
+        "mean": 20.340331132843883,
+        "median": 14.95662784576416,
+        "p05": 3.6491189002990723,
+        "p95": 57.025187492370605
+      },
+      "angle_error_degrees": {
+        "mean": 13.550008802223157,
+        "median": 3.4550578594207764,
+        "p05": 0.27995578944683075,
+        "p95": 77.90632438659668
+      }
+    }
+  },
+  "limitations": "Pose errors are predictive diagnostics. Baseline has no trained pose head; no baseline pose-accuracy comparison. Retrieval action RMSE is descriptive, not accuracy. One model seed."
+}

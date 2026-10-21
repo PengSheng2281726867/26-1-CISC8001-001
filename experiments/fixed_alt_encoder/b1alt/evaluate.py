@@ -9,7 +9,8 @@ from b1alt.experiment import load_model, load_bank
 def evaluate(cfg, manifest, rd, heavy, meta):
     offline = json.loads((rd/'offline_diagnostics.json').read_text())
     bank_check = json.loads((rd/'bank_validation.json').read_text())
-    if offline['status'] != 'completed' or bank_check['status'] != 'passed':
+    independent = json.loads((rd/'independent_offline_verification.json').read_text())
+    if offline['status'] != 'completed' or bank_check['status'] != 'passed' or independent['status'] != 'passed':
         raise ValueError('Offline gate must pass before formal rollouts')
     if offline['checkpoint_sha256'] != meta['checkpoint_sha256'] or offline['bank_sha256'] != meta['bank_sha256']:
         raise ValueError('Offline/model/bank hashes differ')
