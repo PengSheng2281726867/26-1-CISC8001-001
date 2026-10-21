@@ -22,6 +22,8 @@ All paths are in configs/alt_pusht_base.yaml and can be changed using `--config 
 
 `audit` checks every data array for finite values/ranges and hashes every dataset file. Five independent episodes reconstruct their stored RGB exactly from current stored state (diagnostic only). It writes docs/data_audit.md, results/data_audit.json and results/alignment_debug.png. Frozen split JSON has exact IDs and seeds plus SHA256 sidecar; an existing changed split is rejected, never overwritten. Every experiment must validate this contract. ImageNet weights are downloaded from the official torchvision URL into ignored artifacts/pretrained, verified by hash prefix, and their full SHA256 is recorded. Random-backbone fallback is prohibited.
 
+`.gitattributes` disables Git newline conversion for the frozen split JSON and checksum files. Their checksums cover exact bytes; the original Windows CRLF bytes are intentionally preserved in Git. This storage rule changes neither IDs/order nor the frozen manifest SHA256. Reconstructing a manifest from a Git blob must reproduce its advertised checksum.
+
 `check` verifies split leakage, action alignment and all episode boundaries, independent augmentation, an analytic NT-Xent reference, real pretrained loading/backbone gradient update, normalized128D embeddings, and deterministic bank/query/save/load using real Push-T images.
 
 The first commit includes verified audit, frozen split and working core. Seven gates now also check latest-frame policy selection, reset/API/absolute action units, and exact transition parity between the instrumented and original environments. See docs/experiment_log.md and docs/failure_log.md for measured progress.

@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-21T02:37:38.056222+00:00",
+  "status": "passed",
+  "git_blob_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "working_manifest_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "advertised_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "episode_ids_unchanged": true,
+  "exact_git_blob_materialization_validated": true
+}
