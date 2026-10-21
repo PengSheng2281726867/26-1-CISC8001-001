@@ -1,0 +1,30 @@
+{
+  "code": {
+    "path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE",
+    "commit": "f11f37edb0327560e1a6f6bb5b2bc8c68d80e236",
+    "branch": "main",
+    "dirty_status": "M experiments/fixed_alt_encoder/registry.csv\n M experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/artifact_manifest.json\n M experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/events.jsonl\n M experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/run_metadata.json\n?? experiments/fixed_alt_encoder/docs/final_analysis.md\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/eval_metrics.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/eval_rollouts.csv\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/inference_isolation.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/paired_comparison.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/paired_scores.csv\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/preservation_check.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/report.md\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/retrieval_sample.jsonl\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/rollout_inspection.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/stage_provenance/evaluate_2026-10-21T090033.398560_0000.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/stage_provenance/report_2026-10-21T090153.575706_0000.json\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/training_and_paired_scores.png\n?? experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1/video_trace_contact_sheet.png",
+    "remote": "https://github.com/PengSheng2281726867/26-1-CISC8001-001.git",
+    "tracked_diff_sha256": "1d509f03567ccd914d7e35aa3b4475353076709f650fd4913af3fe8bdeb6a8d4",
+    "diff_hash_definition": "SHA256 exact stdout bytes of git diff HEAD (no locale decoding)"
+  },
+  "sources": {
+    "run.py": "7663d53e059abf45c32c883abd87596e1a8c4a809577f8c8644cf26a1a45e619",
+    "b1alt/__init__.py": "1af4d32622204294de3fe093576f11c3316da7160328f33aeb3b18cf5e5b54b7",
+    "b1alt/audit.py": "88257d7cdfe0450a0ed55f303d2de676fd72708d5eea9de76b9aea6ba95f6c2e",
+    "b1alt/check.py": "9d5c09bcc8dbcbdf8a75a42e78a5e041a59f8828ab3759b940e0146e22c6fefe",
+    "b1alt/cli.py": "41b4aca452ab5a0fadd1ea5e993e0537e1eb39e1385a015f6a2dbdb4dc413a6b",
+    "b1alt/common.py": "5e0662bf8bfb595dcbb96913d32f29d599d3a98dcc348d2341fdd8ef2311ed3e",
+    "b1alt/data_adapter.py": "f5b09a4dd44e2a43e37c5d9b8a9dcf6fc0797c3b9d9b4005162d939df7e06b8c",
+    "b1alt/diagnose.py": "e4f3253f393a2960cfbdaab6a3dcda7f83367e4c1deb6f679ede507665559df8",
+    "b1alt/encoder.py": "0048bcdc5f4a15a89d418f1117c06f16128468bf0b37281a1a0de6f0752ae9a7",
+    "b1alt/evaluate.py": "70ce5f6f322ee5cde4ab4442d664de9db6aa3b801faf6b16a230f2d0634f60c3",
+    "b1alt/experiment.py": "4689a9e8798a83d72ed857f4d4168cbbba283d69b24b685194699387b7870292",
+    "b1alt/loss.py": "484294a0a58487b7c975052c4fc089c1a0f15f23fdc9250da3ee024f2de53ae4",
+    "b1alt/provenance.py": "014f24b4c544b9fb9de950bc8c84ace7fd323ca4a645d586423769b15badc88c",
+    "b1alt/report.py": "5672186520b40a8f2fe33a70d30f96e0ac744523db72049e7fa1c5660e545850",
+    "b1alt/train.py": "2d7cb2a45ec79d5ffe800d692a5051a20f119017cf28c3905d995b33ad4ae59b",
+    "b1alt/verify.py": "a4d973e1c559a2cbd33027b90a10ccaafec91aac58f34e5085570af9e2ae6f3c",
+    "configs/b1_pose_alt30_seed42.yaml": "d7a26ce4e1e6fbf6e4b0c37283ec682995357eedec00449cdc8e8ae475a0f234"
+  }
+}

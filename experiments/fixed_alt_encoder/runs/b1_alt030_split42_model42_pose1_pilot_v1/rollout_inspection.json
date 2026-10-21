@@ -1,0 +1,498 @@
+{
+  "status": "completed",
+  "b1": {
+    "trace_sha256": "12ac1bdea026af7dc62b1beaae8a8cfe0fa860b5cc5c61416dfb14dfa1665d0a",
+    "queries": 1886,
+    "transitions": 1836,
+    "consecutive_same_match_transitions": 1139,
+    "same_match_and_same_position_transitions": 1061,
+    "consecutive_same_match_fraction": 0.6203703703703703,
+    "same_match_and_same_position_fraction": 0.5778867102396514,
+    "two_cycle_return_transitions_excluding_one_cycles": 237,
+    "episode_switches": 312,
+    "padded_queries": 55,
+    "invalid_action_events": 0,
+    "query_to_matched_pusher_distance": {
+      "mean": 64.73009825575154,
+      "median": 54.00366872390546,
+      "p95": 149.31972690077203
+    },
+    "repeated_match_tails": [
+      {
+        "seed": 100000,
+        "same_match_queries_at_end": 36
+      },
+      {
+        "seed": 100001,
+        "same_match_queries_at_end": 38
+      },
+      {
+        "seed": 100002,
+        "same_match_queries_at_end": 35
+      },
+      {
+        "seed": 100003,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100004,
+        "same_match_queries_at_end": 32
+      },
+      {
+        "seed": 100005,
+        "same_match_queries_at_end": 35
+      },
+      {
+        "seed": 100006,
+        "same_match_queries_at_end": 27
+      },
+      {
+        "seed": 100007,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100008,
+        "same_match_queries_at_end": 17
+      },
+      {
+        "seed": 100009,
+        "same_match_queries_at_end": 30
+      },
+      {
+        "seed": 100010,
+        "same_match_queries_at_end": 25
+      },
+      {
+        "seed": 100011,
+        "same_match_queries_at_end": 34
+      },
+      {
+        "seed": 100012,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100013,
+        "same_match_queries_at_end": 27
+      },
+      {
+        "seed": 100014,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100015,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100016,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100017,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100018,
+        "same_match_queries_at_end": 34
+      },
+      {
+        "seed": 100019,
+        "same_match_queries_at_end": 30
+      },
+      {
+        "seed": 100020,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100021,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100022,
+        "same_match_queries_at_end": 27
+      },
+      {
+        "seed": 100023,
+        "same_match_queries_at_end": 28
+      },
+      {
+        "seed": 100024,
+        "same_match_queries_at_end": 36
+      },
+      {
+        "seed": 100025,
+        "same_match_queries_at_end": 34
+      },
+      {
+        "seed": 100026,
+        "same_match_queries_at_end": 36
+      },
+      {
+        "seed": 100027,
+        "same_match_queries_at_end": 34
+      },
+      {
+        "seed": 100028,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100029,
+        "same_match_queries_at_end": 13
+      },
+      {
+        "seed": 100030,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100031,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100032,
+        "same_match_queries_at_end": 18
+      },
+      {
+        "seed": 100033,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100034,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100035,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100036,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100037,
+        "same_match_queries_at_end": 38
+      },
+      {
+        "seed": 100038,
+        "same_match_queries_at_end": 36
+      },
+      {
+        "seed": 100039,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100040,
+        "same_match_queries_at_end": 17
+      },
+      {
+        "seed": 100041,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100042,
+        "same_match_queries_at_end": 35
+      },
+      {
+        "seed": 100043,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100044,
+        "same_match_queries_at_end": 34
+      },
+      {
+        "seed": 100045,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100046,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100047,
+        "same_match_queries_at_end": 36
+      },
+      {
+        "seed": 100048,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100049,
+        "same_match_queries_at_end": 37
+      }
+    ]
+  },
+  "baseline": {
+    "trace_sha256": "7fcd739ef167edef1ebbc7a7646a5cb5135c6e8c4872b1372ef58406ebd6b062",
+    "queries": 1875,
+    "transitions": 1825,
+    "consecutive_same_match_transitions": 400,
+    "same_match_and_same_position_transitions": 362,
+    "consecutive_same_match_fraction": 0.2191780821917808,
+    "same_match_and_same_position_fraction": 0.19835616438356166,
+    "two_cycle_return_transitions_excluding_one_cycles": 158,
+    "episode_switches": 940,
+    "padded_queries": 14,
+    "invalid_action_events": 0,
+    "query_to_matched_pusher_distance": {
+      "mean": 63.03053839199501,
+      "median": 46.73700000101332,
+      "p95": 184.85139339512733
+    },
+    "repeated_match_tails": [
+      {
+        "seed": 100000,
+        "same_match_queries_at_end": 18
+      },
+      {
+        "seed": 100001,
+        "same_match_queries_at_end": 23
+      },
+      {
+        "seed": 100002,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100003,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100004,
+        "same_match_queries_at_end": 37
+      },
+      {
+        "seed": 100005,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100006,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100007,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100008,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100009,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100010,
+        "same_match_queries_at_end": 32
+      },
+      {
+        "seed": 100011,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100012,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100013,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100014,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100015,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100016,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100017,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100018,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100019,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100020,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100021,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100022,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100023,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100024,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100025,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100026,
+        "same_match_queries_at_end": 36
+      },
+      {
+        "seed": 100027,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100028,
+        "same_match_queries_at_end": 9
+      },
+      {
+        "seed": 100029,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100030,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100031,
+        "same_match_queries_at_end": 13
+      },
+      {
+        "seed": 100032,
+        "same_match_queries_at_end": 33
+      },
+      {
+        "seed": 100033,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100034,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100035,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100036,
+        "same_match_queries_at_end": 31
+      },
+      {
+        "seed": 100037,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100038,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100039,
+        "same_match_queries_at_end": 16
+      },
+      {
+        "seed": 100040,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100041,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100042,
+        "same_match_queries_at_end": 10
+      },
+      {
+        "seed": 100043,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100044,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100045,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100046,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100047,
+        "same_match_queries_at_end": 1
+      },
+      {
+        "seed": 100048,
+        "same_match_queries_at_end": 30
+      },
+      {
+        "seed": 100049,
+        "same_match_queries_at_end": 1
+      }
+    ]
+  },
+  "predefined_video_checks": [
+    {
+      "evaluation_seed": 100000,
+      "decoded_frames": 300,
+      "coordinate_checks": 10,
+      "median_blue_centroid_error_pixels": 1.3198431657324874,
+      "max_blue_centroid_error_pixels": 1.6000768759595136,
+      "video_sha256": "d9406af1095803133279cc8bf8804a08a52cbabc0c59ca70d63358fc3eed2e42",
+      "display_query_steps": [
+        8,
+        152,
+        296
+      ]
+    },
+    {
+      "evaluation_seed": 100001,
+      "decoded_frames": 300,
+      "coordinate_checks": 37,
+      "median_blue_centroid_error_pixels": 1.5468642578696998,
+      "max_blue_centroid_error_pixels": 1.5760516640817697,
+      "video_sha256": "3de0ed8189ee2e6a0e540d4cd6ab72e5135ce6e8b4d3b9e6ec7bf72addc19846",
+      "display_query_steps": [
+        8,
+        152,
+        296
+      ]
+    },
+    {
+      "evaluation_seed": 100002,
+      "decoded_frames": 300,
+      "coordinate_checks": 37,
+      "median_blue_centroid_error_pixels": 0.6127231801607884,
+      "max_blue_centroid_error_pixels": 1.723185405442089,
+      "video_sha256": "6a113cb50003d95e53380689b64bf98da3b92334663580ff13294f78b24ccf1b",
+      "display_query_steps": [
+        8,
+        152,
+        296
+      ]
+    },
+    {
+      "evaluation_seed": 100003,
+      "decoded_frames": 300,
+      "coordinate_checks": 31,
+      "median_blue_centroid_error_pixels": 1.6917479141257463,
+      "max_blue_centroid_error_pixels": 2.3558861780082183,
+      "video_sha256": "b89e89a0c8c140c64b28712ceb614cd840046b7c0aab5c9aa1a4d5cd29bf6d50",
+      "display_query_steps": [
+        8,
+        152,
+        296
+      ]
+    }
+  ],
+  "note": "Video index=t-1 because recording starts after action; compressed overlays differ from raw expert images."
+}

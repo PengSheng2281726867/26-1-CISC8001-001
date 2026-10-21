@@ -43,3 +43,25 @@ it shows improvements and regressions without selecting examples by result.
 Seven regression tests and an untrained integration smoke passed again, including
 exact equality between training-path z and inherited inference-path z. Next gate:
 the original official50-seed closed-loop evaluation, once, without retuning.
+
+Phase 2/3 commit f11f37e was successfully pushed to origin/main.
+
+2026-10-21T09:01Z: Phase 4 completed once, original official PushTImageRunner on all50
+frozen seeds, legacy_test=True, max_steps300. Mean score0.1781849877, SD0.2817997854,
+95%CI[0.1066292597,0.2620184695]; 14889environment steps, 1886queries, 0invalid events.
+Pose Head calls0; checkpoint/bank checksums match. First4 predefined videos retained.
+
+Phase 5 report and independent verification completed. Paired difference from original
+ALT-30=-0.0962389116, 95%CI[-0.1909116200,-0.0006886848], 9improved/26worsened/15tied
+seeds. Report does not generalize this conditional interval to training-seed variation.
+Same-match/same-position transitions362/1825->1061/1836. The first4 videos were decoded
+and visually inspected via a contact sheet; failure seed100000 repeatedly retrieves
+54:113 at steps152/296 with identical replan pusher xy and eight-action commands.
+Commands/time/units/boundaries and official-score telemetry pass. See interpretation.md.
+
+Final verification independently reproduced the paired bootstrap using a per-resample
+loop, checked all40 training rows/4720updates/loss identities, rehashed all10 heavy
+artifact files and verified the immutable resolved config hash. All93 original
+source/config/split/result files and both references remain unchanged. No further
+training, tuning, scale expansion, data collection or DP model was run. Heavy files
+remain local only; Git stores manifests, small logs, metrics and figures.

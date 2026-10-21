@@ -1,8 +1,8 @@
 {
   "run_id": "b1_alt030_split42_model42_pose1_pilot_v1",
   "created_at": "2026-10-21T08:45:20.265311+00:00",
-  "status": "running",
-  "stage": "offline_diagnosed",
+  "status": "completed",
+  "stage": "reported",
   "scope": "B1_pose_supervised_ALT30_single_model_seed_pilot",
   "scale": 30,
   "dataset_id": "pusht_cchi_v7_replay.zarr",
@@ -274,7 +274,16 @@
   "checkpoint_selection": "final_epoch_40",
   "bank_entries": 3806,
   "bank_sha256": "dfa97c7de682ab3429b5f078cdeec44648678398e006e1a2bddd6b24c962944f",
-  "failed_stage": "diagnose",
-  "error": "Traceback (most recent call last):\n  File \"D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\fixed_alt_encoder\\b1alt\\cli.py\", line 33, in main\n    {'time': now(), 'command': args.command, 'code': provenance(PROJECT),\n  File \"D:\\Code\\Course_code\\COURSE-HUZI-CODE\\src\\pusht\\repro.py\", line 67, in provenance\n    'tracked_diff_sha256': hashlib.sha256(git(root, 'diff', 'HEAD').encode()).hexdigest()}\n  File \"D:\\Code\\Course_code\\COURSE-HUZI-CODE\\src\\pusht\\repro.py\", line 59, in git\n    return result.stdout.strip()\nAttributeError: 'NoneType' object has no attribute 'strip'\n",
-  "offline_diagnostics_sha256": "83266ad73a32a3cd23d53b572fc08d33278f6ca864a04b5297435a7001e17a06"
+  "offline_diagnostics_sha256": "83266ad73a32a3cd23d53b572fc08d33278f6ca864a04b5297435a7001e17a06",
+  "mean_score": 0.1781849877151133,
+  "completed_at": "2026-10-21T09:01:26.374521+00:00",
+  "evaluation_seconds": 47.013990100007504,
+  "recovered_failures": [
+    {
+      "stage": "diagnose",
+      "error": "Traceback (most recent call last):\n  File \"D:\\Code\\Course_code\\COURSE-HUZI-CODE\\experiments\\fixed_alt_encoder\\b1alt\\cli.py\", line 33, in main\n    {'time': now(), 'command': args.command, 'code': provenance(PROJECT),\n  File \"D:\\Code\\Course_code\\COURSE-HUZI-CODE\\src\\pusht\\repro.py\", line 67, in provenance\n    'tracked_diff_sha256': hashlib.sha256(git(root, 'diff', 'HEAD').encode()).hexdigest()}\n  File \"D:\\Code\\Course_code\\COURSE-HUZI-CODE\\src\\pusht\\repro.py\", line 59, in git\n    return result.stdout.strip()\nAttributeError: 'NoneType' object has no attribute 'strip'\n",
+      "recovered_at": "2026-10-21T09:01:26.376523+00:00"
+    }
+  ],
+  "report_completed_at": "2026-10-21T09:01:55.952925+00:00"
 }

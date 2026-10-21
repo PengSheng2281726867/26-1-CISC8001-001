@@ -5,7 +5,7 @@ from b1alt.common import DEFAULT_CONFIG, config
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('command', choices=['audit', 'check', 'train', 'bank', 'diagnose', 'evaluate', 'report'])
+    p.add_argument('command', choices=['audit', 'check', 'train', 'bank', 'diagnose', 'evaluate', 'report', 'verify'])
     p.add_argument('--config', default=str(DEFAULT_CONFIG))
     p.add_argument('--run-id')
     p.add_argument('--check-id', default='phase1')
@@ -45,6 +45,9 @@ def main():
             elif args.command == 'report':
                 from b1alt.report import report
                 report(cfg, manifest, rd, heavy, meta)
+            elif args.command == 'verify':
+                from b1alt.verify import final_verify
+                final_verify(cfg, manifest, rd, heavy, meta)
         if meta['status'] != 'failed' and meta.get('failed_stage'):
             meta.setdefault('recovered_failures', []).append({
                 'stage': meta.pop('failed_stage'), 'error': meta.pop('error'),

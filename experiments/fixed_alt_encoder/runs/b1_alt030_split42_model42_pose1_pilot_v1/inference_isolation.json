@@ -1,0 +1,11 @@
+{
+  "pose_head_forward_calls": 0,
+  "allowed_input_keys": [
+    "image",
+    "agent_pos"
+  ],
+  "official_evaluator_reused": true,
+  "checkpoint_sha256": "86d810168e5a501b39040074d7eb3fc474430c32c24855aac28f03bedbab5ec7",
+  "bank_sha256": "dfa97c7de682ab3429b5f078cdeec44648678398e006e1a2bddd6b24c962944f",
+  "n_rollouts": 50
+}
