@@ -1,0 +1,214 @@
+{
+  "status": "passed",
+  "completed_at": "2026-10-21T11:16:34.626217+00:00",
+  "provenance": {
+    "created_at": "2026-10-21T11:16:30.675762+00:00",
+    "project_commit_at_start": "aa07b3fe788a50ed854986d9c8bae16307ca3349",
+    "project_status_at_start": "?? experiments/geometry_oracle_alt/",
+    "config_sha256": "ede908368dd44a6069ae558274ad7b538aa3fcb022f8b9708af99fb72e73ba81",
+    "base_config_sha256": "3ce2881017e474e13dfb5ea3a77b68f6162cfecb49587aa581b9d212ccf2c43d",
+    "split_manifest_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+    "dataset": {
+      "sha256": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+      "file_count": 819,
+      "bytes": 31010783,
+      "algorithm": "SHA256(sorted(relative_posix_path + NUL + file_sha256 + LF))",
+      "full_byte_hash_computed": true
+    },
+    "train_episode_ids": [
+      96,
+      195,
+      159,
+      132,
+      167,
+      107,
+      25,
+      202,
+      149,
+      168,
+      75,
+      70,
+      106,
+      51,
+      9,
+      94,
+      152,
+      119,
+      198,
+      203,
+      201,
+      33,
+      3,
+      29,
+      178,
+      67,
+      112,
+      8,
+      54,
+      84
+    ],
+    "validation_episode_ids": [
+      154,
+      26,
+      101,
+      46,
+      38,
+      7,
+      79,
+      104,
+      150,
+      56,
+      20,
+      184,
+      108,
+      24,
+      146,
+      98,
+      196,
+      37,
+      197,
+      50
+    ],
+    "evaluation_seeds": [
+      100000,
+      100001,
+      100002,
+      100003,
+      100004,
+      100005,
+      100006,
+      100007,
+      100008,
+      100009,
+      100010,
+      100011,
+      100012,
+      100013,
+      100014,
+      100015,
+      100016,
+      100017,
+      100018,
+      100019,
+      100020,
+      100021,
+      100022,
+      100023,
+      100024,
+      100025,
+      100026,
+      100027,
+      100028,
+      100029,
+      100030,
+      100031,
+      100032,
+      100033,
+      100034,
+      100035,
+      100036,
+      100037,
+      100038,
+      100039,
+      100040,
+      100041,
+      100042,
+      100043,
+      100044,
+      100045,
+      100046,
+      100047,
+      100048,
+      100049
+    ],
+    "code_files": {
+      "common.py": "752fdf00bfadb8fc95d302e0d0b5ca0a4daf36b45bde7c34559f14f0a4c2be0a",
+      "geometry_bank.py": "d491bf51332e8639b4a4434e9dfae504ab532b2a17acdd6af1c840bf2b48d10c",
+      "geometry_policy.py": "62469c3f7c494d908d436e8160b1f94793cb2db11c0706c12c3f3a7360bd0d4c",
+      "oracle_runner.py": "f0082a9ce71c402d4cb760b6d65b71359ac8eca07c07297749db207b3536e914",
+      "reporting.py": "054f4a239c9c10a5cfd3c382a71400f3fc0ee39f5a393f6f64501ce7339baa63",
+      "run.py": "b8fc042f3619fec2aeac5100d3e8db476c314db19a55d914c222d099bc18b43c"
+    },
+    "references": {
+      "alt_source": {
+        "path": "D:/Code/Course_code/ACl/alt",
+        "commit": "939ed620276f0088d7e86021dbf1bc37240f02e0",
+        "dirty_status": ""
+      },
+      "dp_source": {
+        "path": "D:/Code/Course_code/DP/diffusion_policy",
+        "commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+        "dirty_status": ""
+      }
+    },
+    "input": "privileged current pusher_xy + block_xy + block_theta; no network",
+    "training": null,
+    "model_seed": null,
+    "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:13) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "bank": {
+    "episodes": 30,
+    "frames": 3806,
+    "state_dtype": "float32",
+    "source_equal_every_element": true,
+    "self_query_zero_distance_count": 3806,
+    "self_index_recovered_count": 3806,
+    "exact_duplicate_state_rows": 0,
+    "tie_rule": "first in frozen episode order, then ascending local frame",
+    "raw_angle_range_radians": [
+      0.003652219194918871,
+      6.277381896972656
+    ],
+    "angle_unit_evidence": "DP PushTEnv._get_info block_pose reads pymunk block.angle (radians); collector state uses this pose"
+  },
+  "validation_frames": 2426,
+  "retrieval": {
+    "pusher_error": {
+      "mean": 22.958639273795416,
+      "median": 14.977164419420124,
+      "p05": 2.839596710783594,
+      "p95": 72.37283691893298,
+      "max": 156.7801007781281
+    },
+    "block_error": {
+      "mean": 29.173206361112197,
+      "median": 20.357484225200114,
+      "p05": 2.459619227723833,
+      "p95": 87.54270734413495,
+      "max": 133.10461348641323
+    },
+    "angle_error_degrees": {
+      "mean": 8.306185002410885,
+      "median": 4.421925940368785,
+      "p05": 0.27942303894522164,
+      "p95": 33.071098064926616,
+      "max": 54.24237418047939
+    },
+    "action_chunk_rmse": {
+      "mean": 36.51039244073111,
+      "median": 28.059075622070196,
+      "p05": 6.621429894362651,
+      "p95": 95.3427495444229,
+      "max": 183.6998230810253
+    },
+    "geometry_distance": {
+      "mean": 0.015542965750326465,
+      "median": 0.004820285219549429,
+      "p05": 0.00023582683836768416,
+      "p95": 0.06809320532625376,
+      "max": 0.1252332675453297
+    }
+  },
+  "artifacts": [
+    {
+      "path": "experiments\\geometry_oracle_alt\\artifacts\\offline_v1\\geometry_bank.npz",
+      "bytes": 60679,
+      "sha256": "0d3439981bddceb08fb65c3a5bf3147593524f308b35424dc10a7443445109e3"
+    },
+    {
+      "path": "experiments\\geometry_oracle_alt\\artifacts\\offline_v1\\validation_matches.csv",
+      "bytes": 434167,
+      "sha256": "8c5395f3a50ce51cf84d0b7bff080576f075a5b57bb48f2cc8aa90a4589f355a"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+experiment_id: geometry_oracle_alt030_v1
+base_config: configs/alt_pusht_base.yaml
+split_manifest: experiments/splits/pusht_v7_split42.json
+split_sha256: 1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a
+scale: 30
+expected_bank_frames: 3806
+expected_validation_frames: 2426
+distance:
+  position_scale: 512.0
+  angle_scale: pi
+  weights: [1.0, 1.0, 1.0]
+  precision: float64
+  tie_break: first in frozen episode order, then ascending local frame
+evaluation:
+  n_test: 50
+  test_start_seed: 100000
+  max_steps: 300
+  n_obs_steps: 1
+  n_action_steps: 8
+  legacy_test: true
+  n_envs: 1
+  video_count: 4
+  fps: 10
+diagnostics:
+  position_sync_atol: 0.0001
+  repeat_position_atol: 0.001
+  bootstrap_seed: 2026
+  bootstrap_samples: 10000
+baseline:
+  alt_run: experiments/runs/alt_030_split42_model42_pilot_v1
+  b1_run: experiments/fixed_alt_encoder/runs/b1_alt030_split42_model42_pose1_pilot_v1

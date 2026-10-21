@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "completed_at": "2026-10-21T11:17:21.960435+00:00",
+  "tests": 5,
+  "output": "test_periodic_distance_and_weights (test_oracle.GeometryTests) ... ok\ntest_self_retrieval_and_exact_tie_order (test_oracle.GeometryTests) ... ok\ntest_source_exact_and_all_action_boundaries (test_oracle.GeometryTests) ... ok\ntest_read_only_adapter_transition_parity (test_oracle.StateTests) ... ok\ntest_spawn_async_state_sync_reset_and_eight_actions (test_oracle.StateTests) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 7.619s\n\nOK\n",
+  "code_files": {
+    "common.py": "65b44e9ed9526aacd23f64d2526b31df81126f9bd4d26a69ccdebe2b89e7bf42",
+    "geometry_bank.py": "d491bf51332e8639b4a4434e9dfae504ab532b2a17acdd6af1c840bf2b48d10c",
+    "geometry_policy.py": "62469c3f7c494d908d436e8160b1f94793cb2db11c0706c12c3f3a7360bd0d4c",
+    "oracle_runner.py": "3afbf6379735e0d05f6fd45deb599bddc2bbec2b1ebf0bf655274440743d3609",
+    "reporting.py": "054f4a239c9c10a5cfd3c382a71400f3fc0ee39f5a393f6f64501ce7339baa63",
+    "run.py": "b8fc042f3619fec2aeac5100d3e8db476c314db19a55d914c222d099bc18b43c"
+  },
+  "test_source_sha256": "d3faaf37acaab97c2f2bb06a812ff6896d3ff9ae639e15b2f28fab4774d97220"
+}
