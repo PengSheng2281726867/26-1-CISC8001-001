@@ -36,6 +36,7 @@ Run the cheap untrained integration smoke before starting a fresh trained pilot.
 & $altPython -B scripts/run.py smoke --run-id alt_030_split42_model42_smoke_v1
 & $altPython -B scripts/run.py train --run-id alt_030_split42_model42_pilot_v1 --scale 30 --model-seed 42
 & $altPython -B scripts/run.py bank --run-id alt_030_split42_model42_pilot_v1
+& $altPython -B scripts/diagnose_bank.py --run-id alt_030_split42_model42_pilot_v1
 & $altPython -B scripts/run.py evaluate --run-id alt_030_split42_model42_pilot_v1
 & $altPython -B scripts/run.py report
 ```
@@ -43,6 +44,8 @@ Run the cheap untrained integration smoke before starting a fresh trained pilot.
 Training uses Adam, 40 epochs, batch32, lr1e-4, tau0.4, full backbone fine-tuning and two independent per-observation photometric views. Final-epoch checkpoint selection is frozen. Held-out contrastive loss is computed once at the final epoch for diagnosis only. Evaluation uses the **unmodified official PushTImageRunner.run** method with n_train=0, n_test=50, seeds100000..100049, legacy_test=True, n_obs_steps=1 and eight-step execution. n_envs=1 gives simple, exact per-episode telemetry. A subclass records base termination/actual steps; a proxy records rewards and timing. A parity test proves the subclass preserves original transitions. Telemetry and official Runner scores are independently cross-checked.
 
 Run directories contain immutable resolved YAML, split/config references, event history, training/validation metrics, per-rollout CSV, two full query samples per evaluated seed, aggregate metrics, and artifact checksums. Full query traces (all eight commands and source indices), checkpoints, memory banks and the predefined first four videos are under ignored artifacts/runs/. `bank` and `evaluate` load the run's immutable resolved config. `--scale` and `--model-seed` apply when creating a fresh run. Failed training requires a new ID.
+
+`diagnose_bank.py` queries every stored embedding, re-encodes first/middle/last observations of each selected demonstration with deterministic preprocessing, and verifies every stored frame's eight-action source indexing and episode boundary. Exact self indices can differ for duplicate or floating-point-tied embeddings; the maximum similarity and embedding equivalence are checked and recorded explicitly in bank_validation.json. The smoke bank passes3806 self-queries,90 raw-frame re-encodings and3806 action-chunk checks;3801 self indices are exact and all3806 returned embeddings are equivalent within L2<1e-3.
 
 `report` writes results/scale_summary.csv, training-loss/official-score figures and a diagnostic contact sheet showing actual rollout video frames above the retrieved expert images. These figures describe completed saved runs only. Simulator-seed bootstrap intervals do not measure uncertainty across independently trained model seeds. Begin with one model seed per scale; model seeds42/43/44 are planned for a later controlled comparison if resources permit.
 
