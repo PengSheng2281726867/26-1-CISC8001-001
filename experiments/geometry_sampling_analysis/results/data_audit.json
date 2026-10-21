@@ -1,0 +1,274 @@
+{
+  "dataset_path": "D:\\Code\\Course_code\\DP\\diffusion_policy\\data\\pusht\\pusht_cchi_v7_replay.zarr",
+  "state_shape": [
+    25650,
+    5
+  ],
+  "state_dtype": "float32",
+  "state_columns": [
+    "pusher_x",
+    "pusher_y",
+    "block_x",
+    "block_y",
+    "block_theta"
+  ],
+  "angle_unit": "radian; periodic distance in [0,pi]",
+  "angle_evidence": {
+    "collector": "D:\\Code\\Course_code\\DP\\diffusion_policy\\demo_pusht.py",
+    "collector_sha256": "c4f2a7f4a4b141c3a25bda30db328785681bb17de25e984a18a233c65a26af96",
+    "environment": "D:\\Code\\Course_code\\DP\\diffusion_policy\\diffusion_policy\\env\\pusht\\pusht_env.py",
+    "environment_sha256": "7ab42523823eeb740f45d3c5c0bc03c21dcda3fe7c97717bec86bc553021687d",
+    "interpretation": "Collector concatenates pos_agent and block_pose; block_pose uses block.angle. Environment wraps block.angle by 2*pi and bounds its angular observation by 2*pi."
+  },
+  "episode_ids": [
+    96,
+    195,
+    159,
+    132,
+    167,
+    107,
+    25,
+    202,
+    149,
+    168,
+    75,
+    70,
+    106,
+    51,
+    9,
+    94,
+    152,
+    119,
+    198,
+    203,
+    201,
+    33,
+    3,
+    29,
+    178,
+    67,
+    112,
+    8,
+    54,
+    84
+  ],
+  "frame_count": 3806,
+  "episode_state_reads": [
+    {
+      "episode_id": 96,
+      "start_inclusive": 11393,
+      "end_exclusive": 11583,
+      "frames": 190
+    },
+    {
+      "episode_id": 195,
+      "start_inclusive": 24242,
+      "end_exclusive": 24342,
+      "frames": 100
+    },
+    {
+      "episode_id": 159,
+      "start_inclusive": 19444,
+      "end_exclusive": 19538,
+      "frames": 94
+    },
+    {
+      "episode_id": 132,
+      "start_inclusive": 16060,
+      "end_exclusive": 16215,
+      "frames": 155
+    },
+    {
+      "episode_id": 167,
+      "start_inclusive": 20483,
+      "end_exclusive": 20623,
+      "frames": 140
+    },
+    {
+      "episode_id": 107,
+      "start_inclusive": 12646,
+      "end_exclusive": 12843,
+      "frames": 197
+    },
+    {
+      "episode_id": 25,
+      "start_inclusive": 3172,
+      "end_exclusive": 3305,
+      "frames": 133
+    },
+    {
+      "episode_id": 202,
+      "start_inclusive": 25151,
+      "end_exclusive": 25318,
+      "frames": 167
+    },
+    {
+      "episode_id": 149,
+      "start_inclusive": 18289,
+      "end_exclusive": 18426,
+      "frames": 137
+    },
+    {
+      "episode_id": 168,
+      "start_inclusive": 20623,
+      "end_exclusive": 20708,
+      "frames": 85
+    },
+    {
+      "episode_id": 75,
+      "start_inclusive": 9220,
+      "end_exclusive": 9318,
+      "frames": 98
+    },
+    {
+      "episode_id": 70,
+      "start_inclusive": 8522,
+      "end_exclusive": 8708,
+      "frames": 186
+    },
+    {
+      "episode_id": 106,
+      "start_inclusive": 12520,
+      "end_exclusive": 12646,
+      "frames": 126
+    },
+    {
+      "episode_id": 51,
+      "start_inclusive": 6304,
+      "end_exclusive": 6377,
+      "frames": 73
+    },
+    {
+      "episode_id": 9,
+      "start_inclusive": 1213,
+      "end_exclusive": 1347,
+      "frames": 134
+    },
+    {
+      "episode_id": 94,
+      "start_inclusive": 11219,
+      "end_exclusive": 11286,
+      "frames": 67
+    },
+    {
+      "episode_id": 152,
+      "start_inclusive": 18691,
+      "end_exclusive": 18845,
+      "frames": 154
+    },
+    {
+      "episode_id": 119,
+      "start_inclusive": 14207,
+      "end_exclusive": 14328,
+      "frames": 121
+    },
+    {
+      "episode_id": 198,
+      "start_inclusive": 24614,
+      "end_exclusive": 24739,
+      "frames": 125
+    },
+    {
+      "episode_id": 203,
+      "start_inclusive": 25318,
+      "end_exclusive": 25468,
+      "frames": 150
+    },
+    {
+      "episode_id": 201,
+      "start_inclusive": 25059,
+      "end_exclusive": 25151,
+      "frames": 92
+    },
+    {
+      "episode_id": 33,
+      "start_inclusive": 4124,
+      "end_exclusive": 4244,
+      "frames": 120
+    },
+    {
+      "episode_id": 3,
+      "start_inclusive": 420,
+      "end_exclusive": 579,
+      "frames": 159
+    },
+    {
+      "episode_id": 29,
+      "start_inclusive": 3682,
+      "end_exclusive": 3797,
+      "frames": 115
+    },
+    {
+      "episode_id": 178,
+      "start_inclusive": 21904,
+      "end_exclusive": 22052,
+      "frames": 148
+    },
+    {
+      "episode_id": 67,
+      "start_inclusive": 8178,
+      "end_exclusive": 8282,
+      "frames": 104
+    },
+    {
+      "episode_id": 112,
+      "start_inclusive": 13329,
+      "end_exclusive": 13400,
+      "frames": 71
+    },
+    {
+      "episode_id": 8,
+      "start_inclusive": 1133,
+      "end_exclusive": 1213,
+      "frames": 80
+    },
+    {
+      "episode_id": 54,
+      "start_inclusive": 6686,
+      "end_exclusive": 6891,
+      "frames": 205
+    },
+    {
+      "episode_id": 84,
+      "start_inclusive": 10238,
+      "end_exclusive": 10318,
+      "frames": 80
+    }
+  ],
+  "validation_or_test_states_read_as_candidates": false,
+  "selected_state_min": [
+    21.877851486206055,
+    32.93829345703125,
+    86.25543975830078,
+    119.51517486572266,
+    0.003652219194918871
+  ],
+  "selected_state_max": [
+    486.3685302734375,
+    498.40447998046875,
+    422.62664794921875,
+    480.1026916503906,
+    6.277381896972656
+  ],
+  "selected_ids_and_states_sha256": "cbeb8d0031990c19353cfe0a0fa66946d60a89be2600fad71c16a656923c3497",
+  "dataset_metadata_sha256": "22b1176bcfde14aaf996c6f91eeff1ee37c662f3085e954f59d1e6722ade660a",
+  "frozen_full_dataset_fingerprint_reference": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+  "full_dataset_bytes_rehashed": false,
+  "integrity_note": "Only metadata and selected train30 state slices are accessed; no all-state adapter, action array or heldout-state scan.",
+  "split_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+  "project_config_sha256": "3ce2881017e474e13dfb5ea3a77b68f6162cfecb49587aa581b9d212ccf2c43d",
+  "source_provenance": {
+    "alt": {
+      "path": "D:\\Code\\Course_code\\ACl\\alt",
+      "commit": "939ed620276f0088d7e86021dbf1bc37240f02e0",
+      "dirty_status": "",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dp": {
+      "path": "D:\\Code\\Course_code\\DP\\diffusion_policy",
+      "commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+      "dirty_status": "",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-21T10:27:15.556232+00:00",
+  "quantile_results_byte_identical_after_explicit_absolute_support": {
+    "geometry_statistics.json": "d4264c7057c5b6f5c84b41bce3744ba2e7d76f57b23807adbb548594dc366c29",
+    "batch_sampling_statistics.json": "fabeaf13c616a12a827df34717bbc91b4f5bbf1873896eaaf92ffd3e3fc92e1f",
+    "batch_details.csv": "aa734178c4f0f3a2ac238621781ba60ea8e27c9ff1441c1dc5b16d72b13f1d89",
+    "primary_anchor_candidate_counts.csv": "e4f563b6010c6e83db50cb220807aa0fe59a63bc581e69f3853ac458ae6f5c44"
+  },
+  "independent_real_data_checks": {
+    "quantile": {
+      "status": "passed",
+      "anchors_independently_checked": 3806,
+      "primary_candidate_relations_independently_recomputed": 9,
+      "batch_rows_checked": 2700,
+      "sensitivity_conditions_checked": 171
+    },
+    "absolute": {
+      "status": "passed",
+      "anchors_independently_checked": 3806,
+      "primary_candidate_relations_independently_recomputed": 9,
+      "batch_rows_checked": 2700,
+      "sensitivity_conditions_checked": 171
+    }
+  },
+  "selected_state_fingerprint": "cbeb8d0031990c19353cfe0a0fa66946d60a89be2600fad71c16a656923c3497",
+  "verification_script_sha256": "4bd2e18fb74d838af19657455cffb9ba7bd6cf259eb3b237b5d48d4f5c2dfa37"
+}

@@ -1,0 +1,35 @@
+{
+  "population": "fixed absolute physical sensitivity grid; no state-label fitting",
+  "selection_reason": "Supplement declared after component distribution inspection, before reviewing candidate/simulation statistics.",
+  "near": {
+    "d_p": {
+      "tight": 10.0,
+      "middle": 20.0,
+      "loose": 40.0
+    },
+    "d_T": {
+      "tight": 10.0,
+      "middle": 20.0,
+      "loose": 40.0
+    },
+    "d_theta": {
+      "tight": 0.03490658503988659,
+      "middle": 0.08726646259971647,
+      "loose": 0.17453292519943295
+    }
+  },
+  "far": {
+    "d_p": {
+      "moderate": 80.0,
+      "strong": 160.0
+    },
+    "d_T": {
+      "moderate": 60.0,
+      "strong": 100.0
+    },
+    "d_theta": {
+      "moderate": 0.3490658503988659,
+      "strong": 0.6981317007977318
+    }
+  }
+}

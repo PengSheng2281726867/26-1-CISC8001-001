@@ -1,0 +1,3320 @@
+[
+  {
+    "group": "strict/all/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      486,
+      1465,
+      2973,
+      821,
+      3119,
+      2907,
+      621,
+      2873,
+      1713,
+      763,
+      1214,
+      895,
+      3500,
+      967,
+      539,
+      3062,
+      988,
+      1301,
+      196
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 486,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1465,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2973,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 821,
+        "role": "similar"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3119,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2907,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 621,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2873,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1713,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 763,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1214,
+        "role": "hard_b"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 490,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 1462,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "strict/all/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      484,
+      1463,
+      2963,
+      813,
+      3123,
+      2907,
+      624,
+      192,
+      3174,
+      2516,
+      1351,
+      1102,
+      3017,
+      2236,
+      471,
+      1147,
+      3065,
+      1761,
+      2225
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 484,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1463,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2963,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 813,
+        "role": "similar"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3123,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2907,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 624,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 192,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 3174,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2516,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1351,
+        "role": "hard_b"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 490,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 1462,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "strict/all/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "strict/exclude_local8/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      2220,
+      3283,
+      1710,
+      2083,
+      1356,
+      1226,
+      3804,
+      2254,
+      890,
+      2523,
+      59,
+      3575,
+      709
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 1462,
+        "candidate": 2220,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3283,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1710,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2083,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1356,
+        "role": "hard_b"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 490,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2965,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 817,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 490,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 1462,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "strict/exclude_local8/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      2221,
+      2873,
+      2123,
+      27,
+      1214,
+      2489,
+      1347,
+      1572,
+      3585,
+      422,
+      1571,
+      1526,
+      86
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 1462,
+        "candidate": 2221,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2873,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 2123,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 27,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1214,
+        "role": "hard_b"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 490,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2965,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 817,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 490,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 1462,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "strict/exclude_local8/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "strict/cross/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      2220,
+      192,
+      563,
+      2892,
+      1400,
+      1240,
+      231,
+      1739,
+      3361,
+      718,
+      1504,
+      1051,
+      2343
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 1462,
+        "candidate": 2220,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 192,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 563,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2892,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1400,
+        "role": "hard_b"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 490,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2965,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 817,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 490,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 1462,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "strict/cross/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      2221,
+      3283,
+      2128,
+      3015,
+      2164,
+      237,
+      2267,
+      1428,
+      1696,
+      2400,
+      720,
+      1201,
+      1207
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 1462,
+        "candidate": 2221,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3283,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 2128,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3015,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2164,
+        "role": "hard_b"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 490,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2965,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 817,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 490,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 1462,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 620,
+        "role": "hard_a",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "strict/cross/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "primary/all/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      484,
+      182,
+      100,
+      2960,
+      815,
+      3120,
+      2915,
+      631,
+      468,
+      2620,
+      1768,
+      2772,
+      760,
+      2004,
+      2559,
+      2680,
+      3728,
+      470,
+      2216,
+      2141,
+      2759,
+      1600,
+      1805,
+      2451
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 484,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 182,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 100,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2960,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 815,
+        "role": "similar"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3120,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2915,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 631,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 468,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 2620,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1768,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2772,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 760,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2004,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2559,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2680,
+        "role": "hard_a"
+      }
+    ],
+    "failures": []
+  },
+  {
+    "group": "primary/all/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      488,
+      1464,
+      99,
+      2975,
+      818,
+      3126,
+      2907,
+      630,
+      3242,
+      1863,
+      1768,
+      1688,
+      3174,
+      26,
+      1349,
+      2678,
+      2110,
+      748,
+      2190,
+      1454,
+      2626,
+      806,
+      3374,
+      2517
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 488,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1464,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 99,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2975,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 818,
+        "role": "similar"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3126,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2907,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 630,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 3242,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1863,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1768,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 1688,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 3174,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 26,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1349,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2678,
+        "role": "hard_a"
+      }
+    ],
+    "failures": []
+  },
+  {
+    "group": "primary/all/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "primary/exclude_local8/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      481,
+      2466,
+      2975,
+      1928,
+      631,
+      1602,
+      146,
+      1769,
+      2767,
+      2674,
+      1880,
+      2497,
+      2682,
+      3246,
+      899,
+      1717,
+      224,
+      3159,
+      2825,
+      3431,
+      1867
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 481,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 2466,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2975,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1928,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 631,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 1602,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 146,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1769,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2767,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 2674,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 1880,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2497,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2682,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "primary/exclude_local8/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      481,
+      2478,
+      2976,
+      1927,
+      630,
+      3241,
+      1665,
+      1768,
+      2750,
+      2409,
+      2056,
+      216,
+      2682,
+      2677,
+      300,
+      2780,
+      2538,
+      2790,
+      1630,
+      3465,
+      1432
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 481,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 2478,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2976,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1927,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 630,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 3241,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1665,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1768,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2750,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 2409,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2056,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 216,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2682,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "primary/exclude_local8/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "primary/cross/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      2471,
+      1927,
+      1580,
+      3249,
+      1647,
+      1768,
+      3281,
+      3312,
+      1719,
+      2309,
+      2678,
+      331,
+      1729,
+      3092,
+      3110,
+      2239,
+      3067,
+      3464,
+      2854
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 1462,
+        "candidate": 2471,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1927,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 1580,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 3249,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1647,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1768,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3281,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 3312,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 1719,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2309,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2678,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 490,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2965,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "primary/cross/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      3238,
+      1928,
+      1580,
+      1601,
+      1649,
+      1769,
+      2771,
+      3188,
+      2899,
+      3418,
+      2682,
+      681,
+      3436,
+      2787,
+      1854,
+      938,
+      1757,
+      258,
+      3094
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 1462,
+        "candidate": 3238,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1928,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 1580,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 1601,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1649,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1769,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2771,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 3188,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2899,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 3418,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2682,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 490,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 98,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2965,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "primary/cross/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "broad/all/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      1481,
+      2836,
+      3754,
+      1091,
+      820,
+      3121,
+      2909,
+      1581,
+      986,
+      1790,
+      124,
+      2148,
+      3373,
+      378,
+      3444,
+      2666,
+      2025,
+      2633,
+      2328,
+      1683,
+      3348,
+      2221,
+      904,
+      3708
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 1481,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 2836,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 3754,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 1091,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 820,
+        "role": "similar"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3121,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2909,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 1581,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 986,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1790,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 124,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2148,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 3373,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 378,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 3444,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2666,
+        "role": "hard_a"
+      }
+    ],
+    "failures": []
+  },
+  {
+    "group": "broad/all/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      3508,
+      534,
+      77,
+      3646,
+      1916,
+      3124,
+      2906,
+      623,
+      1160,
+      1664,
+      121,
+      3010,
+      771,
+      96,
+      699,
+      2679,
+      608,
+      981,
+      3047,
+      1514,
+      1092,
+      48,
+      3000,
+      181
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 3508,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 534,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 77,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3646,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1916,
+        "role": "similar"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3124,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2906,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 623,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 1160,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1664,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 121,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3010,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 771,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 96,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 699,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2679,
+        "role": "hard_a"
+      }
+    ],
+    "failures": []
+  },
+  {
+    "group": "broad/all/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "broad/exclude_local8/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      1476,
+      2828,
+      89,
+      1089,
+      1946,
+      2919,
+      232,
+      3722,
+      3363,
+      117,
+      3561,
+      397,
+      3799,
+      2383,
+      1285,
+      1873,
+      480,
+      283,
+      2904,
+      2860,
+      1017,
+      3686,
+      520
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 1476,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 2828,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 89,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 1089,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1946,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2919,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 232,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 3722,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 3363,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 117,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3561,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 397,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3799,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2383,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 1285,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "broad/exclude_local8/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      480,
+      3243,
+      84,
+      3364,
+      1923,
+      2919,
+      235,
+      1166,
+      3483,
+      1770,
+      750,
+      563,
+      2078,
+      1393,
+      2683,
+      2206,
+      2864,
+      800,
+      552,
+      2256,
+      3378,
+      3215,
+      1622
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 480,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 3243,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 84,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3364,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1923,
+        "role": "similar"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2919,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 235,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 1166,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 3483,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1770,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 750,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 563,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 2078,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1393,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2683,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "broad/exclude_local8/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  },
+  {
+    "group": "broad/cross/allow_repeated",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      1492,
+      3258,
+      3754,
+      365,
+      1943,
+      235,
+      1601,
+      1643,
+      1768,
+      3555,
+      1012,
+      3754,
+      2568,
+      2673,
+      2227,
+      971,
+      2925,
+      1741,
+      3221,
+      1164,
+      1582,
+      2093
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 1492,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 3258,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 3754,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 365,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1943,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 235,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 1601,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 1643,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1768,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 3555,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1012,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 3754,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 2568,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2673,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "broad/cross/unique_frames",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      3503,
+      2453,
+      3757,
+      1089,
+      1918,
+      237,
+      175,
+      485,
+      1768,
+      2253,
+      3308,
+      135,
+      1162,
+      2669,
+      2291,
+      101,
+      2940,
+      904,
+      3716,
+      3606,
+      91,
+      3097
+    ],
+    "roles": [
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "anchor",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "similar",
+      "hard_a",
+      "hard_a",
+      "hard_a",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_b",
+      "hard_a",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [
+      {
+        "anchor": 490,
+        "candidate": 3503,
+        "role": "similar"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 2453,
+        "role": "similar"
+      },
+      {
+        "anchor": 98,
+        "candidate": 3757,
+        "role": "similar"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 1089,
+        "role": "similar"
+      },
+      {
+        "anchor": 817,
+        "candidate": 1918,
+        "role": "similar"
+      },
+      {
+        "anchor": 620,
+        "candidate": 237,
+        "role": "similar"
+      },
+      {
+        "anchor": 490,
+        "candidate": 175,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 1462,
+        "candidate": 485,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 98,
+        "candidate": 1768,
+        "role": "hard_a"
+      },
+      {
+        "anchor": 2965,
+        "candidate": 2253,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 817,
+        "candidate": 3308,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 3122,
+        "candidate": 135,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 2910,
+        "candidate": 1162,
+        "role": "hard_b"
+      },
+      {
+        "anchor": 620,
+        "candidate": 2669,
+        "role": "hard_a"
+      }
+    ],
+    "failures": [
+      {
+        "anchor": 3122,
+        "role": "similar",
+        "reason": "no_candidate"
+      },
+      {
+        "anchor": 2910,
+        "role": "similar",
+        "reason": "no_candidate"
+      }
+    ]
+  },
+  {
+    "group": "broad/cross/random_baseline",
+    "batch_index": 0,
+    "indices": [
+      490,
+      1462,
+      98,
+      2965,
+      817,
+      3122,
+      2910,
+      620,
+      995,
+      1318,
+      3599,
+      3575,
+      825,
+      2832,
+      2313,
+      3518,
+      1200,
+      998,
+      1620,
+      2258,
+      3571,
+      2074,
+      648,
+      1194,
+      2055,
+      3296,
+      3650,
+      3242,
+      688,
+      2157,
+      2867,
+      3108
+    ],
+    "roles": [
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random",
+      "random"
+    ],
+    "role_pairs": [],
+    "failures": []
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-21T10:27:15.557245+00:00",
+  "corrections": [
+    {
+      "family": "quantile",
+      "figure": "figures/distance_distributions.png",
+      "old_sha256": "8a695335252248c3a32e4df20f55fab529b77ab098084d6f3fef170a089afb29",
+      "corrected_sha256": "ede6bbcde982cec9e25410ac59cec53e30cbd9f41038c89c5491fd397866c4ab",
+      "reason": "Constrain nonnegative distance axes to x>=0; remove automatic negative symlog padding. No statistical data or thresholds changed."
+    },
+    {
+      "family": "absolute",
+      "figure": "absolute/figures/distance_distributions.png",
+      "old_sha256": "8a695335252248c3a32e4df20f55fab529b77ab098084d6f3fef170a089afb29",
+      "corrected_sha256": "ede6bbcde982cec9e25410ac59cec53e30cbd9f41038c89c5491fd397866c4ab",
+      "reason": "Constrain nonnegative distance axes to x>=0; remove automatic negative symlog padding. No statistical data or thresholds changed."
+    }
+  ]
+}

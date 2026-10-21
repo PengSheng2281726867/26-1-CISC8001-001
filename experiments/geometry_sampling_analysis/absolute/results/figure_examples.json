@@ -1,0 +1,116 @@
+{
+  "profile": "primary",
+  "pool": "cross",
+  "thresholds": {
+    "p_close": 20.0,
+    "T_close": 20.0,
+    "theta_close": 0.08726646259971647,
+    "p_far": 80.0,
+    "T_far": 60.0,
+    "theta_far": 0.3490658503988659
+  },
+  "examples": [
+    {
+      "anchor": 3057,
+      "selections": [
+        {
+          "role": "Anchor",
+          "row_index": 3057,
+          "episode_id": 29,
+          "local_frame_index": 54,
+          "source_index": 3736
+        },
+        {
+          "role": "Similar",
+          "row_index": null
+        },
+        {
+          "role": "Hard A",
+          "row_index": null
+        },
+        {
+          "role": "Hard B",
+          "row_index": 1244,
+          "episode_id": 149,
+          "local_frame_index": 68,
+          "source_index": 18357
+        },
+        {
+          "role": "Random",
+          "row_index": 544,
+          "episode_id": 167,
+          "local_frame_index": 5,
+          "source_index": 20488
+        }
+      ]
+    },
+    {
+      "anchor": 78,
+      "selections": [
+        {
+          "role": "Anchor",
+          "row_index": 78,
+          "episode_id": 96,
+          "local_frame_index": 78,
+          "source_index": 11471
+        },
+        {
+          "role": "Similar",
+          "row_index": null
+        },
+        {
+          "role": "Hard A",
+          "row_index": null
+        },
+        {
+          "role": "Hard B",
+          "row_index": 3017,
+          "episode_id": 29,
+          "local_frame_index": 14,
+          "source_index": 3696
+        },
+        {
+          "role": "Random",
+          "row_index": 2804,
+          "episode_id": 33,
+          "local_frame_index": 80,
+          "source_index": 4204
+        }
+      ]
+    },
+    {
+      "anchor": 2885,
+      "selections": [
+        {
+          "role": "Anchor",
+          "row_index": 2885,
+          "episode_id": 3,
+          "local_frame_index": 41,
+          "source_index": 461
+        },
+        {
+          "role": "Similar",
+          "row_index": null
+        },
+        {
+          "role": "Hard A",
+          "row_index": null
+        },
+        {
+          "role": "Hard B",
+          "row_index": 1954,
+          "episode_id": 9,
+          "local_frame_index": 73,
+          "source_index": 1286
+        },
+        {
+          "role": "Random",
+          "row_index": 2187,
+          "episode_id": 152,
+          "local_frame_index": 105,
+          "source_index": 18796
+        }
+      ]
+    }
+  ]
+}

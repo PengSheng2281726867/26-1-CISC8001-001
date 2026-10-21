@@ -1,0 +1,53 @@
+schema_version: 1
+project_config: configs/alt_pusht_base.yaml
+split_manifest: experiments/splits/pusht_v7_split42.json
+subset: '30'
+expected_frames: 3806
+distance:
+  xy_scale: 512.0
+  angle_scale: 3.141592653589793
+  storage_dtype: float32
+  computation_dtype: float64
+  block_rows: 256
+neighbors:
+  top_k: [5, 10, 20]
+  exclude_temporal_radius: 8
+  pools: [all, exclude_local8, cross]
+thresholds:
+  calibration: cross_episode_unordered_ALT30_pairs
+  near_percentiles: [5, 10, 20]
+  far_percentiles: [50, 75]
+  inclusive_bounds: true
+  hard_b_rule: pusher_close_AND_block_far_OR_angle_far_parenthesized
+  profiles:
+    strict: {near_percentile: 5, far_percentile: 75}
+    primary: {near_percentile: 10, far_percentile: 50}
+    broad: {near_percentile: 20, far_percentile: 50}
+batch:
+  size: 32
+  anchors: 8
+  similar: 8
+  hard_a: 4
+  hard_b: 4
+  random: 8
+  repeats: 100
+  anchor_seed: 20261021
+  candidate_seed: 20261022
+  baseline_seed: 20261023
+  uniqueness: [allow_repeated, unique_frames]
+  failure_policy: leave_slot_empty_no_anchor_resampling_no_threshold_relaxation_no_backfill
+  reference: uniform_random_32_without_replacement_with_same_first_8_anchors
+figures:
+  example_seed: 20261024
+  example_anchors: 3
+  profile: primary
+  pool: cross
+statistics:
+  quantiles: [0.01, 0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.99]
+  histogram_bins: 64
+notes: >-
+  Threshold percentiles, profiles, pools and quotas are specified before counting.
+  All candidates come from the existing ALT-30 IDs only. No actions, validation
+  states, test states, models, optimizer or simulator are read/run. Geometry is
+  a descriptive relation, never proof of action compatibility. Dense distance
+  arrays exist in RAM only. Failed slots remain missing and are counted.

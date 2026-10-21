@@ -1,0 +1,37 @@
+{
+  "started_at": "2026-10-21T10:19:05.514550+00:00",
+  "status": "completed",
+  "config_sha256": "ea7a2f2b99e5dab334136236de98f98c9717b522972418a38d622d50b32d034c",
+  "code_commit_at_start": "d5817e543bba6a00c1bc3a3dce3281e65fa72599",
+  "script_hashes": {
+    "analyze.py": "c30f003da9a735de8360ee73ec26aba6b23988feb571587e3fb52762d16e93c5",
+    "figures.py": "566ec101d5f82a140f012c9ee7db01d7c16c675114c4256cf4bf0f6347cf4f32",
+    "geometry.py": "82d860a90f337ddf58d600a63c3feb8454d56ce9b575e7cb56d9f5bc2183dde9"
+  },
+  "software": {
+    "python": "3.10.22",
+    "numpy": "1.23.5",
+    "zarr": "2.12.0"
+  },
+  "completed_at": "2026-10-21T10:19:24.180392+00:00",
+  "wall_seconds": 18.665148100000806,
+  "external_tracked_files_unchanged": true,
+  "original_reference_git_states_unchanged": true,
+  "output_sha256": {
+    "results\\batch_details.csv": "aa734178c4f0f3a2ac238621781ba60ea8e27c9ff1441c1dc5b16d72b13f1d89",
+    "results\\batch_examples.json": "b9342f29a1eab0373f1122651484dee7d9ab6a692cb167fbc16b6665b7ae3b02",
+    "results\\batch_sampling_statistics.json": "fabeaf13c616a12a827df34717bbc91b4f5bbf1873896eaaf92ffd3e3fc92e1f",
+    "results\\data_audit.json": "23e4c9c1c3ae851c1ea268bad4adc2f13f7805523b1ad7bc4ed8ed9f7753cb82",
+    "results\\figure_examples.json": "168bf01c8d6fed665292402dd3c44b68a38409215027a9a226425ea0aa77375c",
+    "results\\geometry_statistics.json": "d4264c7057c5b6f5c84b41bce3744ba2e7d76f57b23807adbb548594dc366c29",
+    "results\\primary_anchor_candidate_counts.csv": "e4f563b6010c6e83db50cb220807aa0fe59a63bc581e69f3853ac458ae6f5c44",
+    "results\\resolved_thresholds.json": "984f2ad6a5c3e6c52ea902c41ef8f0a53ef616a4f639393b7c6f5541c11eef3b",
+    "results\\threshold_sensitivity.csv": "3868383961f82ce58ab18ece0d7bcb075a2338197dc880fc6c1a3eb03a65be48",
+    "results\\verification.json": "ce99ff9d6b0186c3c593168a4b986e136ecb4acd3c3a98ec4ec625a36ae2808e",
+    "figures\\batch_comparison.png": "be6ab0c2b2a801de0e1fd119d2fa46696c39766cfed0cba4e95532bc2fa8a9d7",
+    "figures\\candidate_coverage.png": "7823d4135977a3df2eb915af970c0344eadb4ace999e4a1dbf08cca0a7806020",
+    "figures\\distance_distributions.png": "8a695335252248c3a32e4df20f55fab529b77ab098084d6f3fef170a089afb29",
+    "figures\\nearest_neighbors.png": "fdfc18ffe8ed0643ec2dbacfbfc51d3c389e0fb1a8c3ad98dabfa1152cf7ec83",
+    "figures\\sampling_examples.png": "dabef50ce08b32aaca68bc5b04ad98b0a70400b8b269375c3666755f77d4aaf8"
+  }
+}

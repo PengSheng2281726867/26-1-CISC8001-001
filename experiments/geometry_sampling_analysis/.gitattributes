@@ -1,0 +1,2 @@
+# Preserve the exact bytes covered by provenance and artifact SHA-256 records.
+* -text whitespace=cr-at-eol

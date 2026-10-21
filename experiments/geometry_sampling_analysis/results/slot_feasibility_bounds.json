@@ -1,0 +1,274 @@
+{
+  "quantile": {
+    "population_hypergeometric_necessary_bounds": [
+      {
+        "profile": "strict",
+        "pool": "all",
+        "raw_eligible_anchor_counts": {
+          "similar": 3249,
+          "hard_a": 693,
+          "hard_b": 3773
+        },
+        "all8_have_similar": 0.2816429540671947,
+        "at_least4_have_hard_a": 0.04112297306164773,
+        "at_least4_have_hard_b": 0.9999999980343445,
+        "necessary_probability_upper_bound": 0.04112297306164773
+      },
+      {
+        "profile": "strict",
+        "pool": "exclude_local8",
+        "raw_eligible_anchor_counts": {
+          "similar": 1334,
+          "hard_a": 693,
+          "hard_b": 3773
+        },
+        "all8_have_similar": 0.00022467809248888365,
+        "at_least4_have_hard_a": 0.04112297306164773,
+        "at_least4_have_hard_b": 0.9999999980343445,
+        "necessary_probability_upper_bound": 0.00022467809248888365
+      },
+      {
+        "profile": "strict",
+        "pool": "cross",
+        "raw_eligible_anchor_counts": {
+          "similar": 1137,
+          "hard_a": 197,
+          "hard_b": 3773
+        },
+        "all8_have_similar": 6.234648106540224e-05,
+        "at_least4_have_hard_a": 0.00041363633168748954,
+        "at_least4_have_hard_b": 0.9999999980343445,
+        "necessary_probability_upper_bound": 6.234648106540224e-05
+      },
+      {
+        "profile": "primary",
+        "pool": "all",
+        "raw_eligible_anchor_counts": {
+          "similar": 3591,
+          "hard_a": 2246,
+          "hard_b": 3806
+        },
+        "all8_have_similar": 0.6277423346668171,
+        "at_least4_have_hard_a": 0.8108998928750744,
+        "at_least4_have_hard_b": 1.0,
+        "necessary_probability_upper_bound": 0.6277423346668171
+      },
+      {
+        "profile": "primary",
+        "pool": "exclude_local8",
+        "raw_eligible_anchor_counts": {
+          "similar": 2128,
+          "hard_a": 2244,
+          "hard_b": 3806
+        },
+        "all8_have_similar": 0.009495081825970668,
+        "at_least4_have_hard_a": 0.810045225776564,
+        "at_least4_have_hard_b": 1.0,
+        "necessary_probability_upper_bound": 0.009495081825970668
+      },
+      {
+        "profile": "primary",
+        "pool": "cross",
+        "raw_eligible_anchor_counts": {
+          "similar": 1799,
+          "hard_a": 1399,
+          "hard_b": 3806
+        },
+        "all8_have_similar": 0.0024713103934005587,
+        "at_least4_have_hard_a": 0.3318884633124928,
+        "at_least4_have_hard_b": 1.0,
+        "necessary_probability_upper_bound": 0.0024713103934005587
+      },
+      {
+        "profile": "broad",
+        "pool": "all",
+        "raw_eligible_anchor_counts": {
+          "similar": 3806,
+          "hard_a": 3084,
+          "hard_b": 3806
+        },
+        "all8_have_similar": 1.0,
+        "at_least4_have_hard_a": 0.9918326439949677,
+        "at_least4_have_hard_b": 1.0,
+        "necessary_probability_upper_bound": 0.9918326439949677
+      },
+      {
+        "profile": "broad",
+        "pool": "exclude_local8",
+        "raw_eligible_anchor_counts": {
+          "similar": 3128,
+          "hard_a": 3083,
+          "hard_b": 3806
+        },
+        "all8_have_similar": 0.2078213428823698,
+        "at_least4_have_hard_a": 0.9917821038379518,
+        "at_least4_have_hard_b": 1.0,
+        "necessary_probability_upper_bound": 0.2078213428823698
+      },
+      {
+        "profile": "broad",
+        "pool": "cross",
+        "raw_eligible_anchor_counts": {
+          "similar": 2694,
+          "hard_a": 2575,
+          "hard_b": 3806
+        },
+        "all8_have_similar": 0.06282168200183412,
+        "at_least4_have_hard_a": 0.9220353364773396,
+        "at_least4_have_hard_b": 1.0,
+        "necessary_probability_upper_bound": 0.06282168200183412
+      }
+    ],
+    "primary_empirical_necessary_conditions": {
+      "all": {
+        "same100_anchor_sets_all8_have_similar": 62,
+        "same100_anchor_sets_similarity_and_4A4B_assignment_possible_ignoring_candidate_collisions": 54
+      },
+      "exclude_local8": {
+        "same100_anchor_sets_all8_have_similar": 0,
+        "same100_anchor_sets_similarity_and_4A4B_assignment_possible_ignoring_candidate_collisions": 0
+      },
+      "cross": {
+        "same100_anchor_sets_all8_have_similar": 0,
+        "same100_anchor_sets_similarity_and_4A4B_assignment_possible_ignoring_candidate_collisions": 0
+      }
+    },
+    "limit": "Necessary conditions only; candidate collisions, greedy selection and random A/B assignment can further reduce completion. Not a proof of optimal assignment feasibility."
+  },
+  "absolute": {
+    "population_hypergeometric_necessary_bounds": [
+      {
+        "profile": "strict",
+        "pool": "all",
+        "raw_eligible_anchor_counts": {
+          "similar": 2105,
+          "hard_a": 1600,
+          "hard_b": 3316
+        },
+        "all8_have_similar": 0.008703219535392813,
+        "at_least4_have_hard_a": 0.453554049030194,
+        "at_least4_have_hard_b": 0.9986097218636507,
+        "necessary_probability_upper_bound": 0.008703219535392813
+      },
+      {
+        "profile": "strict",
+        "pool": "exclude_local8",
+        "raw_eligible_anchor_counts": {
+          "similar": 364,
+          "hard_a": 1596,
+          "hard_b": 3316
+        },
+        "all8_have_similar": 6.525575551468069e-09,
+        "at_least4_have_hard_a": 0.45108464167274975,
+        "at_least4_have_hard_b": 0.9986097218636507,
+        "necessary_probability_upper_bound": 6.525575551468069e-09
+      },
+      {
+        "profile": "strict",
+        "pool": "cross",
+        "raw_eligible_anchor_counts": {
+          "similar": 343,
+          "hard_a": 496,
+          "hard_b": 3293
+        },
+        "all8_have_similar": 4.03725283187158e-09,
+        "at_least4_have_hard_a": 0.012945809552180049,
+        "at_least4_have_hard_b": 0.9982789552338279,
+        "necessary_probability_upper_bound": 4.03725283187158e-09
+      },
+      {
+        "profile": "primary",
+        "pool": "all",
+        "raw_eligible_anchor_counts": {
+          "similar": 3468,
+          "hard_a": 3072,
+          "hard_b": 3733
+        },
+        "all8_have_similar": 0.47486549581886084,
+        "at_least4_have_hard_a": 0.9912107247312377,
+        "at_least4_have_hard_b": 0.9999998788619778,
+        "necessary_probability_upper_bound": 0.47486549581886084
+      },
+      {
+        "profile": "primary",
+        "pool": "exclude_local8",
+        "raw_eligible_anchor_counts": {
+          "similar": 1141,
+          "hard_a": 3066,
+          "hard_b": 3733
+        },
+        "all8_have_similar": 6.412849429255722e-05,
+        "at_least4_have_hard_a": 0.9908869336547117,
+        "at_least4_have_hard_b": 0.9999998788619778,
+        "necessary_probability_upper_bound": 6.412849429255722e-05
+      },
+      {
+        "profile": "primary",
+        "pool": "cross",
+        "raw_eligible_anchor_counts": {
+          "similar": 1058,
+          "hard_a": 1786,
+          "hard_b": 3732
+        },
+        "all8_have_similar": 3.497931655216507e-05,
+        "at_least4_have_hard_a": 0.5677570826615105,
+        "at_least4_have_hard_b": 0.9999998701705257,
+        "necessary_probability_upper_bound": 3.497931655216507e-05
+      },
+      {
+        "profile": "broad",
+        "pool": "all",
+        "raw_eligible_anchor_counts": {
+          "similar": 3802,
+          "hard_a": 3478,
+          "hard_b": 3797
+        },
+        "all8_have_similar": 0.9916153999048345,
+        "at_least4_have_hard_a": 0.9997922430841918,
+        "at_least4_have_hard_b": 0.9999999999989397,
+        "necessary_probability_upper_bound": 0.9916153999048345
+      },
+      {
+        "profile": "broad",
+        "pool": "exclude_local8",
+        "raw_eligible_anchor_counts": {
+          "similar": 2166,
+          "hard_a": 3476,
+          "hard_b": 3797
+        },
+        "all8_have_similar": 0.010941927372402765,
+        "at_least4_have_hard_a": 0.9997860931205508,
+        "at_least4_have_hard_b": 0.9999999999989397,
+        "necessary_probability_upper_bound": 0.010941927372402765
+      },
+      {
+        "profile": "broad",
+        "pool": "cross",
+        "raw_eligible_anchor_counts": {
+          "similar": 2023,
+          "hard_a": 2680,
+          "hard_b": 3790
+        },
+        "all8_have_similar": 0.0063298799404071255,
+        "at_least4_have_hard_a": 0.9453913145707463,
+        "at_least4_have_hard_b": 0.999999999963415,
+        "necessary_probability_upper_bound": 0.0063298799404071255
+      }
+    ],
+    "primary_empirical_necessary_conditions": {
+      "all": {
+        "same100_anchor_sets_all8_have_similar": 48,
+        "same100_anchor_sets_similarity_and_4A4B_assignment_possible_ignoring_candidate_collisions": 46
+      },
+      "exclude_local8": {
+        "same100_anchor_sets_all8_have_similar": 0,
+        "same100_anchor_sets_similarity_and_4A4B_assignment_possible_ignoring_candidate_collisions": 0
+      },
+      "cross": {
+        "same100_anchor_sets_all8_have_similar": 0,
+        "same100_anchor_sets_similarity_and_4A4B_assignment_possible_ignoring_candidate_collisions": 0
+      }
+    },
+    "limit": "Necessary conditions only; candidate collisions, greedy selection and random A/B assignment can further reduce completion. Not a proof of optimal assignment feasibility."
+  }
+}

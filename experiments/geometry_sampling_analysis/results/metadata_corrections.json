@@ -1,0 +1,11 @@
+{
+  "corrected_at": "2026-10-21T10:35:44.910007+00:00",
+  "file": "absolute/results/geometry_statistics.json",
+  "field": "interpretation_limits[1]",
+  "old": "Thresholds are relative training-distribution percentiles, not calibrated physical/action tolerances.",
+  "new": "Thresholds are fixed absolute sensitivity criteria, not optimized action-compatibility tolerances.",
+  "old_sha256": "89f2b6cfcabd346dd6f301b2c911f2cb12cb2a47cbd9187bb2cc2638f34fbf8d",
+  "new_sha256": "7a6719da19cdab084964ba0f8bd15a55bdcb4b03f65ff8a458d8cff4e40f64be",
+  "all_other_fields_semantic_sha256": "f2b3fe3341b947553baa2d3263ccad91fb18bfdd602cfff2ff012d28428ae189",
+  "all_measurements_and_thresholds_unchanged": true
+}
