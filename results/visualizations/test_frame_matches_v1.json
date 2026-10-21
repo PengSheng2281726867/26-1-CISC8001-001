@@ -1,0 +1,128 @@
+{
+  "created_at": "2026-10-21T07:19:21.940546+00:00",
+  "script_sha256": "3d74fbc13b2dfbe9cd27f2e8cc0a46e244b011604d32abade9fd69b23cc50383",
+  "status": "completed",
+  "source": "existing test rollouts only; no new experiment",
+  "video_index_convention": "query t uses saved video frame t-1",
+  "raw_input_limitation": "Current images are compressed rendered video frames, including action markers; not lossless saved policy tensors.",
+  "records": [
+    {
+      "run_id": "alt_030_split42_model42_pilot_v1",
+      "evaluation_seed": 100000,
+      "selected_queries": [
+        {
+          "current_step": 8,
+          "matched_episode_id": 54,
+          "local_frame_index": 101,
+          "source_index": 6787,
+          "top1_cosine": 0.7923666834831238,
+          "agent_pos": [
+            298.4581604003906,
+            127.97258758544922
+          ],
+          "matched_agent_pos": [
+            330.0218811035156,
+            116.83446502685547
+          ],
+          "video_frame_index": 7
+        },
+        {
+          "current_step": 160,
+          "matched_episode_id": 67,
+          "local_frame_index": 30,
+          "source_index": 8208,
+          "top1_cosine": 0.9872065186500549,
+          "agent_pos": [
+            250.3350067138672,
+            207.8361053466797
+          ],
+          "matched_agent_pos": [
+            295.9028015136719,
+            93.37158966064453
+          ],
+          "video_frame_index": 159
+        },
+        {
+          "current_step": 296,
+          "matched_episode_id": 67,
+          "local_frame_index": 30,
+          "source_index": 8208,
+          "top1_cosine": 0.9924288988113403,
+          "agent_pos": [
+            198.11802673339844,
+            112.24437713623047
+          ],
+          "matched_agent_pos": [
+            295.9028015136719,
+            93.37158966064453
+          ],
+          "video_frame_index": 295
+        }
+      ],
+      "video_sha256": "340b33a4fcaa23b71bebbf8a88945169263ec215840c32a6d4ff7edb7aa17395",
+      "trace_sha256": "7fcd739ef167edef1ebbc7a7646a5cb5135c6e8c4872b1372ef58406ebd6b062",
+      "dataset_fingerprint": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+      "figure": "results/visualizations/test_frame_matches_v1_alt30.png",
+      "figure_sha256": "f4a810157ebd9d32b91051966be6ef11e96403484ab3a7edb1154202ff7c7d05"
+    },
+    {
+      "run_id": "alt_100_split42_model42_pilot_v1",
+      "evaluation_seed": 100000,
+      "selected_queries": [
+        {
+          "current_step": 8,
+          "matched_episode_id": 28,
+          "local_frame_index": 17,
+          "source_index": 3592,
+          "top1_cosine": 0.9082176089286804,
+          "agent_pos": [
+            261.21893310546875,
+            210.35430908203125
+          ],
+          "matched_agent_pos": [
+            441.6866760253906,
+            118.04354858398438
+          ],
+          "video_frame_index": 7
+        },
+        {
+          "current_step": 160,
+          "matched_episode_id": 91,
+          "local_frame_index": 48,
+          "source_index": 11024,
+          "top1_cosine": 0.9980267882347107,
+          "agent_pos": [
+            354.9183654785156,
+            195.0743865966797
+          ],
+          "matched_agent_pos": [
+            358.8298034667969,
+            154.01727294921875
+          ],
+          "video_frame_index": 159
+        },
+        {
+          "current_step": 296,
+          "matched_episode_id": 81,
+          "local_frame_index": 68,
+          "source_index": 9960,
+          "top1_cosine": 0.9993016123771667,
+          "agent_pos": [
+            164.16146850585938,
+            391.1974792480469
+          ],
+          "matched_agent_pos": [
+            153.2489471435547,
+            401.9590148925781
+          ],
+          "video_frame_index": 295
+        }
+      ],
+      "video_sha256": "e803c3a2a18af6891b50f21f5f8c11076f07990fe0cac529a5e0c454774db58d",
+      "trace_sha256": "c539e0454081d9a401f3a7e14ad48027881ca4ab5c3e1294a8eb5d31f928df39",
+      "dataset_fingerprint": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+      "figure": "results/visualizations/test_frame_matches_v1_alt100.png",
+      "figure_sha256": "95175d67fc382745cbca88e3300dcbbe45a184c189e42e901604a395f41cde15"
+    }
+  ]
+}

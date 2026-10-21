@@ -77,3 +77,5 @@ The saved models were inspected on all2426 frozen heldout frames and256 artifici
 ```
 
 Settings and selection rules are in configs/diagnostics/retrieval_failure_v1.json; summary/figure/independent metric checks are in results/diagnostics/. Existing analysis IDs are immutable: choose a new analysis_id in a copied config and pass `--config` when repeating the command. Full per-frame CSVs remain under ignored artifacts/diagnostics/ with sizes/checksums in the summary. Further training and closed-loop experiments remain paused for discussion.
+
+`python -B scripts/visualize_test_matches.py` pairs saved test video observations with the actual retrieved expert images at query steps8/160/296 of seed100000 for both models. Outputs and source-checksum metadata are in results/visualizations/. Use a new `--output-name` to repeat without overwriting. Query step t uses video index t-1; current images include compressed render/action overlays, whereas expert frames come from the raw dataset. This command runs no model or simulator.
