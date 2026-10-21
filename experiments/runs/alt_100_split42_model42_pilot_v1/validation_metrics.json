@@ -1,0 +1,27 @@
+{
+  "final_epoch_mean_nt_xent": 2.8113315359751385,
+  "batches": 75,
+  "episode_ids": [
+    154,
+    26,
+    101,
+    46,
+    38,
+    7,
+    79,
+    104,
+    150,
+    56,
+    20,
+    184,
+    108,
+    24,
+    146,
+    98,
+    196,
+    37,
+    197,
+    50
+  ],
+  "checkpoint_selection_uses_validation": false
+}

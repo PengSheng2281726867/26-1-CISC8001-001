@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-21T02:50:45.725559+00:00",
+  "checked_at": "2026-10-21T03:32:47.202831+00:00",
   "status": "passed",
   "reference_source_commits_and_tracked_bytes_unchanged": true,
   "dataset_full_bytes_unchanged": true,
@@ -25,5 +25,30 @@
       "tracked_worktree_sha256": "10c91dee1e2d46b7e2425bc8f54e8c40a52cc755f5940b4af2ab993220d0a6b0",
       "tracked_file_count": 369
     }
-  }
+  },
+  "checked_runs": [
+    {
+      "run_id": "alt_030_split42_model42_pilot_v1",
+      "artifact_files_verified": 7,
+      "full_query_trace": {
+        "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/evaluation/2026-10-21T024557.580142_0000/retrieval_full.jsonl",
+        "bytes": 1399524,
+        "sha256": "7fcd739ef167edef1ebbc7a7646a5cb5135c6e8c4872b1372ef58406ebd6b062"
+      },
+      "all_50_frozen_seeds_evaluated": true
+    },
+    {
+      "run_id": "alt_100_split42_model42_pilot_v1",
+      "artifact_files_verified": 7,
+      "full_query_trace": {
+        "path": "artifacts/runs/alt_100_split42_model42_pilot_v1/evaluation/2026-10-21T032619.982299_0000/retrieval_full.jsonl",
+        "bytes": 1420869,
+        "sha256": "c539e0454081d9a401f3a7e14ad48027881ca4ab5c3e1294a8eb5d31f928df39"
+      },
+      "all_50_frozen_seeds_evaluated": true
+    }
+  ],
+  "training_policy_sources_identical_between_run_start_commits": true,
+  "current_training_policy_sources_unchanged": true,
+  "artifact_inventory_note": "Post-run index extended to include full query traces; checkpoints, banks, videos, configs and actual trace contents were not changed."
 }

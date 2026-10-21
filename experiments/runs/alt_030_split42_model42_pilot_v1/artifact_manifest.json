@@ -26,6 +26,11 @@
       "sha256": "6e027841a315f9d96cab3032faff5d9e931c24d10aa031477d4dacae23635764"
     },
     {
+      "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/evaluation/2026-10-21T024557.580142_0000/retrieval_full.jsonl",
+      "bytes": 1399524,
+      "sha256": "7fcd739ef167edef1ebbc7a7646a5cb5135c6e8c4872b1372ef58406ebd6b062"
+    },
+    {
       "path": "artifacts/runs/alt_030_split42_model42_pilot_v1/memory_bank.pt",
       "bytes": 2042629,
       "sha256": "b93aacc4b9fa37619152adabd40e9cf09716b3d85665ef86036eae71b6cd46c3"

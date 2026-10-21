@@ -1,0 +1,403 @@
+{
+  "status": "completed",
+  "inspected_at": "2026-10-21T03:27:20.385717+00:00",
+  "run_id": "alt_100_split42_model42_pilot_v1",
+  "trace_queries_checked": 1899,
+  "invalid_action_events": 0,
+  "episode_switches": 1261,
+  "padded_queries": 34,
+  "query_to_matched_position_distance_world_units": {
+    "mean": 84.23777830772947,
+    "median": 68.91920180848203,
+    "p95": 212.90350973877966,
+    "max": 504.89924828768943
+  },
+  "predefined_video_coordinate_checks": [
+    {
+      "evaluation_seed": 100000,
+      "decoded_frames": 300,
+      "query_coordinate_checks": 25,
+      "median_blue_centroid_error_pixels": 1.1865957286706867,
+      "max_blue_centroid_error_pixels": 2.1519903473591326,
+      "note": "H264/96px raster centroid is approximate; not a policy input"
+    },
+    {
+      "evaluation_seed": 100001,
+      "decoded_frames": 300,
+      "query_coordinate_checks": 32,
+      "median_blue_centroid_error_pixels": 1.2462772649051408,
+      "max_blue_centroid_error_pixels": 2.521954894298351,
+      "note": "H264/96px raster centroid is approximate; not a policy input"
+    },
+    {
+      "evaluation_seed": 100002,
+      "decoded_frames": 300,
+      "query_coordinate_checks": 37,
+      "median_blue_centroid_error_pixels": 0.5310479230019044,
+      "max_blue_centroid_error_pixels": 1.109013827239858,
+      "note": "H264/96px raster centroid is approximate; not a policy input"
+    },
+    {
+      "evaluation_seed": 100003,
+      "decoded_frames": 300,
+      "query_coordinate_checks": 30,
+      "median_blue_centroid_error_pixels": 1.4587241660275316,
+      "max_blue_centroid_error_pixels": 2.598044598899673,
+      "note": "H264/96px raster centroid is approximate; not a policy input"
+    }
+  ],
+  "repeated_match_tails": [
+    {
+      "evaluation_seed": 100000,
+      "consecutive_same_match_queries_at_end": 8,
+      "last_matched_episode": 81,
+      "last_matched_frame": 68,
+      "last_cosine": 0.9993016123771667
+    },
+    {
+      "evaluation_seed": 100001,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 55,
+      "last_matched_frame": 19,
+      "last_cosine": 0.9984481334686279
+    },
+    {
+      "evaluation_seed": 100002,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 120,
+      "last_matched_frame": 28,
+      "last_cosine": 0.7377609014511108
+    },
+    {
+      "evaluation_seed": 100003,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 143,
+      "last_matched_frame": 118,
+      "last_cosine": 0.9999921321868896
+    },
+    {
+      "evaluation_seed": 100004,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 85,
+      "last_matched_frame": 41,
+      "last_cosine": 0.934917688369751
+    },
+    {
+      "evaluation_seed": 100005,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 54,
+      "last_matched_frame": 69,
+      "last_cosine": 0.7906073927879333
+    },
+    {
+      "evaluation_seed": 100006,
+      "consecutive_same_match_queries_at_end": 23,
+      "last_matched_episode": 118,
+      "last_matched_frame": 5,
+      "last_cosine": 0.9768458008766174
+    },
+    {
+      "evaluation_seed": 100007,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 25,
+      "last_matched_frame": 25,
+      "last_cosine": 0.9989054203033447
+    },
+    {
+      "evaluation_seed": 100008,
+      "consecutive_same_match_queries_at_end": 32,
+      "last_matched_episode": 107,
+      "last_matched_frame": 70,
+      "last_cosine": 0.9604009389877319
+    },
+    {
+      "evaluation_seed": 100009,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 28,
+      "last_matched_frame": 26,
+      "last_cosine": 0.8497762084007263
+    },
+    {
+      "evaluation_seed": 100010,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 91,
+      "last_matched_frame": 72,
+      "last_cosine": 0.9997403621673584
+    },
+    {
+      "evaluation_seed": 100011,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 138,
+      "last_matched_frame": 0,
+      "last_cosine": 0.8962318897247314
+    },
+    {
+      "evaluation_seed": 100012,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 119,
+      "last_matched_frame": 12,
+      "last_cosine": 0.7499174475669861
+    },
+    {
+      "evaluation_seed": 100013,
+      "consecutive_same_match_queries_at_end": 29,
+      "last_matched_episode": 159,
+      "last_matched_frame": 55,
+      "last_cosine": 0.997564971446991
+    },
+    {
+      "evaluation_seed": 100014,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 12,
+      "last_matched_frame": 16,
+      "last_cosine": 0.9843753576278687
+    },
+    {
+      "evaluation_seed": 100015,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 205,
+      "last_matched_frame": 46,
+      "last_cosine": 0.9922787547111511
+    },
+    {
+      "evaluation_seed": 100016,
+      "consecutive_same_match_queries_at_end": 4,
+      "last_matched_episode": 100,
+      "last_matched_frame": 48,
+      "last_cosine": 0.9975153207778931
+    },
+    {
+      "evaluation_seed": 100017,
+      "consecutive_same_match_queries_at_end": 3,
+      "last_matched_episode": 149,
+      "last_matched_frame": 11,
+      "last_cosine": 0.8744592666625977
+    },
+    {
+      "evaluation_seed": 100018,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 32,
+      "last_matched_frame": 19,
+      "last_cosine": 0.939947247505188
+    },
+    {
+      "evaluation_seed": 100019,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 159,
+      "last_matched_frame": 21,
+      "last_cosine": 0.9679516553878784
+    },
+    {
+      "evaluation_seed": 100020,
+      "consecutive_same_match_queries_at_end": 24,
+      "last_matched_episode": 149,
+      "last_matched_frame": 14,
+      "last_cosine": 0.8264036774635315
+    },
+    {
+      "evaluation_seed": 100021,
+      "consecutive_same_match_queries_at_end": 28,
+      "last_matched_episode": 138,
+      "last_matched_frame": 60,
+      "last_cosine": 0.9880387187004089
+    },
+    {
+      "evaluation_seed": 100022,
+      "consecutive_same_match_queries_at_end": 25,
+      "last_matched_episode": 159,
+      "last_matched_frame": 55,
+      "last_cosine": 0.9940922260284424
+    },
+    {
+      "evaluation_seed": 100023,
+      "consecutive_same_match_queries_at_end": 10,
+      "last_matched_episode": 149,
+      "last_matched_frame": 14,
+      "last_cosine": 0.8264036774635315
+    },
+    {
+      "evaluation_seed": 100024,
+      "consecutive_same_match_queries_at_end": 26,
+      "last_matched_episode": 178,
+      "last_matched_frame": 8,
+      "last_cosine": 0.9996004104614258
+    },
+    {
+      "evaluation_seed": 100025,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 138,
+      "last_matched_frame": 68,
+      "last_cosine": 0.9862385988235474
+    },
+    {
+      "evaluation_seed": 100026,
+      "consecutive_same_match_queries_at_end": 32,
+      "last_matched_episode": 86,
+      "last_matched_frame": 25,
+      "last_cosine": 0.7892881035804749
+    },
+    {
+      "evaluation_seed": 100027,
+      "consecutive_same_match_queries_at_end": 32,
+      "last_matched_episode": 149,
+      "last_matched_frame": 11,
+      "last_cosine": 0.9511807560920715
+    },
+    {
+      "evaluation_seed": 100028,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 203,
+      "last_matched_frame": 41,
+      "last_cosine": 0.6285250186920166
+    },
+    {
+      "evaluation_seed": 100029,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 28,
+      "last_matched_frame": 3,
+      "last_cosine": 0.9891584515571594
+    },
+    {
+      "evaluation_seed": 100030,
+      "consecutive_same_match_queries_at_end": 10,
+      "last_matched_episode": 85,
+      "last_matched_frame": 81,
+      "last_cosine": 0.9998769760131836
+    },
+    {
+      "evaluation_seed": 100031,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 13,
+      "last_matched_frame": 41,
+      "last_cosine": 0.7132430672645569
+    },
+    {
+      "evaluation_seed": 100032,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 54,
+      "last_matched_frame": 165,
+      "last_cosine": 0.8351271152496338
+    },
+    {
+      "evaluation_seed": 100033,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 200,
+      "last_matched_frame": 160,
+      "last_cosine": 0.9994633197784424
+    },
+    {
+      "evaluation_seed": 100034,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 89,
+      "last_matched_frame": 50,
+      "last_cosine": 0.9457426071166992
+    },
+    {
+      "evaluation_seed": 100035,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 157,
+      "last_matched_frame": 6,
+      "last_cosine": 0.9234586954116821
+    },
+    {
+      "evaluation_seed": 100036,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 107,
+      "last_matched_frame": 131,
+      "last_cosine": 0.9241603016853333
+    },
+    {
+      "evaluation_seed": 100037,
+      "consecutive_same_match_queries_at_end": 33,
+      "last_matched_episode": 83,
+      "last_matched_frame": 65,
+      "last_cosine": 0.9999273419380188
+    },
+    {
+      "evaluation_seed": 100038,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 153,
+      "last_matched_frame": 72,
+      "last_cosine": 0.9999765753746033
+    },
+    {
+      "evaluation_seed": 100039,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 32,
+      "last_matched_frame": 125,
+      "last_cosine": 0.8597904443740845
+    },
+    {
+      "evaluation_seed": 100040,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 203,
+      "last_matched_frame": 2,
+      "last_cosine": 0.9291389584541321
+    },
+    {
+      "evaluation_seed": 100041,
+      "consecutive_same_match_queries_at_end": 29,
+      "last_matched_episode": 176,
+      "last_matched_frame": 26,
+      "last_cosine": 0.9455104470252991
+    },
+    {
+      "evaluation_seed": 100042,
+      "consecutive_same_match_queries_at_end": 4,
+      "last_matched_episode": 138,
+      "last_matched_frame": 68,
+      "last_cosine": 0.995387613773346
+    },
+    {
+      "evaluation_seed": 100043,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 68,
+      "last_matched_frame": 22,
+      "last_cosine": 0.9952491521835327
+    },
+    {
+      "evaluation_seed": 100044,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 28,
+      "last_matched_frame": 78,
+      "last_cosine": 0.9603651762008667
+    },
+    {
+      "evaluation_seed": 100045,
+      "consecutive_same_match_queries_at_end": 17,
+      "last_matched_episode": 167,
+      "last_matched_frame": 77,
+      "last_cosine": 0.9998810291290283
+    },
+    {
+      "evaluation_seed": 100046,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 5,
+      "last_matched_frame": 83,
+      "last_cosine": 0.9998781085014343
+    },
+    {
+      "evaluation_seed": 100047,
+      "consecutive_same_match_queries_at_end": 1,
+      "last_matched_episode": 138,
+      "last_matched_frame": 46,
+      "last_cosine": 0.9989433884620667
+    },
+    {
+      "evaluation_seed": 100048,
+      "consecutive_same_match_queries_at_end": 26,
+      "last_matched_episode": 200,
+      "last_matched_frame": 15,
+      "last_cosine": 0.9573060274124146
+    },
+    {
+      "evaluation_seed": 100049,
+      "consecutive_same_match_queries_at_end": 35,
+      "last_matched_episode": 70,
+      "last_matched_frame": 45,
+      "last_cosine": 0.9051416516304016
+    }
+  ],
+  "diagnostic_script_sha256": "61eaf6a42f2dd370653874d1aa38f1493201450d5e363753060289a6ac169814",
+  "interpretation": "Similarity alone is not task success. Absolute actions can be poorly suited to spatially mismatched retrieved states. Repeated-match tails can indicate stagnation; no compensation, threshold, blending or seed changes were introduced."
+}

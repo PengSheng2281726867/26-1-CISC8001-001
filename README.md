@@ -6,6 +6,8 @@ ALT-only study of 30/100/300/500 independent demonstrations. The local dataset c
 
 Project: `D:\Code\Course_code\COURSE-HUZI-CODE`. References `D:\Code\Course_code\ACl\alt` and `D:\Code\Course_code\DP\diffusion_policy` remain read-only. Their exact commits, licenses and differences are in docs/upstream_provenance.md and docs/implementation_notes.md. Dataset prerequisite is the existing `DP/diffusion_policy/data/pusht/pusht_cchi_v7_replay.zarr`; raw data is not included.
 
+The Zarr store has `data/img` (RGB frames), `data/state` (five numbers per frame: pusher x,y, block x,y, block angle in radians), and `data/action` (expert absolute target x,y). ALT reads only the current image and the first two state columns. Current pusher coordinates and expert action targets are different quantities. Actions do not supervise contrastive encoder training; they are retrieved afterward. See docs/data_audit.md for synchronized frame/coordinate examples and results/alignment_debug.png for viewable images.
+
 A verified Python3.10 / Torch2.7.1+cu128 / RTX5090 interpreter already exists. It is reused without installing into or modifying the reference environment. Do not use the default system Python3.14 for old Push-T dependencies.
 
 ```powershell
@@ -33,14 +35,18 @@ The first commit includes verified audit, frozen split and working core. Seven g
 Run the cheap untrained integration smoke before starting a fresh trained pilot. The smoke uses only the first frozen test seed and is explicitly not a trained-policy benchmark. Each new train command starts from the same verified ImageNet weights, never a previous scale's checkpoint. Use a new run ID for every attempt; existing configs and artifacts are never overwritten.
 
 ```powershell
-& $altPython -B scripts/run.py smoke --run-id alt_030_split42_model42_smoke_v1
-& $altPython -B scripts/run.py train --run-id alt_030_split42_model42_pilot_v1 --scale 30 --model-seed 42
-& $altPython -B scripts/run.py bank --run-id alt_030_split42_model42_pilot_v1
-& $altPython -B scripts/diagnose_bank.py --run-id alt_030_split42_model42_pilot_v1
-& $altPython -B scripts/run.py evaluate --run-id alt_030_split42_model42_pilot_v1
-& $altPython -B scripts/inspect_rollout.py --run-id alt_030_split42_model42_pilot_v1
+$smokeRun = 'alt_030_split42_model42_smoke_reproduction_v1'
+$pilotRun = 'alt_030_split42_model42_reproduction_v1'
+& $altPython -B scripts/run.py smoke --run-id $smokeRun
+& $altPython -B scripts/run.py train --run-id $pilotRun --scale 30 --model-seed 42
+& $altPython -B scripts/run.py bank --run-id $pilotRun
+& $altPython -B scripts/diagnose_bank.py --run-id $pilotRun
+& $altPython -B scripts/run.py evaluate --run-id $pilotRun
+& $altPython -B scripts/inspect_rollout.py --run-id $pilotRun
 & $altPython -B scripts/run.py report
 ```
+
+The names above are fresh reproduction IDs, separate from the saved pilot records. Choose another unused suffix when repeating them. To reproduce scale100, use a new run ID with `--scale 100` in `train`, then run the same bank/diagnostic/evaluation commands with that ID. Keep model seed42 and the frozen split/config unchanged for this paired comparison.
 
 Training uses Adam, 40 epochs, batch32, lr1e-4, tau0.4, full backbone fine-tuning and two independent per-observation photometric views. Final-epoch checkpoint selection is frozen. Held-out contrastive loss is computed once at the final epoch for diagnosis only. Evaluation uses the **unmodified official PushTImageRunner.run** method with n_train=0, n_test=50, seeds100000..100049, legacy_test=True, n_obs_steps=1 and eight-step execution. n_envs=1 gives simple, exact per-episode telemetry. A subclass records base termination/actual steps; a proxy records rewards and timing. A parity test proves the subclass preserves original transitions. Telemetry and official Runner scores are independently cross-checked.
 
@@ -50,9 +56,13 @@ Run directories contain immutable resolved YAML, split/config references, event 
 
 `report` writes results/scale_summary.csv, training-loss/official-score figures and a diagnostic contact sheet showing actual rollout video frames above the retrieved expert images. These figures describe completed saved runs only. Simulator-seed bootstrap intervals do not measure uncertainty across independently trained model seeds. Begin with one model seed per scale; model seeds42/43/44 are planned for a later controlled comparison if resources permit.
 
+Once both scales are completed, `report` checks that their resolved settings differ only in scale and pairs the same50 simulator seeds to write results/paired_scale_comparison.json and results/paired_scale_scores_model42.png. The difference interval resamples paired simulator seeds. Both scales use40 epochs; larger datasets therefore receive more optimizer updates, so this is not a comparison at equal compute.
+
 ## Measured milestone
 
 ALT-30 model42 has completed40 epochs and all50 fixed-seed official rollouts: mean score0.2744, SD0.2832, simulator-seed bootstrap95%CI[0.1997,0.3543]. This is a weak single-model-seed pilot, not a final claim that ALT reliably solves Push-T. The predefined failure video and traces show high-similarity retrievals with mismatched pusher positions and repeated action chunks. Full results/limitations are in experiments/runs/alt_030_split42_model42_pilot_v1/report.md; primary metrics are eval_metrics.json and eval_rollouts.csv. ALT-100 and additional model seeds are separate fresh runs, never continuations of this checkpoint.
+
+ALT-100 model42 also completed40 epochs and the same50 official rollouts: mean score0.2745, SD0.3023,95%CI[0.1947,0.3591]. Its paired difference from ALT-30 is+0.0001, paired95%CI[-0.0970,0.0932]; this pilot does not demonstrate a scale benefit. Some simulator seeds improve while others regress. Training took1997.52s versus571.28s; bank entries grow12618 versus3806. All bank/action/trace checks pass, yet predefined videos still show wrong matches and stagnation. See experiments/runs/alt_100_split42_model42_pilot_v1/report.md and results/paired_scale_comparison.json. This is one trained model seed per feasible scale; replications43/44 remain unperformed, and300/500 remain unavailable with current data.
 
 Architecture: ResNet18 image128 + position MLP2->64->32, fusion160->256->128, L2 normalization. Backbone fine-tuned; NT-Xent tau0.4; photometric changes only. Retrieval top1 cosine, no OOD/fallback/blending, eight original absolute target positions per query, same-episode last-action padding.
 

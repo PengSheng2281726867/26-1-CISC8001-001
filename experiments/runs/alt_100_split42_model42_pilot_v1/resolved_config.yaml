@@ -1,0 +1,61 @@
+augmentation:
+  brightness: 0.1
+  contrast: 0.1
+  hue: 0.02
+  saturation: 0.1
+encoder:
+  embedding_dim: 128
+  fine_tune: true
+  image_dim: 128
+  image_size: 96
+  position_dim: 32
+  position_transform: x / 256 - 1
+  pretrained_weights: ResNet18_Weights.IMAGENET1K_V1
+evaluation:
+  bootstrap_samples: 10000
+  bootstrap_seed: 2026
+  fps: 10
+  legacy_test: true
+  max_steps: 300
+  n_action_steps: 8
+  n_envs: 1
+  n_obs_steps: 1
+  n_test: 50
+  test_start_seed: 100000
+  video_count: 4
+paths:
+  alt_source: D:\Code\Course_code\ACl\alt
+  dataset: D:\Code\Course_code\DP\diffusion_policy\data\pusht\pusht_cchi_v7_replay.zarr
+  dp_source: D:\Code\Course_code\DP\diffusion_policy
+  pretrained: D:\Code\Course_code\COURSE-HUZI-CODE\artifacts\pretrained\resnet18-f37072fd.pth
+retrieval:
+  action_chunk_length: 8
+  action_offset: 0
+  boundary_policy: repeat_last_action
+  metric: cosine
+  ood_enabled: false
+  top_k: 1
+split:
+  heldout_count: 20
+  manifest: D:\Code\Course_code\COURSE-HUZI-CODE\experiments\splits\pusht_v7_split42.json
+  scales:
+  - 30
+  - 100
+  - 300
+  - 500
+  seed: 42
+training:
+  augmentation_seed: 44
+  batch_size: 32
+  checkpoint_selection: final_epoch
+  deterministic: true
+  device: cuda:0
+  epochs: 40
+  learning_rate: 0.0001
+  model_seed: 42
+  num_workers: 0
+  optimizer: Adam
+  scale: 100
+  shuffle_seed: 43
+  temperature: 0.4
+  torch_threads: 4
