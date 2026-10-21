@@ -1,0 +1,15 @@
+{
+  "analysis_id": "retrieval_failure_v1",
+  "run_ids": ["alt_030_split42_model42_pilot_v1", "alt_100_split42_model42_pilot_v1"],
+  "query_subset": "all frozen heldout demonstration frames; deterministic preprocessing",
+  "batch_size": 128,
+  "random_seed": 20261021,
+  "random_bank_pairs": 8192,
+  "branch_probe_frames": 256,
+  "position_scale_world_units": 512.0,
+  "angle_scale_radians": 3.141592653589793,
+  "geometry_reference_cost": "(pusher_L2/512)^2 + (block_L2/512)^2 + (wrapped_angle/pi)^2",
+  "trace_same_position_tolerance_world_units": 0.001,
+  "display_validation_episodes": 4,
+  "limitations": "Post-hoc offline diagnostics, not a new policy or rollout. Full block state is used only to measure errors and construct an explicitly privileged geometry reference, never fed to ALT. Expert action difference is descriptive, not a unique correct-action label. Swapped image/position pairs are artificial sensitivity probes. No binary accuracy/success/OOD threshold or training setting is introduced."
+}

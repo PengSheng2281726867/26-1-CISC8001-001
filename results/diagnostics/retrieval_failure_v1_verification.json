@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-21T03:52:36.322541+00:00",
+  "script_config_model_bank_dataset_reference_integrity": "passed",
+  "checked_runs": [
+    {
+      "run_id": "alt_030_split42_model42_pilot_v1",
+      "rows_independently_recomputed": 7278,
+      "max_absolute_metric_discrepancies": [
+        0.1403113624374244,
+        0.0468574752197585,
+        3.694462698433654e-05,
+        7.626969733109945e-06
+      ],
+      "metric_order": [
+        "pusher_distance",
+        "block_distance",
+        "angle_degrees",
+        "action_chunk_rmse"
+      ],
+      "distance_note": "Original diagnostic uses FP32 torch.cdist; direct NumPy FP64 recomputation agrees within sub-world-unit numerical tolerance."
+    },
+    {
+      "run_id": "alt_100_split42_model42_pilot_v1",
+      "rows_independently_recomputed": 7278,
+      "max_absolute_metric_discrepancies": [
+        0.1403113624374244,
+        0.047576763986113935,
+        3.805488996988515e-05,
+        1.0699226322685718e-05
+      ],
+      "metric_order": [
+        "pusher_distance",
+        "block_distance",
+        "angle_degrees",
+        "action_chunk_rmse"
+      ],
+      "distance_note": "Original diagnostic uses FP32 torch.cdist; direct NumPy FP64 recomputation agrees within sub-world-unit numerical tolerance."
+    }
+  ],
+  "new_training_or_simulator_rollouts": false
+}

@@ -67,3 +67,13 @@ ALT-100 model42 also completed40 epochs and the same50 official rollouts: mean s
 Architecture: ResNet18 image128 + position MLP2->64->32, fusion160->256->128, L2 normalization. Backbone fine-tuned; NT-Xent tau0.4; photometric changes only. Retrieval top1 cosine, no OOD/fallback/blending, eight original absolute target positions per query, same-episode last-action padding.
 
 Heavy checkpoints, banks, videos and caches remain in ignored artifacts/. Git stores small manifests, metrics and plots only; it is not a backup of heavy local artifacts. Official score is mean over fixed seeds of each episode's maximum clip(coverage/0.95,0,1), rather than contrastive loss or an invented success rate.
+
+## Forward-only failure analysis
+
+The saved models were inspected on all2426 frozen heldout frames and256 artificial image/position sensitivity probes, without new training or simulator rollouts. Numeric-position replacement changes only1.56%/2.73% of the trained30/100 top1 matches; the measured representation is strongly image-dominated and has substantial geometric retrieval errors. Full-state geometry is used solely as an explicitly privileged diagnostic comparator, never as a policy input. See docs/retrieval_failure_analysis.md for evidence, caveats and unimplemented next steps.
+
+```powershell
+& $altPython -B scripts/diagnose_representation.py
+```
+
+Settings and selection rules are in configs/diagnostics/retrieval_failure_v1.json; summary/figure/independent metric checks are in results/diagnostics/. Existing analysis IDs are immutable: choose a new analysis_id in a copied config and pass `--config` when repeating the command. Full per-frame CSVs remain under ignored artifacts/diagnostics/ with sizes/checksums in the summary. Further training and closed-loop experiments remain paused for discussion.
