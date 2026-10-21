@@ -31,7 +31,7 @@ def prepare_weights(cfg, project):
 
 def main(project):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['audit', 'prepare-weights', 'check'])
+    parser.add_argument('command', choices=['audit', 'prepare-weights', 'check', 'train', 'bank', 'smoke', 'evaluate', 'report'])
     parser.add_argument('--config', default=str(Path(project)/'configs/alt_pusht_base.yaml'))
     parser.add_argument('--run-id')
     parser.add_argument('--scale', type=int)

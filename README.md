@@ -24,7 +24,25 @@ All paths are in configs/alt_pusht_base.yaml and can be changed using `--config 
 
 `check` verifies split leakage, action alignment and all episode boundaries, independent augmentation, an analytic NT-Xent reference, real pretrained loading/backbone gradient update, normalized128D embeddings, and deterministic bank/query/save/load using real Push-T images.
 
-The first commit includes verified audit, frozen split and working core. Training/Runner integration follows as a separate validated gate. Training/evaluation commands and actual run IDs will be added when available; there are no claimed rollout results yet. See docs/experiment_log.md and docs/failure_log.md.
+The first commit includes verified audit, frozen split and working core. Seven gates now also check latest-frame policy selection, reset/API/absolute action units, and exact transition parity between the instrumented and original environments. See docs/experiment_log.md and docs/failure_log.md for measured progress.
+
+## Training and official closed-loop evaluation
+
+Run the cheap untrained integration smoke before starting a fresh trained pilot. The smoke uses only the first frozen test seed and is explicitly not a trained-policy benchmark. Each new train command starts from the same verified ImageNet weights, never a previous scale's checkpoint. Use a new run ID for every attempt; existing configs and artifacts are never overwritten.
+
+```powershell
+& $altPython -B scripts/run.py smoke --run-id alt_030_split42_model42_smoke_v1
+& $altPython -B scripts/run.py train --run-id alt_030_split42_model42_pilot_v1 --scale 30 --model-seed 42
+& $altPython -B scripts/run.py bank --run-id alt_030_split42_model42_pilot_v1
+& $altPython -B scripts/run.py evaluate --run-id alt_030_split42_model42_pilot_v1
+& $altPython -B scripts/run.py report
+```
+
+Training uses Adam, 40 epochs, batch32, lr1e-4, tau0.4, full backbone fine-tuning and two independent per-observation photometric views. Final-epoch checkpoint selection is frozen. Held-out contrastive loss is computed once at the final epoch for diagnosis only. Evaluation uses the **unmodified official PushTImageRunner.run** method with n_train=0, n_test=50, seeds100000..100049, legacy_test=True, n_obs_steps=1 and eight-step execution. n_envs=1 gives simple, exact per-episode telemetry. A subclass records base termination/actual steps; a proxy records rewards and timing. A parity test proves the subclass preserves original transitions. Telemetry and official Runner scores are independently cross-checked.
+
+Run directories contain immutable resolved YAML, split/config references, event history, training/validation metrics, per-rollout CSV, two full query samples per evaluated seed, aggregate metrics, and artifact checksums. Full query traces (all eight commands and source indices), checkpoints, memory banks and the predefined first four videos are under ignored artifacts/runs/. `bank` and `evaluate` load the run's immutable resolved config. `--scale` and `--model-seed` apply when creating a fresh run. Failed training requires a new ID.
+
+`report` writes results/scale_summary.csv, training-loss/official-score figures and a diagnostic contact sheet showing actual rollout video frames above the retrieved expert images. These figures describe completed saved runs only. Simulator-seed bootstrap intervals do not measure uncertainty across independently trained model seeds. Begin with one model seed per scale; model seeds42/43/44 are planned for a later controlled comparison if resources permit.
 
 Architecture: ResNet18 image128 + position MLP2->64->32, fusion160->256->128, L2 normalization. Backbone fine-tuned; NT-Xent tau0.4; photometric changes only. Retrieval top1 cosine, no OOD/fallback/blending, eight original absolute target positions per query, same-episode last-action padding.
 

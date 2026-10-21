@@ -1,0 +1,2 @@
+evaluation_seed,official_episode_score,final_score,steps,terminated,truncated,runtime_seconds,run_id,scale,train_seed,split_manifest_sha256,query_count,episode_switches,min_cosine,mean_cosine,padded_queries
+100000,0.39167831266120906,0.39167831266120906,300,False,True,1.1881567999953404,alt_030_split42_model42_smoke_v1,30,42,1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a,38,12,0.9354607462882996,0.9662541888262096,0

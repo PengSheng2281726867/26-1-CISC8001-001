@@ -23,4 +23,8 @@ Bank includes every frame in the exact selected training episode list and is re-
 
 Policy is restricted to image and agent_pos. Any wrapper history must use its latest frame. No block pose, reward, goal, future observation, future target position as input, OOD handling, interpolation, or relative compensation is included. Official test settings remain legacy_test=True, seeds100000..100049 and max_steps300.
 
-Status: Phase 1 core gate passed (five real-data tests); training and real closed-loop results will be recorded separately. No claim is based on contrastive loss alone.
+The official PushTImageRunner.run remains unchanged. The adapter imports it from the read-only reference path, requests zero demonstration/training-seed rollouts and evaluates the fixed simulator seed list. ObservedImageEnv only records returned termination flags and actual control-step counts; VectorTrace observes rewards and timing through the official vector API. Neither affects simulator transitions. A test compares original/instrumented reset and action transitions exactly. Per-seed and aggregate telemetry must agree with the score returned by the official Runner.
+
+One environment at a time is used for auditable episode-to-query attribution. Training is FP32, TF32 disabled, cuDNN deterministic with benchmark disabled, deterministic Torch algorithms enabled, and CUBLAS_WORKSPACE_CONFIG=:4096:8. Dataloader workers=0. Model initialization, shuffle and augmentation use separately recorded seeds; validation views use augmentation_seed+1. All selected frames enter the bank, including drop-last training remainders. Final checkpoint is selected without validation or test score feedback.
+
+Status: Phase 1 core gate passed; seven real-data/interface gates now pass. Training and actual closed-loop results are recorded separately by run ID. No claim is based on contrastive loss alone.

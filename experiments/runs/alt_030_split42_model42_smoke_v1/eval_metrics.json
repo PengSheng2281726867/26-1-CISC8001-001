@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "scope": "untrained_ImageNet_integration_smoke",
+  "n_rollouts": 1,
+  "evaluation_seeds": [
+    100000
+  ],
+  "mean_score": 0.39167831266120906,
+  "score_std": null,
+  "mean_score_bootstrap_95ci": null,
+  "score_definition": "official Runner mean(max_t clip(coverage_t/0.95,0,1))",
+  "mean_final_score": 0.39167831266120906,
+  "total_environment_steps": 300,
+  "evaluation_seconds": 1.198830699955579,
+  "invalid_events": 0,
+  "query_count": 38,
+  "bank_entries": 3806,
+  "encoder_parameters": 11318560,
+  "checkpoint_bytes": 45360499,
+  "bank_bytes": 2042629,
+  "latency_ms": {
+    "encoder_ms": {
+      "mean": 5.030200000251888,
+      "p50": 4.847100004553795,
+      "p95": 6.904579984256996
+    },
+    "search_ms": {
+      "mean": 0.19821842617698407,
+      "p50": 0.12855001841671765,
+      "p95": 0.4814649699255821
+    },
+    "extraction_ms": {
+      "mean": 0.6300868423606613,
+      "p50": 0.6374499935191125,
+      "p95": 0.8293549763038753
+    }
+  },
+  "video_paths_by_seed": {
+    "100000": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\runs\\alt_030_split42_model42_smoke_v1\\evaluation\\2026-10-21T023324.112711_0000\\media\\ba4k9mc1.mp4"
+  },
+  "retrieval_full_path": "D:\\Code\\Course_code\\COURSE-HUZI-CODE\\artifacts\\runs\\alt_030_split42_model42_smoke_v1\\evaluation\\2026-10-21T023324.112711_0000\\retrieval_full.jsonl",
+  "bootstrap_seed": 2026,
+  "bootstrap_samples": 10000
+}

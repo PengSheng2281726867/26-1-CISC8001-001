@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_smoke_v1/encoder_final.pt",
+      "bytes": 45360499,
+      "sha256": "4232501c0fa20f7b4d9bb904a853ad8432ac5196ed45a78af5ad898295c6e20b"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_smoke_v1/evaluation/2026-10-21T023324.112711_0000/media/ba4k9mc1.mp4",
+      "bytes": 32791,
+      "sha256": "e918369a285729a42c7a0bfe5f234d93caf806b6ecbf8199089d816c3aa91b36"
+    },
+    {
+      "path": "artifacts/runs/alt_030_split42_model42_smoke_v1/memory_bank.pt",
+      "bytes": 2042629,
+      "sha256": "421076d12b08b9462f966b3cd54a8cbf33067b7d002147dd4cd12d295124deb1"
+    }
+  ],
+  "backed_up_by_git": false
+}
