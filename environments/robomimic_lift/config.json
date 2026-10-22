@@ -1,0 +1,17 @@
+{
+  "dataset": "artifacts/datasets/robomimic/lift/ph/low_dim.hdf5",
+  "dataset_sha256": "18106c8c072020672fecdd2a9ffbfe7dc656823cb877f972ade7fad34d2a5b74",
+  "environment_root": "artifacts/environments/robomimic_lift_legacy",
+  "robosuite_branch": "offline_study",
+  "robosuite_commit": "d9baa17d5328d7b0ec15ecda54c76c61bb983124",
+  "robosuite_version": "1.2.0",
+  "mujoco_version": "2.0.0",
+  "mujoco_py_version": "2.0.2.9",
+  "robomimic_version": "0.2.0",
+  "python_version": "3.8.20",
+  "validation_seed": 0,
+  "validation_episodes": ["demo_0", "demo_1", "demo_2"],
+  "state_replay_atol": 0.000001,
+  "render_cameras": ["agentview", "robot0_eye_in_hand"],
+  "render_size": 256
+}

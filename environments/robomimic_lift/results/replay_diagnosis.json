@@ -1,0 +1,75 @@
+{
+  "source_validation": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/validation.json",
+  "source_validation_sha256": "5a80a53312b3b68cb81473f0bb0a99fb6634d77245d76c653ad3737f85df6934",
+  "script_sha256": "f706ca694a198d04874130ca9fd3f6b1806a754624548b918996cbe59ab1d6c1",
+  "strict_full_state_gate_changed": false,
+  "episodes": [
+    {
+      "episode": "demo_0",
+      "transition_count": 58,
+      "trace_artifact": {
+        "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_action_replay.npz",
+        "bytes": 25197,
+        "sha256": "c935541bbea81da10ce3a8ea32bb547ebdf6bac6824103f71640d08f1e47a268"
+      },
+      "first_action_index_above_max_state_error": {
+        "1e-10": 6,
+        "1e-08": 10,
+        "1e-06": null,
+        "1e-05": null
+      },
+      "peak_error_action_index": 18,
+      "peak_error_dimension": "qvel[6]",
+      "max_cube_position_error_mm": 2.6379748131968944e-07,
+      "max_cube_orientation_error_degrees": 0.0,
+      "max_abs_state_error": 3.026972850150855e-08,
+      "task_success": true
+    },
+    {
+      "episode": "demo_1",
+      "transition_count": 57,
+      "trace_artifact": {
+        "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_1_action_replay.npz",
+        "bytes": 24297,
+        "sha256": "4ba411e97836672663aa88b174b3eb9cc72f3f53dcb99a9a9951c108e5d115bd"
+      },
+      "first_action_index_above_max_state_error": {
+        "1e-10": 2,
+        "1e-08": 2,
+        "1e-06": 47,
+        "1e-05": 47
+      },
+      "peak_error_action_index": 48,
+      "peak_error_dimension": "qvel[12] (cube angular velocity)",
+      "max_cube_position_error_mm": 0.0031385350056327135,
+      "max_cube_orientation_error_degrees": 0.0057680062931489825,
+      "max_abs_state_error": 0.0008745960508721728,
+      "task_success": true
+    },
+    {
+      "episode": "demo_2",
+      "transition_count": 56,
+      "trace_artifact": {
+        "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_2_action_replay.npz",
+        "bytes": 23749,
+        "sha256": "e93ef924a338fd3f14fd4c71723a7ba488409c28999becdd885439185b438217"
+      },
+      "first_action_index_above_max_state_error": {
+        "1e-10": 0,
+        "1e-08": 2,
+        "1e-06": 48,
+        "1e-05": 48
+      },
+      "peak_error_action_index": 48,
+      "peak_error_dimension": "qvel[12] (cube angular velocity)",
+      "max_cube_position_error_mm": 0.0005533597260995428,
+      "max_cube_orientation_error_degrees": 0.000925841841772942,
+      "max_abs_state_error": 0.00026493403870038847,
+      "task_success": true
+    }
+  ],
+  "all_tasks_successful": true,
+  "strict_full_state_gate_passed": false,
+  "state_restoration_passed": true,
+  "note": "Task success, state restoration, and strict open-loop state fidelity are separate. No tolerance, simulator parameter, action, or dataset was modified."
+}

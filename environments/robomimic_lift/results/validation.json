@@ -1,0 +1,339 @@
+{
+  "status": "needs_diagnosis",
+  "started_at_utc": "20261022T060446Z",
+  "python": "3.8.20 (default, Oct  2 2024, 16:34:12) \n[Clang 18.1.8 ]",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.2.5",
+  "dataset_sha256": "18106c8c072020672fecdd2a9ffbfe7dc656823cb877f972ade7fad34d2a5b74",
+  "versions": {
+    "robosuite": "1.2.0",
+    "robomimic": "0.2.0",
+    "mujoco_py": "2.0.2.9",
+    "mujoco_engine_integer": 200
+  },
+  "robosuite_source_commit": "d9baa17d5328d7b0ec15ecda54c76c61bb983124",
+  "script_sha256": "7416abfca1debc48efb91bf405f07c0e4373a99020b8e2917b54bdc01028de7e",
+  "episodes": [
+    {
+      "episode": "demo_0",
+      "frames": 59,
+      "action_dimension": 7,
+      "state_restoration_max_abs_observation_error": {
+        "object": 0.0,
+        "robot0_eef_pos": 0.0,
+        "robot0_eef_quat": 5.551115123125783e-17,
+        "robot0_eef_vel_ang": 1.1102230246251565e-16,
+        "robot0_eef_vel_lin": 8.326672684688674e-17,
+        "robot0_gripper_qpos": 0.0,
+        "robot0_gripper_qvel": 0.0,
+        "robot0_joint_pos": 0.0,
+        "robot0_joint_pos_cos": 5.551115123125783e-17,
+        "robot0_joint_pos_sin": 0.0,
+        "robot0_joint_vel": 0.0
+      },
+      "continuous_action_replay_max_abs_state_error": 3.026972850150855e-08,
+      "continuous_action_replay_max_abs_object_observation_error": 0.0012713390334059271,
+      "state_aligned_object_max_abs_error": 3.601315738677169e-10,
+      "state_component_max_abs_error": {
+        "time": 0.0,
+        "qpos": 7.258228462703187e-09,
+        "qvel": 3.026972850150855e-08,
+        "cube_xyz": 2.0098104777654946e-10,
+        "cube_quaternion": 2.9263128237862895e-10
+      },
+      "largest_state_error_action_index": 18,
+      "largest_state_error_flat_dimension": 23,
+      "model_state_layout": {
+        "nq": 16,
+        "nv": 15,
+        "cube_qpos_start": 9,
+        "cube_qpos_end": 16
+      },
+      "continuous_action_replay_final_success": true,
+      "continuous_action_replay_ever_success": true,
+      "continuous_action_replay_final_reward": 1.0
+    },
+    {
+      "episode": "demo_1",
+      "frames": 58,
+      "action_dimension": 7,
+      "state_restoration_max_abs_observation_error": {
+        "object": 0.0,
+        "robot0_eef_pos": 0.0,
+        "robot0_eef_quat": 5.551115123125783e-17,
+        "robot0_eef_vel_ang": 1.6653345369377348e-16,
+        "robot0_eef_vel_lin": 8.326672684688674e-17,
+        "robot0_gripper_qpos": 0.0,
+        "robot0_gripper_qvel": 0.0,
+        "robot0_joint_pos": 0.0,
+        "robot0_joint_pos_cos": 1.1102230246251565e-16,
+        "robot0_joint_pos_sin": 0.0,
+        "robot0_joint_vel": 0.0
+      },
+      "continuous_action_replay_max_abs_state_error": 0.0008745960508721728,
+      "continuous_action_replay_max_abs_object_observation_error": 0.0012713438677994793,
+      "state_aligned_object_max_abs_error": 5.0169917012728854e-05,
+      "state_component_max_abs_error": {
+        "time": 0.0,
+        "qpos": 5.0169917012728854e-05,
+        "qvel": 0.0008745960508721728,
+        "cube_xyz": 3.0889264775813344e-06,
+        "cube_quaternion": 5.0169917012728854e-05
+      },
+      "largest_state_error_action_index": 48,
+      "largest_state_error_flat_dimension": 29,
+      "model_state_layout": {
+        "nq": 16,
+        "nv": 15,
+        "cube_qpos_start": 9,
+        "cube_qpos_end": 16
+      },
+      "continuous_action_replay_final_success": true,
+      "continuous_action_replay_ever_success": true,
+      "continuous_action_replay_final_reward": 1.0
+    },
+    {
+      "episode": "demo_2",
+      "frames": 57,
+      "action_dimension": 7,
+      "state_restoration_max_abs_observation_error": {
+        "object": 1.0408340855860843e-17,
+        "robot0_eef_pos": 1.0408340855860843e-17,
+        "robot0_eef_quat": 0.0,
+        "robot0_eef_vel_ang": 1.1102230246251565e-16,
+        "robot0_eef_vel_lin": 8.326672684688674e-17,
+        "robot0_gripper_qpos": 0.0,
+        "robot0_gripper_qvel": 0.0,
+        "robot0_joint_pos": 0.0,
+        "robot0_joint_pos_cos": 1.1102230246251565e-16,
+        "robot0_joint_pos_sin": 5.551115123125783e-17,
+        "robot0_joint_vel": 0.0
+      },
+      "continuous_action_replay_max_abs_state_error": 0.00026493403870038847,
+      "continuous_action_replay_max_abs_object_observation_error": 0.001354980498941046,
+      "state_aligned_object_max_abs_error": 7.367949274836999e-06,
+      "state_component_max_abs_error": {
+        "time": 0.0,
+        "qpos": 7.367949274836999e-06,
+        "qvel": 0.00026493403870038847,
+        "cube_xyz": 3.902866358998177e-07,
+        "cube_quaternion": 7.367949274836999e-06
+      },
+      "largest_state_error_action_index": 48,
+      "largest_state_error_flat_dimension": 29,
+      "model_state_layout": {
+        "nq": 16,
+        "nv": 15,
+        "cube_qpos_start": 9,
+        "cube_qpos_end": 16
+      },
+      "continuous_action_replay_final_success": true,
+      "continuous_action_replay_ever_success": true,
+      "continuous_action_replay_final_reward": 1.0
+    }
+  ],
+  "training": false,
+  "validation_seed": 0,
+  "setup_sources": {
+    "config.json": "33b3fa14de0f5310426c5111202a73ad25c8368758f013bda5e9f83007cc2050",
+    "fix_torch_stack.py": "b8ff94fbb3a0a47ebb375bc381f91e48b81356985d848918a112f88cf3f515be",
+    "fix_torch_stack.sh": "ab17ca14613dbb9be7fbf508277a5e6a185a03d70ffc8e06bc38c6b9b4fde555",
+    "install_runtime_extras.sh": "5f602bbe1336414fe6a63607cd2f513271e534fe26561ef0444cac97e7c4efe9",
+    "link_gcc.sh": "e76a1a05e77efbe6bce174b0e631e5068c5b6c1339e2e64007cc741f3b7419a0",
+    "requirements.txt": "c8ffb0ea1cecdfe1a1114723f5badcb5f20c30d49832d542ed4cf5d67c468c12",
+    "run.ps1": "81b319ee01b39c77444f8044fdde64bf8be55338b370b115f543bd461e4e0a21",
+    "runtime.sh": "0bd35dabffad217a198976871083ab4bdfee470d1521805764cc765f4dd55e03",
+    "setup_wsl.sh": "acad31ced1bc99302cf60d30ec0bbb32e63f668b43bb155c08cd6bef5411c5ef",
+    "validate.py": "7416abfca1debc48efb91bf405f07c0e4373a99020b8e2917b54bdc01028de7e",
+    "validate_wsl.sh": "dc276c57461b4a727528500e246e30f9931febc7796443c69257ad9eceeebcd6"
+  },
+  "artifact_directory": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z",
+  "installed_packages": [
+    "absl-py==2.3.1",
+    "certifi==2026.10.19",
+    "cffi==1.15.1",
+    "charset-normalizer==3.5.2",
+    "cmake @ file:///mnt/d/Code/Course_code/COURSE-HUZI-CODE/artifacts/environments/robomimic_lift_legacy/downloads/cmake-3.27.9-py2.py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl#sha256=434714990d82e3c3936a726c1706c6a1d5a34964a7415d1433af0904a994e414",
+    "cryptography==47.0.0",
+    "Cython==0.29.36",
+    "egl-probe==1.0.1",
+    "fasteners==0.19",
+    "glfw==2.5.9",
+    "google-auth==2.50.0",
+    "google-auth-oauthlib==0.4.6",
+    "grpcio==1.70.0",
+    "h5py==3.7.0",
+    "idna==3.15",
+    "imageio==2.31.6",
+    "imageio-ffmpeg==0.4.9",
+    "importlib_metadata==8.5.0",
+    "llvmlite==0.36.0",
+    "Markdown==3.7",
+    "MarkupSafe==2.1.5",
+    "mujoco-py==2.0.2.9",
+    "numba==0.53.1",
+    "numpy==1.20.3",
+    "oauthlib==3.3.1",
+    "packaging==26.2",
+    "Pillow==9.5.0",
+    "protobuf==3.20.3",
+    "psutil==5.9.8",
+    "pyasn1==0.6.4",
+    "pyasn1_modules==0.4.2",
+    "pycparser==2.23",
+    "PyYAML==6.0.1",
+    "requests==2.32.4",
+    "requests-oauthlib==2.0.0",
+    "robomimic==0.2.0",
+    "robosuite @ file:///mnt/d/Code/Course_code/COURSE-HUZI-CODE/artifacts/environments/robomimic_lift_legacy/vendor/robosuite-d9baa17d5328d7b0ec15ecda54c76c61bb983124",
+    "scipy==1.6.3",
+    "six==1.16.0",
+    "tensorboard==2.11.2",
+    "tensorboard-data-server==0.6.1",
+    "tensorboard-plugin-wit==1.8.1",
+    "tensorboardX==2.6.2.2",
+    "termcolor==2.4.0",
+    "torch==1.10.2+cpu",
+    "torchvision==0.11.3+cpu",
+    "tqdm==4.66.6",
+    "typing_extensions==4.13.2",
+    "urllib3==2.2.3",
+    "Werkzeug==3.0.6",
+    "zipp==3.20.2"
+  ],
+  "build_flags": " -Wno-error=incompatible-pointer-types -include stdio.h",
+  "compiler": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "system_packages": [
+    "g++=4:15.2.0-5ubuntu1",
+    "gcc=4:15.2.0-5ubuntu1",
+    "libgl1-mesa-dev=26.0.8-1ubuntu0.3",
+    "libglew2.2=2.2.0-4build2",
+    "libosmesa6=25.1.7-1ubuntu3",
+    "patchelf=0.18.0-1.4build1"
+  ],
+  "mujoco_engine_binary_sha256": "a1e5ae52c23283218c9ceda94d728c3f22feae1ec92a5316ca49327e1f8ed893",
+  "mujoco_binding_binary_sha256": "7133161d9d51c68b2f9ef6c62921026c8674e3673b3df87905999501866e2db7",
+  "torch_compatibility_patch": {
+    "reason": "glibc 2.41+ rejects legacy Torch CPU executable-stack request",
+    "library": "artifacts/environments/robomimic_lift_legacy/venv/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so",
+    "backup": "artifacts/environments/robomimic_lift_legacy/venv/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so.original_executable_stack",
+    "before_marker": "execstack: X",
+    "after_marker": "execstack: -",
+    "before_sha256": "68c93dbb2e029d68e8a6279de329103e31eb9f39ff0d8d0740a017607a2edd2c",
+    "after_sha256": "2e3af1383a489159c80ead9cffe8996f2c0827e087fd7c091022e0fcb6c1b150",
+    "file_size_unchanged": true,
+    "differing_bytes": 1
+  },
+  "glibc": "ldd (Ubuntu GLIBC 2.43-2ubuntu2.4) 2.43",
+  "download_archives": {
+    "cmake-3.27.9-py2.py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl": "434714990d82e3c3936a726c1706c6a1d5a34964a7415d1433af0904a994e414",
+    "mujoco200_linux.zip": "ba8560040f6ca47dbd89e4731bc9e06080a99eba4583cda95cdedca802389153",
+    "robosuite_offline_study.zip": "e15b0f86f1fa0e4f88c22e410fe01ee1df3de3ee28b2f233800d300c293fe58d",
+    "uv.tar.gz": "e02f7fc102d6a1ebfa3b260b788e9adf35802be28c8d85640e83246e61519c1e"
+  },
+  "environment_metadata": {
+    "env_name": "Lift",
+    "type": 1,
+    "env_kwargs": {
+      "has_renderer": false,
+      "has_offscreen_renderer": false,
+      "ignore_done": true,
+      "use_object_obs": true,
+      "use_camera_obs": false,
+      "control_freq": 20,
+      "controller_configs": {
+        "type": "OSC_POSE",
+        "input_max": 1,
+        "input_min": -1,
+        "output_max": [
+          0.05,
+          0.05,
+          0.05,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "output_min": [
+          -0.05,
+          -0.05,
+          -0.05,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "kp": 150,
+        "damping": 1,
+        "impedance_mode": "fixed",
+        "kp_limits": [
+          0,
+          300
+        ],
+        "damping_limits": [
+          0,
+          10
+        ],
+        "position_limits": null,
+        "orientation_limits": null,
+        "uncouple_pos_ori": true,
+        "control_delta": true,
+        "interpolation": null,
+        "ramp_ratio": 0.2
+      },
+      "robots": [
+        "Panda"
+      ],
+      "camera_depths": false,
+      "camera_heights": 84,
+      "camera_widths": 84,
+      "reward_shaping": false
+    }
+  },
+  "existing_split": {
+    "train": 180,
+    "valid": 20,
+    "changed": false
+  },
+  "rendered_cameras": [
+    "agentview",
+    "robot0_eye_in_hand"
+  ],
+  "state_restoration_passed": true,
+  "continuous_action_replay_passed": false,
+  "continuous_action_replay_task_success_count": 3,
+  "artifacts": [
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_frame0_agentview.png",
+      "bytes": 54868,
+      "sha256": "b3419200618b0677e52e1f188bb96137bfbd70b344e2ff060deb28debdd0c0e1"
+    },
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_frame0_robot0_eye_in_hand.png",
+      "bytes": 54345,
+      "sha256": "14c9a5e32c5d60cd4d3c45d3534f2d090bce4f6f11d7375210c06759c5237643"
+    },
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_frame29_agentview.png",
+      "bytes": 61443,
+      "sha256": "d1abaaee8835216bede131217c4b68f480ffda4007d7f2caef095c23287aa4e9"
+    },
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_frame29_robot0_eye_in_hand.png",
+      "bytes": 56819,
+      "sha256": "5a97d0752063d056e52755111ea0b9cf75203b4b1269ae0211184bd826f40f7b"
+    },
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_frame58_agentview.png",
+      "bytes": 60099,
+      "sha256": "9cb574df3b99e8839ffc9a57162401a83f53f495708b21494cfe4c368dd29537"
+    },
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/demo_0_frame58_robot0_eye_in_hand.png",
+      "bytes": 58666,
+      "sha256": "49adb493d9ec74b8945310f6605c2c24a3940e110b71cad4894314ed59e2476a"
+    },
+    {
+      "path": "artifacts/environments/robomimic_lift_legacy/results/validation_20261022T060446Z/lift_dataset_replay.png",
+      "bytes": 265137,
+      "sha256": "5e67cb023bf2c7af56b7b66e5b065b3e062ab9395db11d89b40899fc53aba780"
+    }
+  ]
+}
