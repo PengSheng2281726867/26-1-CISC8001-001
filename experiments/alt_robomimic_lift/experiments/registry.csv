@@ -1,2 +1,2 @@
 run_id,status,train_episodes,model_seed,split_seed,reason,decision
-alt_lift_ph30_image_proprio_seed42_v1,planned,30,42,42,"First closed-loop Lift-ALT pilot after Phase 0/1 gates","Phase 2 core, pretrained checkpoint, Torch cross-version loading, video backend, tests, and CUDA smoke validated; train only after implementation commit"
+alt_lift_ph30_image_proprio_seed42_v1,running,30,42,42,"First closed-loop Lift-ALT pilot after Phase 0/1 gates","40-epoch training and train-only 1,456-frame bank passed; held-out diagnostics recorded. Fixed 50-seed simulation awaits the validated env.reset-based fixture check; no evaluation action has yet been applied."

@@ -52,6 +52,21 @@ def _policy_obs_hash(obs):
     return digest.hexdigest()
 
 
+def reset_to_frozen_seed(env, seed, fixture):
+    """Recreate the audited seeded reset and verify state and policy pixels before acting."""
+    random.seed(int(seed))
+    np.random.seed(int(seed))
+    obs = env.reset()
+    sim_state = np.asarray(env.get_state()["states"], dtype=np.float64)
+    actual_state_hash = _array_hash(sim_state)
+    if actual_state_hash != fixture["sim_state_sha256"]:
+        raise RuntimeError("Frozen simulator state mismatch for seed %d" % int(seed))
+    actual_obs_hash = _policy_obs_hash(obs)
+    if actual_obs_hash != fixture["policy_observation_sha256"]:
+        raise RuntimeError("Frozen policy observation mismatch for seed %d" % int(seed))
+    return obs
+
+
 def _wilson(successes, total, z=1.959963984540054):
     if total <= 0:
         return [None, None]
@@ -113,9 +128,6 @@ def main():
         data = h5["data"]
         train_ids = list(metadata["train_episode_ids"])
         actions_by_episode = {episode_id: np.asarray(data[episode_id]["actions"]) for episode_id in train_ids}
-        model_xml = data["demo_0"].attrs["model_file"]
-        if isinstance(model_xml, bytes):
-            model_xml = model_xml.decode("utf-8")
         env_meta = json.loads(data.attrs["env_args"])
         all_keys = sorted(data["demo_0"]["obs"].keys())
     rgb_keys = [key for key in all_keys if key.endswith("_image")]
@@ -152,9 +164,7 @@ def main():
     # A short API-only check uses the first frozen initial condition without advancing it.
     first_seed = seeds[0]
     first_fixture = seed_rows[first_seed]
-    obs = env.reset_to({"model": model_xml, "states": np.asarray(first_fixture["sim_state"], dtype=np.float64)})
-    if _policy_obs_hash(obs) != first_fixture["policy_observation_sha256"]:
-        raise RuntimeError("Policy observation does not reproduce frozen seed %d before stepping" % first_seed)
+    obs = reset_to_frozen_seed(env, first_seed, first_fixture)
     smoke_action, smoke_info = policy.act(obs, chunk_length=1)
     if smoke_action.shape != (7,) or not np.isfinite(smoke_action).all() or smoke_info["episode_id"] not in train_ids:
         raise RuntimeError("One-step policy API smoke check failed")
@@ -196,10 +206,7 @@ def main():
             for episode_i, seed in enumerate(seeds):
                 fixture = seed_rows[seed]
                 policy.reset()
-                obs = env.reset_to({"model": model_xml, "states": np.asarray(fixture["sim_state"], dtype=np.float64)})
-                initial_obs_hash = _policy_obs_hash(obs)
-                if initial_obs_hash != fixture["policy_observation_sha256"]:
-                    raise RuntimeError("Frozen initial observation mismatch for evaluation seed %d" % seed)
+                obs = reset_to_frozen_seed(env, seed, fixture)
                 save_video = seed in set(int(x) for x in eval_config.get("video_seeds", [100000, 100025, 100049]))
                 video_path = output_video_dir / ("seed_%d.mp4" % seed) if save_video else None
                 writer = imageio.get_writer(str(video_path), fps=int(eval_config["control_freq"]), codec="libx264", quality=7, macro_block_size=1) if save_video else None
