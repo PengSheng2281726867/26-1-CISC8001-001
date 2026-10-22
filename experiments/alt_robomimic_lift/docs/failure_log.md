@@ -46,4 +46,28 @@
 - **Observed:** 4 checks passed, while `test_audited_schema_and_alignment` failed because the dataset has a `next_obs` group.
 - **Cause:** the Phase 0 audit had not summarized that group; the assertion repeated an unsupported assumption from the first audit draft.
 - **Correction:** the audit now records all `next_obs` fields and sequence lengths and checks `next_obs[t]` against `obs[t+1]` for both camera images and all three policy proprioception fields across three predetermined demos. The policy-input exclusion list remains explicit.
-- **Status:** correction applied; rerunning the audit and full Phase 1 checks.
+- **Status:** corrected; rerun passed all five data/split/config contract tests in both Python 3.10 and the legacy Python 3.8 runtime.
+
+## 2026-10-22 — ALT core first unit-test pass had a dimensional fixture error
+
+- **Command:** `artifacts/environments/alt_lift_train/Scripts/python.exe -m unittest discover -s tests -p test_alt_core.py -v`; Python 3.10.22, Torch 2.7.1+cu128, torchvision 0.22.1+cu128, CUDA RTX 5090.
+- **Observed:** five of six new core checks passed. The cosine-search test supplied a 2D query while the bank contract correctly requires 128D embeddings. A separate `py_compile` invocation also passed an unexpanded PowerShell wildcard as a literal filename.
+- **Cause:** test-fixture dimensionality and shell wildcard expansion, not a model or retrieval defect.
+- **Correction:** pad synthetic retrieval fixtures to 128 dimensions and use Python `compileall` for recursive syntax validation. The encoder factory also uses the modern torchvision `weights=None` argument and falls back to `pretrained=False` for the legacy 0.11 simulator runtime.
+- **Status:** corrected; all 11 tests pass under Python 3.10.22/Torch 2.7.1+cu128 and Python 3.8.20/Torch 1.10.2+cpu. Recursive `compileall` passes. The CUDA pretrained one-batch smoke passes with finite gradients and unit 128D embeddings.
+
+## 2026-10-22 — First cross-runtime fixture creation command lost Python quotes
+
+- **Command:** a PowerShell `python.exe -c` command tried to create a temporary ResNet state dict before loading it in WSL.
+- **Observed:** PowerShell stripped the embedded string quotes and Python raised `NameError: name 'src' is not defined`; no model file was created.
+- **Cause:** nested command-line quoting, matching the earlier WSL inline-code issue.
+- **Correction:** moved fixture creation into `scripts/create_checkpoint_compat_fixture.py`, which also refuses to overwrite an existing fixture. The legacy loader check is rerun from that file's output.
+- **Status:** corrected. A Python 3.10 state-dict fixture loads strictly in Torch 1.10.2/TorchVision 0.11.3 with no missing or unexpected keys.
+
+## 2026-10-22 — Video smoke encoded but reported a missing v2 version attribute
+
+- **Command:** run `scripts/check_video_backend.py` in the legacy WSL environment with `imageio` 2.31.6 and `imageio-ffmpeg` 0.4.9.
+- **Observed:** FFmpeg produced the two-frame MP4, then the helper raised `AttributeError` because `imageio.v2` has no `__version__` attribute. FFmpeg also padded the 168x84 frame to 176x96 by default.
+- **Cause:** package version was read from the `v2` API module rather than the top-level package; default macro-block padding changed only the diagnostic video dimensions.
+- **Correction:** read the version from top-level `imageio` and set `macro_block_size=1` for both smoke and evaluation writers. The failed local output is retained and a new unique path is used for rerun.
+- **Status:** corrected; the second local output encoded and decoded at exactly 168x84 with FFmpeg 4.2.2, `imageio` 2.31.6, and `imageio-ffmpeg` 0.4.9.

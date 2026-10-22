@@ -1,0 +1,8 @@
+{
+  "image_hdf5": "../../artifacts/datasets/robomimic/lift/ph/image.hdf5",
+  "low_dim_hdf5": "../../artifacts/datasets/robomimic/lift/ph/low_dim.hdf5",
+  "pretrained_resnet18": "../../artifacts/pretrained/resnet18-f37072fd.pth",
+  "pretrained_resnet18_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "run_root": "experiments/runs",
+  "artifact_root": "artifacts/runs"
+}
