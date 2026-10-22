@@ -11,11 +11,16 @@ sys.path.insert(0, str(HERE / "src"))
 
 from alt_lift.repro import resolve_config_path
 sys.path.insert(0, str(HERE / "scripts"))
-from evaluate_alt_lift import reset_to_frozen_seed, _array_hash, _policy_obs_hash
+from evaluate_alt_lift import reset_to_frozen_seed, _array_hash, _policy_obs_hash, classify_episode_end
 import numpy as np
 
 
 class RuntimePathTests(unittest.TestCase):
+    def test_episode_end_classification_handles_fixed_horizon(self):
+        self.assertEqual(classify_episode_end(False, 1000, 1000), (False, True))
+        self.assertEqual(classify_episode_end(True, 999, 1000), (True, False))
+        self.assertEqual(classify_episode_end(True, 1000, 1000), (False, True))
+
     def test_relative_windows_separators_resolve_inside_experiment(self):
         resolved = resolve_config_path("artifacts\\runs\\lift30\\memory_bank.npz", base=HERE)
         self.assertEqual(resolved, HERE / "artifacts" / "runs" / "lift30" / "memory_bank.npz")

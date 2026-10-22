@@ -77,6 +77,18 @@ def _wilson(successes, total, z=1.959963984540054):
     return [max(0.0, center - half), min(1.0, center + half)]
 
 
+def classify_episode_end(done, steps, horizon):
+    """Separate early termination from the explicit fixed rollout cap.
+
+    RoboMimic 0.2.0 EnvRobosuite forces robosuite's ignore_done=True and its
+    is_done() method returns False. The evaluator's explicit horizon therefore
+    supplies the time limit. An environment done signal on the exact cap step
+    is also classified as time-limited rather than as an early termination.
+    """
+    at_limit = int(steps) >= int(horizon)
+    return bool(done and not at_limit), bool(at_limit)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, required=True)
@@ -141,8 +153,9 @@ def main():
 
     obs_utils.initialize_obs_utils_with_obs_specs({"obs": {"rgb": rgb_keys, "low_dim": low_dim_keys}})
     env_meta = json.loads(json.dumps(env_meta))
+    # EnvRobosuite overrides ignore_done=True and reports is_done() == False;
+    # the loop below imposes the frozen fixed-step evaluation limit.
     env_meta["env_kwargs"].update({
-        "ignore_done": False,
         "horizon": int(eval_config["horizon"]),
         "control_freq": int(eval_config["control_freq"]),
         "reward_shaping": bool(eval_config["reward_shaping"]),
@@ -276,6 +289,7 @@ def main():
                         rf.flush()
                 if writer is not None:
                     writer.close()
+                terminated, time_limit = classify_episode_end(done, steps, int(eval_config["horizon"]))
                 row = {
                     "run_id": metadata["run_id"],
                     "train_episode_count": len(train_ids),
@@ -286,8 +300,8 @@ def main():
                     "success": bool(ever_success),
                     "steps_to_success": first_success_step,
                     "steps": steps,
-                    "terminated": bool(done and steps < int(eval_config["horizon"])),
-                    "time_limit": bool(steps >= int(eval_config["horizon"]) and not done),
+                    "terminated": terminated,
+                    "time_limit": time_limit,
                     "max_reward": max_reward,
                     "final_reward": final_reward,
                     "wall_seconds": time.perf_counter() - episode_start,

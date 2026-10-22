@@ -78,4 +78,19 @@
 - **Observed:** the first invocation exited before simulator creation on a `FileNotFoundError` for a Windows-backslash relative artifact path. After fixing that resolver and pushing `fbcf173`, the next invocation created the environment but stopped at the pre-step frozen-observation check for seed 100000. No policy action was applied in either attempt.
 - **Cause:** two integration issues: Windows-serialized relative paths were treated as POSIX literal backslashes; and the second attempt restored the fixture state using `demo_0`'s recorded `model_file`, while the frozen fixtures were generated from the environment's seeded reset model. The model-based `reset_to` path therefore did not reproduce the fixture's policy observation.
 - **Correction:** normalize relative Windows separators on POSIX; for every evaluation condition, reseed Python and NumPy and call the exact validated `env.reset()` path, then compare both the full simulator-state hash and policy-observation hash to the frozen fixture before any action. The reset path has a focused regression test.
-- **Status:** the two failed attempts advanced no action and produced no score. The `env.reset()` state-and-observation hash guard now passes focused tests in both runtimes; the full 50-condition retry remains pending.
+- **Status:** the two failed attempts advanced no action and produced no score. The `env.reset()` state-and-observation hash guard passed in both runtimes; the fixed 50-condition evaluation later completed and is recorded in `experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/`.
+
+## 2026-10-22 — Windows test command used the repository-level venv path
+
+- **Command:** `..\\..\\artifacts\\environments\\alt_lift_train\\Scripts\\python.exe -m unittest discover -s tests -v` from this experiment folder.
+- **Observed:** PowerShell could not find the executable, so no Windows tests ran in that invocation.
+- **Cause:** the training venv is experiment-local at `artifacts/environments/alt_lift_train`, not at the repository-level `artifacts/environments` path.
+- **Correction:** reran with `artifacts\\environments\\alt_lift_train\\Scripts\\python.exe`.
+- **Verification:** all 15 unit tests passed in Windows Python 3.10.22/Torch 2.7.1+cu128; all 15 also passed in the legacy WSL Python 3.8.20/Torch 1.10.2+cpu. Recursive `compileall` passed.
+
+## 2026-10-22 — RoboMimic wrapper reports fixed-horizon episodes as not done
+
+- **Inspection:** checked the installed RoboMimic 0.2.0 `EnvRobosuite` source used by the fixed-seed evaluation.
+- **Finding:** its constructor overwrites `ignore_done=True`, and `is_done()` always returns `False` because RoboSuite rollouts use a fixed horizon. The evaluator loop therefore supplies the 1,000-step cap; `terminated=false` and `time_limit=true` in all 50 recorded rows are the expected flags.
+- **Correction:** documented the wrapper behavior in the evaluator and made end-flag classification handle a `done` signal on the exact limit step. This does not change the recorded rollouts or their scores.
+- **Verification:** added exact-cap and early-termination regression checks; both supported runtimes pass the full 15-test suite.
