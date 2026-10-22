@@ -28,7 +28,7 @@ from alt_lift.data import PROPRIO_KEYS, LiftFrameStore, ProprioNormalizer
 from alt_lift.encoder import VisualProprioEncoder
 from alt_lift.memory import MemoryBank
 from alt_lift.policy import ActionRetrievalPolicy
-from alt_lift.repro import json_write, resolve_config_path, sha256_file
+from alt_lift.repro import git_value, json_write, resolve_config_path, sha256_file
 
 
 def _array_hash(values):
@@ -178,7 +178,13 @@ def main():
     retrieval_count = 0
     evaluation_start = time.perf_counter()
     attempts = metadata.setdefault("evaluation_attempts", [])
-    attempt = {"evaluation_id": args.evaluation_id, "status": "running", "started_unix_time": time.time()}
+    attempt = {
+        "evaluation_id": args.evaluation_id,
+        "status": "running",
+        "started_unix_time": time.time(),
+        "evaluation_code_commit": git_value("rev-parse", "HEAD"),
+        "evaluation_worktree_status_at_launch": git_value("status", "--short"),
+    }
     attempts.append(attempt)
     json_write(metadata_path, metadata)
     try:

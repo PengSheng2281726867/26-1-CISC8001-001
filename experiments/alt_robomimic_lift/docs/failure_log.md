@@ -71,3 +71,11 @@
 - **Cause:** package version was read from the `v2` API module rather than the top-level package; default macro-block padding changed only the diagnostic video dimensions.
 - **Correction:** read the version from top-level `imageio` and set `macro_block_size=1` for both smoke and evaluation writers. The failed local output is retained and a new unique path is used for rerun.
 - **Status:** corrected; the second local output encoded and decoded at exactly 168x84 with FFmpeg 4.2.2, `imageio` 2.31.6, and `imageio-ffmpeg` 0.4.9.
+
+## 2026-10-22 — First formal evaluator invocation stopped on a Windows/WSL relative-path separator
+
+- **Command:** `bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/alt_lift_ph30_image_proprio_seed42_v1` in WSL after model/bank completion; Python 3.8.20, Torch 1.10.2+cpu.
+- **Observed:** evaluation exited before simulator construction or scoring. `FileNotFoundError` referenced a POSIX path ending in the literal component `artifacts\\runs\\...\\memory_bank.npz`.
+- **Cause:** Windows had serialized the run-relative artifact path with backslashes; `pathlib.Path` on Linux treats them as ordinary characters.
+- **Correction:** normalize backslashes in relative paths when running on POSIX, while retaining drive-letter conversion for Windows absolute paths. Added a focused regression test and recorded evaluation code provenance in each attempt.
+- **Status:** no test seed was advanced and no evaluation result was produced; path regression checks and the fixed evaluator are pending rerun.

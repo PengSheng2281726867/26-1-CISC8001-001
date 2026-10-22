@@ -26,6 +26,9 @@ def resolve_config_path(value: str, base: Path = HERE) -> Path:
         if os.name == "posix":
             return Path("/mnt") / value[0].lower() / value[3:].replace("\\", "/")
         return Path(value)
+    # Run metadata is authored on Windows but is also consumed from WSL.
+    if os.name == "posix":
+        value = value.replace("\\", "/")
     path = Path(value)
     return path if path.is_absolute() else (base / path).resolve()
 
