@@ -72,6 +72,7 @@ def _summarize_file(path: Path, inspect_images: bool) -> dict[str, Any]:
         lengths = [int(data[key]["actions"].shape[0]) for key in demos]
         first = data[demos[0]]
         obs_keys = sorted(first["obs"].keys()) if "obs" in first else []
+        next_obs_keys = sorted(first["next_obs"].keys()) if "next_obs" in first else []
         fields: dict[str, Any] = {}
         for key in obs_keys:
             sample = first["obs"][key]
@@ -110,14 +111,23 @@ def _summarize_file(path: Path, inspect_images: bool) -> dict[str, Any]:
                     low, high = min(low, float(arr.min())), max(high, float(arr.max()))
                 info["range"] = [low, high]
             fields[key] = info
+        next_obs_fields = {
+            key: {
+                "shape_per_episode": list(first["next_obs"][key].shape),
+                "dtype": str(first["next_obs"][key].dtype),
+            }
+            for key in next_obs_keys
+        }
 
         action_min = np.full((7,), np.inf)
         action_max = np.full((7,), -np.inf)
         state_shapes: set[tuple[int, ...]] = set()
         length_mismatches = []
+        actions_abs_present = False
         for demo_key in demos:
             demo = data[demo_key]
             actions = demo["actions"]
+            actions_abs_present = actions_abs_present or "actions_abs" in demo
             if actions.ndim != 2 or actions.shape[1] != 7:
                 raise ValueError("Expected 7D action at %s, got %s" % (demo_key, actions.shape))
             action_min = np.minimum(action_min, np.asarray(actions[:]).min(axis=0))
@@ -127,6 +137,8 @@ def _summarize_file(path: Path, inspect_images: bool) -> dict[str, Any]:
             lengths_here = {"actions": len(actions)}
             if "obs" in demo:
                 lengths_here.update({key: len(demo["obs"][key]) for key in demo["obs"]})
+            if "next_obs" in demo:
+                lengths_here.update({"next_obs/" + key: len(demo["next_obs"][key]) for key in demo["next_obs"]})
             if "states" in demo:
                 lengths_here["states"] = len(demo["states"])
             if len(set(lengths_here.values())) != 1:
@@ -154,12 +166,14 @@ def _summarize_file(path: Path, inspect_images: bool) -> dict[str, Any]:
             ],
             "episode_lengths": {key: int(length) for key, length in zip(demos, lengths)},
             "observation_fields": fields,
+            "next_observation_fields": next_obs_fields,
             "state_shapes": [list(shape) for shape in sorted(state_shapes)],
             "action_shape_per_episode": list(first["actions"].shape),
             "action_dtype": str(first["actions"].dtype),
             "action_min_per_dimension": action_min.tolist(),
             "action_max_per_dimension": action_max.tolist(),
-            "actions_abs_present": "actions_abs" in first,
+            "actions_abs_present": actions_abs_present,
+            "next_obs_present": "next_obs" in first,
             "episode_masks": masks,
             "episode_length_mismatches": length_mismatches,
             "env_args": env_args,
@@ -218,6 +232,7 @@ def main() -> None:
     shared_episodes = sorted(image_episodes & low_episodes)
     action_equal = True
     action_mismatch = None
+    next_obs_alignment_checks = []
     with h5py.File(str(image_path), "r") as image_h5, h5py.File(str(low_dim_path), "r") as low_h5:
         for episode_id in shared_episodes:
             image_actions = image_h5["data"][episode_id]["actions"]
@@ -226,6 +241,45 @@ def main() -> None:
                 action_equal = False
                 action_mismatch = episode_id
                 break
+        for episode_id in ("demo_0", "demo_1", "demo_2"):
+            if episode_id not in image_h5["data"]:
+                continue
+            demo = image_h5["data"][episode_id]
+            if "next_obs" not in demo:
+                continue
+            for key in (
+                "agentview_image",
+                "robot0_eye_in_hand_image",
+                "robot0_eef_pos",
+                "robot0_eef_quat",
+                "robot0_gripper_qpos",
+            ):
+                if key not in demo["next_obs"] or key not in demo["obs"]:
+                    continue
+                left, right = demo["next_obs"][key], demo["obs"][key]
+                pairs = min(len(left), max(0, len(right) - 1))
+                if pairs == 0:
+                    raise ValueError("No obs[t+1] alignment pairs for %s/%s" % (episode_id, key))
+                max_error, total_error, compared = 0.0, 0.0, 0
+                for start in range(0, pairs, 8):
+                    n = min(8, pairs - start)
+                    delta = np.abs(
+                        np.asarray(left[start : start + n], dtype=np.float32)
+                        - np.asarray(right[start + 1 : start + n + 1], dtype=np.float32)
+                    )
+                    max_error = max(max_error, float(delta.max()))
+                    total_error += float(delta.sum())
+                    compared += int(delta.size)
+                next_obs_alignment_checks.append(
+                    {
+                        "episode_id": episode_id,
+                        "key": key,
+                        "compared_transitions": pairs,
+                        "max_abs_error_vs_obs_t_plus_1": max_error,
+                        "mean_abs_error_vs_obs_t_plus_1": total_error / compared,
+                        "exact_match": max_error == 0.0,
+                    }
+                )
 
     metadata = {
         "schema_version": 1,
@@ -240,6 +294,7 @@ def main() -> None:
             "all_image_episode_lengths_aligned": not image["episode_length_mismatches"],
             "all_low_dim_episode_lengths_aligned": not low_dim["episode_length_mismatches"],
         },
+        "next_obs_alignment_checks": next_obs_alignment_checks,
         "alignment_contract": {
             "policy_input_at_t": [
                 "obs/agentview_image[t]",
@@ -249,7 +304,7 @@ def main() -> None:
                 "obs/robot0_gripper_qpos[t]",
             ],
             "expert_action_at_t": "actions[t]",
-            "dataset_semantics": "obs[t] is the pre-action observation; actions[t] is the command applied from that observation. Stored arrays are equal length; only T-1 transitions have a recorded successor observation.",
+            "dataset_semantics": "obs[t] is the pre-action observation; actions[t] is the command applied from that observation; next_obs[t] is checked against obs[t+1] for the first T-1 transitions of demo_0..demo_2. The final next_obs entry has no corresponding stored obs[t+1].",
             "policy_input_excludes": ["states", "object", "reward", "done", "next_obs", "future actions"],
         },
         "provenance": {

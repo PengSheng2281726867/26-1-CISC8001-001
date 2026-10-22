@@ -1,6 +1,6 @@
 {
   "alignment_contract": {
-    "dataset_semantics": "obs[t] is the pre-action observation; actions[t] is the command applied from that observation. Stored arrays are equal length; only T-1 transitions have a recorded successor observation.",
+    "dataset_semantics": "obs[t] is the pre-action observation; actions[t] is the command applied from that observation; next_obs[t] is checked against obs[t+1] for the first T-1 transitions of demo_0..demo_2. The final next_obs entry has no corresponding stored obs[t+1].",
     "expert_action_at_t": "actions[t]",
     "policy_input_at_t": [
       "obs/agentview_image[t]",
@@ -967,6 +967,104 @@
         "demo_56",
         "demo_93"
       ]
+    },
+    "next_obs_present": true,
+    "next_observation_fields": {
+      "agentview_image": {
+        "dtype": "uint8",
+        "shape_per_episode": [
+          59,
+          84,
+          84,
+          3
+        ]
+      },
+      "object": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          10
+        ]
+      },
+      "robot0_eef_pos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          3
+        ]
+      },
+      "robot0_eef_quat": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          4
+        ]
+      },
+      "robot0_eef_vel_ang": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          3
+        ]
+      },
+      "robot0_eef_vel_lin": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          3
+        ]
+      },
+      "robot0_eye_in_hand_image": {
+        "dtype": "uint8",
+        "shape_per_episode": [
+          59,
+          84,
+          84,
+          3
+        ]
+      },
+      "robot0_gripper_qpos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          2
+        ]
+      },
+      "robot0_gripper_qvel": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          2
+        ]
+      },
+      "robot0_joint_pos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      },
+      "robot0_joint_pos_cos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      },
+      "robot0_joint_pos_sin": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      },
+      "robot0_joint_vel": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      }
     },
     "observation_fields": {
       "agentview_image": {
@@ -2213,6 +2311,86 @@
         "demo_93"
       ]
     },
+    "next_obs_present": true,
+    "next_observation_fields": {
+      "object": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          10
+        ]
+      },
+      "robot0_eef_pos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          3
+        ]
+      },
+      "robot0_eef_quat": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          4
+        ]
+      },
+      "robot0_eef_vel_ang": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          3
+        ]
+      },
+      "robot0_eef_vel_lin": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          3
+        ]
+      },
+      "robot0_gripper_qpos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          2
+        ]
+      },
+      "robot0_gripper_qvel": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          2
+        ]
+      },
+      "robot0_joint_pos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      },
+      "robot0_joint_pos_cos": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      },
+      "robot0_joint_pos_sin": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      },
+      "robot0_joint_vel": {
+        "dtype": "float64",
+        "shape_per_episode": [
+          59,
+          7
+        ]
+      }
+    },
     "observation_fields": {
       "object": {
         "dtype": "float64",
@@ -2415,6 +2593,128 @@
     ],
     "total_frames": 9666
   },
+  "next_obs_alignment_checks": [
+    {
+      "compared_transitions": 58,
+      "episode_id": "demo_0",
+      "exact_match": true,
+      "key": "agentview_image",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 58,
+      "episode_id": "demo_0",
+      "exact_match": true,
+      "key": "robot0_eye_in_hand_image",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 58,
+      "episode_id": "demo_0",
+      "exact_match": true,
+      "key": "robot0_eef_pos",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 58,
+      "episode_id": "demo_0",
+      "exact_match": true,
+      "key": "robot0_eef_quat",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 58,
+      "episode_id": "demo_0",
+      "exact_match": true,
+      "key": "robot0_gripper_qpos",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 57,
+      "episode_id": "demo_1",
+      "exact_match": true,
+      "key": "agentview_image",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 57,
+      "episode_id": "demo_1",
+      "exact_match": true,
+      "key": "robot0_eye_in_hand_image",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 57,
+      "episode_id": "demo_1",
+      "exact_match": true,
+      "key": "robot0_eef_pos",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 57,
+      "episode_id": "demo_1",
+      "exact_match": true,
+      "key": "robot0_eef_quat",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 57,
+      "episode_id": "demo_1",
+      "exact_match": true,
+      "key": "robot0_gripper_qpos",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 56,
+      "episode_id": "demo_2",
+      "exact_match": true,
+      "key": "agentview_image",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 56,
+      "episode_id": "demo_2",
+      "exact_match": true,
+      "key": "robot0_eye_in_hand_image",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 56,
+      "episode_id": "demo_2",
+      "exact_match": true,
+      "key": "robot0_eef_pos",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 56,
+      "episode_id": "demo_2",
+      "exact_match": true,
+      "key": "robot0_eef_quat",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    },
+    {
+      "compared_transitions": 56,
+      "episode_id": "demo_2",
+      "exact_match": true,
+      "key": "robot0_gripper_qpos",
+      "max_abs_error_vs_obs_t_plus_1": 0.0,
+      "mean_abs_error_vs_obs_t_plus_1": 0.0
+    }
+  ],
   "provenance": {
     "dataset_release": "RoboMimic 0.2.0 Lift / PH",
     "full_file_sha256_computed": true,

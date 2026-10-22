@@ -62,7 +62,12 @@
     "low_dim_hdf5_bytes": 18548952,
     "low_dim_hdf5_sha256": "18106c8c072020672fecdd2a9ffbfe7dc656823cb877f972ade7fad34d2a5b74",
     "schema_fingerprint": "6d9b491f0a58399bc917f85d878a63ce0545cc6b84d39413249456c598f01bb7",
-    "dataset_audit_file_sha256": "4f25f04ce3a1bc3a9b1e0b2aef1baf0f7986cf84f586cc6d6ca64fa13681293e",
-    "evaluation_initial_state_manifest_sha256": "75511225fcce9124a758f922a7c098c79899634f86e00b3e463cf3fe7f892f3f"
+    "dataset_audit_file_sha256": "1707d22d3c81b9439cb4ec6e5642cc4e0c81b2eb8f15a43a75e84f3e81e61904",
+    "evaluation_initial_state_manifest_sha256": "75511225fcce9124a758f922a7c098c79899634f86e00b3e463cf3fe7f892f3f",
+    "split_manifest_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+    "split_seed": 42,
+    "heldout_validation_count": 20,
+    "ordered_training_pool_count": 180,
+    "nested_training_counts_available": [30, 50, 100]
   }
 }

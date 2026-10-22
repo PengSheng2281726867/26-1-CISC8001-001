@@ -6,7 +6,7 @@ This folder contains a Lift-specific Action Lookup Table adaptation. It is isola
 
 Phase 0 passed with a documented numerical replay limitation. The local RoboMimic 0.2.0 Lift-PH image file contains 200 independent demonstrations and is already usable; no image rendering conversion was needed. The dataset's recorded environment is an older RoboSuite `offline_study` setup, and the matching local simulator is RoboSuite 1.2.0 / MuJoCo 2.0.0. The source metadata does not identify a collection commit. See [the Phase 0 audit](docs/phase0_data_environment_audit.md) and [source provenance](docs/upstream_provenance.md).
 
-The evaluation protocol fixes 50 seeds (`100000` through `100049`) and preserves verified initial MuJoCo states and hashes in `results/evaluation_initial_states.json`. Those states are reset fixtures only; the policy receives two current RGB images and current robot proprioception.
+The evaluation protocol fixes 50 seeds (`100000` through `100049`) and preserves verified initial MuJoCo states and hashes in `results/evaluation_initial_states.json`. Those states are reset fixtures only; the policy receives two current RGB images and current robot proprioception. Phase 1 has frozen 20 held-out demos and the nested 30/50/100 episode lists in `configs/lift_ph_split42.json`; only ALT-30 is planned in this run.
 
 ## Local prerequisites
 
@@ -30,7 +30,15 @@ wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh s
 
 `audit_dataset.py` writes the verified HDF5 schema and hashes to `results/dataset_audit.json`; `validate_environment.py` checks state restoration, camera alignment, and continuous expert-action replay; `build_eval_initial_states.py` freezes and repeat-checks the evaluation reset fixtures. Visual contact sheets and compressed replay traces stay under ignored local directories.
 
-The remaining phases are gated: freeze the Lift-30 split, implement and validate the ALT core, train one 40-epoch Lift-30 encoder from verified ImageNet initialization, build its memory bank, run offline diagnostics, then perform the fixed 50-condition closed-loop evaluation. Training and evaluation commands will be recorded here when the corresponding scripts are validated. No DP, Lift-50/100, or action-chunk ablation is run in this study.
+Freeze and test the experiment split contract with:
+
+```powershell
+$lift = '/mnt/d/Code/Course_code/COURSE-HUZI-CODE/experiments/alt_robomimic_lift'
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh scripts/freeze_split.py'
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh -m unittest discover -s tests -v'
+```
+
+Phase 1 is frozen and its data/split tests pass. The remaining gates are: implement and validate the ALT core, verify pretrained ImageNet initialization, train one 40-epoch Lift-30 encoder, build its memory bank, run offline diagnostics, then perform the fixed 50-condition closed-loop evaluation. Training and evaluation commands will be recorded here when the corresponding scripts are validated. No DP, Lift-50/100, or action-chunk ablation is run in this study.
 
 ## Outputs
 

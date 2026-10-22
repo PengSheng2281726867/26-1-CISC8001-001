@@ -1,0 +1,2 @@
+run_id,status,train_episodes,model_seed,split_seed,reason,decision
+alt_lift_ph30_image_proprio_seed42_v1,planned,30,42,42,"First closed-loop Lift-ALT pilot after Phase 0/1 gates","Proceed only after Phase 2 integration and pretrained-weight validation"

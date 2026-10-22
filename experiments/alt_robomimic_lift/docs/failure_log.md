@@ -39,3 +39,11 @@
 - **Cause:** the validator's observation spec initially registered camera keys as low-dimensional fields. RoboMimic only includes them in returned observations when they are registered as RGB.
 - **Correction:** split the observation spec into `rgb` and `low_dim`, and disable optional image postprocessing so replay comparisons use the stored uint8 pixels.
 - **Verification:** the rerun reproduced state observations within 1e-6, matched both cameras directly (sampled maximum pixel MAE 1.63), and replayed all three demonstrations to Lift success. Full-state drift is documented separately.
+
+## 2026-10-22 — First Phase 1 schema test expected `next_obs` to be absent
+
+- **Command:** `bash scripts/with_legacy_env.sh -m unittest discover -s tests -v`.
+- **Observed:** 4 checks passed, while `test_audited_schema_and_alignment` failed because the dataset has a `next_obs` group.
+- **Cause:** the Phase 0 audit had not summarized that group; the assertion repeated an unsupported assumption from the first audit draft.
+- **Correction:** the audit now records all `next_obs` fields and sequence lengths and checks `next_obs[t]` against `obs[t+1]` for both camera images and all three policy proprioception fields across three predetermined demos. The policy-input exclusion list remains explicit.
+- **Status:** correction applied; rerunning the audit and full Phase 1 checks.
