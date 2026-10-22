@@ -1,0 +1,234 @@
+{
+  "source": "D:\\Code\\Course_code\\ACl\\alt",
+  "source_commit": "939ed620276f0088d7e86021dbf1bc37240f02e0",
+  "source_dataset": "rgb_training",
+  "episode_count": 31,
+  "state_count": 5775,
+  "stored_episode_ends": [
+    235,
+    440,
+    621,
+    806,
+    1003,
+    1150,
+    1273,
+    1423,
+    1583,
+    1754,
+    1940,
+    2103,
+    2277,
+    2478,
+    2629,
+    2785,
+    2980,
+    3220,
+    3401,
+    3583,
+    3802,
+    4017,
+    4223,
+    4405,
+    4585,
+    4739,
+    4966,
+    5180,
+    5379,
+    5585,
+    5775
+  ],
+  "visualization_episode_ends": [
+    236,
+    441,
+    622,
+    807,
+    1004,
+    1151,
+    1274,
+    1424,
+    1584,
+    1755,
+    1941,
+    2104,
+    2278,
+    2479,
+    2630,
+    2786,
+    2981,
+    3221,
+    3402,
+    3584,
+    3803,
+    4018,
+    4224,
+    4406,
+    4586,
+    4740,
+    4967,
+    5181,
+    5380,
+    5586,
+    5775
+  ],
+  "boundary_rule": "timestamp discontinuities = stored episode_ends[:-1] + 1",
+  "boundary_note": "Read-only visualization alignment; no source modification or new split. Hardware synchronization is not independently verified.",
+  "position_units": "Source coordinate units; no undocumented conversion to metres or millimetres.",
+  "positions_sha256": "6992a44b85d3a81e22aee82fb775b416e0b4f47414f180d8e33916059851bdc9",
+  "timestamp_sha256": "335dac3ad7287382e760b1483a2c4e098ba6cec2c34dce3a63da186ccafcc34b",
+  "config": {
+    "source_root": "D:/Code/Course_code/ACl/alt",
+    "dataset_subdirectory": "rgb_training",
+    "episodes": [
+      0,
+      10,
+      20
+    ],
+    "full_preview_episode": 0,
+    "cameras": {
+      "wrist": 1,
+      "third_person": 3
+    },
+    "thumbnail_width": 320,
+    "thumbnail_height": 240,
+    "keyframes": 6,
+    "expected_video_fps": 10.0,
+    "gif_stride": 2,
+    "output_directory": "artifacts/visualizations/original_alt_dataset_preview_v3"
+  },
+  "script_sha256": "4c173badc6cba66694b5b80cfeacd6a1b3892efeb9b8c4be5b5f068bc7594863",
+  "episodes": [
+    {
+      "episode": 0,
+      "state_start": 0,
+      "state_end_exclusive": 236,
+      "states": 236,
+      "dataset_duration_s": 26.701274871826172,
+      "videos": [
+        {
+          "camera": "wrist",
+          "path": "D:\\Code\\Course_code\\ACl\\alt\\rgb_training\\videos\\0\\1.mp4",
+          "sha256": "8c1b97e177d8325c8d380591abfe4f36b08ac99e08e92cd9aa091cba09e0509f",
+          "frames": 236,
+          "used_frames": 236,
+          "fps": 10.0
+        },
+        {
+          "camera": "third_person",
+          "path": "D:\\Code\\Course_code\\ACl\\alt\\rgb_training\\videos\\0\\3.mp4",
+          "sha256": "959fc5bfaedcf56fceb02e7c2b5502dea6b906bbe12c53fc917325072f750410",
+          "frames": 236,
+          "used_frames": 236,
+          "fps": 10.0
+        }
+      ],
+      "keyframe_indices": [
+        0,
+        47,
+        94,
+        141,
+        188,
+        235
+      ]
+    },
+    {
+      "episode": 10,
+      "state_start": 1755,
+      "state_end_exclusive": 1941,
+      "states": 186,
+      "dataset_duration_s": 24.1074538230896,
+      "videos": [
+        {
+          "camera": "wrist",
+          "path": "D:\\Code\\Course_code\\ACl\\alt\\rgb_training\\videos\\10\\1.mp4",
+          "sha256": "f28fd57839cff0a3d0d665d5a8843f4c5b911d2797651b11f334bed8250e260d",
+          "frames": 186,
+          "used_frames": 186,
+          "fps": 10.0
+        },
+        {
+          "camera": "third_person",
+          "path": "D:\\Code\\Course_code\\ACl\\alt\\rgb_training\\videos\\10\\3.mp4",
+          "sha256": "b7fa119631a4c90bfbfc86e6f340fe8789babd9e480c46f64e5464e024a30c0a",
+          "frames": 186,
+          "used_frames": 186,
+          "fps": 10.0
+        }
+      ],
+      "keyframe_indices": [
+        0,
+        37,
+        74,
+        111,
+        148,
+        185
+      ]
+    },
+    {
+      "episode": 20,
+      "state_start": 3584,
+      "state_end_exclusive": 3803,
+      "states": 219,
+      "dataset_duration_s": 23.001811027526855,
+      "videos": [
+        {
+          "camera": "wrist",
+          "path": "D:\\Code\\Course_code\\ACl\\alt\\rgb_training\\videos\\20\\1.mp4",
+          "sha256": "7625b768ad2e54d91cdb1f85918fe44befe1abb5c1b7804e71cdb2453190d0b5",
+          "frames": 219,
+          "used_frames": 219,
+          "fps": 10.0
+        },
+        {
+          "camera": "third_person",
+          "path": "D:\\Code\\Course_code\\ACl\\alt\\rgb_training\\videos\\20\\3.mp4",
+          "sha256": "6221b3050c94e55516f9f7748a6ac438e3ba539574d02e8a9c0740a42ffa13fe",
+          "frames": 219,
+          "used_frames": 219,
+          "fps": 10.0
+        }
+      ],
+      "keyframe_indices": [
+        0,
+        44,
+        87,
+        131,
+        174,
+        218
+      ]
+    }
+  ],
+  "training": false,
+  "simulation": false,
+  "artifacts": [
+    {
+      "path": "artifacts/visualizations/original_alt_dataset_preview_v3/episode_00_dual_view.gif",
+      "bytes": 4124461,
+      "sha256": "8446975ae330daf82db6ade1874c3e24650512bd89b95296804e37f8e207cc47"
+    },
+    {
+      "path": "artifacts/visualizations/original_alt_dataset_preview_v3/episode_00_dual_view.mp4",
+      "bytes": 5036748,
+      "sha256": "8654d7b5438b254206ff82f7faeba11a3edb0c62e0b5d934270d42d8b4bbd763"
+    },
+    {
+      "path": "artifacts/visualizations/original_alt_dataset_preview_v3/episode_00_keyframes.png",
+      "bytes": 1307435,
+      "sha256": "d27bf529d81bfd1428249574943452d3dc3c65ac80893dd1cd232d46e1a8c8c9"
+    },
+    {
+      "path": "artifacts/visualizations/original_alt_dataset_preview_v3/episode_10_keyframes.png",
+      "bytes": 1304570,
+      "sha256": "6aadc1282ccf6f6ab9cf6b2b7be257e3c63d7060271d068a3ad91f004f2c6f18"
+    },
+    {
+      "path": "artifacts/visualizations/original_alt_dataset_preview_v3/episode_20_keyframes.png",
+      "bytes": 1288385,
+      "sha256": "8925895db575ec30ca2399d7b2906c7ac5542c0f38a963193b09c8b41bfbc6cf"
+    },
+    {
+      "path": "artifacts/visualizations/original_alt_dataset_preview_v3/trajectory_paths.png",
+      "bytes": 281628,
+      "sha256": "15334bab8c80d8bb68e4e9e9bbc8f170ab7c86808e0df04b425e157ea3a2908f"
+    }
+  ]
+}
