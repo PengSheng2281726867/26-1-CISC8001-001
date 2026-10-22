@@ -11,8 +11,9 @@ sys.path.insert(0, str(HERE / "src"))
 
 from alt_lift.repro import resolve_config_path
 sys.path.insert(0, str(HERE / "scripts"))
-from evaluate_alt_lift import reset_to_frozen_seed, _array_hash, _policy_obs_hash, classify_episode_end
+from evaluate_alt_lift import reset_to_frozen_seed, _array_hash, _policy_obs_hash, classify_episode_end, write_first_result_mirrors
 import numpy as np
+import tempfile
 
 
 class RuntimePathTests(unittest.TestCase):
@@ -20,6 +21,20 @@ class RuntimePathTests(unittest.TestCase):
         self.assertEqual(classify_episode_end(False, 1000, 1000), (False, True))
         self.assertEqual(classify_episode_end(True, 999, 1000), (True, False))
         self.assertEqual(classify_episode_end(True, 1000, 1000), (False, True))
+
+    def test_existing_top_level_result_mirrors_are_never_overwritten(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            summary_path = Path(temp_dir) / "summary.json"
+            rollout_path = Path(temp_dir) / "rollouts.csv"
+            summary_path.write_text("original summary", encoding="utf-8")
+            rollout_path.write_text("original rollouts", encoding="utf-8")
+            written = write_first_result_mirrors(
+                {"status": "completed"}, summary_path, [{"seed": 1}], rollout_path, ["seed"]
+            )
+            self.assertEqual(written, {"summary": False, "rollouts": False})
+            self.assertEqual(summary_path.read_text(encoding="utf-8"), "original summary")
+            self.assertEqual(rollout_path.read_text(encoding="utf-8"), "original rollouts")
+
 
     def test_relative_windows_separators_resolve_inside_experiment(self):
         resolved = resolve_config_path("artifacts\\runs\\lift30\\memory_bank.npz", base=HERE)

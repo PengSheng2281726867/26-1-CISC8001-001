@@ -48,6 +48,9 @@ def main():
     checkpoint_path = artifact_dir / "checkpoint_final.pt"
     if sha256_file(checkpoint_path) != metadata["checkpoint_sha256"]:
         raise ValueError("Checkpoint checksum changed after training")
+    bank_path = artifact_dir / "memory_bank.npz"
+    if bank_path.exists() or metadata.get("memory_bank"):
+        raise FileExistsError("Refusing to overwrite a memory bank; use a fresh immutable run ID")
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     checkpoint = torch.load(str(checkpoint_path), map_location="cpu", weights_only=True)
     if checkpoint["split_manifest_sha256"] != split_sha:
@@ -56,7 +59,6 @@ def main():
     normalizer = ProprioNormalizer(checkpoint["proprio_mean"].numpy(), checkpoint["proprio_std"].numpy())
     model = VisualProprioEncoder(config["model"]["variant"], pretrained_path=None).to(device)
     model.load_state_dict(checkpoint["model_state_dict"], strict=True)
-    bank_path = artifact_dir / "memory_bank.npz"
     bank = build_memory_bank(model, store, normalizer, bank_path, device=device)
     if set(bank.episode_ids.tolist()) != set(train_ids) or set(bank.episode_ids.tolist()).intersection(split["heldout_validation_episode_ids"]):
         raise RuntimeError("Memory bank contains an unexpected or held-out episode")

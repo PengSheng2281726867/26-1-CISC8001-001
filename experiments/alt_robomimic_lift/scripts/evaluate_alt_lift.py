@@ -89,6 +89,21 @@ def classify_episode_end(done, steps, horizon):
     return bool(done and not at_limit), bool(at_limit)
 
 
+def write_first_result_mirrors(summary, summary_path, rollout_rows, rollout_path, score_fields):
+    """Create legacy top-level result mirrors once; never replace prior runs."""
+    written = {"summary": False, "rollouts": False}
+    if not summary_path.exists():
+        json_write(summary_path, summary)
+        written["summary"] = True
+    if not rollout_path.exists():
+        with rollout_path.open("w", newline="", encoding="utf-8") as stream:
+            writer = csv.DictWriter(stream, fieldnames=score_fields)
+            writer.writeheader()
+            writer.writerows(rollout_rows)
+        written["rollouts"] = True
+    return written
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, required=True)
@@ -187,8 +202,6 @@ def main():
     eval_artifact_dir = artifact_dir / "evaluations" / args.evaluation_id
     if eval_dir.exists() or eval_artifact_dir.exists():
         raise FileExistsError("Refusing to overwrite an evaluation attempt; choose a new --evaluation-id")
-    if (HERE / "results" / "evaluation_summary.json").exists():
-        raise FileExistsError("A completed evaluation summary already exists; preserve it and use a separate run")
     eval_dir.mkdir(parents=True)
     eval_artifact_dir.mkdir(parents=True)
     output_video_dir = eval_artifact_dir / "videos"
@@ -381,12 +394,15 @@ def main():
     attempt.update({"status": "completed", "completed_unix_time": time.time(), "metrics_sha256": sha256_file(out), "artifact_manifest_sha256": sha256_file(eval_dir / "artifact_manifest.json")})
     metadata.update({"evaluation_status": "completed", "evaluation_success_count": successes, "evaluation_rollout_count": len(rollout_rows), "evaluation_success_rate": summary["success_rate"], "evaluation_metrics_path": str(out.relative_to(HERE)), "evaluation_metrics_sha256": sha256_file(out)})
     json_write(metadata_path, metadata)
-    json_write(HERE / "results" / "evaluation_summary.json", summary)
-    # Small durable score table mirrors the ignored detailed per-run trace.
-    with (HERE / "results" / "per_seed_scores.csv").open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=score_fields)
-        writer.writeheader()
-        writer.writerows(rollout_rows)
+    # Keep first-run compatibility mirrors; each later evaluation remains
+    # available in its unique run/evaluation directory without replacing them.
+    write_first_result_mirrors(
+        summary,
+        HERE / "results" / "evaluation_summary.json",
+        rollout_rows,
+        HERE / "results" / "per_seed_scores.csv",
+        score_fields,
+    )
     print(json.dumps({k: v for k, v in summary.items() if k != "per_seed"}, indent=2, sort_keys=True))
 
 

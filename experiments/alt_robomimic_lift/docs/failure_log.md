@@ -94,3 +94,10 @@
 - **Finding:** its constructor overwrites `ignore_done=True`, and `is_done()` always returns `False` because RoboSuite rollouts use a fixed horizon. The evaluator loop therefore supplies the 1,000-step cap; `terminated=false` and `time_limit=true` in all 50 recorded rows are the expected flags.
 - **Correction:** documented the wrapper behavior in the evaluator and made end-flag classification handle a `done` signal on the exact limit step. This does not change the recorded rollouts or their scores.
 - **Verification:** added exact-cap and early-termination regression checks; both supported runtimes pass the full 15-test suite.
+
+## 2026-10-22 — Result-mirror review found rerun overwrite hazards
+
+- **Finding:** the evaluator rejected any later evaluation once the top-level summary existed, while diagnostic outputs and a rebuilt memory bank could replace files from an earlier run.
+- **Correction:** each evaluation remains in its unique run/evaluation directory; top-level compatibility mirrors are written only when absent. Offline and trace diagnostics refuse existing output paths, and the bank builder refuses an existing bank.
+- **Scope:** this was found during code review; no second evaluation was attempted and no existing result artifact was changed.
+- **Verification:** the 16-test suite passed in Windows Python 3.10.22/Torch 2.7.1+cu128 and WSL Python 3.8.20/Torch 1.10.2+cpu. Recursive `compileall` passed.

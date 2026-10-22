@@ -38,6 +38,8 @@ def main():
     parser.add_argument("--output", type=Path, default=HERE / "results" / "offline_diagnostics.json")
     parser.add_argument("--figure", type=Path, default=HERE / "results" / "figures" / "alt_lift30_offline_matches.png")
     args = parser.parse_args()
+    if args.output.exists() or args.figure.exists():
+        raise FileExistsError("Refusing to overwrite offline diagnostics; choose new --output and --figure paths")
     run_dir = args.run_dir.resolve()
     meta = json.loads((run_dir / "run_metadata.json").read_text(encoding="utf-8"))
     artifact = json.loads((run_dir / "artifact_manifest.json").read_text(encoding="utf-8"))
