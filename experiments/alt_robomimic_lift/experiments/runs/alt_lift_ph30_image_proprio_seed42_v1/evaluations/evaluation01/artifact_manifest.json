@@ -1,0 +1,27 @@
+{
+  "artifacts": [
+    {
+      "bytes": 31856930,
+      "path": "artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/retrieval_log.csv",
+      "sha256": "c407c8fe819d6b1db56bbb47e2e6c1b7dc87408fdd04153dec2699e4e3d8bade"
+    },
+    {
+      "bytes": 702596,
+      "path": "artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/videos/seed_100000.mp4",
+      "sha256": "cced865193aca12b4dbaed29e3d761e996aa1a6a6f16096b26fe99d144b5f434"
+    },
+    {
+      "bytes": 683555,
+      "path": "artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/videos/seed_100025.mp4",
+      "sha256": "3a4560a4acb1123d5839ecb9bd33bfb0687cb794d1084a91d557f2e227e26f21"
+    },
+    {
+      "bytes": 722880,
+      "path": "artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/videos/seed_100049.mp4",
+      "sha256": "99aed48802fdbec4e092429dcada1cdaab3151eabc30fe3f0a6957e29431b3ae"
+    }
+  ],
+  "evaluation_id": "evaluation01",
+  "rollout_csv_path": "experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/eval_rollouts.csv",
+  "rollout_csv_sha256": "5f03415c070f8c5b36da56c637e01c9da4cf73668db598a256367ec533021e5a"
+}

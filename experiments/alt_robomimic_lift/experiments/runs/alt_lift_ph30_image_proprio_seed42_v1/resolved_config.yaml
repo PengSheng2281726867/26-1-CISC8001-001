@@ -1,0 +1,132 @@
+experiment_id: alt_lift_ph30_image_proprio_seed42_v1
+status: planned
+dataset:
+  id: robomimic_lift_ph_v0.2.0_image
+  path_config: configs/data_paths.json
+  image_file: image.hdf5
+  low_dim_file: low_dim.hdf5
+  split_manifest: configs/lift_ph_split42.json
+  validation_use: offline_diagnostics_only
+observation:
+  policy_inputs:
+  - agentview_image[t]
+  - robot0_eye_in_hand_image[t]
+  - robot0_eef_pos[t]
+  - robot0_eef_quat[t]
+  - robot0_gripper_qpos[t]
+  image_shape_hwc:
+  - 84
+  - 84
+  - 3
+  image_color: RGB
+  image_value_range:
+  - 0
+  - 255
+  image_preprocessing:
+    to_float: divide_by_255
+    resize: none
+    imagenet_mean:
+    - 0.485
+    - 0.456
+    - 0.406
+    imagenet_std:
+    - 0.229
+    - 0.224
+    - 0.225
+    vertical_flip: none_after_robomimic_wrapper
+  proprioception:
+    dimension: 9
+    order:
+    - eef_pos_xyz
+    - eef_quat_xyzw
+    - gripper_qpos_2
+    quaternion_unit_normalize: true
+    quaternion_sign_canonicalization: w_nonnegative
+    normalization: mean_std_fit_on_exact_train_episodes_only
+  forbidden_policy_inputs:
+  - states
+  - object
+  - reward
+  - done
+  - next_obs
+  - future_images
+  - future_actions
+augmentation:
+  views_per_sample: 2
+  independent_per_view: true
+  brightness: 0.1
+  contrast: 0.1
+  saturation: 0.05
+  hue: 0.02
+  random_crop: false
+  resize_crop: false
+  translation: false
+  horizontal_flip: false
+  geometric_transforms: false
+model:
+  variant: image_proprio
+  future_ablation_supported: image_only
+  resnet: resnet18
+  imagenet_pretrained_required: true
+  backbone_shared_between_cameras: true
+  backbone_fine_tuned: true
+  image_feature_dim_per_camera: 128
+  proprio_mlp:
+  - 9
+  - 64
+  - 32
+  fusion_mlp:
+  - 288
+  - 256
+  - 128
+  embedding_dim: 128
+  embedding_l2_normalized: true
+objective:
+  name: nt_xent
+  temperature: 0.4
+  action_loss: false
+training:
+  train_scale: 30
+  model_seed: 42
+  dataloader_shuffle_seed: 43
+  augmentation_seed: 44
+  batch_size: 32
+  epochs: 40
+  optimizer: Adam
+  learning_rate: 0.0001
+  weight_decay: 0.0
+  drop_last: true
+  checkpoint_selection: final_epoch
+memory:
+  source_episode_ids: train_subsets.30
+  frames: every_observation_frame_in_exact_training_episodes
+  embedding_dim: 128
+  action_source: image_hdf5.actions[t]
+  duplicate_action_sequences_per_entry: false
+  retrieval: cosine_top_1
+  deterministic_tie_break: lowest_bank_row
+  ood_threshold: null
+  fallback: none
+execution:
+  action_semantics: original_7d_incremental_osc_pose_plus_panda_gripper_command
+  temporal_offset: 0
+  action_chunk_length: 1
+  replan_every_control_step: true
+  relative_action_correction: false
+  gripper_convention: -1_open_+1_closed
+evaluation:
+  initial_state_manifest: results/evaluation_initial_states.json
+  seeds_config: configs/evaluation.json
+  horizon: 1000
+  control_freq: 20
+  reward_shaping: false
+  success_signal: robosuite_lift_cube_height_gt_table_plus_0.04m
+  videos:
+  - 100000
+  - 100025
+  - 100049
+resolved_paths:
+  image_hdf5: D:\Code\Course_code\COURSE-HUZI-CODE\artifacts\datasets\robomimic\lift\ph\image.hdf5
+  low_dim_hdf5: D:\Code\Course_code\COURSE-HUZI-CODE\artifacts\datasets\robomimic\lift\ph\low_dim.hdf5
+  pretrained_resnet18: D:\Code\Course_code\COURSE-HUZI-CODE\artifacts\pretrained\resnet18-f37072fd.pth
+  split_manifest: D:\Code\Course_code\COURSE-HUZI-CODE\experiments\alt_robomimic_lift\configs\lift_ph_split42.json

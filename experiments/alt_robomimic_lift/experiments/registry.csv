@@ -1,2 +1,2 @@
 run_id,status,train_episodes,model_seed,split_seed,reason,decision
-alt_lift_ph30_image_proprio_seed42_v1,running,30,42,42,"First closed-loop Lift-ALT pilot after Phase 0/1 gates","40-epoch training and train-only 1,456-frame bank passed; held-out diagnostics recorded. Fixed 50-seed simulation awaits the validated env.reset-based fixture check; no evaluation action has yet been applied."
+alt_lift_ph30_image_proprio_seed42_v1,completed,30,42,42,"First fixed-seed closed-loop Lift-ALT pilot after Phase 0/1 gates","40-epoch fine-tuned pretrained encoder; train-only 1,456-frame bank. Across seeds 100000-100049, 37/50 reached the Lift height criterion at least once (74%; Wilson 95% interval 60.4-84.1%); all final sparse rewards were zero. One model seed; no scale-up or DP."

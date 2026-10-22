@@ -6,7 +6,7 @@ This folder contains a Lift-specific Action Lookup Table adaptation. It is isola
 
 Phase 0 passed with a documented numerical replay limitation. The local RoboMimic 0.2.0 Lift-PH image file contains 200 independent demonstrations and is already usable; no image rendering conversion was needed. The dataset's recorded environment is an older RoboSuite `offline_study` setup, and the matching local simulator is RoboSuite 1.2.0 / MuJoCo 2.0.0. The source metadata does not identify a collection commit. See [the Phase 0 audit](docs/phase0_data_environment_audit.md) and [source provenance](docs/upstream_provenance.md).
 
-The evaluation protocol fixes 50 seeds (`100000` through `100049`) and preserves verified initial MuJoCo states and hashes in `results/evaluation_initial_states.json`. Those states are reset fixtures only; the policy receives two current RGB images and current robot proprioception. Phase 1 has frozen 20 held-out demos and the nested 30/50/100 episode lists in `configs/lift_ph_split42.json`; only ALT-30 is planned in this run.
+The evaluation protocol fixes 50 seeds (`100000` through `100049`) and preserves verified initial MuJoCo states and hashes in `results/evaluation_initial_states.json`. Those states are reset fixtures only; the policy receives two current RGB images and current robot proprioception. Phase 1 froze 20 held-out demos and nested 30/50/100 episode lists in `configs/lift_ph_split42.json`; this study completed ALT-30 only.
 
 ## Local prerequisites
 
@@ -38,7 +38,7 @@ wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh s
 wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh -m unittest discover -s tests -v'
 ```
 
-Phase 1 is frozen and its data/split tests pass. Phase 2 adds the Lift-specific shared-ResNet encoder, NT-Xent training, deterministic memory bank, and one-step retrieval policy. Only ALT-30 is run. No DP, Lift-50/100, or action-chunk ablation is part of this study.
+Phase 1 is frozen and its data/split tests pass. Phase 2 adds the Lift-specific shared-ResNet encoder, NT-Xent training, deterministic memory bank, and one-step retrieval policy. ALT-30 is completed; no DP, Lift-50/100, or action-chunk ablation is part of this study.
 
 ## Training environment and pretrained weights
 
@@ -63,10 +63,11 @@ From PowerShell in this folder, run the one-batch smoke check, then start the si
 
 ```powershell
 $trainPython = 'artifacts/environments/alt_lift_train/Scripts/python.exe'
+$runId = 'alt_lift_ph30_image_proprio_seed42_reproduction01'
 & $trainPython scripts/train_alt_lift.py --smoke
-& $trainPython scripts/train_alt_lift.py
-& $trainPython scripts/build_memory_bank.py --run-dir experiments/runs/alt_lift_ph30_image_proprio_seed42_v1
-& $trainPython scripts/diagnose_offline.py --run-dir experiments/runs/alt_lift_ph30_image_proprio_seed42_v1
+& $trainPython scripts/train_alt_lift.py --run-id $runId
+& $trainPython scripts/build_memory_bank.py --run-dir "experiments/runs/$runId"
+& $trainPython scripts/diagnose_offline.py --run-dir "experiments/runs/$runId" --output "results/offline_diagnostics_$runId.json" --figure "results/figures/offline_matches_$runId.png"
 ```
 
 After training, the cross-version checkpoint loader can be checked in the WSL simulator runtime with `scripts/check_checkpoint.py --checkpoint artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/checkpoint_final.pt`.
@@ -77,14 +78,22 @@ Training uses the exact 30 train IDs in `configs/lift_ph_split42.json`; the 20 v
 
 ## Phase 3 fixed-seed evaluation
 
-After the bank and offline diagnostics pass, run the fixed 50 conditions once in the legacy simulator. The script first checks a frozen seed's reset observation and the 7D policy API, then proceeds over all seeds `100000..100049`; do not use evaluation output to modify the model or protocol.
+After the bank and offline diagnostics pass, run the fixed 50 conditions in the legacy simulator. Give every attempt a fresh evaluation ID; completed run/evaluation outputs are immutable. The script first checks a frozen seed's reset observation and the 7D policy API, then proceeds over all seeds `100000..100049`; do not use evaluation output to modify the model or protocol.
 
 ```powershell
 $lift = '/mnt/d/Code/Course_code/COURSE-HUZI-CODE/experiments/alt_robomimic_lift'
-wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/alt_lift_ph30_image_proprio_seed42_v1'
+$runId = 'alt_lift_ph30_image_proprio_seed42_reproduction01'
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id evaluation01"
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/analyze_eval_traces.py --run-dir experiments/runs/$runId --evaluation-id evaluation01 --output results/failure_diagnostics_$runId.json --figure results/figures/eval_video_contact_$runId.png"
 ```
 
-The evaluation writes the 50 rollout rows and aggregate Lift success rate with Wilson 95% interval to `experiments/runs/<run-id>/evaluations/evaluation01/eval_metrics.json` and `results/evaluation_summary.json`. It writes per-step retrieval matches/actions to the ignored artifact directory. Three predeclared videos are saved there for seeds 100000, 100025, and 100049. Success means RoboSuite Lift's task check became true at least once in an episode; each episode continues to termination or the frozen 1,000-step limit.
+The evaluation writes the 50 rollout rows and aggregate Lift success rate with Wilson 95% interval to `experiments/runs/<run-id>/evaluations/evaluation01/eval_metrics.json` and `results/evaluation_summary.json`. It writes per-step retrieval matches/actions to the ignored artifact directory. Three predeclared videos are saved there for seeds 100000, 100025, and 100049. Success means RoboSuite Lift's task check became true at least once in an episode. The RoboMimic 0.2.0 wrapper suppresses the inner environment's done signal, so the evaluator's fixed 1,000-step loop limit ends each rollout.
+
+## Completed ALT-30 result
+
+The 40-epoch model trained on the frozen 30 episodes reached the Lift height criterion at least once in 37/50 fixed starts (74%; Wilson 95% interval 60.4%–84.1%). All 50 rollouts ran to 1,000 steps, and all final sparse rewards were zero; this is transient lift-height success, not sustained endpoint success. The pilot used one model seed. See [`docs/final_analysis.md`](docs/final_analysis.md), the per-run [`report.md`](experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/report.md), and tracked per-seed metrics under `experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/`.
+
+The checkpoint, bank, full retrieval trace, and three predeclared videos remain in ignored local `artifacts/`. Their sizes and hashes are recorded in the run and evaluation manifests; Git alone does not back them up.
 
 ## Outputs
 
