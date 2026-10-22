@@ -1,0 +1,97 @@
+{
+  "selection": "first frozen test seed, final query; illustrative, not representative",
+  "query": {
+    "evaluation_seed": 100000,
+    "current_step": 296,
+    "current_state": [
+      465.732658681183,
+      146.83109869665384,
+      302.560715984342,
+      205.07598801639645,
+      4.422085403627667
+    ],
+    "matched_state": [
+      465.7331848144531,
+      146.8313446044922,
+      328.5062561035156,
+      153.19187927246094,
+      5.0477070808410645
+    ],
+    "matched_episode": 54,
+    "local_frame": 32,
+    "source_index": 6718,
+    "bank_index": 3553,
+    "geometry_distance": 0.0524943219056067,
+    "distance_components": [
+      1.2866473498601552e-12,
+      0.012836959046280573,
+      0.03965736285803948
+    ],
+    "pusher_error": 0.0005807640509550677,
+    "block_error": 58.00975600903847,
+    "angle_error_degrees": 35.84548167622356,
+    "same_match": false,
+    "same_match_and_same_position": false,
+    "state_stall": false,
+    "pusher_motion_since_last_query": 57.39489570214126,
+    "block_motion_since_last_query": 0.0,
+    "angle_motion_since_last_query": 0.0,
+    "episode_switch": false,
+    "boundary_padded": false,
+    "action_source_indices": [
+      6718,
+      6719,
+      6720,
+      6721,
+      6722,
+      6723,
+      6724,
+      6725
+    ],
+    "commands": [
+      [
+        455.0,
+        151.0
+      ],
+      [
+        450.0,
+        160.0
+      ],
+      [
+        446.0,
+        166.0
+      ],
+      [
+        443.0,
+        173.0
+      ],
+      [
+        439.0,
+        183.0
+      ],
+      [
+        434.0,
+        195.0
+      ],
+      [
+        428.0,
+        208.0
+      ],
+      [
+        419.0,
+        224.0
+      ]
+    ],
+    "state_sync_pusher_max_abs_error": 7.334441988859908e-06,
+    "state_observation_snapshot_equal": true,
+    "state_read_ms": 0.3053999971598387,
+    "search_ms": 0.40250003803521395,
+    "extraction_ms": 0.06029999349266291,
+    "executed_actions": 4
+  },
+  "video_frame_index": 295,
+  "trace_sha256": "8ef2955a96687c81400dc4f83c3cff70a90041c9de42a0d3e7a4f7605917462c",
+  "video_sha256": "929fe92ccac55e51e13bee57a27cc792808a36ed328734c942404d5fd4396af9",
+  "script_sha256": "0262b789cd9f991f03d0608ea654ef63a150aeaa35f340d1d7fa19267f041f21",
+  "figure_sha256": "e1329a83fe9af9d6f182e9e00a2320c598b4fb6ae5689905f2f677fd80c7a14f"
+}

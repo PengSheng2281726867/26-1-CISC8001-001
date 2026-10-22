@@ -67,3 +67,7 @@ DP 源码按现有配置导入、只读使用（MIT，详见仓库 `docs/upstrea
 不复制整个 DP/ALT 仓库；本实验代码及测试都限于本目录。精确上游 Commit、数据全字节指纹、Split 哈希和代码哈希记录于运行元数据。
 
 最终统计见 [analysis_report.md](analysis_report.md)，执行与修复记录见 [execution_log.md](execution_log.md)。
+
+规则检索误差分布和单个测试案例见 [matching_summary.md](matching_summary.md)。
+只读取已保存的日志/视频生成单案例图：
+`python -B experiments/geometry_oracle_alt/visualize_case.py --seed 100000 --step 296`。
