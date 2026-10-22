@@ -1,0 +1,31 @@
+{
+  "status": "downloaded_and_hdf5_verified",
+  "downloaded_at_utc": "2026-10-22T06:27:55Z",
+  "task": "lift",
+  "dataset_type": "ph",
+  "hdf5_type": "image",
+  "robomimic_version": "0.2.0",
+  "source_url": "https://downloads.cs.stanford.edu/downloads/rt_benchmark/lift/ph/image.hdf5",
+  "relative_path": "artifacts/datasets/robomimic/lift/ph/image.hdf5",
+  "bytes": 837217792,
+  "sha256": "87f813fa5118eaaac520f9933dc34e03336e307929c5f1f5fc53fb9609e1789e",
+  "source_etag": "\"60e8bef5-31e6ee00\"",
+  "download_method": "HTTP byte ranges in four parts; reassembled in source order",
+  "episodes": 200,
+  "total_frames": 9666,
+  "episode_length_min": 36,
+  "episode_length_median": 48,
+  "episode_length_max": 64,
+  "image_observation_keys": [
+    "agentview_image",
+    "robot0_eye_in_hand_image"
+  ],
+  "image_shape_per_frame": [
+    84,
+    84,
+    3
+  ],
+  "image_dtype": "uint8",
+  "all_episode_action_state_and_observation_lengths_match": true,
+  "all_image_arrays_read_and_validated": true
+}

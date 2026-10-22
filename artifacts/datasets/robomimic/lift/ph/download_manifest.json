@@ -1,0 +1,139 @@
+{
+  "status": "downloaded_and_hdf5_verified",
+  "downloaded_at_utc": "2026-10-22T05:07:28.952105+00:00",
+  "task": "lift",
+  "dataset_type": "ph",
+  "hdf5_type": "low_dim",
+  "robomimic_version": "0.2.0",
+  "source_url": "http://downloads.cs.stanford.edu/downloads/rt_benchmark/lift/ph/low_dim.hdf5",
+  "relative_path": "artifacts/datasets/robomimic/lift/ph/low_dim.hdf5",
+  "bytes": 18548952,
+  "sha256": "18106c8c072020672fecdd2a9ffbfe7dc656823cb877f972ade7fad34d2a5b74",
+  "command": "python -B -m robomimic.scripts.download_datasets --tasks lift --dataset_types ph --download_dir artifacts/datasets/robomimic",
+  "episodes": 200,
+  "total_frames": 9666,
+  "episode_length_min": 36,
+  "episode_length_max": 64,
+  "action_shape": [
+    59,
+    7
+  ],
+  "state_shape": [
+    59,
+    32
+  ],
+  "observation_shapes": {
+    "object": [
+      59,
+      10
+    ],
+    "robot0_eef_pos": [
+      59,
+      3
+    ],
+    "robot0_eef_quat": [
+      59,
+      4
+    ],
+    "robot0_eef_vel_ang": [
+      59,
+      3
+    ],
+    "robot0_eef_vel_lin": [
+      59,
+      3
+    ],
+    "robot0_gripper_qpos": [
+      59,
+      2
+    ],
+    "robot0_gripper_qvel": [
+      59,
+      2
+    ],
+    "robot0_joint_pos": [
+      59,
+      7
+    ],
+    "robot0_joint_pos_cos": [
+      59,
+      7
+    ],
+    "robot0_joint_pos_sin": [
+      59,
+      7
+    ],
+    "robot0_joint_vel": [
+      59,
+      7
+    ]
+  },
+  "mask_keys": [
+    "20_percent",
+    "20_percent_train",
+    "20_percent_valid",
+    "50_percent",
+    "50_percent_train",
+    "50_percent_valid",
+    "train",
+    "valid"
+  ],
+  "environment": {
+    "env_name": "Lift",
+    "type": 1,
+    "env_kwargs": {
+      "has_renderer": false,
+      "has_offscreen_renderer": false,
+      "ignore_done": true,
+      "use_object_obs": true,
+      "use_camera_obs": false,
+      "control_freq": 20,
+      "controller_configs": {
+        "type": "OSC_POSE",
+        "input_max": 1,
+        "input_min": -1,
+        "output_max": [
+          0.05,
+          0.05,
+          0.05,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "output_min": [
+          -0.05,
+          -0.05,
+          -0.05,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "kp": 150,
+        "damping": 1,
+        "impedance_mode": "fixed",
+        "kp_limits": [
+          0,
+          300
+        ],
+        "damping_limits": [
+          0,
+          10
+        ],
+        "position_limits": null,
+        "orientation_limits": null,
+        "uncouple_pos_ori": true,
+        "control_delta": true,
+        "interpolation": null,
+        "ramp_ratio": 0.2
+      },
+      "robots": [
+        "Panda"
+      ],
+      "camera_depths": false,
+      "camera_heights": 84,
+      "camera_widths": 84,
+      "reward_shaping": false
+    }
+  },
+  "all_episodes_action_and_state_arrays_readable_finite": true
+}

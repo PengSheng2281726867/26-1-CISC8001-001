@@ -12,3 +12,19 @@ __pycache__/
 *.mp4
 *.zip
 *.log
+
+# BEGIN tracked robomimic Lift PH metadata
+!artifacts/
+artifacts/*
+!artifacts/datasets/
+artifacts/datasets/*
+!artifacts/datasets/robomimic/
+artifacts/datasets/robomimic/*
+!artifacts/datasets/robomimic/lift/
+artifacts/datasets/robomimic/lift/*
+!artifacts/datasets/robomimic/lift/ph/
+artifacts/datasets/robomimic/lift/ph/*
+!artifacts/datasets/robomimic/lift/ph/README.md
+!artifacts/datasets/robomimic/lift/ph/download_manifest.json
+!artifacts/datasets/robomimic/lift/ph/image_download_manifest.json
+# END tracked robomimic Lift PH metadata
