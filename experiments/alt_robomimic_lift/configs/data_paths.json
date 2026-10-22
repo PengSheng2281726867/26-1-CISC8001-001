@@ -1,0 +1,4 @@
+{
+  "image_hdf5": "../../artifacts/datasets/robomimic/lift/ph/image.hdf5",
+  "low_dim_hdf5": "../../artifacts/datasets/robomimic/lift/ph/low_dim.hdf5"
+}

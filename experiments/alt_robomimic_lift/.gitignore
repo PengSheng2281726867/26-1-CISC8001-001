@@ -1,0 +1,10 @@
+# Heavy inputs, learned weights, caches, and videos stay local.
+artifacts/**
+!artifacts/.gitkeep
+results/figures/*.png
+results/videos/**
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.log

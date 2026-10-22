@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-22",
+  "repository": {
+    "root": "D:\\Code\\Course_code\\COURSE-HUZI-CODE",
+    "branch": "main",
+    "phase0_start_commit": "be8959c83c30bf6533929fea3617f7567934983a",
+    "remote": "https://github.com/PengSheng2281726867/26-1-CISC8001-001.git",
+    "phase0_files_scoped_to": "experiments/alt_robomimic_lift/"
+  },
+  "alt": {
+    "upstream_url": "https://github.com/StanfordMSL/alt",
+    "upstream_license": "MIT",
+    "local_snapshot_path": "D:\\Code\\Course_code\\ACl\\alt",
+    "local_git_metadata_present": false,
+    "local_snapshot_commit": null,
+    "official_main_commit_observed": null,
+    "commit_note": "The supplied snapshot has no .git metadata. The public repository page was inspected but did not expose a resolvable commit SHA in this audit; no commit identity is claimed.",
+    "local_file_sha256": {
+      "training.py": "6bbfcf939da8fff6a024a49b882aa331c78a4eaf078d19a6415669c1a6d0074f",
+      "rollout.py": "8e44a75e89ec8fa3acd373a67ba30024add962dfd4d4367d94c80bb252bea045",
+      "data_creation.py": "686b4aa158039899364b461975af70376aeb398b46c16fcb4f716931bcbf09ef",
+      "LICENSE.md": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
+      "README.md": "b59b8e7eb5cae589ca5af3ab9142cf2537106b785cf8735d06f7cd93a5c5ccf0"
+    },
+    "code_copied": false
+  },
+  "robomimic": {
+    "upstream_url": "https://github.com/ARISE-Initiative/robomimic",
+    "installed_version": "0.2.0",
+    "release_tag": "v0.2.0",
+    "release_commit_prefix": "62ed2de",
+    "dataset_collection_commit_recorded": false
+  },
+  "robosuite": {
+    "upstream_url": "https://github.com/ARISE-Initiative/robosuite",
+    "branch": "offline_study",
+    "version": "1.2.0",
+    "commit": "d9baa17d5328d7b0ec15ecda54c76c61bb983124",
+    "source_read_only": true
+  },
+  "runtime": {
+    "platform": "WSL2 Ubuntu x86_64",
+    "python": "3.8.20",
+    "torch": "1.10.2+cpu",
+    "torchvision": "0.11.3+cpu",
+    "numpy": "1.20.3",
+    "h5py": "3.7.0",
+    "robomimic": "0.2.0",
+    "robosuite": "1.2.0",
+    "mujoco_py": "2.0.2.9",
+    "mujoco_engine_integer": 200,
+    "training_cuda_available_in_legacy_env": false,
+    "host_gpu": "NVIDIA GeForce RTX 5090, 32607 MiB",
+    "host_driver": "610.88",
+    "host_cuda_umd": "13.3"
+  },
+  "dataset": {
+    "release": "RoboMimic Lift / PH / v0.2.0",
+    "image_hdf5_bytes": 837217792,
+    "image_hdf5_sha256": "87f813fa5118eaaac520f9933dc34e03336e307929c5f1f5fc53fb9609e1789e",
+    "low_dim_hdf5_bytes": 18548952,
+    "low_dim_hdf5_sha256": "18106c8c072020672fecdd2a9ffbfe7dc656823cb877f972ade7fad34d2a5b74",
+    "schema_fingerprint": "6d9b491f0a58399bc917f85d878a63ce0545cc6b84d39413249456c598f01bb7",
+    "dataset_audit_file_sha256": "4f25f04ce3a1bc3a9b1e0b2aef1baf0f7986cf84f586cc6d6ca64fa13681293e",
+    "evaluation_initial_state_manifest_sha256": "75511225fcce9124a758f922a7c098c79899634f86e00b3e463cf3fe7f892f3f"
+  }
+}

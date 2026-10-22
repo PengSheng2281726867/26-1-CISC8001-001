@@ -1,0 +1,928 @@
+{
+  "action_alignment": "obs[t] is pre-action; actions[t] is stepped at that observation; replay result is compared with stored state/obs[t+1]",
+  "action_dimension": 7,
+  "camera_alignment": [
+    {
+      "camera": "agentview",
+      "episode_id": "demo_0",
+      "frame": 0,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.59901762008667,
+      "pixel_mae_direct": 1.088813304901123,
+      "pixel_mae_vertical_flip": 82.63236999511719,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_0",
+      "frame": 0,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 3.8272392749786377,
+      "pixel_mae_direct": 1.007605791091919,
+      "pixel_mae_vertical_flip": 73.9323959350586,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_0",
+      "frame": 29,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.428004741668701,
+      "pixel_mae_direct": 1.6242440938949585,
+      "pixel_mae_vertical_flip": 86.2208023071289,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_0",
+      "frame": 29,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 3.219151496887207,
+      "pixel_mae_direct": 0.5673186182975769,
+      "pixel_mae_vertical_flip": 81.83895874023438,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_0",
+      "frame": 58,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.45587682723999,
+      "pixel_mae_direct": 1.4817649126052856,
+      "pixel_mae_vertical_flip": 89.9599380493164,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_0",
+      "frame": 58,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 4.524707317352295,
+      "pixel_mae_direct": 0.6118197441101074,
+      "pixel_mae_vertical_flip": 82.38941192626953,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_1",
+      "frame": 0,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.556736469268799,
+      "pixel_mae_direct": 1.0475717782974243,
+      "pixel_mae_vertical_flip": 84.70687103271484,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_1",
+      "frame": 0,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 3.6949169635772705,
+      "pixel_mae_direct": 0.9657029509544373,
+      "pixel_mae_vertical_flip": 69.36129760742188,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_1",
+      "frame": 29,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.610544204711914,
+      "pixel_mae_direct": 1.4982048273086548,
+      "pixel_mae_vertical_flip": 86.86139678955078,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_1",
+      "frame": 29,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 4.03363561630249,
+      "pixel_mae_direct": 0.6100717782974243,
+      "pixel_mae_vertical_flip": 77.93121337890625,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_1",
+      "frame": 57,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.542375087738037,
+      "pixel_mae_direct": 1.4773714542388916,
+      "pixel_mae_vertical_flip": 89.41331481933594,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_1",
+      "frame": 57,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 4.955357074737549,
+      "pixel_mae_direct": 0.6134259104728699,
+      "pixel_mae_vertical_flip": 82.57978820800781,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_2",
+      "frame": 0,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.56868839263916,
+      "pixel_mae_direct": 1.11092209815979,
+      "pixel_mae_vertical_flip": 81.8654556274414,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_2",
+      "frame": 0,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 3.8542139530181885,
+      "pixel_mae_direct": 1.0600906610488892,
+      "pixel_mae_vertical_flip": 73.23072814941406,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_2",
+      "frame": 28,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.760912895202637,
+      "pixel_mae_direct": 1.5387849807739258,
+      "pixel_mae_vertical_flip": 85.33158874511719,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_2",
+      "frame": 28,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 8.018990516662598,
+      "pixel_mae_direct": 0.9178004264831543,
+      "pixel_mae_vertical_flip": 87.42507934570312,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "agentview",
+      "episode_id": "demo_2",
+      "frame": 56,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "agentview_image",
+      "pixel_mae_channel_reversed": 5.735875129699707,
+      "pixel_mae_direct": 1.4598922729492188,
+      "pixel_mae_vertical_flip": 86.6824951171875,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    },
+    {
+      "camera": "robot0_eye_in_hand",
+      "episode_id": "demo_2",
+      "frame": 56,
+      "live_shape": [
+        84,
+        84,
+        3
+      ],
+      "observation_key": "robot0_eye_in_hand_image",
+      "pixel_mae_channel_reversed": 9.497023582458496,
+      "pixel_mae_direct": 0.8910147547721863,
+      "pixel_mae_vertical_flip": 84.78462982177734,
+      "stored_shape": [
+        84,
+        84,
+        3
+      ]
+    }
+  ],
+  "camera_names": [
+    "agentview",
+    "robot0_eye_in_hand"
+  ],
+  "dataset_path": "/mnt/d/Code/Course_code/COURSE-HUZI-CODE/artifacts/datasets/robomimic/lift/ph/image.hdf5",
+  "dataset_sha256": "87f813fa5118eaaac520f9933dc34e03336e307929c5f1f5fc53fb9609e1789e",
+  "elapsed_seconds": 45.67980408668518,
+  "environment_horizon_default": 1000,
+  "environment_metadata": {
+    "env_kwargs": {
+      "camera_depths": false,
+      "camera_heights": 84,
+      "camera_names": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "camera_widths": 84,
+      "control_freq": 20,
+      "controller_configs": {
+        "control_delta": true,
+        "damping": 1,
+        "damping_limits": [
+          0,
+          10
+        ],
+        "impedance_mode": "fixed",
+        "input_max": 1,
+        "input_min": -1,
+        "interpolation": null,
+        "kp": 150,
+        "kp_limits": [
+          0,
+          300
+        ],
+        "orientation_limits": null,
+        "output_max": [
+          0.05,
+          0.05,
+          0.05,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "output_min": [
+          -0.05,
+          -0.05,
+          -0.05,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "position_limits": null,
+        "ramp_ratio": 0.2,
+        "type": "OSC_POSE",
+        "uncouple_pos_ori": true
+      },
+      "has_offscreen_renderer": true,
+      "has_renderer": false,
+      "ignore_done": true,
+      "render_gpu_device_id": 0,
+      "reward_shaping": false,
+      "robots": [
+        "Panda"
+      ],
+      "use_camera_obs": true,
+      "use_object_obs": true
+    },
+    "env_name": "Lift",
+    "type": 1
+  },
+  "episode_ids": [
+    "demo_0",
+    "demo_1",
+    "demo_2"
+  ],
+  "episodes": [
+    {
+      "action_dimension": 7,
+      "action_max": [
+        0.6799999999999999,
+        0.362,
+        1.0,
+        0.013357220217585564,
+        0.14820712804794312,
+        0.04116631671786308,
+        1.0
+      ],
+      "action_min": [
+        -0.249,
+        -0.203,
+        -0.7060000000000001,
+        -0.03934917598962784,
+        -0.062041025608778,
+        -0.11956938356161118,
+        -1.0
+      ],
+      "action_replay_ever_success": true,
+      "action_replay_final_reward": 1.0,
+      "action_replay_final_success": true,
+      "action_replay_max_abs_full_state_error": 3.026972850150855e-08,
+      "action_replay_max_abs_object_obs_error": 0.0012713390334059271,
+      "action_replay_peak_dimension": 23,
+      "action_replay_peak_index": 18,
+      "camera_reconstruction_checks": [
+        {
+          "camera": "agentview",
+          "episode_id": "demo_0",
+          "frame": 0,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.59901762008667,
+          "pixel_mae_direct": 1.088813304901123,
+          "pixel_mae_vertical_flip": 82.63236999511719,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_0",
+          "frame": 0,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 3.8272392749786377,
+          "pixel_mae_direct": 1.007605791091919,
+          "pixel_mae_vertical_flip": 73.9323959350586,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "agentview",
+          "episode_id": "demo_0",
+          "frame": 29,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.428004741668701,
+          "pixel_mae_direct": 1.6242440938949585,
+          "pixel_mae_vertical_flip": 86.2208023071289,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_0",
+          "frame": 29,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 3.219151496887207,
+          "pixel_mae_direct": 0.5673186182975769,
+          "pixel_mae_vertical_flip": 81.83895874023438,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "agentview",
+          "episode_id": "demo_0",
+          "frame": 58,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.45587682723999,
+          "pixel_mae_direct": 1.4817649126052856,
+          "pixel_mae_vertical_flip": 89.9599380493164,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_0",
+          "frame": 58,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 4.524707317352295,
+          "pixel_mae_direct": 0.6118197441101074,
+          "pixel_mae_vertical_flip": 82.38941192626953,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        }
+      ],
+      "episode_id": "demo_0",
+      "frames": 59,
+      "state_restore_max_abs_observation_error": {
+        "object": 0.0,
+        "robot0_eef_pos": 0.0,
+        "robot0_eef_quat": 5.551115123125783e-17,
+        "robot0_eef_vel_ang": 1.1102230246251565e-16,
+        "robot0_eef_vel_lin": 8.326672684688674e-17,
+        "robot0_gripper_qpos": 0.0,
+        "robot0_gripper_qvel": 0.0,
+        "robot0_joint_pos": 0.0,
+        "robot0_joint_pos_cos": 5.551115123125783e-17,
+        "robot0_joint_pos_sin": 0.0,
+        "robot0_joint_vel": 0.0
+      },
+      "state_restore_passed_at_1e-6": true,
+      "transition_count": 58
+    },
+    {
+      "action_dimension": 7,
+      "action_max": [
+        0.636,
+        0.22,
+        1.0,
+        0.03218000754714012,
+        0.19745638966560364,
+        0.04460451379418373,
+        1.0
+      ],
+      "action_min": [
+        -0.124,
+        -0.305,
+        -0.741,
+        -0.04029672220349312,
+        -0.051915884017944336,
+        -0.026436585932970047,
+        -1.0
+      ],
+      "action_replay_ever_success": true,
+      "action_replay_final_reward": 1.0,
+      "action_replay_final_success": true,
+      "action_replay_max_abs_full_state_error": 0.0008745960508721728,
+      "action_replay_max_abs_object_obs_error": 0.0012713438677994793,
+      "action_replay_peak_dimension": 29,
+      "action_replay_peak_index": 48,
+      "camera_reconstruction_checks": [
+        {
+          "camera": "agentview",
+          "episode_id": "demo_1",
+          "frame": 0,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.556736469268799,
+          "pixel_mae_direct": 1.0475717782974243,
+          "pixel_mae_vertical_flip": 84.70687103271484,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_1",
+          "frame": 0,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 3.6949169635772705,
+          "pixel_mae_direct": 0.9657029509544373,
+          "pixel_mae_vertical_flip": 69.36129760742188,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "agentview",
+          "episode_id": "demo_1",
+          "frame": 29,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.610544204711914,
+          "pixel_mae_direct": 1.4982048273086548,
+          "pixel_mae_vertical_flip": 86.86139678955078,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_1",
+          "frame": 29,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 4.03363561630249,
+          "pixel_mae_direct": 0.6100717782974243,
+          "pixel_mae_vertical_flip": 77.93121337890625,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "agentview",
+          "episode_id": "demo_1",
+          "frame": 57,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.542375087738037,
+          "pixel_mae_direct": 1.4773714542388916,
+          "pixel_mae_vertical_flip": 89.41331481933594,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_1",
+          "frame": 57,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 4.955357074737549,
+          "pixel_mae_direct": 0.6134259104728699,
+          "pixel_mae_vertical_flip": 82.57978820800781,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        }
+      ],
+      "episode_id": "demo_1",
+      "frames": 58,
+      "state_restore_max_abs_observation_error": {
+        "object": 0.0,
+        "robot0_eef_pos": 0.0,
+        "robot0_eef_quat": 5.551115123125783e-17,
+        "robot0_eef_vel_ang": 1.6653345369377348e-16,
+        "robot0_eef_vel_lin": 8.326672684688674e-17,
+        "robot0_gripper_qpos": 0.0,
+        "robot0_gripper_qvel": 0.0,
+        "robot0_joint_pos": 0.0,
+        "robot0_joint_pos_cos": 1.1102230246251565e-16,
+        "robot0_joint_pos_sin": 0.0,
+        "robot0_joint_vel": 0.0
+      },
+      "state_restore_passed_at_1e-6": true,
+      "transition_count": 57
+    },
+    {
+      "action_dimension": 7,
+      "action_max": [
+        0.45199999999999996,
+        0.191,
+        1.0,
+        0.0361824557185173,
+        0.14200763404369354,
+        0.33735552430152893,
+        1.0
+      ],
+      "action_min": [
+        -0.313,
+        -0.14200000000000002,
+        -0.6839999999999999,
+        -0.011645819060504436,
+        -0.05510959029197693,
+        -0.03404154255986214,
+        -1.0
+      ],
+      "action_replay_ever_success": true,
+      "action_replay_final_reward": 1.0,
+      "action_replay_final_success": true,
+      "action_replay_max_abs_full_state_error": 0.00026493403870038847,
+      "action_replay_max_abs_object_obs_error": 0.001354980498941046,
+      "action_replay_peak_dimension": 29,
+      "action_replay_peak_index": 48,
+      "camera_reconstruction_checks": [
+        {
+          "camera": "agentview",
+          "episode_id": "demo_2",
+          "frame": 0,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.56868839263916,
+          "pixel_mae_direct": 1.11092209815979,
+          "pixel_mae_vertical_flip": 81.8654556274414,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_2",
+          "frame": 0,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 3.8542139530181885,
+          "pixel_mae_direct": 1.0600906610488892,
+          "pixel_mae_vertical_flip": 73.23072814941406,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "agentview",
+          "episode_id": "demo_2",
+          "frame": 28,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.760912895202637,
+          "pixel_mae_direct": 1.5387849807739258,
+          "pixel_mae_vertical_flip": 85.33158874511719,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_2",
+          "frame": 28,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 8.018990516662598,
+          "pixel_mae_direct": 0.9178004264831543,
+          "pixel_mae_vertical_flip": 87.42507934570312,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "agentview",
+          "episode_id": "demo_2",
+          "frame": 56,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "agentview_image",
+          "pixel_mae_channel_reversed": 5.735875129699707,
+          "pixel_mae_direct": 1.4598922729492188,
+          "pixel_mae_vertical_flip": 86.6824951171875,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        },
+        {
+          "camera": "robot0_eye_in_hand",
+          "episode_id": "demo_2",
+          "frame": 56,
+          "live_shape": [
+            84,
+            84,
+            3
+          ],
+          "observation_key": "robot0_eye_in_hand_image",
+          "pixel_mae_channel_reversed": 9.497023582458496,
+          "pixel_mae_direct": 0.8910147547721863,
+          "pixel_mae_vertical_flip": 84.78462982177734,
+          "stored_shape": [
+            84,
+            84,
+            3
+          ]
+        }
+      ],
+      "episode_id": "demo_2",
+      "frames": 57,
+      "state_restore_max_abs_observation_error": {
+        "object": 1.0408340855860843e-17,
+        "robot0_eef_pos": 1.0408340855860843e-17,
+        "robot0_eef_quat": 0.0,
+        "robot0_eef_vel_ang": 1.1102230246251565e-16,
+        "robot0_eef_vel_lin": 8.326672684688674e-17,
+        "robot0_gripper_qpos": 0.0,
+        "robot0_gripper_qvel": 0.0,
+        "robot0_joint_pos": 0.0,
+        "robot0_joint_pos_cos": 1.1102230246251565e-16,
+        "robot0_joint_pos_sin": 5.551115123125783e-17,
+        "robot0_joint_vel": 0.0
+      },
+      "state_restore_passed_at_1e-6": true,
+      "transition_count": 56
+    }
+  ],
+  "method": "state restore audit then uninterrupted actions[t] replay from states[0]",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.2.5",
+  "policy_training": false,
+  "python": "3.8.20 (default, Oct  2 2024, 16:34:12) \n[Clang 18.1.8 ]",
+  "started_unix_time": 1792653865.401877,
+  "status": "completed",
+  "summary": {
+    "all_action_replays_end_successful": true,
+    "max_full_state_drift": 0.0008745960508721728,
+    "phase0_decision": "PASS",
+    "phase0_limitations": "Recorded replay reaches the official Lift success signal for all selected episodes; full-state drift must still be described and may exceed the strict 1e-5 numerical gate.",
+    "state_restoration_exact_within_1e-6": true,
+    "strict_action_replay_1e-5_gate": false
+  },
+  "versions": {
+    "mujoco_engine_integer": 200,
+    "mujoco_py": "2.0.2.9",
+    "robomimic": "0.2.0",
+    "robosuite": "1.2.0"
+  }
+}

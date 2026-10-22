@@ -1,0 +1,94 @@
+{
+  "action_alignment": "obs[t] is pre-action; actions[t] is stepped at that observation; replay result is compared with stored state/obs[t+1]",
+  "action_dimension": 7,
+  "camera_alignment": [],
+  "camera_names": [
+    "agentview",
+    "robot0_eye_in_hand"
+  ],
+  "dataset_path": "/mnt/d/Code/Course_code/COURSE-HUZI-CODE/artifacts/datasets/robomimic/lift/ph/image.hdf5",
+  "dataset_sha256": "87f813fa5118eaaac520f9933dc34e03336e307929c5f1f5fc53fb9609e1789e",
+  "elapsed_seconds": 13.22534441947937,
+  "environment_horizon_default": 1000,
+  "environment_metadata": {
+    "env_kwargs": {
+      "camera_depths": false,
+      "camera_heights": 84,
+      "camera_names": [
+        "agentview",
+        "robot0_eye_in_hand"
+      ],
+      "camera_widths": 84,
+      "control_freq": 20,
+      "controller_configs": {
+        "control_delta": true,
+        "damping": 1,
+        "damping_limits": [
+          0,
+          10
+        ],
+        "impedance_mode": "fixed",
+        "input_max": 1,
+        "input_min": -1,
+        "interpolation": null,
+        "kp": 150,
+        "kp_limits": [
+          0,
+          300
+        ],
+        "orientation_limits": null,
+        "output_max": [
+          0.05,
+          0.05,
+          0.05,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "output_min": [
+          -0.05,
+          -0.05,
+          -0.05,
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "position_limits": null,
+        "ramp_ratio": 0.2,
+        "type": "OSC_POSE",
+        "uncouple_pos_ori": true
+      },
+      "has_offscreen_renderer": true,
+      "has_renderer": false,
+      "ignore_done": true,
+      "render_gpu_device_id": 0,
+      "reward_shaping": false,
+      "robots": [
+        "Panda"
+      ],
+      "use_camera_obs": true,
+      "use_object_obs": true
+    },
+    "env_name": "Lift",
+    "type": 1
+  },
+  "episode_ids": [
+    "demo_0",
+    "demo_1",
+    "demo_2"
+  ],
+  "episodes": [],
+  "error": "Traceback (most recent call last):\n  File \"scripts/validate_environment.py\", line 135, in main\n    live = np.asarray(obs[key])\nKeyError: 'agentview_image'\n",
+  "method": "state restore audit then uninterrupted actions[t] replay from states[0]",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.2.5",
+  "policy_training": false,
+  "python": "3.8.20 (default, Oct  2 2024, 16:34:12) \n[Clang 18.1.8 ]",
+  "started_unix_time": 1792653785.992272,
+  "status": "failed",
+  "versions": {
+    "mujoco_engine_integer": 200,
+    "mujoco_py": "2.0.2.9",
+    "robomimic": "0.2.0",
+    "robosuite": "1.2.0"
+  }
+}
