@@ -9,8 +9,11 @@ class GeometryPolicy:
     device = torch.device('cpu')
     dtype = torch.float32
 
-    def __init__(self, bank, tolerance=.001, sink=None):
+    def __init__(self, bank, tolerance=.001, sink=None, action_steps=8):
+        if action_steps not in (1, 3, 5, 7, 8):
+            raise ValueError('action_steps must be one of 1, 3, 5, 7, 8')
         self.bank, self.tolerance, self.sink = bank, tolerance, sink
+        self.action_steps = int(action_steps)
         self.query_records = []
         self.state_provider = None
         self.reset()
@@ -27,7 +30,7 @@ class GeometryPolicy:
         state = np.asarray(snapshot['state'], dtype=np.float64)
         i, distance, terms = self.bank.query(state)
         t2 = time.perf_counter()
-        chunk, indices = self.bank.action_chunk(i)
+        chunk, indices = self.bank.action_chunk(i, self.action_steps)
         t3 = time.perf_counter()
         previous = self.previous
         same = previous is not None and previous['bank_index'] == i

@@ -105,8 +105,10 @@ class OracleVectorTrace:
         return paths
 
 
-def run_official(policy, cfg, seeds, artifact_dir):
+def run_official(policy, cfg, seeds, artifact_dir, action_steps=8):
     e = cfg['evaluation']
+    if action_steps not in (1, 3, 5, 7, 8):
+        raise ValueError('action_steps must be one of 1, 3, 5, 7, 8')
     if seeds != list(range(100000, 100050)) or list(policy.bank.weights) != [1., 1., 1.]:
         raise ValueError('Formal protocol/weights are frozen')
     Path(artifact_dir).mkdir(parents=True, exist_ok=True)
@@ -115,7 +117,7 @@ def run_official(policy, cfg, seeds, artifact_dir):
             output_dir=str(artifact_dir), n_train=0, n_train_vis=0,
             n_test=50, n_test_vis=4, test_start_seed=100000,
             legacy_test=e['legacy_test'], max_steps=e['max_steps'],
-            n_obs_steps=1, n_action_steps=8, n_envs=1, fps=e['fps'],
+            n_obs_steps=1, n_action_steps=action_steps, n_envs=1, fps=e['fps'],
             past_action=False, tqdm_interval_sec=30)
     if runner.env_seeds != seeds:
         runner.env.close()

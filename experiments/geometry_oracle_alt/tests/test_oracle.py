@@ -46,6 +46,22 @@ class GeometryTests(unittest.TestCase):
             np.testing.assert_array_equal(chunk, bank.data.root['data/action'].oindex[idx])
             self.assertEqual(chunk.shape, (8, 2))
 
+    def test_variable_action_horizon_chunks_stay_in_episode(self):
+        bank = self.bank
+        indices_to_check = set()
+        for episode in bank.episodes:
+            episode_indices = np.flatnonzero(bank.episode_id == episode)
+            indices_to_check.update((int(episode_indices[0]), int(episode_indices[len(episode_indices)//2]),
+                                     int(episode_indices[-1])))
+        for i in sorted(indices_to_check):
+            episode = int(bank.episode_id[i])
+            for horizon in (1, 3, 5, 7, 8):
+                chunk, idx = bank.action_chunk(i, horizon)
+                expected = np.minimum(bank.source_index[i] + np.arange(horizon), bank.data.ends[episode] - 1)
+                np.testing.assert_array_equal(idx, expected)
+                np.testing.assert_array_equal(chunk, bank.data.root['data/action'].oindex[idx])
+                self.assertEqual(chunk.shape, (horizon, 2))
+
     def test_self_retrieval_and_exact_tie_order(self):
         for i, s in enumerate(self.bank.states):
             j, distance, _ = self.bank.query(s)
@@ -106,6 +122,23 @@ class StateTests(unittest.TestCase):
                 proxy.read_current_state(obs['agent_pos'][0, -1]+1)
         finally:
             env.close()
+
+    def test_policy_returns_requested_action_horizon(self):
+        from geometry_policy import GeometryPolicy
+        import torch
+        bank = GeometryBank(BASE['paths']['dataset'], MANIFEST['train_subsets']['30'])
+        obs = {'image': torch.zeros((1, 1, 3, 96, 96)),
+               'agent_pos': torch.zeros((1, 1, 2))}
+        for horizon in (1, 3, 5, 7, 8):
+            policy = GeometryPolicy(bank, action_steps=horizon)
+            state = bank.states[0].copy()
+            policy.state_provider = lambda observed, state=state: {
+                'state': state, 'step': 0, 'seed': 100000, 'pusher_max_abs_error': 0.0}
+            action = policy.predict_action(obs)['action']
+            self.assertEqual(tuple(action.shape), (1, horizon, 2))
+            self.assertEqual(len(policy.query_records[0]['action_source_indices']), horizon)
+            policy.finish_query(horizon)
+            self.assertEqual(policy.query_records[0]['executed_actions'], horizon)
 
 
 if __name__ == '__main__':

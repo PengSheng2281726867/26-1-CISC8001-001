@@ -1,15 +1,18 @@
 {
   "status": "passed",
-  "completed_at": "2026-10-21T11:17:21.960435+00:00",
-  "tests": 5,
-  "output": "test_periodic_distance_and_weights (test_oracle.GeometryTests) ... ok\ntest_self_retrieval_and_exact_tie_order (test_oracle.GeometryTests) ... ok\ntest_source_exact_and_all_action_boundaries (test_oracle.GeometryTests) ... ok\ntest_read_only_adapter_transition_parity (test_oracle.StateTests) ... ok\ntest_spawn_async_state_sync_reset_and_eight_actions (test_oracle.StateTests) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 7.619s\n\nOK\n",
+  "completed_at": "2026-10-23T07:09:33.679596+00:00",
+  "tests": 7,
+  "output": "test_periodic_distance_and_weights (test_oracle.GeometryTests) ... ok\ntest_self_retrieval_and_exact_tie_order (test_oracle.GeometryTests) ... ok\ntest_source_exact_and_all_action_boundaries (test_oracle.GeometryTests) ... ok\ntest_variable_action_horizon_chunks_stay_in_episode (test_oracle.GeometryTests) ... ok\ntest_policy_returns_requested_action_horizon (test_oracle.StateTests) ... ok\ntest_read_only_adapter_transition_parity (test_oracle.StateTests) ... ok\ntest_spawn_async_state_sync_reset_and_eight_actions (test_oracle.StateTests) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 8.117s\n\nOK\n",
   "code_files": {
     "common.py": "65b44e9ed9526aacd23f64d2526b31df81126f9bd4d26a69ccdebe2b89e7bf42",
-    "geometry_bank.py": "d491bf51332e8639b4a4434e9dfae504ab532b2a17acdd6af1c840bf2b48d10c",
-    "geometry_policy.py": "62469c3f7c494d908d436e8160b1f94793cb2db11c0706c12c3f3a7360bd0d4c",
-    "oracle_runner.py": "3afbf6379735e0d05f6fd45deb599bddc2bbec2b1ebf0bf655274440743d3609",
-    "reporting.py": "054f4a239c9c10a5cfd3c382a71400f3fc0ee39f5a393f6f64501ce7339baa63",
-    "run.py": "b8fc042f3619fec2aeac5100d3e8db476c314db19a55d914c222d099bc18b43c"
+    "geometry_bank.py": "78875aca3e2fe59b4b39a5a082a8d0a6a25fbbe4a4a9c01ee3fcb24be7ccc755",
+    "geometry_policy.py": "575db64f07f006af9171ff3671670c3e712aecce2856db440173d494c9f7359a",
+    "oracle_runner.py": "d91c23f602dfba57745ca319b84707a84068c40496325b4ed10fa6fc91e549e3",
+    "reporting.py": "aacfa1391c8ec536e1d086e0fdca59bac55a4942b1d7877ea84ce8bbdeef6a73",
+    "run.py": "b8fc042f3619fec2aeac5100d3e8db476c314db19a55d914c222d099bc18b43c",
+    "run_horizon_ablation.py": "eb8843da61330d668c28c83ec3796614af5f18288f3d3b5eccf06897c1640dff",
+    "validate_horizon_ablation.py": "0c1f2432854b98a94dae120ee6bdd9fce5f8b431c27dffba2581e86c0490ed65",
+    "visualize_case.py": "0262b789cd9f991f03d0608ea654ef63a150aeaa35f340d1d7fa19267f041f21"
   },
-  "test_source_sha256": "d3faaf37acaab97c2f2bb06a812ff6896d3ff9ae639e15b2f28fab4774d97220"
+  "test_source_sha256": "1167c4e89e1d93481cd09448c61704806cd9f6812ab18e13874f93ec47600f61"
 }

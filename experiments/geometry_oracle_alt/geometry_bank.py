@@ -42,8 +42,13 @@ class GeometryBank:
         index = int(np.argmin(distances))  # deterministic first bank index for exact ties
         return index, float(distances[index]), terms[index]
 
-    def action_chunk(self, index):
-        return self.data.action_chunk(self.episode_id[index], self.frame_index[index], 8)
+    def action_chunk(self, index, length=8):
+        """Return the next ``length`` absolute target actions from one episode.
+
+        The default remains the original eight-action protocol. Short-horizon
+        ablations use the same frame/action alignment and last-action padding.
+        """
+        return self.data.action_chunk(self.episode_id[index], self.frame_index[index], length)
 
     def save(self, path):
         np.savez_compressed(path, state=self.states, episode_id=self.episode_id,
