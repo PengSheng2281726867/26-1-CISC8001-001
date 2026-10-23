@@ -112,7 +112,17 @@ def main():
     parser.add_argument("--eval-config", type=Path, default=HERE / "configs" / "evaluation.json")
     parser.add_argument("--initial-states", type=Path, default=HERE / "results" / "evaluation_initial_states.json")
     parser.add_argument("--evaluation-id", type=str, default="evaluation01")
+    parser.add_argument("--action-chunk-length", type=int, default=1,
+                        help="Number of consecutive retrieved actions to execute before re-querying")
+    parser.add_argument("--stop-on-success", action="store_true",
+                        help="Stop immediately after the Lift success predicate first becomes true")
+    parser.add_argument("--seed-subset", type=int, nargs="+", default=None,
+                        help="Explicit subset of frozen evaluation seeds for a pilot; evaluation-id must contain 'pilot'")
     args = parser.parse_args()
+    if args.action_chunk_length < 1:
+        parser.error("--action-chunk-length must be at least 1")
+    if args.seed_subset is not None and "pilot" not in args.evaluation_id.lower():
+        parser.error("--seed-subset is only allowed when --evaluation-id contains 'pilot'")
     run_dir = args.run_dir.resolve()
     metadata_path = run_dir / "run_metadata.json"
     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
@@ -142,9 +152,15 @@ def main():
     if sha256_file(args.initial_states) != split["evaluation_initial_state_contract"]["sha256"]:
         raise ValueError("Evaluation reset fixtures changed after the split contract was frozen")
     seed_rows = {int(row["seed"]): row for row in fixtures["initial_conditions"]}
-    seeds = [int(x) for x in eval_config["test_seeds"]]
-    if seeds != [int(x) for x in fixtures["seed_contract"]["seeds"]]:
+    frozen_seeds = [int(x) for x in eval_config["test_seeds"]]
+    if frozen_seeds != [int(x) for x in fixtures["seed_contract"]["seeds"]]:
         raise ValueError("Evaluation seeds differ from the frozen reset fixture list")
+    if args.seed_subset is None:
+        seeds = frozen_seeds
+    else:
+        seeds = [int(x) for x in args.seed_subset]
+        if len(seeds) != len(set(seeds)) or not set(seeds).issubset(set(frozen_seeds)):
+            parser.error("--seed-subset must contain unique seeds from the frozen evaluation seed list")
     if metadata["evaluation_seed_manifest_sha256"] != sha256_file(args.initial_states):
         raise ValueError("Evaluation initial-state fixture checksum differs from the run contract")
     if list(metadata["train_episode_ids"]) != list(split["train_subsets"]["30"]):
@@ -193,9 +209,12 @@ def main():
     first_seed = seeds[0]
     first_fixture = seed_rows[first_seed]
     obs = reset_to_frozen_seed(env, first_seed, first_fixture)
-    smoke_action, smoke_info = policy.act(obs, chunk_length=1)
-    if smoke_action.shape != (7,) or not np.isfinite(smoke_action).all() or smoke_info["episode_id"] not in train_ids:
-        raise RuntimeError("One-step policy API smoke check failed")
+    smoke_action, smoke_info = policy.act(obs, chunk_length=args.action_chunk_length)
+    smoke_chunk = np.asarray(smoke_info["action_chunk"])
+    if (smoke_action.shape != (7,) or smoke_chunk.shape != (args.action_chunk_length, 7)
+            or not np.array_equal(smoke_action, smoke_chunk[0])
+            or not np.isfinite(smoke_chunk).all() or smoke_info["episode_id"] not in train_ids):
+        raise RuntimeError("Action-chunk policy API smoke check failed")
 
     import imageio.v2 as imageio
     eval_dir = run_dir / "evaluations" / args.evaluation_id
@@ -208,8 +227,35 @@ def main():
     output_video_dir.mkdir(parents=True, exist_ok=True)
     retrieval_path = eval_artifact_dir / "retrieval_log.csv"
     score_path = eval_dir / "eval_rollouts.csv"
-    score_fields = ["run_id", "train_episode_count", "split_manifest_sha256", "train_seed", "eval_seed", "initial_state_sha256", "success", "steps_to_success", "steps", "terminated", "time_limit", "max_reward", "final_reward", "wall_seconds", "retrieval_switches_episode", "retrieval_jumps_over_8_frames", "repeated_same_frame_fraction", "mean_similarity", "mean_preprocess_ms", "mean_encoder_ms", "mean_search_ms", "mean_action_extraction_ms", "video_path"]
-    retrieval_fields = ["eval_seed", "control_step", "matched_episode_id", "matched_local_frame_index", "matched_source_index", "top1_cosine_similarity", "query_eef_pos", "query_eef_quat", "query_gripper_qpos", "matched_eef_pos", "matched_eef_quat", "matched_gripper_qpos", "actual_action", "preprocess_ms", "encoder_ms", "search_ms", "action_extraction_ms", "episode_switch", "frame_jump_over_8", "same_frame_repeat"]
+    resolved_eval_path = eval_dir / "resolved_evaluation.json"
+    resolved_eval = {
+        "evaluation_id": args.evaluation_id,
+        "base_evaluation_config_path": str(args.eval_config),
+        "base_evaluation_config_sha256": sha256_file(args.eval_config),
+        "evaluation_seed_manifest_sha256": sha256_file(args.initial_states),
+        "evaluation_seed_scope": "explicit_pilot_subset" if args.seed_subset is not None else "full_frozen_manifest",
+        "split_manifest_sha256": metadata["split_manifest_sha256"],
+        "dataset_fingerprint": metadata["dataset_fingerprint"],
+        "checkpoint_sha256": metadata["checkpoint_sha256"],
+        "memory_bank_sha256": artifact["bank_sha256"],
+        "evaluation_seeds": seeds,
+        "horizon": int(eval_config["horizon"]),
+        "control_freq_hz": int(eval_config["control_freq"]),
+        "reward_shaping": bool(eval_config["reward_shaping"]),
+        "success_signal": eval_config["success_signal"],
+        "action_chunk_length": int(args.action_chunk_length),
+        "stop_on_success": bool(args.stop_on_success),
+        "stop_rule": "stop immediately after first true Lift success predicate" if args.stop_on_success else "continue to fixed horizon or environment done",
+        "action_semantics": "consecutive original 7D incremental OSC_POSE + Panda gripper commands from one matched demonstration episode",
+        "action_boundary_policy": "repeat only that same demonstration episode's final action when chunk extraction reaches its end",
+        "evaluation_code_commit": git_value("rev-parse", "HEAD"),
+        "evaluation_worktree_status": git_value("status", "--short"),
+        "evaluation_script_sha256": sha256_file(HERE / "scripts" / "evaluate_alt_lift.py"),
+        "ablation_plan_sha256": sha256_file(run_dir / "action_chunk_ablation_plan.json") if (run_dir / "action_chunk_ablation_plan.json").exists() else None,
+    }
+    json_write(resolved_eval_path, resolved_eval)
+    score_fields = ["run_id", "train_episode_count", "split_manifest_sha256", "train_seed", "eval_seed", "initial_state_sha256", "success", "steps_to_success", "steps", "terminated", "terminated_by_success", "termination_reason", "time_limit", "max_reward", "final_reward", "action_chunk_length", "stop_on_success", "retrieval_queries", "action_padding_count", "wall_seconds", "retrieval_switches_episode", "retrieval_jumps_over_8_frames", "repeated_same_frame_fraction", "mean_similarity", "mean_preprocess_ms", "mean_encoder_ms", "mean_search_ms", "mean_action_extraction_ms", "video_path"]
+    retrieval_fields = ["eval_seed", "query_index", "control_step", "action_chunk_length", "executed_action_count", "action_padding_count", "matched_episode_id", "matched_local_frame_index", "matched_source_index", "top1_cosine_similarity", "query_eef_pos", "query_eef_quat", "query_gripper_qpos", "matched_eef_pos", "matched_eef_quat", "matched_gripper_qpos", "actual_action", "actual_action_chunk", "preprocess_ms", "encoder_ms", "search_ms", "action_extraction_ms", "episode_switch", "frame_jump_over_8", "same_frame_repeat"]
     rollout_rows = []
     retrieval_count = 0
     evaluation_start = time.perf_counter()
@@ -218,6 +264,10 @@ def main():
         "evaluation_id": args.evaluation_id,
         "status": "running",
         "started_unix_time": time.time(),
+        "action_chunk_length": int(args.action_chunk_length),
+        "stop_on_success": bool(args.stop_on_success),
+        "evaluation_seeds": seeds,
+        "evaluation_seed_scope": "explicit_pilot_subset" if args.seed_subset is not None else "full_frozen_manifest",
         "evaluation_code_commit": git_value("rev-parse", "HEAD"),
         "evaluation_worktree_status_at_launch": git_value("status", "--short"),
     }
@@ -244,10 +294,17 @@ def main():
                 similarities, preprocess_times, encoder_times, search_times, action_times = [], [], [], [], []
                 max_reward, final_reward, first_success_step = 0.0, 0.0, None
                 ever_success = False
+                terminated_by_success = False
+                action_padding_count = 0
                 done = False
                 steps = 0
-                while steps < int(eval_config["horizon"]) and not done:
-                    action, query = policy.act(obs, chunk_length=1)
+                query_index = 0
+                while steps < int(eval_config["horizon"]) and not done and not terminated_by_success:
+                    query_start_step = steps
+                    first_action, query = policy.act(obs, chunk_length=args.action_chunk_length)
+                    command_chunk = np.asarray(query["action_chunk"])
+                    if command_chunk.shape != (args.action_chunk_length, 7) or not np.array_equal(first_action, command_chunk[0]):
+                        raise RuntimeError("Retrieved action chunk has an invalid shape or first action")
                     matched_episode = query["episode_id"]
                     matched_frame = int(query["local_frame_index"])
                     switched = prev_episode is not None and matched_episode != prev_episode
@@ -261,20 +318,37 @@ def main():
                     encoder_times.append(query["encoder_seconds"])
                     search_times.append(query["search_seconds"])
                     action_times.append(query["action_extraction_seconds"])
-                    command = np.asarray(action)
-                    obs, reward, done, info = env.step(command)
-                    steps += 1
-                    final_reward = float(reward)
-                    max_reward = max(max_reward, final_reward)
-                    success = bool(env.is_success()["task"])
-                    if success and not ever_success:
-                        first_success_step = steps
-                    ever_success = ever_success or success
+                    episode_actions = actions_by_episode[matched_episode]
+                    executed_commands = []
+                    for command in command_chunk:
+                        if steps >= int(eval_config["horizon"]) or done:
+                            break
+                        command = np.asarray(command)
+                        obs, reward, done, info = env.step(command)
+                        steps += 1
+                        final_reward = float(reward)
+                        max_reward = max(max_reward, final_reward)
+                        success = bool(env.is_success()["task"])
+                        if success and not ever_success:
+                            first_success_step = steps
+                        ever_success = ever_success or success
+                        executed_commands.append(command.tolist())
+                        if writer is not None:
+                            writer.append_data(np.concatenate((obs["agentview_image"], obs["robot0_eye_in_hand_image"]), axis=1))
+                        if args.stop_on_success and success:
+                            terminated_by_success = True
+                            break
+                    chunk_padding = max(0, matched_frame + len(executed_commands) - len(episode_actions))
+                    action_padding_count += chunk_padding
                     qprop = query["query_proprio"]
                     mprop = query["matched_proprio"]
                     retrieval_writer.writerow({
                         "eval_seed": seed,
-                        "control_step": steps - 1,
+                        "query_index": query_index,
+                        "control_step": query_start_step,
+                        "action_chunk_length": args.action_chunk_length,
+                        "executed_action_count": len(executed_commands),
+                        "action_padding_count": chunk_padding,
                         "matched_episode_id": matched_episode,
                         "matched_local_frame_index": matched_frame,
                         "matched_source_index": query["source_index"],
@@ -285,7 +359,8 @@ def main():
                         "matched_eef_pos": json.dumps(mprop[:3].tolist()),
                         "matched_eef_quat": json.dumps(mprop[3:7].tolist()),
                         "matched_gripper_qpos": json.dumps(mprop[7:9].tolist()),
-                        "actual_action": json.dumps(command.tolist()),
+                        "actual_action": json.dumps(executed_commands[0]) if executed_commands else "[]",
+                        "actual_action_chunk": json.dumps(executed_commands),
                         "preprocess_ms": query["preprocess_seconds"] * 1000.0,
                         "encoder_ms": query["encoder_seconds"] * 1000.0,
                         "search_ms": query["search_seconds"] * 1000.0,
@@ -295,14 +370,17 @@ def main():
                         "same_frame_repeat": int(same_frame),
                     })
                     retrieval_count += 1
-                    if writer is not None:
-                        writer.append_data(np.concatenate((obs["agentview_image"], obs["robot0_eye_in_hand_image"]), axis=1))
                     prev_episode, prev_frame = matched_episode, matched_frame
-                    if steps % 100 == 0:
+                    query_index += 1
+                    if retrieval_count % 100 == 0:
                         rf.flush()
                 if writer is not None:
                     writer.close()
-                terminated, time_limit = classify_episode_end(done, steps, int(eval_config["horizon"]))
+                if terminated_by_success:
+                    terminated, time_limit, termination_reason = True, False, "success"
+                else:
+                    terminated, time_limit = classify_episode_end(done, steps, int(eval_config["horizon"]))
+                    termination_reason = "time_limit" if time_limit else ("environment_done" if terminated else "unknown")
                 row = {
                     "run_id": metadata["run_id"],
                     "train_episode_count": len(train_ids),
@@ -314,13 +392,19 @@ def main():
                     "steps_to_success": first_success_step,
                     "steps": steps,
                     "terminated": terminated,
+                    "terminated_by_success": terminated_by_success,
+                    "termination_reason": termination_reason,
                     "time_limit": time_limit,
                     "max_reward": max_reward,
                     "final_reward": final_reward,
+                    "action_chunk_length": args.action_chunk_length,
+                    "stop_on_success": bool(args.stop_on_success),
+                    "retrieval_queries": query_index,
+                    "action_padding_count": action_padding_count,
                     "wall_seconds": time.perf_counter() - episode_start,
                     "retrieval_switches_episode": switch_count,
                     "retrieval_jumps_over_8_frames": jump_count,
-                    "repeated_same_frame_fraction": float(repeat_count / max(steps, 1)),
+                    "repeated_same_frame_fraction": float(repeat_count / max(query_index, 1)),
                     "mean_similarity": float(np.mean(similarities)),
                     "mean_preprocess_ms": float(np.mean(preprocess_times) * 1000.0),
                     "mean_encoder_ms": float(np.mean(encoder_times) * 1000.0),
@@ -356,6 +440,9 @@ def main():
         "evaluation_seed_manifest_sha256": metadata["evaluation_seed_manifest_sha256"],
         "evaluation_seeds": seeds,
         "success_definition": eval_config["success_signal"],
+        "action_chunk_length": int(args.action_chunk_length),
+        "stop_on_success": bool(args.stop_on_success),
+        "success_termination_rule": "stop after first true success predicate" if args.stop_on_success else None,
         "success_count": successes,
         "rollout_count": len(rollout_rows),
         "success_rate": successes / float(len(rollout_rows)),
@@ -365,6 +452,8 @@ def main():
         "mean_wall_seconds_per_rollout": float(np.mean([row["wall_seconds"] for row in rollout_rows])),
         "total_environment_steps": int(sum(row["steps"] for row in rollout_rows)),
         "total_retrieval_queries": retrieval_count,
+        "success_terminated_rollout_count": int(sum(1 for row in rollout_rows if row["terminated_by_success"])),
+        "action_padding_count": int(sum(row["action_padding_count"] for row in rollout_rows)),
         "mean_encoder_latency_ms": float(np.mean([row["mean_encoder_ms"] for row in rollout_rows])),
         "mean_search_latency_ms": float(np.mean([row["mean_search_ms"] for row in rollout_rows])),
         "mean_preprocess_latency_ms": float(np.mean([row["mean_preprocess_ms"] for row in rollout_rows])),
@@ -374,13 +463,13 @@ def main():
         "controller": env_meta["env_kwargs"]["controller_configs"],
         "environment_versions": {"robomimic": robomimic.__version__, "robosuite": robosuite.__version__, "mujoco_py": mujoco_py.__version__, "torch": torch.__version__, "torchvision": torchvision.__version__, "python": sys.version, "platform": platform.platform()},
         "torch_cpu_threads": torch.get_num_threads(),
-        "artifact_paths": {"rollout_csv": str(score_path), "retrieval_csv": str(retrieval_path), "video_dir": str(output_video_dir)},
+        "artifact_paths": {"rollout_csv": str(score_path), "retrieval_csv": str(retrieval_path), "video_dir": str(output_video_dir), "resolved_evaluation": str(resolved_eval_path)},
         "per_seed": rollout_rows,
         "evaluation_wall_seconds": time.perf_counter() - evaluation_start,
     }
     out = eval_dir / "eval_metrics.json"
     json_write(out, summary)
-    eval_artifacts = [retrieval_path] + sorted(output_video_dir.glob("*.mp4"))
+    eval_artifacts = [resolved_eval_path, retrieval_path] + sorted(output_video_dir.glob("*.mp4"))
     eval_manifest = {
         "evaluation_id": args.evaluation_id,
         "artifacts": [

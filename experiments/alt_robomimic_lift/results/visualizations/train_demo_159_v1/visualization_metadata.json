@@ -1,0 +1,29 @@
+{
+  "episode_id": "demo_159",
+  "is_frozen_train_episode": true,
+  "dataset_fingerprint": "722a35b4b0620b5cc29a07cea33f2b64f3a34e0fbcead2ea666d4f9ccacdd8a1",
+  "split_manifest_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+  "actions": 45,
+  "control_frequency_hz": 20,
+  "trajectory_seconds": 2.25,
+  "state_frame_count": 46,
+  "state_order": "initial obs[0], then next_obs[t] after action[t]; reward plotted at the resulting state step t+1",
+  "lift_threshold_m": 0.84,
+  "cube_z_initial_m": 0.8318000898787805,
+  "cube_z_peak_m": 0.8797542474120458,
+  "cube_z_terminal_m": 0.8797542474120458,
+  "final_sparse_reward": 1.0,
+  "first_positive_reward_action_index_zero_based": 40,
+  "first_positive_reward_state_step_one_based": 41,
+  "object_state_alignment_max_abs_obs_tplus1_vs_nextobs_t_m": 0.0,
+  "used_for_policy_input": false,
+  "source_images": [
+    "obs/agentview_image",
+    "obs/robot0_eye_in_hand_image"
+  ],
+  "diagnostic_state": "obs/object[:, 0:3] interpreted as cube position; only used for visualization",
+  "outputs": [
+    "results\\visualizations\\train_demo_159_v1\\demo_159_trajectory_contact_sheet_and_height.png",
+    "results\\visualizations\\train_demo_159_v1\\demo_159_two_camera_full.gif"
+  ]
+}

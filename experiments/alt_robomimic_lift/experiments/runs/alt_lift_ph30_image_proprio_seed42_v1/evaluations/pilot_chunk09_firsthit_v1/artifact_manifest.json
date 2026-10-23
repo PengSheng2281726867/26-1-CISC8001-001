@@ -1,0 +1,22 @@
+{
+  "artifacts": [
+    {
+      "bytes": 7617,
+      "path": "experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/pilot_chunk09_firsthit_v1/resolved_evaluation.json",
+      "sha256": "aac75739349fa05d9e87940480d4641ca356e0422ef9f9930b686054a0b9c798"
+    },
+    {
+      "bytes": 177266,
+      "path": "artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/pilot_chunk09_firsthit_v1/retrieval_log.csv",
+      "sha256": "5a025e65856baa5fd9230b9f4c6f16a8085aabd19bd1da7b2d3c8834ff559e1f"
+    },
+    {
+      "bytes": 587449,
+      "path": "artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/pilot_chunk09_firsthit_v1/videos/seed_100000.mp4",
+      "sha256": "32629eb879cc52c97fd6f96801b63b405b450cc9f50feb38923b24b31c25f06e"
+    }
+  ],
+  "evaluation_id": "pilot_chunk09_firsthit_v1",
+  "rollout_csv_path": "experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/pilot_chunk09_firsthit_v1/eval_rollouts.csv",
+  "rollout_csv_sha256": "edf27f6c4f63ee9225d52b2d1b445a490e6eb61dd6198c22cb76f25515619197"
+}

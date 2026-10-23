@@ -1,0 +1,51 @@
+{
+  "plan_id": "alt_lift_ph30_action_chunk_firsthit_v1",
+  "status_at_commit": "planned",
+  "created_date": "2026-10-23",
+  "purpose": "Measure first-hit Lift success under different open-loop action execution lengths using the completed ALT-30 checkpoint and memory bank.",
+  "fixed_inputs": {
+    "run_id": "alt_lift_ph30_image_proprio_seed42_v1",
+    "checkpoint_sha256": "7eafe7b99b45706fb6a485b9192f982a7cd7284444f12da6e498bd00316d2e4e",
+    "memory_bank_sha256": "7f24e98bcb6f406309915b0c1b205fe59bcc1b93f62fa5ed01dec88aa81f1637",
+    "dataset_fingerprint": "722a35b4b0620b5cc29a07cea33f2b64f3a34e0fbcead2ea666d4f9ccacdd8a1",
+    "split_manifest_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+    "evaluation_seed_manifest_sha256": "75511225fcce9124a758f922a7c098c79899634f86e00b3e463cf3fe7f892f3f",
+    "base_evaluation_config_sha256": "dd34eb0fdbdd32b2de0537318d7fa7871d85348318f24f9da0d4540b9671ef4b",
+    "evaluation_seeds": "all 50 frozen seeds, 100000 through 100049",
+    "max_control_steps": 1000,
+    "control_frequency_hz": 20,
+    "reward_shaping": false,
+    "success_signal": "RoboSuite Lift task predicate: cube z > table_offset_z + 0.04 m"
+  },
+  "execution_protocol": {
+    "retrieval": "cosine top-1 from the same frozen ALT-30 memory bank",
+    "policy_inputs": "current agentview RGB, current wrist RGB, and current robot proprioception only",
+    "chunk_definition": "retrieve once, execute up to K consecutive stored 7D actions from that matched episode, then re-observe and query again",
+    "success_handling": "check the environment success predicate after every individual executed action; stop immediately at the first true result",
+    "success_signal_visibility": "evaluator stop/scoring only; never supplied to the policy",
+    "failed_rollout_handling": "continue until success, environment termination, or the unchanged 1000-step cap",
+    "episode_boundary": "never cross into another demonstration episode; preserve same-episode last-action padding and record executed padding",
+    "training": "no retraining; same model seed 42 checkpoint and same bank for all variants"
+  },
+  "variants": [
+    {"action_chunk_length": 3, "pilot_evaluation_id": "pilot_chunk03_firsthit_v1", "evaluation_id": "chunk03_firsthit_v1"},
+    {"action_chunk_length": 5, "pilot_evaluation_id": "pilot_chunk05_firsthit_v1", "evaluation_id": "chunk05_firsthit_v1"},
+    {"action_chunk_length": 7, "pilot_evaluation_id": "pilot_chunk07_firsthit_v1", "evaluation_id": "chunk07_firsthit_v1"},
+    {"action_chunk_length": 9, "pilot_evaluation_id": "pilot_chunk09_firsthit_v1", "evaluation_id": "chunk09_firsthit_v1"}
+  ],
+  "pilot": {
+    "evaluation_seed_subset": [100000],
+    "purpose": "Validate chunk execution and success-triggered stop before the full paired 50-seed runs; pilot rows are excluded from formal success-rate aggregation."
+  },
+  "reference": {
+    "action_chunk_length": 1,
+    "evaluation_id": "evaluation01",
+    "note": "The existing one-action-per-query run logs first-success steps and uses the same fixed seeds. Its ever-success results are the K=1 first-hit reference; the original fixed-horizon metrics remain unchanged."
+  },
+  "reporting": {
+    "primary_metric": "fraction of fixed evaluation seeds that reached the frozen Lift height predicate before the cap",
+    "additional_metrics": ["steps to first success", "steps per rollout", "Wilson 95% interval", "retrieval queries", "wall time", "terminal reward", "action padding count"],
+    "model_seed_uncertainty": "not measured; this is one checkpoint across paired evaluation seeds",
+    "interpretation_limit": "first-hit success measures task completion, not sustained holding or policy-learned termination"
+  }
+}

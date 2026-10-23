@@ -74,7 +74,7 @@ After training, the cross-version checkpoint loader can be checked in the WSL si
 
 The output under `experiments/runs/<run-id>/` contains the resolved config, exact split reference, software and seed metadata, per-epoch loss, checkpoint/bank checksums, and small run reports. The checkpoint, bank, full query trace, and videos are kept under the ignored `artifacts/runs/<run-id>/`. A run directory is immutable; use `--run-id` with a new name for a documented retry.
 
-Training uses the exact 30 train IDs in `configs/lift_ph_split42.json`; the 20 validation demos are not used for normalization, contrastive pairs, or the action bank. Two independently photometrically augmented views preserve camera pairing and proprioception. The ResNet is shared by both cameras and fine-tuned. The only loss is NT-Xent at temperature 0.4. At inference, the top-1 match supplies one original 7D incremental OSC_POSE/Panda command; the policy queries again at the next control step. Chunk lengths 4 and 8 are unit-tested for same-episode padding but are not evaluated.
+Training uses the exact 30 train IDs in `configs/lift_ph_split42.json`; the 20 validation demos are not used for normalization, contrastive pairs, or the action bank. Two independently photometrically augmented views preserve camera pairing and proprioception. The ResNet is shared by both cameras and fine-tuned. The only loss is NT-Xent at temperature 0.4. The fixed baseline queries every control step and executes one original 7D incremental OSC_POSE/Panda command. A separate, no-retraining action-chunk ablation is defined in `experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/action_chunk_ablation_plan.json`.
 
 ## Phase 3 fixed-seed evaluation
 
@@ -94,6 +94,19 @@ The evaluation writes the 50 rollout rows and aggregate Lift success rate with W
 The 40-epoch model trained on the frozen 30 episodes reached the Lift height criterion at least once in 37/50 fixed starts (74%; Wilson 95% interval 60.4%–84.1%). All 50 rollouts ran to 1,000 steps, and all final sparse rewards were zero; this is transient lift-height success, not sustained endpoint success. The pilot used one model seed. See [`docs/final_analysis.md`](docs/final_analysis.md), the per-run [`report.md`](experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/report.md), and tracked per-seed metrics under `experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/`.
 
 The checkpoint, bank, full retrieval trace, and three predeclared videos remain in ignored local `artifacts/`. Their sizes and hashes are recorded in the run and evaluation manifests; Git alone does not back them up.
+
+## Action-chunk ablation
+
+The additional experiment uses the same checkpoint, memory bank, initial-state fixtures, and 50 frozen seeds. For each K in 3, 5, 7, and 9, ALT retrieves one K-action chunk, executes actions one by one, checks the Lift predicate after every action, and stops immediately on first success. Unsuccessful rollouts retain the 1,000-step cap. The success signal is used only by the evaluator, not as a policy input. The one-seed pilots use seed `100000` and are excluded from the formal rates. The original fixed-horizon `evaluation01` remains unchanged.
+
+```powershell
+$lift = '/mnt/d/Code/Course_code/COURSE-HUZI-CODE/experiments/alt_robomimic_lift'
+$runId = 'alt_lift_ph30_image_proprio_seed42_v1'
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk03_firsthit_v1 --action-chunk-length 3 --stop-on-success"
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk05_firsthit_v1 --action-chunk-length 5 --stop-on-success"
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk07_firsthit_v1 --action-chunk-length 7 --stop-on-success"
+wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk09_firsthit_v1 --action-chunk-length 9 --stop-on-success"
+```
 
 ## Outputs
 
