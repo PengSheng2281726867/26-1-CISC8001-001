@@ -1,0 +1,6 @@
+action_chunk_length,evaluation_id,success_count,rollout_count,success_rate,wilson_95_percent_low,wilson_95_percent_high,mean_steps_to_success,median_steps_to_success,success_step_p25,success_step_p75,mean_environment_steps_per_rollout,mean_retrieval_queries_per_rollout,mean_first_hit_or_cap_steps_per_rollout,total_retrieval_queries,total_action_padding_count,mean_retrieval_episode_switches_per_rollout,evaluation_wall_seconds
+1,evaluation01,37,50,0.74,0.6044684273515117,0.8412847250644762,81.48648648648648,56.0,44.0,102.0,1000.0,1000.0,320.3,50000,,412.26,3672.977949037
+3,chunk03_firsthit_v1,30,50,0.6,0.4618143774758936,0.7239161026974346,71.4,59.5,46.5,81.75,442.84,148.04,442.84,7402,2046,78.78,1431.9998455549999
+5,chunk05_firsthit_v1,36,50,0.72,0.5833487630404344,0.8252582933408878,62.583333333333336,55.0,43.5,74.0,325.06,65.24,325.06,3262,1989,36.4,1027.955825726
+7,chunk07_firsthit_v1,32,50,0.64,0.501410168761127,0.7586125034815325,55.0,49.5,38.75,60.5,395.2,56.84,395.2,2842,2790,31.82,1202.979712112
+9,chunk09_firsthit_v1,33,50,0.66,0.521538260502326,0.7756305077749992,60.24242424242424,49.0,44.0,57.0,379.76,42.76,379.76,2138,2581,22.96,1131.6217828590002

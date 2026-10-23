@@ -101,3 +101,11 @@
 - **Correction:** each evaluation remains in its unique run/evaluation directory; top-level compatibility mirrors are written only when absent. Offline and trace diagnostics refuse existing output paths, and the bank builder refuses an existing bank.
 - **Scope:** this was found during code review; no second evaluation was attempted and no existing result artifact was changed.
 - **Verification:** the 16-test suite passed in Windows Python 3.10.22/Torch 2.7.1+cu128 and WSL Python 3.8.20/Torch 1.10.2+cpu. Recursive `compileall` passed.
+
+## 2026-10-23 — First summary pass encountered the legacy K=1 CSV schema
+
+- **Command:** `artifacts/environments/alt_lift_train/Scripts/python.exe scripts/summarize_action_chunk_ablation.py` after the four formal chunk runs completed.
+- **Observed:** summary generation raised `KeyError: 'retrieval_queries'` while reading the existing `evaluation01/eval_rollouts.csv`; the formal rollout files were not changed.
+- **Cause:** the original K=1 rollout schema predates the explicit `retrieval_queries` field used by the new chunk evaluator. K=1 queried once per environment step, as confirmed by its saved total of 50,000 queries and 50,000 steps.
+- **Correction:** the summary command derives K=1 queries from each row's step count, leaves its unrecorded action-padding count unavailable, and uses its logged first-hit steps plus the failure cap to calculate a clearly labeled counterfactual first-hit/cap step cost. It validates all row counts, success totals, confidence intervals, seed manifests, reset-state hashes, checkpoint/bank hashes, and chunk-run source hashes.
+- **Status:** corrected. The deterministic summary regeneration completed and the derived K=1 values are labeled separately from the actual 1,000-step baseline execution.

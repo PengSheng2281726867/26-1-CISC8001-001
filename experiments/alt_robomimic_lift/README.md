@@ -38,7 +38,7 @@ wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh s
 wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc 'bash scripts/with_legacy_env.sh -m unittest discover -s tests -v'
 ```
 
-Phase 1 is frozen and its data/split tests pass. Phase 2 adds the Lift-specific shared-ResNet encoder, NT-Xent training, deterministic memory bank, and one-step retrieval policy. ALT-30 is completed; no DP, Lift-50/100, or action-chunk ablation is part of this study.
+Phase 1 is frozen and its data/split tests pass. Phase 2 adds the Lift-specific shared-ResNet encoder, NT-Xent training, deterministic memory bank, and one-step retrieval policy. ALT-30 and the K=3/5/7/9 first-hit action-chunk ablation are completed; this study still does not train DP or run Lift-50/100.
 
 ## Training environment and pretrained weights
 
@@ -106,7 +106,12 @@ wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh s
 wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk05_firsthit_v1 --action-chunk-length 5 --stop-on-success"
 wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk07_firsthit_v1 --action-chunk-length 7 --stop-on-success"
 wsl.exe -d Ubuntu --cd $lift -- /bin/bash -lc "bash scripts/with_legacy_env.sh scripts/evaluate_alt_lift.py --run-dir experiments/runs/$runId --evaluation-id chunk09_firsthit_v1 --action-chunk-length 9 --stop-on-success"
+
+$trainPython = 'artifacts/environments/alt_lift_train/Scripts/python.exe'
+& $trainPython scripts/summarize_action_chunk_ablation.py
 ```
+
+The completed first-hit results are in [`docs/action_chunk_ablation.md`](docs/action_chunk_ablation.md), with machine-readable tables in `results/action_chunk_firsthit_summary.csv` and `.json`. Using the same fixed 50 seeds, K=3 reached the height threshold in 30/50 trials (60%), K=5 in 36/50 (72%), K=7 in 32/50 (64%), and K=9 in 33/50 (66%). The K=1 fixed-horizon reference reached it at least once in 37/50 (74%). K=5 has the highest point estimate among chunked variants, but paired-seed differences are uncertain; this is one trained checkpoint, with no training-seed uncertainty estimate. The K=1 mean first-hit/cap step count is derived from its per-seed first-hit records, while its actual saved rollouts continued to 1,000 steps.
 
 ## Outputs
 
