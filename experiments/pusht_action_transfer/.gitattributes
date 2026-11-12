@@ -1,0 +1,2 @@
+# The run summary records the exact script hash.
+compare_transfer.py -text whitespace=cr-at-eol
