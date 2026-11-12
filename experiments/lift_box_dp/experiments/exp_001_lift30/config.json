@@ -1,0 +1,19 @@
+{
+  "alt_root": "../../COURSE-HUZI-CODE/experiments/alt_robomimic_lift",
+  "dp_root": "../../DP/diffusion_policy",
+  "dp_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+  "split_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+  "model_seed": 42,
+  "shuffle_seed": 43,
+  "sampling_seed": 44,
+  "horizon": 16,
+  "batch_size": 64,
+  "epochs": 200,
+  "learning_rate": 0.0001,
+  "down_dims": [256, 512, 1024],
+  "diffusion_steps": 100,
+  "inference_steps": 10,
+  "ema_power": 0.75,
+  "hold_steps": 20,
+  "eval_workers": 4
+}

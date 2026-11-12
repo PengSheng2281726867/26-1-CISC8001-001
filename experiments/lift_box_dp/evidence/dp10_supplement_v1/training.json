@@ -1,0 +1,40 @@
+{
+  "run_id": "dp10_supplement_v1",
+  "smoke": false,
+  "epochs": 300,
+  "steps": 2400,
+  "train_ids": [
+    "demo_159",
+    "demo_15",
+    "demo_42",
+    "demo_126",
+    "demo_186",
+    "demo_162",
+    "demo_47",
+    "demo_110",
+    "demo_5",
+    "demo_194"
+  ],
+  "train_frames": 480,
+  "validation_frames": 993,
+  "checkpoint_sha256": "439048e638c251db99364db767142f93f3ca61631f5036bfe436398a90aca329",
+  "checkpoint_bytes": 349564869,
+  "wall_seconds": 144.16176589997485,
+  "torch": "2.7.1+cu128",
+  "python": "3.10.22",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "parameter_count": 87348239,
+  "source_sha256": {
+    "audit_demo_hold.py": "e9c639f8c73a357bb8db218e1e0c9fa8b43a76537d32cac9a40472fe8b8c2cb7",
+    "common.py": "811a8788c25a26bf2c8245efbda31f2c6932d9582239f48892e8cb4dda015d92",
+    "compare.py": "2b2d8d3b8fcb5abc0f1b029840f5906f4a7df90636c53ba45b2a26d5a6b388a2",
+    "epoch_study.py": "ea4cf11b20aaf079fd56116baa4b58bce26b7debc291b2e3f2a36a21196732f4",
+    "evaluate.py": "642d7b559c8e6530227fafd5a32ce5be7ed00c13374c01fd5e052c27a4171b90",
+    "evaluate_epochs.py": "641a5b1f883fe7aa995499d2299ce9ca69c6be6f06bd9c627bb3d0b985a8578c",
+    "model.py": "696d34e926310fdf48297e3a5db95827b6c61df015192ea695b60c73fe8ef82d",
+    "simulator.py": "3e9cc4c9e04a7804233b285a71ccbf5e0375b7ae4341d4d5980c93126c7e1d52",
+    "summarize_epochs.py": "39fe1d495c2e63f7b57344fdb7b152a75db855cc62cb31cd0822b71dcecbeec7",
+    "train.py": "90dee98560ad8ed338885d345e289b6427889a3d8fc585f9ff4b0224389ed9f9",
+    "train_alt10.py": "b324813cd2b5b61211f308a3807537264e1f73a226503c6261d071e55ddae0bb"
+  }
+}

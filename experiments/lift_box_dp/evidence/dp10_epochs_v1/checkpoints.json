@@ -1,0 +1,14 @@
+{
+  "40": {
+    "steps": 320,
+    "checkpoint_sha256": "b7eca73ed21a785f31c3ee29db38811cf07c7b79f2bef350d59646dc9f15f4b4"
+  },
+  "100": {
+    "steps": 800,
+    "checkpoint_sha256": "2605de600059b422251f52f853eb9a38c9722c93aed3d5e2ec180ba9345bdb91"
+  },
+  "200": {
+    "steps": 1600,
+    "checkpoint_sha256": "e251f1da56abe3859cf3343977fe67c3506418d2c850e64406fe5070039d73c8"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "image_sha256": "87f813fa5118eaaac520f9933dc34e03336e307929c5f1f5fc53fb9609e1789e",
+  "split_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+  "hold_steps": 20,
+  "n": 30,
+  "ever_positive": 30,
+  "recorded_at_least_hold_steps": 0,
+  "median_consecutive_positive": 5.0,
+  "max_consecutive_positive": 5,
+  "episodes": [
+    {
+      "episode": "demo_159",
+      "steps": 45,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_15",
+      "steps": 50,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_42",
+      "steps": 53,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_126",
+      "steps": 56,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_186",
+      "steps": 45,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_162",
+      "steps": 52,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_47",
+      "steps": 40,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_110",
+      "steps": 45,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_5",
+      "steps": 58,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_194",
+      "steps": 36,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_37",
+      "steps": 50,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_122",
+      "steps": 60,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_12",
+      "steps": 53,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_36",
+      "steps": 45,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_153",
+      "steps": 42,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_69",
+      "steps": 42,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_61",
+      "steps": 54,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_195",
+      "steps": 54,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_32",
+      "steps": 59,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_172",
+      "steps": 53,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_171",
+      "steps": 45,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_60",
+      "steps": 42,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_10",
+      "steps": 54,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_144",
+      "steps": 51,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_160",
+      "steps": 43,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_52",
+      "steps": 46,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_125",
+      "steps": 55,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_106",
+      "steps": 49,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_73",
+      "steps": 36,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    },
+    {
+      "episode": "demo_113",
+      "steps": 43,
+      "max_consecutive_positive_rewards": 5,
+      "terminal_positive_reward_steps": 5
+    }
+  ]
+}

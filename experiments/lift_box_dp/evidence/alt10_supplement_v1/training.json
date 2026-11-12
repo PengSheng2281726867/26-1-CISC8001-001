@@ -1,0 +1,27 @@
+{
+  "train_ids": [
+    "demo_159",
+    "demo_15",
+    "demo_42",
+    "demo_126",
+    "demo_186",
+    "demo_162",
+    "demo_47",
+    "demo_110",
+    "demo_5",
+    "demo_194"
+  ],
+  "train_frames": 480,
+  "steps": 150,
+  "wall_seconds": 51.314328299835324,
+  "checkpoint_epochs": [
+    2,
+    5,
+    10
+  ],
+  "pretrained_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "original_config_sha256": "24cff7f0fe217760a66d2532885e35d04cfff04b630663d690414797afe2b9b0",
+  "source_sha256": "b324813cd2b5b61211f308a3807537264e1f73a226503c6261d071e55ddae0bb",
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

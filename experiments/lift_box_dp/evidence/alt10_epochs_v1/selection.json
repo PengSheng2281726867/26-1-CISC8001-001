@@ -1,0 +1,100 @@
+{
+  "policy": "alt",
+  "selected_epoch": 10,
+  "scores": {
+    "10": {
+      "n_rollouts": 8,
+      "wall_seconds": 78.95863920007832,
+      "mean_batch_policy_ms": 40.60162360128015,
+      "ever_success": {
+        "count": 5,
+        "rate": 0.625,
+        "wilson95": [
+          0.30574239460262737,
+          0.8631557141764026
+        ]
+      },
+      "final_success": {
+        "count": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0,
+          0.32440756488388023
+        ]
+      },
+      "hold_success": {
+        "count": 5,
+        "rate": 0.625,
+        "wilson95": [
+          0.30574239460262737,
+          0.8631557141764026
+        ]
+      }
+    },
+    "40": {
+      "n_rollouts": 8,
+      "wall_seconds": 65.02143640001304,
+      "mean_batch_policy_ms": 40.85352798830718,
+      "ever_success": {
+        "count": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.071479212752109,
+          0.5907245696898311
+        ]
+      },
+      "final_success": {
+        "count": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0,
+          0.32440756488388023
+        ]
+      },
+      "hold_success": {
+        "count": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.071479212752109,
+          0.5907245696898311
+        ]
+      }
+    },
+    "100": {
+      "n_rollouts": 8,
+      "wall_seconds": 65.61658539995551,
+      "mean_batch_policy_ms": 39.38867719937116,
+      "ever_success": {
+        "count": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.071479212752109,
+          0.5907245696898311
+        ]
+      },
+      "final_success": {
+        "count": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0,
+          0.32440756488388023
+        ]
+      },
+      "hold_success": {
+        "count": 1,
+        "rate": 0.125,
+        "wilson95": [
+          0.02241749145005667,
+          0.4708881822128535
+        ]
+      }
+    }
+  },
+  "validation_sha256": "256ddc5bcada97513b5b83b6de2d6564ae6a915801d21d863fb2a6f79fb8bf43",
+  "selection_order": [
+    "hold_success",
+    "ever_success",
+    "final_success",
+    "earlier_epoch"
+  ]
+}

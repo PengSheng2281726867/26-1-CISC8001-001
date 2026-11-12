@@ -1,0 +1,557 @@
+{
+  "initial_states_sha256": "0ae7f576dab2e66b569766b7c9cee3bc1956b17bb10a716f17f22df6c3999b1f",
+  "config": {
+    "alt_root": "../../COURSE-HUZI-CODE/experiments/alt_robomimic_lift",
+    "dp_root": "../../DP/diffusion_policy",
+    "dp_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+    "split_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+    "model_seed": 42,
+    "shuffle_seed": 43,
+    "sampling_seed": 44,
+    "horizon": 16,
+    "batch_size": 64,
+    "epochs": 300,
+    "learning_rate": 0.0001,
+    "down_dims": [
+      256,
+      512,
+      1024
+    ],
+    "diffusion_steps": 100,
+    "inference_steps": 10,
+    "ema_power": 0.75,
+    "hold_steps": 20,
+    "eval_workers": 4,
+    "train_count": 10,
+    "dp_epochs": [
+      150,
+      200,
+      300
+    ],
+    "alt_epochs": [
+      2,
+      5,
+      10
+    ],
+    "dp_warmup_steps": 175,
+    "validation_seeds": [
+      90000,
+      90001,
+      90002,
+      90003,
+      90004,
+      90005,
+      90006,
+      90007
+    ],
+    "validation_horizon": 250,
+    "test_workers": 8,
+    "selection_order": [
+      "hold_success",
+      "ever_success",
+      "final_success",
+      "earlier_epoch"
+    ],
+    "study_config_sha256": "8dccb56f32bf01ddcbf447f0638b371a0e4531e34f8fb56dcc15577d7c9090f0",
+    "parent_config_sha256": "6ba1148cc23da0211d7517b0b8f112613adc3c711c02a6cede8c616a47464b11",
+    "supplement_config_sha256": "fcdfeb54077858859ae6c8642843d1c974394b7e90066d94ea02b7e58bef1f23",
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194"
+    ]
+  },
+  "results": {
+    "alt": {
+      "2": {
+        "original8": {
+          "ever_success": {
+            "count": 3,
+            "n": 8,
+            "wilson95": [
+              0.13684428582359742,
+              0.6942576053973727
+            ]
+          },
+          "hold_success": {
+            "count": 3,
+            "n": 8,
+            "wilson95": [
+              0.13684428582359742,
+              0.6942576053973727
+            ]
+          },
+          "final_success": {
+            "count": 2,
+            "n": 8,
+            "wilson95": [
+              0.071479212752109,
+              0.5907245696898311
+            ]
+          }
+        },
+        "new16": {
+          "ever_success": {
+            "count": 3,
+            "n": 16,
+            "wilson95": [
+              0.06591599071428142,
+              0.4300888096197414
+            ]
+          },
+          "hold_success": {
+            "count": 3,
+            "n": 16,
+            "wilson95": [
+              0.06591599071428142,
+              0.4300888096197414
+            ]
+          },
+          "final_success": {
+            "count": 1,
+            "n": 16,
+            "wilson95": [
+              0.011119344764642547,
+              0.2832873757029894
+            ]
+          }
+        },
+        "combined24": {
+          "ever_success": {
+            "count": 6,
+            "n": 24,
+            "wilson95": [
+              0.11999366228595004,
+              0.44899444005154004
+            ]
+          },
+          "hold_success": {
+            "count": 6,
+            "n": 24,
+            "wilson95": [
+              0.11999366228595004,
+              0.44899444005154004
+            ]
+          },
+          "final_success": {
+            "count": 3,
+            "n": 24,
+            "wilson95": [
+              0.04344334080123441,
+              0.3100388127050007
+            ]
+          }
+        }
+      },
+      "5": {
+        "original8": {
+          "ever_success": {
+            "count": 4,
+            "n": 8,
+            "wilson95": [
+              0.21521606221387757,
+              0.7847839377861224
+            ]
+          },
+          "hold_success": {
+            "count": 3,
+            "n": 8,
+            "wilson95": [
+              0.13684428582359742,
+              0.6942576053973727
+            ]
+          },
+          "final_success": {
+            "count": 1,
+            "n": 8,
+            "wilson95": [
+              0.02241749145005667,
+              0.4708881822128535
+            ]
+          }
+        },
+        "new16": {
+          "ever_success": {
+            "count": 6,
+            "n": 16,
+            "wilson95": [
+              0.18481232558863633,
+              0.6135895945449727
+            ]
+          },
+          "hold_success": {
+            "count": 6,
+            "n": 16,
+            "wilson95": [
+              0.18481232558863633,
+              0.6135895945449727
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 16,
+            "wilson95": [
+              0,
+              0.1936076805344365
+            ]
+          }
+        },
+        "combined24": {
+          "ever_success": {
+            "count": 10,
+            "n": 24,
+            "wilson95": [
+              0.2446760260981176,
+              0.6116533413477124
+            ]
+          },
+          "hold_success": {
+            "count": 9,
+            "n": 24,
+            "wilson95": [
+              0.21159367559548778,
+              0.5729003755732572
+            ]
+          },
+          "final_success": {
+            "count": 1,
+            "n": 24,
+            "wilson95": [
+              0.007393456165505796,
+              0.20241806478655938
+            ]
+          }
+        }
+      },
+      "10": {
+        "original8": {
+          "ever_success": {
+            "count": 5,
+            "n": 8,
+            "wilson95": [
+              0.30574239460262737,
+              0.8631557141764026
+            ]
+          },
+          "hold_success": {
+            "count": 5,
+            "n": 8,
+            "wilson95": [
+              0.30574239460262737,
+              0.8631557141764026
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 8,
+            "wilson95": [
+              0,
+              0.32440756488388023
+            ]
+          }
+        },
+        "new16": {
+          "ever_success": {
+            "count": 5,
+            "n": 16,
+            "wilson95": [
+              0.14164643854782039,
+              0.5559564416525933
+            ]
+          },
+          "hold_success": {
+            "count": 4,
+            "n": 16,
+            "wilson95": [
+              0.10182067491213048,
+              0.49498316535508774
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 16,
+            "wilson95": [
+              0,
+              0.1936076805344365
+            ]
+          }
+        },
+        "combined24": {
+          "ever_success": {
+            "count": 10,
+            "n": 24,
+            "wilson95": [
+              0.2446760260981176,
+              0.6116533413477124
+            ]
+          },
+          "hold_success": {
+            "count": 9,
+            "n": 24,
+            "wilson95": [
+              0.21159367559548778,
+              0.5729003755732572
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 24,
+            "wilson95": [
+              0,
+              0.1379762046749802
+            ]
+          }
+        }
+      }
+    },
+    "dp": {
+      "150": {
+        "original8": {
+          "ever_success": {
+            "count": 4,
+            "n": 8,
+            "wilson95": [
+              0.21521606221387757,
+              0.7847839377861224
+            ]
+          },
+          "hold_success": {
+            "count": 4,
+            "n": 8,
+            "wilson95": [
+              0.21521606221387757,
+              0.7847839377861224
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 8,
+            "wilson95": [
+              0,
+              0.32440756488388023
+            ]
+          }
+        },
+        "new16": {
+          "ever_success": {
+            "count": 5,
+            "n": 16,
+            "wilson95": [
+              0.14164643854782039,
+              0.5559564416525933
+            ]
+          },
+          "hold_success": {
+            "count": 5,
+            "n": 16,
+            "wilson95": [
+              0.14164643854782039,
+              0.5559564416525933
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 16,
+            "wilson95": [
+              0,
+              0.1936076805344365
+            ]
+          }
+        },
+        "combined24": {
+          "ever_success": {
+            "count": 9,
+            "n": 24,
+            "wilson95": [
+              0.21159367559548778,
+              0.5729003755732572
+            ]
+          },
+          "hold_success": {
+            "count": 9,
+            "n": 24,
+            "wilson95": [
+              0.21159367559548778,
+              0.5729003755732572
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 24,
+            "wilson95": [
+              0,
+              0.1379762046749802
+            ]
+          }
+        }
+      },
+      "200": {
+        "original8": {
+          "ever_success": {
+            "count": 4,
+            "n": 8,
+            "wilson95": [
+              0.21521606221387757,
+              0.7847839377861224
+            ]
+          },
+          "hold_success": {
+            "count": 3,
+            "n": 8,
+            "wilson95": [
+              0.13684428582359742,
+              0.6942576053973727
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 8,
+            "wilson95": [
+              0,
+              0.32440756488388023
+            ]
+          }
+        },
+        "new16": {
+          "ever_success": {
+            "count": 8,
+            "n": 16,
+            "wilson95": [
+              0.27999563610326017,
+              0.7200043638967398
+            ]
+          },
+          "hold_success": {
+            "count": 8,
+            "n": 16,
+            "wilson95": [
+              0.27999563610326017,
+              0.7200043638967398
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 16,
+            "wilson95": [
+              0,
+              0.1936076805344365
+            ]
+          }
+        },
+        "combined24": {
+          "ever_success": {
+            "count": 12,
+            "n": 24,
+            "wilson95": [
+              0.3142742581957335,
+              0.6857257418042665
+            ]
+          },
+          "hold_success": {
+            "count": 11,
+            "n": 24,
+            "wilson95": [
+              0.2789133373121099,
+              0.6492513464108052
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 24,
+            "wilson95": [
+              0,
+              0.1379762046749802
+            ]
+          }
+        }
+      },
+      "300": {
+        "original8": {
+          "ever_success": {
+            "count": 5,
+            "n": 8,
+            "wilson95": [
+              0.30574239460262737,
+              0.8631557141764026
+            ]
+          },
+          "hold_success": {
+            "count": 4,
+            "n": 8,
+            "wilson95": [
+              0.21521606221387757,
+              0.7847839377861224
+            ]
+          },
+          "final_success": {
+            "count": 0,
+            "n": 8,
+            "wilson95": [
+              0,
+              0.32440756488388023
+            ]
+          }
+        },
+        "new16": {
+          "ever_success": {
+            "count": 14,
+            "n": 16,
+            "wilson95": [
+              0.639771727342413,
+              0.9650225122567595
+            ]
+          },
+          "hold_success": {
+            "count": 13,
+            "n": 16,
+            "wilson95": [
+              0.5699111903802586,
+              0.9340840092857187
+            ]
+          },
+          "final_success": {
+            "count": 1,
+            "n": 16,
+            "wilson95": [
+              0.011119344764642547,
+              0.2832873757029894
+            ]
+          }
+        },
+        "combined24": {
+          "ever_success": {
+            "count": 19,
+            "n": 24,
+            "wilson95": [
+              0.5952954674681135,
+              0.9075517464714815
+            ]
+          },
+          "hold_success": {
+            "count": 17,
+            "n": 24,
+            "wilson95": [
+              0.5083230633550337,
+              0.8508535180303913
+            ]
+          },
+          "final_success": {
+            "count": 1,
+            "n": 24,
+            "wilson95": [
+              0.007393456165505796,
+              0.20241806478655938
+            ]
+          }
+        }
+      }
+    }
+  }
+}

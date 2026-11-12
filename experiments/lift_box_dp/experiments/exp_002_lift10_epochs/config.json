@@ -1,0 +1,10 @@
+{
+  "train_count": 10,
+  "dp_epochs": [40, 100, 200],
+  "alt_epochs": [10, 40, 100],
+  "dp_warmup_steps": 175,
+  "validation_seeds": [90000, 90001, 90002, 90003, 90004, 90005, 90006, 90007],
+  "validation_horizon": 250,
+  "test_workers": 8,
+  "selection_order": ["hold_success", "ever_success", "final_success", "earlier_epoch"]
+}

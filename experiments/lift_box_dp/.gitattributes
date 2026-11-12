@@ -1,0 +1,4 @@
+# Protocol checksums refer to exact source bytes.
+experiments/**/*.json -text whitespace=cr-at-eol
+evidence/**/*.json -text whitespace=cr-at-eol
+evidence/**/*.csv -text whitespace=cr-at-eol

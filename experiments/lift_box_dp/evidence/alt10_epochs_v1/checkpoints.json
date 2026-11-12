@@ -1,0 +1,17 @@
+{
+  "10": {
+    "steps": 150,
+    "checkpoint_sha256": "cae8ea3b6c76b256c02b4ce2b0492053fa68f74636bdc6a1e86cef28425949d4",
+    "bank_sha256": "002c0ff0618b82e6903b16b85298cac408fe89b8b986d44f3aea47bf8e181d8c"
+  },
+  "40": {
+    "steps": 600,
+    "checkpoint_sha256": "7a8bbf06280bbc1671065e58549bd91143e5407fdd0631b12ee7428dba0a3fb2",
+    "bank_sha256": "cf94806746c11e630622179cae601b5a45302d95b29e7d609d143f0876abb16b"
+  },
+  "100": {
+    "steps": 1500,
+    "checkpoint_sha256": "ed45c63762a0ac1bc51476bd62525de52db80b3cfdbb61203fec1093e4010a07",
+    "bank_sha256": "90ea67892ba9d6b1a7a19cab6401d11aa3a70ca14cef8c2bb31aef9ea14c3a1a"
+  }
+}
