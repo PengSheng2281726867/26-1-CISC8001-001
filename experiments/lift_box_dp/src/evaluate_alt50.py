@@ -1,4 +1,4 @@
-"""Evaluate ALT-50 checkpoints on the same 24 Lift validation conditions."""
+"""Evaluate Lift-50 checkpoints on the same 24 validation conditions."""
 import argparse
 
 import torch
@@ -16,8 +16,9 @@ def main():
     parser.add_argument("run_id")
     parser.add_argument("phase", choices=["evaluate", "summarize"])
     parser.add_argument("--epoch", type=int)
+    parser.add_argument("--method", choices=["alt", "dp"], default="alt")
     args = parser.parse_args()
-    cfg, alt, dp, _, image = study(scale=50)
+    cfg, alt, dp, _, image = study(scale=50, method=args.method)
     add_references(alt, dp)
     original = read_json(ORIGINAL)
     extra = read_json(MANIFEST)
@@ -35,8 +36,8 @@ def main():
         raise ValueError("Invalid validation seed membership")
     run = ROOT / "artifacts" / args.run_id
     if read_json(run / "config.json") != cfg:
-        raise ValueError("Training run does not match the ALT-50 configuration")
-    checkpoints = cfg["alt_epochs"]
+        raise ValueError("Training run does not match the Lift-50 configuration")
+    checkpoints = cfg[f"{args.method}_epochs"]
     if args.phase == "evaluate":
         torch.set_float32_matmul_precision("high")
         torch.backends.cudnn.allow_tf32 = True
@@ -44,9 +45,9 @@ def main():
         if any(epoch not in checkpoints for epoch in epochs):
             parser.error("Epoch must be one of the frozen checkpoints")
         for epoch in epochs:
-            run_evaluation("alt", run, epoch, cfg, alt, image, list(old), cfg["validation_horizon"],
+            run_evaluation(args.method, run, epoch, cfg, alt, image, list(old), cfg["validation_horizon"],
                            old, original_sha, "validation")
-            run_evaluation("alt", run, epoch, cfg, alt, image, list(new), cfg["validation_horizon"],
+            run_evaluation(args.method, run, epoch, cfg, alt, image, list(new), cfg["validation_horizon"],
                            new, extra_sha, LABEL, sampling_seed=SAMPLING_SEED)
         return
     if args.epoch is not None:
@@ -54,8 +55,8 @@ def main():
     recorded = read_json(run / "checkpoints.json")
     epochs = {}
     for epoch in checkpoints:
-        a = verified_rows(run, "alt", epoch, cfg, list(old), original_sha, "validation")
-        b = verified_rows(run, "alt", epoch, cfg, list(new), extra_sha, LABEL)
+        a = verified_rows(run, args.method, epoch, cfg, list(old), original_sha, "validation")
+        b = verified_rows(run, args.method, epoch, cfg, list(new), extra_sha, LABEL)
         epochs[str(epoch)] = {"artifact": recorded[str(epoch)], "original8": counts(a),
                               "new16": counts(b), "combined24": counts(a + b)}
     output = SCALE50_PATH.parent / f"validation_{args.run_id}.json"

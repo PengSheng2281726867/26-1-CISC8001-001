@@ -8,7 +8,7 @@ STUDY_PATH = STUDY_DIR / "config.json"
 SCALE50_PATH = ROOT / "experiments/exp_003_lift50_epochs/config.json"
 
 
-def study(supplement=False, scale=10):
+def study(supplement=False, scale=10, method="alt"):
     if scale not in (10, 50) or (scale == 50 and supplement):
         raise ValueError("Invalid ALT study scale or supplement combination")
     cfg, alt, dp, split, image = contract()
@@ -43,6 +43,15 @@ def study(supplement=False, scale=10):
         cfg.update(scale_protocol)
         cfg["scale_config_sha256"] = sha256(SCALE50_PATH)
         ids = scale_ids
+        if method == "dp":
+            dp50_path = SCALE50_PATH.with_name("dp_config.json")
+            dp50 = read_json(dp50_path)
+            epochs = dp50["dp_epochs"]
+            if (set(dp50) != {"dp_epochs", "dp_warmup_steps"} or not epochs
+                    or epochs != sorted(set(epochs)) or epochs[0] < 1 or dp50["dp_warmup_steps"] < 0):
+                raise ValueError("Invalid DP-50 training protocol")
+            cfg.update(dp50)
+            cfg["dp50_config_sha256"] = sha256(dp50_path)
     cfg["train_ids"] = ids
     cfg["epochs"] = cfg["dp_epochs"][-1]
     return cfg, alt, dp, split, image

@@ -1,0 +1,4 @@
+{
+  "dp_epochs": [40, 150, 200, 300],
+  "dp_warmup_steps": 175
+}

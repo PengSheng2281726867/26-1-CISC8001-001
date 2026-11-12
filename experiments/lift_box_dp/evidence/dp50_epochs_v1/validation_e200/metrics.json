@@ -1,0 +1,29 @@
+{
+  "n_rollouts": 8,
+  "wall_seconds": 85.81292649987154,
+  "mean_batch_policy_ms": 122.9017395908013,
+  "ever_success": {
+    "count": 8,
+    "rate": 1.0,
+    "wilson95": [
+      0.6755924351161198,
+      1
+    ]
+  },
+  "final_success": {
+    "count": 3,
+    "rate": 0.375,
+    "wilson95": [
+      0.13684428582359742,
+      0.6942576053973727
+    ]
+  },
+  "hold_success": {
+    "count": 8,
+    "rate": 1.0,
+    "wilson95": [
+      0.6755924351161198,
+      1
+    ]
+  }
+}

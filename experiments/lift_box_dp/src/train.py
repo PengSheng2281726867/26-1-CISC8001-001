@@ -54,12 +54,15 @@ def main():
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--study", action="store_true")
     parser.add_argument("--supplement", action="store_true")
+    parser.add_argument("--scale", type=int, choices=(10, 50), default=10)
     args = parser.parse_args()
+    if args.scale != 10 and not args.study:
+        parser.error("--scale 50 requires --study")
     if args.supplement and not args.study:
         parser.error("--supplement requires --study")
     if args.study:
         from epoch_study import study
-        cfg, alt, dp, split, image = study(supplement=args.supplement)
+        cfg, alt, dp, split, image = study(supplement=args.supplement, scale=args.scale, method="dp")
     else:
         cfg, alt, dp, split, image = contract()
     add_references(alt, dp)

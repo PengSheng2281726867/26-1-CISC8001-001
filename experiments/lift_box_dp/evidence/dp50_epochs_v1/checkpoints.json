@@ -1,0 +1,18 @@
+{
+  "40": {
+    "steps": 1560,
+    "checkpoint_sha256": "841fe3b752890ec29a26a279ba7be7e0686abed1c6a615fd6ec071d43f63487e"
+  },
+  "150": {
+    "steps": 5850,
+    "checkpoint_sha256": "d50ef08a732d1f8d7a6e7dbcad9e2751cc0132412a194c290830781f6cf07863"
+  },
+  "200": {
+    "steps": 7800,
+    "checkpoint_sha256": "37d650fd4d9d405e757174374ae412052cd09197fcb113e5db81c05a06efa3ca"
+  },
+  "300": {
+    "steps": 11700,
+    "checkpoint_sha256": "d06c952b4644657240d0e7a7b987db5cd50a85eae29cc7da3aaffb586d900efe"
+  }
+}

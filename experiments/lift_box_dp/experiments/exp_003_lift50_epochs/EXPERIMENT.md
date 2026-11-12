@@ -1,4 +1,4 @@
-# 50 条示范下 ALT 的训练轮数
+# 50 条示范下 ALT 与 DP 的训练轮数
 
 ## 研究问题
 
@@ -12,7 +12,7 @@
 
 ## 评估
 
-沿用 Lift-10 的 24 个验证初始状态，每局 250 步。指标为曾达抬升阈值、连续至少 20 步达阈值、第 250 步仍达阈值。连续保持是主指标。正式 50 个测试初始状态保留。按验证状态配对比较，并同时报告每个检查点的训练更新次数。同一轮数下，50 条示范带来更多更新，也扩大了记忆库覆盖，因此两种样本规模的差异需结合这些变化解读。本实验只训练 ALT，使用一个模型种子。
+沿用 Lift-10 的 24 个验证初始状态，每局 250 步。指标为曾达抬升阈值、连续至少 20 步达阈值、第 250 步仍达阈值。连续保持是主指标。正式 50 个测试初始状态保留。按验证状态配对比较，并同时报告每个检查点的训练更新次数。同一轮数下，50 条示范带来更多更新，也扩大了记忆库覆盖，因此两种样本规模的差异需结合这些变化解读。ALT 和 DP 各使用一个模型种子。
 
 ## 复现
 
@@ -30,3 +30,16 @@ $python = '..\alt_robomimic_lift\artifacts\environments\alt_lift_train\Scripts\p
 | 50 条嵌套清单校验和固定轮数 | `src/epoch_study.py`、[config.json](config.json) |
 | 对比训练和逐检查点记忆库 | `src/train_alt10.py` |
 | 复用 24 个初始状态的闭环验证 | `src/evaluate_alt50.py`、`src/evaluate.py` |
+
+## DP-50 同规模对照
+
+DP-CNN 使用与 ALT-50 完全相同的 50 条训练轨迹和 2,469 帧，仍用 20 条互斥示范计算离线验证损失。沿用 DP-10 补测的单帧输入、16 步预测、7 维增量动作、每步重规划、10 次 DDIM 去噪和 300 轮余弦学习率日程。预热沿用 175 次更新。训练保存第 40、150、200、300 轮。第 40 轮与 ALT 共有，其余三个检查点和 DP-10 补测相同。同轮数时，50 条示范会带来更多参数更新。检查点在既有 24 个验证初始状态各跑 250 步，保持定义及两个验证批次的采样种子沿用原配置。两种方法各自保留视觉编码和初始化，所比较的是完整策略。
+
+```powershell
+$python = '..\alt_robomimic_lift\artifacts\environments\alt_lift_train\Scripts\python.exe'
+& $python -B src/train.py dp50_epochs_v1 --study --scale 50
+& $python -B src/evaluate_alt50.py dp50_epochs_v1 evaluate --method dp
+& $python -B src/evaluate_alt50.py dp50_epochs_v1 summarize --method dp
+```
+
+[DP 固定配置](dp_config.json)只覆盖 DP-50 的轮数和预热。按验证状态逐个配对报告 ALT-50 与 DP-50 的差异，保留 50 个正式测试状态。
