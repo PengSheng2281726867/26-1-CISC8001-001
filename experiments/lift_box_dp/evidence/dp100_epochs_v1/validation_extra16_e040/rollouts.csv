@@ -1,0 +1,17 @@
+seed,steps,ever_success,first_success_step,final_success,longest_hold_steps,hold_success,terminal_hold_steps,final_reward,policy_ms_per_step,terminated
+90008,250,True,50,True,201,True,201,1.0,134.73870600573719,False
+90009,250,True,54,False,36,True,0,0.0,134.73870600573719,False
+90010,250,True,56,False,56,True,0,0.0,134.73870600573719,False
+90011,250,True,44,False,70,True,0,0.0,134.73870600573719,False
+90012,250,True,41,False,63,True,0,0.0,134.73870600573719,False
+90013,250,True,42,False,85,True,0,0.0,134.73870600573719,False
+90014,250,True,45,False,68,True,0,0.0,134.73870600573719,False
+90015,250,True,45,False,44,True,0,0.0,134.73870600573719,False
+90016,250,True,69,False,42,True,0,0.0,136.29429520014673,False
+90017,250,True,50,False,133,True,0,0.0,136.29429520014673,False
+90018,250,True,53,False,69,True,0,0.0,136.29429520014673,False
+90019,250,True,130,False,62,True,0,0.0,136.29429520014673,False
+90020,250,True,44,False,42,True,0,0.0,136.29429520014673,False
+90021,250,True,40,False,46,True,0,0.0,136.29429520014673,False
+90022,250,True,45,False,59,True,0,0.0,136.29429520014673,False
+90023,250,True,49,False,37,True,0,0.0,136.29429520014673,False

@@ -1,0 +1,536 @@
+{
+  "config": {
+    "alt_root": "../../COURSE-HUZI-CODE/experiments/alt_robomimic_lift",
+    "dp_root": "../../DP/diffusion_policy",
+    "dp_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+    "split_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+    "model_seed": 42,
+    "shuffle_seed": 43,
+    "sampling_seed": 44,
+    "horizon": 16,
+    "batch_size": 64,
+    "epochs": 200,
+    "learning_rate": 0.0001,
+    "down_dims": [
+      256,
+      512,
+      1024
+    ],
+    "diffusion_steps": 100,
+    "inference_steps": 10,
+    "ema_power": 0.75,
+    "hold_steps": 20,
+    "eval_workers": 4,
+    "train_count": 100,
+    "dp_epochs": [
+      40,
+      100,
+      200
+    ],
+    "alt_epochs": [
+      5,
+      10,
+      40
+    ],
+    "dp_warmup_steps": 175,
+    "validation_seeds": [
+      90000,
+      90001,
+      90002,
+      90003,
+      90004,
+      90005,
+      90006,
+      90007
+    ],
+    "validation_horizon": 250,
+    "test_workers": 8,
+    "selection_order": [
+      "hold_success",
+      "ever_success",
+      "final_success",
+      "earlier_epoch"
+    ],
+    "study_config_sha256": "8dccb56f32bf01ddcbf447f0638b371a0e4531e34f8fb56dcc15577d7c9090f0",
+    "parent_config_sha256": "6ba1148cc23da0211d7517b0b8f112613adc3c711c02a6cede8c616a47464b11",
+    "scale_config_sha256": "6c7b00dd70f8e37e3f8edefe873215dbaa0d427125892e521458962c02361efc",
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194",
+      "demo_37",
+      "demo_122",
+      "demo_12",
+      "demo_36",
+      "demo_153",
+      "demo_69",
+      "demo_61",
+      "demo_195",
+      "demo_32",
+      "demo_172",
+      "demo_171",
+      "demo_60",
+      "demo_10",
+      "demo_144",
+      "demo_160",
+      "demo_52",
+      "demo_125",
+      "demo_106",
+      "demo_73",
+      "demo_113",
+      "demo_105",
+      "demo_95",
+      "demo_103",
+      "demo_145",
+      "demo_43",
+      "demo_0",
+      "demo_161",
+      "demo_192",
+      "demo_16",
+      "demo_80",
+      "demo_102",
+      "demo_38",
+      "demo_156",
+      "demo_176",
+      "demo_135",
+      "demo_78",
+      "demo_115",
+      "demo_19",
+      "demo_14",
+      "demo_177",
+      "demo_146",
+      "demo_179",
+      "demo_65",
+      "demo_84",
+      "demo_165",
+      "demo_46",
+      "demo_104",
+      "demo_79",
+      "demo_54",
+      "demo_196",
+      "demo_85",
+      "demo_118",
+      "demo_109",
+      "demo_133",
+      "demo_142",
+      "demo_33",
+      "demo_18",
+      "demo_140",
+      "demo_123",
+      "demo_175",
+      "demo_63",
+      "demo_83",
+      "demo_148",
+      "demo_100",
+      "demo_155",
+      "demo_72",
+      "demo_27",
+      "demo_184",
+      "demo_112",
+      "demo_51",
+      "demo_174",
+      "demo_4",
+      "demo_29",
+      "demo_183",
+      "demo_99",
+      "demo_98",
+      "demo_131",
+      "demo_124",
+      "demo_198",
+      "demo_134",
+      "demo_178",
+      "demo_120",
+      "demo_34",
+      "demo_48",
+      "demo_169",
+      "demo_138",
+      "demo_149",
+      "demo_132",
+      "demo_127",
+      "demo_21"
+    ]
+  },
+  "training": {
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194",
+      "demo_37",
+      "demo_122",
+      "demo_12",
+      "demo_36",
+      "demo_153",
+      "demo_69",
+      "demo_61",
+      "demo_195",
+      "demo_32",
+      "demo_172",
+      "demo_171",
+      "demo_60",
+      "demo_10",
+      "demo_144",
+      "demo_160",
+      "demo_52",
+      "demo_125",
+      "demo_106",
+      "demo_73",
+      "demo_113",
+      "demo_105",
+      "demo_95",
+      "demo_103",
+      "demo_145",
+      "demo_43",
+      "demo_0",
+      "demo_161",
+      "demo_192",
+      "demo_16",
+      "demo_80",
+      "demo_102",
+      "demo_38",
+      "demo_156",
+      "demo_176",
+      "demo_135",
+      "demo_78",
+      "demo_115",
+      "demo_19",
+      "demo_14",
+      "demo_177",
+      "demo_146",
+      "demo_179",
+      "demo_65",
+      "demo_84",
+      "demo_165",
+      "demo_46",
+      "demo_104",
+      "demo_79",
+      "demo_54",
+      "demo_196",
+      "demo_85",
+      "demo_118",
+      "demo_109",
+      "demo_133",
+      "demo_142",
+      "demo_33",
+      "demo_18",
+      "demo_140",
+      "demo_123",
+      "demo_175",
+      "demo_63",
+      "demo_83",
+      "demo_148",
+      "demo_100",
+      "demo_155",
+      "demo_72",
+      "demo_27",
+      "demo_184",
+      "demo_112",
+      "demo_51",
+      "demo_174",
+      "demo_4",
+      "demo_29",
+      "demo_183",
+      "demo_99",
+      "demo_98",
+      "demo_131",
+      "demo_124",
+      "demo_198",
+      "demo_134",
+      "demo_178",
+      "demo_120",
+      "demo_34",
+      "demo_48",
+      "demo_169",
+      "demo_138",
+      "demo_149",
+      "demo_132",
+      "demo_127",
+      "demo_21"
+    ],
+    "train_frames": 4882,
+    "steps": 6080,
+    "wall_seconds": 1527.1114435000345,
+    "checkpoint_epochs": [
+      5,
+      10,
+      40
+    ],
+    "pretrained_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+    "original_config_sha256": "24cff7f0fe217760a66d2532885e35d04cfff04b630663d690414797afe2b9b0",
+    "source_sha256": "fb5277246164e02b1fc3cb8f0f5ed7e11361aff0be9b1493748e1bd3c85e67c7",
+    "torch": "2.7.1+cu128",
+    "gpu": "NVIDIA GeForce RTX 5090"
+  },
+  "validation_original_sha256": "256ddc5bcada97513b5b83b6de2d6564ae6a915801d21d863fb2a6f79fb8bf43",
+  "validation_extra_sha256": "0ae7f576dab2e66b569766b7c9cee3bc1956b17bb10a716f17f22df6c3999b1f",
+  "epochs": {
+    "5": {
+      "artifact": {
+        "steps": 760,
+        "checkpoint_sha256": "5d624bd620d04ef66a8827aa1728b65884727a84bb18d1e2e8df6048c46ed35f",
+        "bank_sha256": "44eb3cf3d434b507e31e1bdd4985ffc67dd096ff95f3b3fa2af78c58e3981577"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 5,
+          "n": 8,
+          "wilson95": [
+            0.30574239460262737,
+            0.8631557141764026
+          ]
+        },
+        "hold_success": {
+          "count": 4,
+          "n": 8,
+          "wilson95": [
+            0.21521606221387757,
+            0.7847839377861224
+          ]
+        },
+        "final_success": {
+          "count": 0,
+          "n": 8,
+          "wilson95": [
+            0,
+            0.32440756488388023
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 13,
+          "n": 16,
+          "wilson95": [
+            0.5699111903802586,
+            0.9340840092857187
+          ]
+        },
+        "hold_success": {
+          "count": 13,
+          "n": 16,
+          "wilson95": [
+            0.5699111903802586,
+            0.9340840092857187
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 16,
+          "wilson95": [
+            0.011119344764642547,
+            0.2832873757029894
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 18,
+          "n": 24,
+          "wilson95": [
+            0.55100555994846,
+            0.8800063377140501
+          ]
+        },
+        "hold_success": {
+          "count": 17,
+          "n": 24,
+          "wilson95": [
+            0.5083230633550337,
+            0.8508535180303913
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 24,
+          "wilson95": [
+            0.007393456165505796,
+            0.20241806478655938
+          ]
+        }
+      }
+    },
+    "10": {
+      "artifact": {
+        "steps": 1520,
+        "checkpoint_sha256": "0376a3d44018d6d29e8eaf1258e21fdcf84b3eb8b6ed9944dcc9498c0f115fba",
+        "bank_sha256": "9ac9f2717d5be186daafa6b76e2f2e06c32b833819810e32c4d2f497c504fa5a"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 4,
+          "n": 8,
+          "wilson95": [
+            0.21521606221387757,
+            0.7847839377861224
+          ]
+        },
+        "hold_success": {
+          "count": 2,
+          "n": 8,
+          "wilson95": [
+            0.071479212752109,
+            0.5907245696898311
+          ]
+        },
+        "final_success": {
+          "count": 0,
+          "n": 8,
+          "wilson95": [
+            0,
+            0.32440756488388023
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 8,
+          "n": 16,
+          "wilson95": [
+            0.27999563610326017,
+            0.7200043638967398
+          ]
+        },
+        "hold_success": {
+          "count": 7,
+          "n": 16,
+          "wilson95": [
+            0.23098652405492354,
+            0.6682144360118811
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 16,
+          "wilson95": [
+            0.011119344764642547,
+            0.2832873757029894
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 12,
+          "n": 24,
+          "wilson95": [
+            0.3142742581957335,
+            0.6857257418042665
+          ]
+        },
+        "hold_success": {
+          "count": 9,
+          "n": 24,
+          "wilson95": [
+            0.21159367559548778,
+            0.5729003755732572
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 24,
+          "wilson95": [
+            0.007393456165505796,
+            0.20241806478655938
+          ]
+        }
+      }
+    },
+    "40": {
+      "artifact": {
+        "steps": 6080,
+        "checkpoint_sha256": "46581b7f72ef0ab08e9bb2e2bd52a3ea43d3bdd1b13dfb5e2991440b2b419c28",
+        "bank_sha256": "215c2afbea7843d0778f3699888b14fb72ecc5d70563a03c2212aa1ef68b5adc"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 4,
+          "n": 8,
+          "wilson95": [
+            0.21521606221387757,
+            0.7847839377861224
+          ]
+        },
+        "hold_success": {
+          "count": 3,
+          "n": 8,
+          "wilson95": [
+            0.13684428582359742,
+            0.6942576053973727
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 8,
+          "wilson95": [
+            0.02241749145005667,
+            0.4708881822128535
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 6,
+          "n": 16,
+          "wilson95": [
+            0.18481232558863633,
+            0.6135895945449727
+          ]
+        },
+        "hold_success": {
+          "count": 5,
+          "n": 16,
+          "wilson95": [
+            0.14164643854782039,
+            0.5559564416525933
+          ]
+        },
+        "final_success": {
+          "count": 0,
+          "n": 16,
+          "wilson95": [
+            0,
+            0.1936076805344365
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 10,
+          "n": 24,
+          "wilson95": [
+            0.2446760260981176,
+            0.6116533413477124
+          ]
+        },
+        "hold_success": {
+          "count": 8,
+          "n": 24,
+          "wilson95": [
+            0.17972190327297755,
+            0.5329368316186825
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 24,
+          "wilson95": [
+            0.007393456165505796,
+            0.20241806478655938
+          ]
+        }
+      }
+    }
+  }
+}

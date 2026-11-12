@@ -10,6 +10,7 @@
 | Lift，10 条示范 | 先用 8 个独立状态选轮数，再在 50 个状态正式测试 | ALT 第 10 轮 18/50，DP 第 200 轮 23/50 | [方法与命令](experiments/lift_box_dp/experiments/exp_002_lift10_epochs/EXPERIMENT.md) · [结果](experiments/lift_box_dp/experiments/exp_002_lift10_epochs/RESULTS.md) |
 | Lift，10 条示范轮数补测 | 六个检查点各跑同一组 24 局，每局 250 步 | ALT 第 5、10 轮均为 9/24。DP 第 150、200、300 轮分别为 9/24、11/24、17/24 | [逐轮汇总](experiments/lift_box_dp/experiments/exp_002_lift10_epochs/validation_extra16_summary.json) |
 | Lift，50 条示范 | ALT 和 DP 各四个检查点，均在同一组 24 局验证 | 连续保持 1 秒的最佳检查点为 ALT 第 10 轮 16/24、DP 第 40 轮 23/24 | [方法](experiments/lift_box_dp/experiments/exp_003_lift50_epochs/EXPERIMENT.md) · [结果](experiments/lift_box_dp/experiments/exp_003_lift50_epochs/RESULTS.md) |
+| Lift，100 条示范 | 两种策略各三个检查点，均在同一组 24 局验证 | 保持 1 秒的最佳检查点为 ALT 第 5 轮 17/24、DP 第 40 和 150 轮 24/24 | [方法](experiments/lift_box_dp/experiments/exp_004_lift100_epochs/EXPERIMENT.md) · [结果](experiments/lift_box_dp/experiments/exp_004_lift100_epochs/RESULTS.md) |
 | Push-T，30 与 100 条示范 | 同一组 50 个状态，官方图像 Runner | ALT 平均官方分数分别为 0.2744、0.2745 | [逐规模汇总](results/scale_summary.csv) · [配对结果](results/paired_scale_comparison.json) |
 
 ## 值得关注的结果
@@ -19,6 +20,7 @@
 - **训练成本与闭环表现值得一起看。** 在同一组 24 局验证中，ALT 第 5 轮用 75 次更新达到 9/24，与第 10 轮相同。DP 第 150 轮也达到 9/24，继续到第 300 轮达到 17/24。结果来自一组训练子集和一个训练种子。参数更新次数、实际训练时间和预训练条件应分别解读。[轮数补测](experiments/lift_box_dp/experiments/exp_002_lift10_epochs/RESULTS.md)
 - **ALT-50 的早期检查点表现更好，训练更久仍出现回落。** 同样是第 10 轮和同一组 24 局，ALT 从 10 条示范时的 9/24 提升到 50 条时的 16/24。50 条下继续到第 100 轮降为 11/24，尽管对比训练损失下降。同轮数的更新次数和记忆库也随数据规模扩大。这是一个训练种子的验证结果。[ALT-50 轮数结果](experiments/lift_box_dp/experiments/exp_003_lift50_epochs/RESULTS.md)
 - **DP-50 也在较早的检查点表现更好。** 第 40、150、200、300 轮的保持次数分别为 23/24、22/24、22/24、18/24。在相同第 40 轮的验证中，DP 为 23/24，ALT 为 13/24。这与 10 条示范时 DP 第 300 轮优于第 150 轮的结果不同。训练损失、更新次数和闭环表现应一并报告。[Lift-50 同规模比较](experiments/lift_box_dp/experiments/exp_003_lift50_epochs/RESULTS.md)
+- **Lift-100 上，早期更新预算和后续表现给出不同排序。** 约 770 次更新时，ALT 为 17/24，DP 为 12/24。第 40 轮为 ALT 8/24、DP 24/24。DP 第 150 轮仍是 24/24，但仅 6/24 在第 250 步仍达标。两种规模的最佳验证结果从 50 到 100 条均只多一局。[Lift-100 对照](experiments/lift_box_dp/experiments/exp_004_lift100_epochs/RESULTS.md)
 - **Push-T 上扩数据没有带来可确认的分数提升。** ALT-100 相对 ALT-30 的配对差为 +0.0001，95% 区间为 −0.0970 到 +0.0932。两种规模都出现相似图像检索到几何位置不匹配的动作。[检索失败分析](docs/retrieval_failure_analysis.md)
 
 Lift 的「保持」指连续 20 个控制步中方块高度均超过桌面偏移高度加 4 厘米。50 局正式测试和 24 局轮数验证的初始条件及回合长度不同，各自解读。Push-T 使用官方覆盖得分，不能与 Lift 成功率直接对照。

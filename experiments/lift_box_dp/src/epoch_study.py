@@ -5,12 +5,15 @@ STUDY_DIR = ROOT / "experiments/exp_002_lift10_epochs"
 STUDY_PATH = STUDY_DIR / "config.json"
 
 
-SCALE50_PATH = ROOT / "experiments/exp_003_lift50_epochs/config.json"
+SCALE_PATHS = {
+    50: ROOT / "experiments/exp_003_lift50_epochs/config.json",
+    100: ROOT / "experiments/exp_004_lift100_epochs/config.json",
+}
 
 
 def study(supplement=False, scale=10, method="alt"):
-    if scale not in (10, 50) or (scale == 50 and supplement):
-        raise ValueError("Invalid ALT study scale or supplement combination")
+    if scale not in (10, *SCALE_PATHS) or (scale != 10 and supplement):
+        raise ValueError("Invalid Lift study scale or supplement combination")
     cfg, alt, dp, split, image = contract()
     protocol = read_json(STUDY_PATH)
     ids = split["train_subsets"]["30"][:protocol["train_count"]]
@@ -30,28 +33,30 @@ def study(supplement=False, scale=10, method="alt"):
                 raise ValueError("Supplement epochs must be positive and strictly increasing")
         cfg.update(extra)
         cfg["supplement_config_sha256"] = sha256(supplement_path)
-    if scale == 50:
-        scale_protocol = read_json(SCALE50_PATH)
-        scale_ids = split["train_subsets"]["50"]
-        if (set(scale_protocol) != {"train_count", "alt_epochs"} or scale_protocol["train_count"] != 50
-                or len(set(scale_ids)) != 50 or scale_ids[:30] != split["train_subsets"]["30"]
+    if scale in SCALE_PATHS:
+        scale_path = SCALE_PATHS[scale]
+        scale_protocol = read_json(scale_path)
+        prior_scale = 30 if scale == 50 else 50
+        scale_ids = split["train_subsets"][str(scale)]
+        if (set(scale_protocol) != {"train_count", "alt_epochs"} or scale_protocol["train_count"] != scale
+                or len(set(scale_ids)) != scale or scale_ids[:prior_scale] != split["train_subsets"][str(prior_scale)]
                 or set(scale_ids) & set(split["heldout_validation_episode_ids"])):
-            raise ValueError("Invalid nested 50-episode training subset")
+            raise ValueError(f"Invalid nested {scale}-episode training subset")
         epochs = scale_protocol["alt_epochs"]
         if not epochs or epochs != sorted(set(epochs)) or epochs[0] < 1:
-            raise ValueError("Invalid ALT-50 checkpoint epochs")
+            raise ValueError(f"Invalid ALT-{scale} checkpoint epochs")
         cfg.update(scale_protocol)
-        cfg["scale_config_sha256"] = sha256(SCALE50_PATH)
+        cfg["scale_config_sha256"] = sha256(scale_path)
         ids = scale_ids
         if method == "dp":
-            dp50_path = SCALE50_PATH.with_name("dp_config.json")
-            dp50 = read_json(dp50_path)
-            epochs = dp50["dp_epochs"]
-            if (set(dp50) != {"dp_epochs", "dp_warmup_steps"} or not epochs
-                    or epochs != sorted(set(epochs)) or epochs[0] < 1 or dp50["dp_warmup_steps"] < 0):
-                raise ValueError("Invalid DP-50 training protocol")
-            cfg.update(dp50)
-            cfg["dp50_config_sha256"] = sha256(dp50_path)
+            dp_path = scale_path.with_name("dp_config.json")
+            dp_protocol = read_json(dp_path)
+            epochs = dp_protocol["dp_epochs"]
+            if (set(dp_protocol) != {"dp_epochs", "dp_warmup_steps"} or not epochs
+                    or epochs != sorted(set(epochs)) or epochs[0] < 1 or dp_protocol["dp_warmup_steps"] < 0):
+                raise ValueError(f"Invalid DP-{scale} training protocol")
+            cfg.update(dp_protocol)
+            cfg[f"dp{scale}_config_sha256"] = sha256(dp_path)
     cfg["train_ids"] = ids
     cfg["epochs"] = cfg["dp_epochs"][-1]
     return cfg, alt, dp, split, image

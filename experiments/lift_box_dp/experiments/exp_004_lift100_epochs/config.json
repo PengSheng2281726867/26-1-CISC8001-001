@@ -1,0 +1,4 @@
+{
+  "train_count": 100,
+  "alt_epochs": [5, 10, 40]
+}

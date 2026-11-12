@@ -54,10 +54,10 @@ def main():
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--study", action="store_true")
     parser.add_argument("--supplement", action="store_true")
-    parser.add_argument("--scale", type=int, choices=(10, 50), default=10)
+    parser.add_argument("--scale", type=int, choices=(10, 50, 100), default=10)
     args = parser.parse_args()
     if args.scale != 10 and not args.study:
-        parser.error("--scale 50 requires --study")
+        parser.error("Nondefault --scale requires --study")
     if args.supplement and not args.study:
         parser.error("--supplement requires --study")
     if args.study:

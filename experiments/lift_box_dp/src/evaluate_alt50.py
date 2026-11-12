@@ -1,10 +1,10 @@
-"""Evaluate Lift-50 checkpoints on the same 24 validation conditions."""
+"""Evaluate larger Lift studies on the same 24 validation conditions."""
 import argparse
 
 import torch
 
 from common import ROOT, add_references, read_json, sha256, write_json
-from epoch_study import SCALE50_PATH, study
+from epoch_study import SCALE_PATHS, study
 from evaluate_epochs import run_evaluation
 from extend_epoch_validation import (
     LABEL, MANIFEST, NEW_SEEDS, ORIGINAL, SAMPLING_SEED, counts, verified_rows,
@@ -17,8 +17,9 @@ def main():
     parser.add_argument("phase", choices=["evaluate", "summarize"])
     parser.add_argument("--epoch", type=int)
     parser.add_argument("--method", choices=["alt", "dp"], default="alt")
+    parser.add_argument("--scale", choices=tuple(SCALE_PATHS), type=int, default=50)
     args = parser.parse_args()
-    cfg, alt, dp, _, image = study(scale=50, method=args.method)
+    cfg, alt, dp, _, image = study(scale=args.scale, method=args.method)
     add_references(alt, dp)
     original = read_json(ORIGINAL)
     extra = read_json(MANIFEST)
@@ -36,7 +37,7 @@ def main():
         raise ValueError("Invalid validation seed membership")
     run = ROOT / "artifacts" / args.run_id
     if read_json(run / "config.json") != cfg:
-        raise ValueError("Training run does not match the Lift-50 configuration")
+        raise ValueError("Training run does not match the resolved Lift study configuration")
     checkpoints = cfg[f"{args.method}_epochs"]
     if args.phase == "evaluate":
         torch.set_float32_matmul_precision("high")
@@ -59,7 +60,7 @@ def main():
         b = verified_rows(run, args.method, epoch, cfg, list(new), extra_sha, LABEL)
         epochs[str(epoch)] = {"artifact": recorded[str(epoch)], "original8": counts(a),
                               "new16": counts(b), "combined24": counts(a + b)}
-    output = SCALE50_PATH.parent / f"validation_{args.run_id}.json"
+    output = SCALE_PATHS[args.scale].parent / f"validation_{args.run_id}.json"
     if output.exists():
         raise FileExistsError(output)
     write_json(output, {"config": cfg, "training": read_json(run / "training.json"),

@@ -1,0 +1,549 @@
+{
+  "config": {
+    "alt_root": "../../COURSE-HUZI-CODE/experiments/alt_robomimic_lift",
+    "dp_root": "../../DP/diffusion_policy",
+    "dp_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+    "split_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+    "model_seed": 42,
+    "shuffle_seed": 43,
+    "sampling_seed": 44,
+    "horizon": 16,
+    "batch_size": 64,
+    "epochs": 150,
+    "learning_rate": 0.0001,
+    "down_dims": [
+      256,
+      512,
+      1024
+    ],
+    "diffusion_steps": 100,
+    "inference_steps": 10,
+    "ema_power": 0.75,
+    "hold_steps": 20,
+    "eval_workers": 4,
+    "train_count": 100,
+    "dp_epochs": [
+      10,
+      40,
+      150
+    ],
+    "alt_epochs": [
+      5,
+      10,
+      40
+    ],
+    "dp_warmup_steps": 175,
+    "validation_seeds": [
+      90000,
+      90001,
+      90002,
+      90003,
+      90004,
+      90005,
+      90006,
+      90007
+    ],
+    "validation_horizon": 250,
+    "test_workers": 8,
+    "selection_order": [
+      "hold_success",
+      "ever_success",
+      "final_success",
+      "earlier_epoch"
+    ],
+    "study_config_sha256": "8dccb56f32bf01ddcbf447f0638b371a0e4531e34f8fb56dcc15577d7c9090f0",
+    "parent_config_sha256": "6ba1148cc23da0211d7517b0b8f112613adc3c711c02a6cede8c616a47464b11",
+    "scale_config_sha256": "6c7b00dd70f8e37e3f8edefe873215dbaa0d427125892e521458962c02361efc",
+    "dp100_config_sha256": "d01f033e4268e9db73385e18ed631ad6916dfc6a8b3ba4f1dab17ef6a5843d2d",
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194",
+      "demo_37",
+      "demo_122",
+      "demo_12",
+      "demo_36",
+      "demo_153",
+      "demo_69",
+      "demo_61",
+      "demo_195",
+      "demo_32",
+      "demo_172",
+      "demo_171",
+      "demo_60",
+      "demo_10",
+      "demo_144",
+      "demo_160",
+      "demo_52",
+      "demo_125",
+      "demo_106",
+      "demo_73",
+      "demo_113",
+      "demo_105",
+      "demo_95",
+      "demo_103",
+      "demo_145",
+      "demo_43",
+      "demo_0",
+      "demo_161",
+      "demo_192",
+      "demo_16",
+      "demo_80",
+      "demo_102",
+      "demo_38",
+      "demo_156",
+      "demo_176",
+      "demo_135",
+      "demo_78",
+      "demo_115",
+      "demo_19",
+      "demo_14",
+      "demo_177",
+      "demo_146",
+      "demo_179",
+      "demo_65",
+      "demo_84",
+      "demo_165",
+      "demo_46",
+      "demo_104",
+      "demo_79",
+      "demo_54",
+      "demo_196",
+      "demo_85",
+      "demo_118",
+      "demo_109",
+      "demo_133",
+      "demo_142",
+      "demo_33",
+      "demo_18",
+      "demo_140",
+      "demo_123",
+      "demo_175",
+      "demo_63",
+      "demo_83",
+      "demo_148",
+      "demo_100",
+      "demo_155",
+      "demo_72",
+      "demo_27",
+      "demo_184",
+      "demo_112",
+      "demo_51",
+      "demo_174",
+      "demo_4",
+      "demo_29",
+      "demo_183",
+      "demo_99",
+      "demo_98",
+      "demo_131",
+      "demo_124",
+      "demo_198",
+      "demo_134",
+      "demo_178",
+      "demo_120",
+      "demo_34",
+      "demo_48",
+      "demo_169",
+      "demo_138",
+      "demo_149",
+      "demo_132",
+      "demo_127",
+      "demo_21"
+    ]
+  },
+  "training": {
+    "run_id": "dp100_epochs_v1",
+    "smoke": false,
+    "epochs": 150,
+    "steps": 11550,
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194",
+      "demo_37",
+      "demo_122",
+      "demo_12",
+      "demo_36",
+      "demo_153",
+      "demo_69",
+      "demo_61",
+      "demo_195",
+      "demo_32",
+      "demo_172",
+      "demo_171",
+      "demo_60",
+      "demo_10",
+      "demo_144",
+      "demo_160",
+      "demo_52",
+      "demo_125",
+      "demo_106",
+      "demo_73",
+      "demo_113",
+      "demo_105",
+      "demo_95",
+      "demo_103",
+      "demo_145",
+      "demo_43",
+      "demo_0",
+      "demo_161",
+      "demo_192",
+      "demo_16",
+      "demo_80",
+      "demo_102",
+      "demo_38",
+      "demo_156",
+      "demo_176",
+      "demo_135",
+      "demo_78",
+      "demo_115",
+      "demo_19",
+      "demo_14",
+      "demo_177",
+      "demo_146",
+      "demo_179",
+      "demo_65",
+      "demo_84",
+      "demo_165",
+      "demo_46",
+      "demo_104",
+      "demo_79",
+      "demo_54",
+      "demo_196",
+      "demo_85",
+      "demo_118",
+      "demo_109",
+      "demo_133",
+      "demo_142",
+      "demo_33",
+      "demo_18",
+      "demo_140",
+      "demo_123",
+      "demo_175",
+      "demo_63",
+      "demo_83",
+      "demo_148",
+      "demo_100",
+      "demo_155",
+      "demo_72",
+      "demo_27",
+      "demo_184",
+      "demo_112",
+      "demo_51",
+      "demo_174",
+      "demo_4",
+      "demo_29",
+      "demo_183",
+      "demo_99",
+      "demo_98",
+      "demo_131",
+      "demo_124",
+      "demo_198",
+      "demo_134",
+      "demo_178",
+      "demo_120",
+      "demo_34",
+      "demo_48",
+      "demo_169",
+      "demo_138",
+      "demo_149",
+      "demo_132",
+      "demo_127",
+      "demo_21"
+    ],
+    "train_frames": 4882,
+    "validation_frames": 993,
+    "checkpoint_sha256": "3536cc1ae94fc3fe9dc4b2d56be78db1d569e96a92de12ae2de3357cc8ffea72",
+    "checkpoint_bytes": 349566533,
+    "wall_seconds": 717.9335318000522,
+    "torch": "2.7.1+cu128",
+    "python": "3.10.22",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "parameter_count": 87348239,
+    "source_sha256": {
+      "audit_demo_hold.py": "e9c639f8c73a357bb8db218e1e0c9fa8b43a76537d32cac9a40472fe8b8c2cb7",
+      "common.py": "811a8788c25a26bf2c8245efbda31f2c6932d9582239f48892e8cb4dda015d92",
+      "compare.py": "2b2d8d3b8fcb5abc0f1b029840f5906f4a7df90636c53ba45b2a26d5a6b388a2",
+      "epoch_study.py": "356341fc22a29d5a0a71060e1ab9367c344bf4d5d098496a7b32f56521dbb001",
+      "evaluate.py": "642d7b559c8e6530227fafd5a32ce5be7ed00c13374c01fd5e052c27a4171b90",
+      "evaluate_alt50.py": "35624316b2ac5b28952899179beb405500f9ae708c25ab4342a8466733b8e852",
+      "evaluate_epochs.py": "8877034a32356ed6d49baa0d3ad58c0d794b5a612b8a4dd6a4e01d9d629f94a0",
+      "extend_epoch_validation.py": "710e15a762418a5eb6968fa25ce23a8fc9b4c29b86c47048d8ecba95c51b06f1",
+      "model.py": "696d34e926310fdf48297e3a5db95827b6c61df015192ea695b60c73fe8ef82d",
+      "simulator.py": "3e9cc4c9e04a7804233b285a71ccbf5e0375b7ae4341d4d5980c93126c7e1d52",
+      "summarize_epochs.py": "39fe1d495c2e63f7b57344fdb7b152a75db855cc62cb31cd0822b71dcecbeec7",
+      "train.py": "59265905ec29c20b3f8febe428a3c399ba2c71d844fde8499558044cc6c8606c",
+      "train_alt10.py": "fb5277246164e02b1fc3cb8f0f5ed7e11361aff0be9b1493748e1bd3c85e67c7"
+    }
+  },
+  "validation_original_sha256": "256ddc5bcada97513b5b83b6de2d6564ae6a915801d21d863fb2a6f79fb8bf43",
+  "validation_extra_sha256": "0ae7f576dab2e66b569766b7c9cee3bc1956b17bb10a716f17f22df6c3999b1f",
+  "epochs": {
+    "10": {
+      "artifact": {
+        "steps": 770,
+        "checkpoint_sha256": "975c2a9f5391ff1d14e3f4cabb5c036afbb175b41b8ed9e4da4ec90f33f4a70d"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 4,
+          "n": 8,
+          "wilson95": [
+            0.21521606221387757,
+            0.7847839377861224
+          ]
+        },
+        "hold_success": {
+          "count": 3,
+          "n": 8,
+          "wilson95": [
+            0.13684428582359742,
+            0.6942576053973727
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 8,
+          "wilson95": [
+            0.02241749145005667,
+            0.4708881822128535
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 9,
+          "n": 16,
+          "wilson95": [
+            0.331785563988119,
+            0.7690134759450765
+          ]
+        },
+        "hold_success": {
+          "count": 9,
+          "n": 16,
+          "wilson95": [
+            0.331785563988119,
+            0.7690134759450765
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 16,
+          "wilson95": [
+            0.011119344764642547,
+            0.2832873757029894
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 13,
+          "n": 24,
+          "wilson95": [
+            0.3507486535891949,
+            0.7210866626878902
+          ]
+        },
+        "hold_success": {
+          "count": 12,
+          "n": 24,
+          "wilson95": [
+            0.3142742581957335,
+            0.6857257418042665
+          ]
+        },
+        "final_success": {
+          "count": 2,
+          "n": 24,
+          "wilson95": [
+            0.023158815297043348,
+            0.25848802193210685
+          ]
+        }
+      }
+    },
+    "40": {
+      "artifact": {
+        "steps": 3080,
+        "checkpoint_sha256": "1b7b406c56402023989fc38be84e3ecc81c0e8dd51f88914d823c2a09d66f2e9"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 8,
+          "n": 8,
+          "wilson95": [
+            0.6755924351161198,
+            1
+          ]
+        },
+        "hold_success": {
+          "count": 8,
+          "n": 8,
+          "wilson95": [
+            0.6755924351161198,
+            1
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 8,
+          "wilson95": [
+            0.02241749145005667,
+            0.4708881822128535
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 16,
+          "n": 16,
+          "wilson95": [
+            0.8063923194655637,
+            1
+          ]
+        },
+        "hold_success": {
+          "count": 16,
+          "n": 16,
+          "wilson95": [
+            0.8063923194655637,
+            1
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 16,
+          "wilson95": [
+            0.011119344764642547,
+            0.2832873757029894
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 24,
+          "n": 24,
+          "wilson95": [
+            0.8620237953250198,
+            1
+          ]
+        },
+        "hold_success": {
+          "count": 24,
+          "n": 24,
+          "wilson95": [
+            0.8620237953250198,
+            1
+          ]
+        },
+        "final_success": {
+          "count": 2,
+          "n": 24,
+          "wilson95": [
+            0.023158815297043348,
+            0.25848802193210685
+          ]
+        }
+      }
+    },
+    "150": {
+      "artifact": {
+        "steps": 11550,
+        "checkpoint_sha256": "3536cc1ae94fc3fe9dc4b2d56be78db1d569e96a92de12ae2de3357cc8ffea72"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 8,
+          "n": 8,
+          "wilson95": [
+            0.6755924351161198,
+            1
+          ]
+        },
+        "hold_success": {
+          "count": 8,
+          "n": 8,
+          "wilson95": [
+            0.6755924351161198,
+            1
+          ]
+        },
+        "final_success": {
+          "count": 0,
+          "n": 8,
+          "wilson95": [
+            0,
+            0.32440756488388023
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 16,
+          "n": 16,
+          "wilson95": [
+            0.8063923194655637,
+            1
+          ]
+        },
+        "hold_success": {
+          "count": 16,
+          "n": 16,
+          "wilson95": [
+            0.8063923194655637,
+            1
+          ]
+        },
+        "final_success": {
+          "count": 6,
+          "n": 16,
+          "wilson95": [
+            0.18481232558863633,
+            0.6135895945449727
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 24,
+          "n": 24,
+          "wilson95": [
+            0.8620237953250198,
+            1
+          ]
+        },
+        "hold_success": {
+          "count": 24,
+          "n": 24,
+          "wilson95": [
+            0.8620237953250198,
+            1
+          ]
+        },
+        "final_success": {
+          "count": 6,
+          "n": 24,
+          "wilson95": [
+            0.11999366228595004,
+            0.44899444005154004
+          ]
+        }
+      }
+    }
+  }
+}
