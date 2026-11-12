@@ -5,7 +5,12 @@ STUDY_DIR = ROOT / "experiments/exp_002_lift10_epochs"
 STUDY_PATH = STUDY_DIR / "config.json"
 
 
-def study(supplement=False):
+SCALE50_PATH = ROOT / "experiments/exp_003_lift50_epochs/config.json"
+
+
+def study(supplement=False, scale=10):
+    if scale not in (10, 50) or (scale == 50 and supplement):
+        raise ValueError("Invalid ALT study scale or supplement combination")
     cfg, alt, dp, split, image = contract()
     protocol = read_json(STUDY_PATH)
     ids = split["train_subsets"]["30"][:protocol["train_count"]]
@@ -25,6 +30,19 @@ def study(supplement=False):
                 raise ValueError("Supplement epochs must be positive and strictly increasing")
         cfg.update(extra)
         cfg["supplement_config_sha256"] = sha256(supplement_path)
+    if scale == 50:
+        scale_protocol = read_json(SCALE50_PATH)
+        scale_ids = split["train_subsets"]["50"]
+        if (set(scale_protocol) != {"train_count", "alt_epochs"} or scale_protocol["train_count"] != 50
+                or len(set(scale_ids)) != 50 or scale_ids[:30] != split["train_subsets"]["30"]
+                or set(scale_ids) & set(split["heldout_validation_episode_ids"])):
+            raise ValueError("Invalid nested 50-episode training subset")
+        epochs = scale_protocol["alt_epochs"]
+        if not epochs or epochs != sorted(set(epochs)) or epochs[0] < 1:
+            raise ValueError("Invalid ALT-50 checkpoint epochs")
+        cfg.update(scale_protocol)
+        cfg["scale_config_sha256"] = sha256(SCALE50_PATH)
+        ids = scale_ids
     cfg["train_ids"] = ids
     cfg["epochs"] = cfg["dp_epochs"][-1]
     return cfg, alt, dp, split, image

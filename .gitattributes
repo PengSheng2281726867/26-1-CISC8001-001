@@ -2,3 +2,9 @@
 # Preserve those bytes on every platform; never regenerate or reorder the IDs.
 experiments/splits/*.json -text whitespace=cr-at-eol
 experiments/splits/*.sha256 -text whitespace=cr-at-eol
+
+# Lift's protocol references and configuration are validated by SHA-256.
+experiments/alt_robomimic_lift/configs/alt_lift30.yaml -text
+experiments/alt_robomimic_lift/configs/evaluation.json -text
+experiments/alt_robomimic_lift/configs/lift_ph_split42.json -text
+experiments/alt_robomimic_lift/results/evaluation_initial_states.json -text

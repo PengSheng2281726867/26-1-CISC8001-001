@@ -1,0 +1,523 @@
+{
+  "config": {
+    "alt_root": "../../COURSE-HUZI-CODE/experiments/alt_robomimic_lift",
+    "dp_root": "../../DP/diffusion_policy",
+    "dp_commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+    "split_sha256": "87ce7bec946683f5434d95c12bac51033ff41ed981247b5eedf7409973921181",
+    "model_seed": 42,
+    "shuffle_seed": 43,
+    "sampling_seed": 44,
+    "horizon": 16,
+    "batch_size": 64,
+    "epochs": 200,
+    "learning_rate": 0.0001,
+    "down_dims": [
+      256,
+      512,
+      1024
+    ],
+    "diffusion_steps": 100,
+    "inference_steps": 10,
+    "ema_power": 0.75,
+    "hold_steps": 20,
+    "eval_workers": 4,
+    "train_count": 50,
+    "dp_epochs": [
+      40,
+      100,
+      200
+    ],
+    "alt_epochs": [
+      5,
+      10,
+      40,
+      100
+    ],
+    "dp_warmup_steps": 175,
+    "validation_seeds": [
+      90000,
+      90001,
+      90002,
+      90003,
+      90004,
+      90005,
+      90006,
+      90007
+    ],
+    "validation_horizon": 250,
+    "test_workers": 8,
+    "selection_order": [
+      "hold_success",
+      "ever_success",
+      "final_success",
+      "earlier_epoch"
+    ],
+    "study_config_sha256": "8dccb56f32bf01ddcbf447f0638b371a0e4531e34f8fb56dcc15577d7c9090f0",
+    "parent_config_sha256": "6ba1148cc23da0211d7517b0b8f112613adc3c711c02a6cede8c616a47464b11",
+    "scale_config_sha256": "a3516f7df8605d5f781a70e9513c1f40f0ce8b61de95d29aa674531b8c941076",
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194",
+      "demo_37",
+      "demo_122",
+      "demo_12",
+      "demo_36",
+      "demo_153",
+      "demo_69",
+      "demo_61",
+      "demo_195",
+      "demo_32",
+      "demo_172",
+      "demo_171",
+      "demo_60",
+      "demo_10",
+      "demo_144",
+      "demo_160",
+      "demo_52",
+      "demo_125",
+      "demo_106",
+      "demo_73",
+      "demo_113",
+      "demo_105",
+      "demo_95",
+      "demo_103",
+      "demo_145",
+      "demo_43",
+      "demo_0",
+      "demo_161",
+      "demo_192",
+      "demo_16",
+      "demo_80",
+      "demo_102",
+      "demo_38",
+      "demo_156",
+      "demo_176",
+      "demo_135",
+      "demo_78",
+      "demo_115",
+      "demo_19",
+      "demo_14",
+      "demo_177"
+    ]
+  },
+  "training": {
+    "train_ids": [
+      "demo_159",
+      "demo_15",
+      "demo_42",
+      "demo_126",
+      "demo_186",
+      "demo_162",
+      "demo_47",
+      "demo_110",
+      "demo_5",
+      "demo_194",
+      "demo_37",
+      "demo_122",
+      "demo_12",
+      "demo_36",
+      "demo_153",
+      "demo_69",
+      "demo_61",
+      "demo_195",
+      "demo_32",
+      "demo_172",
+      "demo_171",
+      "demo_60",
+      "demo_10",
+      "demo_144",
+      "demo_160",
+      "demo_52",
+      "demo_125",
+      "demo_106",
+      "demo_73",
+      "demo_113",
+      "demo_105",
+      "demo_95",
+      "demo_103",
+      "demo_145",
+      "demo_43",
+      "demo_0",
+      "demo_161",
+      "demo_192",
+      "demo_16",
+      "demo_80",
+      "demo_102",
+      "demo_38",
+      "demo_156",
+      "demo_176",
+      "demo_135",
+      "demo_78",
+      "demo_115",
+      "demo_19",
+      "demo_14",
+      "demo_177"
+    ],
+    "train_frames": 2469,
+    "steps": 7700,
+    "wall_seconds": 1878.2118479001801,
+    "checkpoint_epochs": [
+      5,
+      10,
+      40,
+      100
+    ],
+    "pretrained_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+    "original_config_sha256": "24cff7f0fe217760a66d2532885e35d04cfff04b630663d690414797afe2b9b0",
+    "source_sha256": "f3348d731510cb777327d8436c14fb41b7e74b4da142adc40196233a95d108a4",
+    "torch": "2.7.1+cu128",
+    "gpu": "NVIDIA GeForce RTX 5090"
+  },
+  "validation_original_sha256": "256ddc5bcada97513b5b83b6de2d6564ae6a915801d21d863fb2a6f79fb8bf43",
+  "validation_extra_sha256": "0ae7f576dab2e66b569766b7c9cee3bc1956b17bb10a716f17f22df6c3999b1f",
+  "epochs": {
+    "5": {
+      "artifact": {
+        "steps": 385,
+        "checkpoint_sha256": "66d672a25bb0a07a72ebc703e9210943d28f93350eab20ff33802171c99253a7",
+        "bank_sha256": "4566169e44c787a59f7e04e79c8fe752317c8fcf084e9d8499b6d9ec13e4a3d0"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 6,
+          "n": 8,
+          "wilson95": [
+            0.40927543031016883,
+            0.9285207872478909
+          ]
+        },
+        "hold_success": {
+          "count": 5,
+          "n": 8,
+          "wilson95": [
+            0.30574239460262737,
+            0.8631557141764026
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 8,
+          "wilson95": [
+            0.02241749145005667,
+            0.4708881822128535
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 10,
+          "n": 16,
+          "wilson95": [
+            0.38641040545502714,
+            0.8151876744113636
+          ]
+        },
+        "hold_success": {
+          "count": 10,
+          "n": 16,
+          "wilson95": [
+            0.38641040545502714,
+            0.8151876744113636
+          ]
+        },
+        "final_success": {
+          "count": 4,
+          "n": 16,
+          "wilson95": [
+            0.10182067491213048,
+            0.49498316535508774
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 16,
+          "n": 24,
+          "wilson95": [
+            0.4670631683813175,
+            0.8202780967270225
+          ]
+        },
+        "hold_success": {
+          "count": 15,
+          "n": 24,
+          "wilson95": [
+            0.4270996244267429,
+            0.7884063244045123
+          ]
+        },
+        "final_success": {
+          "count": 5,
+          "n": 24,
+          "wilson95": [
+            0.09244825352851854,
+            0.4047045325318866
+          ]
+        }
+      }
+    },
+    "10": {
+      "artifact": {
+        "steps": 770,
+        "checkpoint_sha256": "254f9ff0ae25660f94e523722dc3024668f174202e61469bf400bdf3aa3aef72",
+        "bank_sha256": "3089bf71764f29967b2f6af2934591ba9c131c82d9c17f99cb7f48be7ecc3825"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 5,
+          "n": 8,
+          "wilson95": [
+            0.30574239460262737,
+            0.8631557141764026
+          ]
+        },
+        "hold_success": {
+          "count": 5,
+          "n": 8,
+          "wilson95": [
+            0.30574239460262737,
+            0.8631557141764026
+          ]
+        },
+        "final_success": {
+          "count": 0,
+          "n": 8,
+          "wilson95": [
+            0,
+            0.32440756488388023
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 11,
+          "n": 16,
+          "wilson95": [
+            0.44404355834740666,
+            0.8583535614521796
+          ]
+        },
+        "hold_success": {
+          "count": 11,
+          "n": 16,
+          "wilson95": [
+            0.44404355834740666,
+            0.8583535614521796
+          ]
+        },
+        "final_success": {
+          "count": 5,
+          "n": 16,
+          "wilson95": [
+            0.14164643854782039,
+            0.5559564416525933
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 16,
+          "n": 24,
+          "wilson95": [
+            0.4670631683813175,
+            0.8202780967270225
+          ]
+        },
+        "hold_success": {
+          "count": 16,
+          "n": 24,
+          "wilson95": [
+            0.4670631683813175,
+            0.8202780967270225
+          ]
+        },
+        "final_success": {
+          "count": 5,
+          "n": 24,
+          "wilson95": [
+            0.09244825352851854,
+            0.4047045325318866
+          ]
+        }
+      }
+    },
+    "40": {
+      "artifact": {
+        "steps": 3080,
+        "checkpoint_sha256": "e564279daea451502aef638071a4aa4f267c822c29b923e7acf4051605bfb027",
+        "bank_sha256": "c7ab81d6e58c6f6bc3f7c0e915b9b45545860573cb609311d2f19fa798357c4f"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 4,
+          "n": 8,
+          "wilson95": [
+            0.21521606221387757,
+            0.7847839377861224
+          ]
+        },
+        "hold_success": {
+          "count": 3,
+          "n": 8,
+          "wilson95": [
+            0.13684428582359742,
+            0.6942576053973727
+          ]
+        },
+        "final_success": {
+          "count": 0,
+          "n": 8,
+          "wilson95": [
+            0,
+            0.32440756488388023
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 10,
+          "n": 16,
+          "wilson95": [
+            0.38641040545502714,
+            0.8151876744113636
+          ]
+        },
+        "hold_success": {
+          "count": 10,
+          "n": 16,
+          "wilson95": [
+            0.38641040545502714,
+            0.8151876744113636
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 16,
+          "wilson95": [
+            0.011119344764642547,
+            0.2832873757029894
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 14,
+          "n": 24,
+          "wilson95": [
+            0.38834665865228757,
+            0.7553239739018823
+          ]
+        },
+        "hold_success": {
+          "count": 13,
+          "n": 24,
+          "wilson95": [
+            0.3507486535891949,
+            0.7210866626878902
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 24,
+          "wilson95": [
+            0.007393456165505796,
+            0.20241806478655938
+          ]
+        }
+      }
+    },
+    "100": {
+      "artifact": {
+        "steps": 7700,
+        "checkpoint_sha256": "1d2b5f4fcf023b70edefd6d7973f441d00f2bb0ef9d0db9c7e7efd18df67fced",
+        "bank_sha256": "6c835de9d982d575cbff8c5196cc4f522ac014b8b36318ac99efbfae001f0305"
+      },
+      "original8": {
+        "ever_success": {
+          "count": 4,
+          "n": 8,
+          "wilson95": [
+            0.21521606221387757,
+            0.7847839377861224
+          ]
+        },
+        "hold_success": {
+          "count": 3,
+          "n": 8,
+          "wilson95": [
+            0.13684428582359742,
+            0.6942576053973727
+          ]
+        },
+        "final_success": {
+          "count": 3,
+          "n": 8,
+          "wilson95": [
+            0.13684428582359742,
+            0.6942576053973727
+          ]
+        }
+      },
+      "new16": {
+        "ever_success": {
+          "count": 8,
+          "n": 16,
+          "wilson95": [
+            0.27999563610326017,
+            0.7200043638967398
+          ]
+        },
+        "hold_success": {
+          "count": 8,
+          "n": 16,
+          "wilson95": [
+            0.27999563610326017,
+            0.7200043638967398
+          ]
+        },
+        "final_success": {
+          "count": 1,
+          "n": 16,
+          "wilson95": [
+            0.011119344764642547,
+            0.2832873757029894
+          ]
+        }
+      },
+      "combined24": {
+        "ever_success": {
+          "count": 12,
+          "n": 24,
+          "wilson95": [
+            0.3142742581957335,
+            0.6857257418042665
+          ]
+        },
+        "hold_success": {
+          "count": 11,
+          "n": 24,
+          "wilson95": [
+            0.2789133373121099,
+            0.6492513464108052
+          ]
+        },
+        "final_success": {
+          "count": 4,
+          "n": 24,
+          "wilson95": [
+            0.06678676328632949,
+            0.35853070649699065
+          ]
+        }
+      }
+    }
+  }
+}

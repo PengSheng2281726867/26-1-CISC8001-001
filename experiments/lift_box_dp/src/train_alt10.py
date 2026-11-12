@@ -16,8 +16,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("run_id")
     parser.add_argument("--supplement", action="store_true")
+    parser.add_argument("--scale", type=int, choices=(10, 50), default=10)
     args = parser.parse_args()
-    cfg, alt, dp, split, image = study(supplement=args.supplement)
+    cfg, alt, dp, split, image = study(supplement=args.supplement, scale=args.scale)
     add_references(alt, dp)
     from alt_lift.data import ContrastiveViews, LiftFrameStore, ProprioNormalizer
     from alt_lift.encoder import VisualProprioEncoder

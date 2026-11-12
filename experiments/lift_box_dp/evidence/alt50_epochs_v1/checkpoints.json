@@ -1,0 +1,22 @@
+{
+  "5": {
+    "steps": 385,
+    "checkpoint_sha256": "66d672a25bb0a07a72ebc703e9210943d28f93350eab20ff33802171c99253a7",
+    "bank_sha256": "4566169e44c787a59f7e04e79c8fe752317c8fcf084e9d8499b6d9ec13e4a3d0"
+  },
+  "10": {
+    "steps": 770,
+    "checkpoint_sha256": "254f9ff0ae25660f94e523722dc3024668f174202e61469bf400bdf3aa3aef72",
+    "bank_sha256": "3089bf71764f29967b2f6af2934591ba9c131c82d9c17f99cb7f48be7ecc3825"
+  },
+  "40": {
+    "steps": 3080,
+    "checkpoint_sha256": "e564279daea451502aef638071a4aa4f267c822c29b923e7acf4051605bfb027",
+    "bank_sha256": "c7ab81d6e58c6f6bc3f7c0e915b9b45545860573cb609311d2f19fa798357c4f"
+  },
+  "100": {
+    "steps": 7700,
+    "checkpoint_sha256": "1d2b5f4fcf023b70edefd6d7973f441d00f2bb0ef9d0db9c7e7efd18df67fced",
+    "bank_sha256": "6c835de9d982d575cbff8c5196cc4f522ac014b8b36318ac99efbfae001f0305"
+  }
+}
