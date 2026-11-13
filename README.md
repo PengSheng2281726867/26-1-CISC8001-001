@@ -7,7 +7,7 @@
 | 任务 | 已完成的比较 | 结果与复现 |
 | --- | --- | --- |
 | Lift-PH | ALT 与 DP 的 10、30 条正式测试，以及 10、50、100 条轮数验证 | [中文结果总览](experiments/lift_box_dp/RESULTS.md) · [实验索引](experiments/lift_box_dp/README.md) |
-| Push-T | ALT 的 30、100 条同种子对比，各 50 局 | [逐规模汇总](results/scale_summary.csv) · [配对结果](results/paired_scale_comparison.json) |
+| Push-T | 视觉 ALT、位姿监督、几何规则、动作长度与坐标迁移 | [中文实验总览](docs/pusht_results.md) · [当前帧与训练候选图集](docs/pusht_matching_gallery.md) |
 
 ## 实验发现
 
@@ -15,6 +15,7 @@
 - **Lift 的轮数验证显示训练阶段会改变排序。** 用 100 条示范，约 770 次更新时 ALT 和 DP 分别为 17/24、12/24。第 40 轮分别为 8/24、24/24。DP-100 第 150 轮同样是 24/24，但终点仅 6/24。保持 1 秒指连续 20 个控制步高于桌面基准高度加 4 厘米。验证每局 250 步，正式测试每局 1,000 步。[评估定义与逐轮结果](experiments/lift_box_dp/RESULTS.md)
 - **Push-T 上未观察到明确的规模收益。** ALT 从 30 条增至 100 条，平均官方覆盖得分为 0.2744 和 0.2745，配对差的 95% 区间为 −0.0970 到 +0.0932。诊断发现相似图像有时检索到几何位置不匹配的动作。[检索失败分析](docs/retrieval_failure_analysis.md)
 - **Push-T 的动作对齐提高了接触率。** 固定原视觉 ALT-30 的匹配帧，用真实 T 位姿对齐 8 步动作后，接触数从 106/395 增至 279/395。段内最高覆盖小幅提升，段末覆盖未提高。[配对动作迁移诊断](experiments/pusht_action_transfer/RESULTS.md)
+- **Push-T 的相对几何让推杆匹配更准。** 离线相对位置误差从 37.81 降到约 14.5。同边筛选的官方均分为 0.3031，相对旧全局几何的配对区间跨零，闭环中约 72% 的查询需要回退。[规则对比与匹配图](docs/pusht_matching_gallery.md)
 
 ## 仓库导航
 
