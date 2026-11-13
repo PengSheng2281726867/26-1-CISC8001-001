@@ -1,0 +1,40 @@
+{
+  "run_directory": "artifacts/pusht_dp/long_split42_model42_v1/100",
+  "files": [
+    {
+      "path": "ema_10000.pt",
+      "bytes": 113963275,
+      "sha256": "20896a21d237a291c30439b521659812ad7806f73c0983994eb5cc781e838c3b"
+    },
+    {
+      "path": "ema_15000.pt",
+      "bytes": 113963275,
+      "sha256": "17620f9e350b20bfc3404a970ab55d3cf8d2a00f118659531d29e1ae7fcffbc7"
+    },
+    {
+      "path": "ema_5000.pt",
+      "bytes": 113963034,
+      "sha256": "7601cbcaa5fb4b4bf4c997f054a36a5c2686a68dd5631249260967fc51080fd1"
+    },
+    {
+      "path": "test/media/1zdbstzl.mp4",
+      "bytes": 41269,
+      "sha256": "33056bbeb349d7336fdaefbd16238952f6aa980a6e3a0460301ce77f75fe8d32"
+    },
+    {
+      "path": "test/media/8l1mslc1.mp4",
+      "bytes": 45533,
+      "sha256": "671d4e93b89f81e2770d0dfcd76fb6b39368b8985f4cb00c694ab347305dc95b"
+    },
+    {
+      "path": "test/media/ah9f6uee.mp4",
+      "bytes": 48664,
+      "sha256": "7b2895cc584b9ff1406f18084cf165abb6d2dbeac3b58c86ae83eedd6fef784a"
+    },
+    {
+      "path": "test/media/haqr84xl.mp4",
+      "bytes": 20758,
+      "sha256": "0a1ca984f76c8b77816140719893c88a84f79c1af74d4db18617ddb569c1fd77"
+    }
+  ]
+}

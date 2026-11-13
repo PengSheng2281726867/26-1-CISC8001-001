@@ -38,6 +38,47 @@ def check_rollouts(path, seeds):
                   "mean_final_score": float(end.mean()), "successes": sum(success)}
 
 
+def export_run(source, destination, split, config_path):
+    run = read(source / "run.json")
+    seeds = split["test_env_seeds"]
+    assert run["status"] == "completed"
+    assert run["split_sha256"] == sha256(SPLIT)
+    assert run["dataset_fingerprint"] == split["dataset_fingerprint"]
+    assert run["heldout_episodes"] == split["heldout_validation_episode_ids"]
+    assert run["test_seeds"] == seeds and not set(run["validation_seeds"]) & set(seeds)
+    assert run["config_sha256"] == sha256(config_path) and run["config"] == read(config_path)
+    assert run["train_episodes"] == split["ordered_train_pool_episode_ids"][:run["scale"]]
+    dp_path = source / "test/rollouts.csv"
+    scores, metrics = check_rollouts(dp_path, seeds)
+    assert metrics["mean_score"] == run["test"]["mean_score"]
+    checks = read(source / "validation.json")
+    selected = run["selected_update"]
+    assert selected == max(map(int, checks), key=lambda u: (checks[str(u)]["mean_score"], -u))
+    destination.mkdir(parents=True, exist_ok=False)
+    for step, entry in checks.items():
+        assert sha256(source / f"ema_{step}.pt") == entry["checkpoint_sha256"]
+        rollout = source / f"validation_{step}/rollouts.csv"
+        _, val = check_rollouts(rollout, run["validation_seeds"])
+        assert np.isclose(val["mean_score"], entry["mean_score"], atol=1e-12, rtol=0)
+        shutil.copyfile(rollout, destination / f"validation_{step}_rollouts.csv")
+    for filename in ("run.json", "training.csv", "validation.json"):
+        shutil.copyfile(source / filename, destination / filename)
+    shutil.copyfile(dp_path, destination / "test_rollouts.csv")
+    heavy = sorted(source.glob("ema_*.pt")) + sorted(source.glob("test/media/*.mp4"))
+    assert len(heavy) == len(checks) + 4
+    save_json(destination / "artifact_manifest.json", {
+        "run_directory": (source.relative_to(ROOT) if source.is_relative_to(ROOT) else source).as_posix(),
+        "files": [{"path": file.relative_to(source).as_posix(),
+                   "bytes": file.stat().st_size, "sha256": sha256(file)} for file in heavy],
+    })
+    metrics.update(selected_update=selected, training_seconds=checks[str(selected)]["training_seconds"],
+                   total_training_seconds=run["total_training_seconds"],
+                   equivalent_epochs=checks[str(selected)]["equivalent_epochs"],
+                   sd=run["test"]["sd"], parameters=run["policy_parameters"],
+                   evaluation_seconds=run["test"]["runtime_seconds"])
+    return scores, metrics
+
+
 def summarize(source, destination):
     source = source.resolve()
     split = load_split(SPLIT)
@@ -50,47 +91,14 @@ def summarize(source, destination):
         alt = ROOT / "experiments/runs" / f"alt_{scale:03}_split42_model42_pilot_v1"
         run = read(source_scale / "run.json")
         alt_run = read(alt / "run_metadata.json")
-        assert run["status"] == alt_run["status"] == "completed"
-        assert run["split_sha256"] == alt_run["split_manifest_sha256"] == sha256(SPLIT)
-        assert run["dataset_fingerprint"] == alt_run["dataset_fingerprint"] == split["dataset_fingerprint"]
+        assert alt_run["status"] == "completed"
+        assert run["split_sha256"] == alt_run["split_manifest_sha256"]
+        assert run["dataset_fingerprint"] == alt_run["dataset_fingerprint"]
         assert run["train_episodes"] == alt_run["dataset_manifest_ref"]["train_episode_ids"]
-        assert run["test_seeds"] == seeds
-        assert run["heldout_episodes"] == split["heldout_validation_episode_ids"]
-        assert run["code_sha256"] == sha256(HERE / "run.py")
-        assert run["config_sha256"] == sha256(HERE / "config.json")
-        assert not set(run["validation_seeds"]) & set(seeds)
-        dp_path = source_scale / "test/rollouts.csv"
-        dp_scores[scale], dp = check_rollouts(dp_path, seeds)
+        dp_scores[scale], dp = export_run(source_scale, destination / str(scale),
+                                         split, HERE / "config.json")
         alt_scores[scale], alt_metrics = check_rollouts(alt / "eval_rollouts.csv", seeds)
-        assert dp["mean_score"] == run["test"]["mean_score"]
         assert np.isclose(alt_metrics["mean_score"], read(alt / "eval_metrics.json")["mean_score"])
-        checks = read(source_scale / "validation.json")
-        selected = run["selected_update"]
-        assert selected == max(map(int, checks), key=lambda u: (checks[str(u)]["mean_score"], -u))
-        target = destination / str(scale)
-        target.mkdir(parents=True, exist_ok=False)
-        for step, entry in checks.items():
-            assert sha256(source_scale / f"ema_{step}.pt") == entry["checkpoint_sha256"]
-            rollout = source_scale / f"validation_{step}/rollouts.csv"
-            _, metrics = check_rollouts(rollout, run["validation_seeds"])
-            assert np.isclose(metrics["mean_score"], entry["mean_score"], atol=1e-12, rtol=0)
-            shutil.copyfile(rollout, target / f"validation_{step}_rollouts.csv")
-        for filename in ("run.json", "training.csv", "validation.json"):
-            shutil.copyfile(source_scale / filename, target / filename)
-        shutil.copyfile(dp_path, target / "test_rollouts.csv")
-        heavy = sorted(source_scale.glob("ema_*.pt")) + sorted(source_scale.glob("test/media/*.mp4"))
-        assert len(heavy) == len(checks) + 4
-        save_json(target / "artifact_manifest.json", {
-            "run_directory": (source_scale.relative_to(ROOT) if source_scale.is_relative_to(ROOT)
-                              else source_scale).as_posix(),
-            "files": [{"path": file.relative_to(source_scale).as_posix(),
-                       "bytes": file.stat().st_size, "sha256": sha256(file)} for file in heavy],
-        })
-        dp.update(selected_update=selected, training_seconds=checks[str(selected)]["training_seconds"],
-                  total_training_seconds=run["total_training_seconds"],
-                  equivalent_epochs=checks[str(selected)]["equivalent_epochs"],
-                  sd=run["test"]["sd"], parameters=run["policy_parameters"],
-                  evaluation_seconds=run["test"]["runtime_seconds"])
         alt_metrics.update(updates=alt_run["optimizer_steps"], training_seconds=alt_run["training_seconds"])
         scale_results[scale] = {"dp": dp, "alt": alt_metrics}
 
@@ -112,11 +120,47 @@ def summarize(source, destination):
     })
 
 
+def summarize_long(source, destination, reference):
+    split = load_split(SPLIT)
+    seeds = split["test_env_seeds"]
+    scores, results = {}, {}
+    config_path = HERE / "long_config.json"
+    for scale in read(config_path)["scales"]:
+        run_dir = source.resolve() / str(scale)
+        assert read(run_dir / "run.json")["code_sha256"] == sha256(HERE / "run.py")
+        scores[scale], results[scale] = export_run(run_dir, destination / str(scale), split, config_path)
+    old, _ = check_rollouts(HERE / "evidence/100/test_rollouts.csv", seeds)
+    rng = np.random.default_rng(2026)
+    draws = rng.integers(0, len(seeds), size=(10000, len(seeds)))
+
+    def paired(delta):
+        return {"difference": float(delta.mean()),
+                "ci95": np.quantile(delta[draws].mean(axis=1), [0.025, 0.975]).tolist()}
+
+    ref = read(reference / "reference.json")
+    assert ref["test_seeds"] == seeds
+    _, ref_metrics = check_rollouts(reference / "rollouts.csv", seeds)
+    assert ref_metrics["mean_score"] == ref["metrics"]["mean_score"]
+    target = destination / "official"
+    target.mkdir()
+    for filename in ("reference.json", "rollouts.csv"):
+        shutil.copyfile(reference / filename, target / filename)
+    save_json(destination / "comparison.json", {
+        "scales": results, "official_pretrained": ref_metrics,
+        "dp_100_long_minus_short": paired(scores[100] - old),
+        "dp_186_minus_100_long": paired(scores[186] - scores[100]),
+    })
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path, help="Local artifact run directory")
     parser.add_argument("destination", type=Path, help="New evidence directory")
+    parser.add_argument("--official-reference", type=Path, help="Use the long study and its upstream reference")
     args = parser.parse_args()
     if args.destination.exists():
         parser.error("Evidence directory must be new")
-    summarize(args.source, args.destination)
+    if args.official_reference:
+        summarize_long(args.source, args.destination, args.official_reference)
+    else:
+        summarize(args.source, args.destination)

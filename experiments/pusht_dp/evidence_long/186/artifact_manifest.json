@@ -1,0 +1,40 @@
+{
+  "run_directory": "artifacts/pusht_dp/long_split42_model42_v1/186",
+  "files": [
+    {
+      "path": "ema_10000.pt",
+      "bytes": 113963275,
+      "sha256": "9ceed4dd907be11c9122f5c183ac5ab3ce36e0692e4b03fe27bf070ff77c8084"
+    },
+    {
+      "path": "ema_15000.pt",
+      "bytes": 113963275,
+      "sha256": "69decbe4fbc8dd5ea785768221ec8b4adb9054faee4cac5c992bddce16e89630"
+    },
+    {
+      "path": "ema_5000.pt",
+      "bytes": 113963034,
+      "sha256": "824f74d568f3de8fbe1ac7c79f73fb68d6e2508d805c06df925938add7409b4a"
+    },
+    {
+      "path": "test/media/e6ezk378.mp4",
+      "bytes": 43857,
+      "sha256": "4be6cb6a47f92d29a3e1cd41430fdd0f085f0844956f22ff76cafada91631b05"
+    },
+    {
+      "path": "test/media/g2milrf6.mp4",
+      "bytes": 45342,
+      "sha256": "c30d0742396b04846eee8fa36ce674c5ad94fdb5d580aaf09da00caad57f657a"
+    },
+    {
+      "path": "test/media/hjwzt5ww.mp4",
+      "bytes": 31689,
+      "sha256": "4ef44cf1498620b408a9c77510a01df6a4f7b221951ddb77ff9cf202d6a3395e"
+    },
+    {
+      "path": "test/media/unizczyf.mp4",
+      "bytes": 44767,
+      "sha256": "e4c827e0210e5baa8bb8132e5edcad6d82283a561c5cf5bbe122f60aaf917dde"
+    }
+  ]
+}

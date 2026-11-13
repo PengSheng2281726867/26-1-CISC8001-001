@@ -161,7 +161,7 @@ def rollout(policy, cfg, evaluation, seeds, path, videos):
     return summary
 
 
-def fit(scale, cfg, base, manifest, output, smoke):
+def fit(scale, cfg, config_path, base, manifest, output, smoke):
     from diffusion_policy.model.diffusion.ema_model import EMAModel
     import zarr
 
@@ -189,7 +189,7 @@ def fit(scale, cfg, base, manifest, output, smoke):
                 "training_frames": data.frames, "training_windows": data.count,
                 "validation_seeds": valid_seeds, "test_seeds": manifest["test_env_seeds"],
                 "torch": torch.__version__, "gpu": torch.cuda.get_device_name(cfg["device"]),
-                "code_sha256": sha256(__file__), "config_sha256": sha256(HERE / "config.json"),
+                "code_sha256": sha256(__file__), "config_sha256": sha256(config_path),
                 "policy_parameters": sum(p.numel() for p in policy.parameters() if p.requires_grad),
                 "upstream_files": {file: sha256(Path(base["paths"]["dp_source"]) / file) for file in (
                     "diffusion_policy/policy/diffusion_unet_hybrid_image_policy.py",
@@ -277,25 +277,35 @@ def test(scale, cfg, base, manifest, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("phase", choices=("smoke", "train", "test", "study"))
-    parser.add_argument("--scale", type=int, choices=(30, 100))
+    parser.add_argument("--scale", type=int)
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--base-config", type=Path, default=ROOT / "configs/alt_pusht_base.yaml")
+    parser.add_argument("--config", type=Path, default=HERE / "config.json")
     args = parser.parse_args()
     if not args.run_id.isascii() or not args.run_id.replace("-", "").replace("_", "").isalnum():
         parser.error("Run ID must contain ASCII letters, digits, hyphens or underscores")
     if (args.phase == "study") == (args.scale is not None):
         parser.error("Use --scale for smoke, train and test; study runs both scales")
-    cfg = json.loads((HERE / "config.json").read_text(encoding="utf-8"))
+    cfg = json.loads(args.config.read_text(encoding="utf-8"))
+    if args.scale is not None and args.scale not in cfg["scales"]:
+        parser.error(f"Select a scale from {cfg['scales']}")
     base = load_config(args.base_config, ROOT)
     sys.path.insert(0, base["paths"]["dp_source"])
-    manifest = load_split(base["split"]["manifest"], base["paths"]["dataset"], args.scale)
+    manifest = load_split(base["split"]["manifest"], base["paths"]["dataset"])
     run_root = ROOT / "artifacts/pusht_dp" / args.run_id
     scales = cfg["scales"] if args.phase == "study" else [args.scale]
+    pool = manifest["ordered_train_pool_episode_ids"]
+    for scale in scales:
+        if scale == len(pool) and str(scale) not in manifest["train_subsets"]:
+            # The full frozen training pool is an additional study condition.
+            manifest["train_subsets"][str(scale)] = pool
+        if manifest["train_subsets"].get(str(scale)) is None:
+            parser.error(f"{scale}: NOT_FEASIBLE_WITH_CURRENT_DATA")
     if args.phase != "test":
         for scale in scales:
             output = run_root / str(scale)
             output.mkdir(parents=True, exist_ok=False)
-            fit(scale, cfg, base, manifest, output, args.phase == "smoke")
+            fit(scale, cfg, args.config, base, manifest, output, args.phase == "smoke")
             torch.cuda.empty_cache()
     if args.phase in ("test", "study"):
         for scale in scales:
