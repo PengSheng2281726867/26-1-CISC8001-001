@@ -1,0 +1,274 @@
+{
+  "status": "completed",
+  "run_id": "contact_match_v2",
+  "started": "2026-11-13T03:24:51.178905+00:00",
+  "provenance": {
+    "created_at": "2026-11-13T03:24:51.015689+00:00",
+    "project_commit_at_start": "a0e34cdc8287c50b1c9e891bbcdc767e168c3a92",
+    "project_status_at_start": "?? experiments/pusht_contact_matching/",
+    "config_sha256": "ede908368dd44a6069ae558274ad7b538aa3fcb022f8b9708af99fb72e73ba81",
+    "base_config_sha256": "3ce2881017e474e13dfb5ea3a77b68f6162cfecb49587aa581b9d212ccf2c43d",
+    "split_manifest_sha256": "1b786b545a200f8fbbb28fb9385bc1ff80ed8699aba7c14d6fd117af7670322a",
+    "dataset": {
+      "sha256": "9b8c01cfa9d217337d1bad6cc84f81a0d8e1187b918acf0c76af0c08e9b110ee",
+      "file_count": 819,
+      "bytes": 31010783,
+      "algorithm": "SHA256(sorted(relative_posix_path + NUL + file_sha256 + LF))",
+      "full_byte_hash_computed": true
+    },
+    "train_episode_ids": [
+      96,
+      195,
+      159,
+      132,
+      167,
+      107,
+      25,
+      202,
+      149,
+      168,
+      75,
+      70,
+      106,
+      51,
+      9,
+      94,
+      152,
+      119,
+      198,
+      203,
+      201,
+      33,
+      3,
+      29,
+      178,
+      67,
+      112,
+      8,
+      54,
+      84
+    ],
+    "validation_episode_ids": [
+      154,
+      26,
+      101,
+      46,
+      38,
+      7,
+      79,
+      104,
+      150,
+      56,
+      20,
+      184,
+      108,
+      24,
+      146,
+      98,
+      196,
+      37,
+      197,
+      50
+    ],
+    "evaluation_seeds": [
+      100000,
+      100001,
+      100002,
+      100003,
+      100004,
+      100005,
+      100006,
+      100007,
+      100008,
+      100009,
+      100010,
+      100011,
+      100012,
+      100013,
+      100014,
+      100015,
+      100016,
+      100017,
+      100018,
+      100019,
+      100020,
+      100021,
+      100022,
+      100023,
+      100024,
+      100025,
+      100026,
+      100027,
+      100028,
+      100029,
+      100030,
+      100031,
+      100032,
+      100033,
+      100034,
+      100035,
+      100036,
+      100037,
+      100038,
+      100039,
+      100040,
+      100041,
+      100042,
+      100043,
+      100044,
+      100045,
+      100046,
+      100047,
+      100048,
+      100049
+    ],
+    "code_files": {
+      "common.py": "65b44e9ed9526aacd23f64d2526b31df81126f9bd4d26a69ccdebe2b89e7bf42",
+      "geometry_bank.py": "78875aca3e2fe59b4b39a5a082a8d0a6a25fbbe4a4a9c01ee3fcb24be7ccc755",
+      "geometry_policy.py": "575db64f07f006af9171ff3671670c3e712aecce2856db440173d494c9f7359a",
+      "oracle_runner.py": "d91c23f602dfba57745ca319b84707a84068c40496325b4ed10fa6fc91e549e3",
+      "reporting.py": "aacfa1391c8ec536e1d086e0fdca59bac55a4942b1d7877ea84ce8bbdeef6a73",
+      "run.py": "b8fc042f3619fec2aeac5100d3e8db476c314db19a55d914c222d099bc18b43c",
+      "run_horizon_ablation.py": "eb8843da61330d668c28c83ec3796614af5f18288f3d3b5eccf06897c1640dff",
+      "validate_horizon_ablation.py": "0c1f2432854b98a94dae120ee6bdd9fce5f8b431c27dffba2581e86c0490ed65",
+      "visualize_case.py": "0262b789cd9f991f03d0608ea654ef63a150aeaa35f340d1d7fa19267f041f21"
+    },
+    "references": {
+      "alt_source": {
+        "path": "D:/Code/Course_code/ACl/alt",
+        "commit": "939ed620276f0088d7e86021dbf1bc37240f02e0",
+        "dirty_status": ""
+      },
+      "dp_source": {
+        "path": "D:/Code/Course_code/DP/diffusion_policy",
+        "commit": "5ba07ac6661db573af695b419a7947ecb704690f",
+        "dirty_status": ""
+      }
+    },
+    "input": "privileged current pusher_xy + block_xy + block_theta; no network",
+    "training": null,
+    "model_seed": null,
+    "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:13) [MSC v.1944 64 bit (AMD64)]",
+    "hardware": {
+      "device": "CPU only",
+      "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+    },
+    "timing_method": "time.perf_counter; includes synchronous state-read IPC separately",
+    "packages": {
+      "numpy": "1.23.5",
+      "torch": "2.7.1+cu128",
+      "gym": "0.21.0",
+      "zarr": "2.12.0",
+      "pymunk": "6.2.1",
+      "pygame": "2.1.3",
+      "opencv-python": "4.6.0.66",
+      "dill": "0.3.5.1"
+    },
+    "study_config_sha256": "cddfcd27300d65aec46bf5e2b25454aaffb8d41743c6f8c7803912be4094e39c",
+    "study_code_sha256": "3ec6ade2b7e13636faf165408b5082b4e80fa3a6f1ef269091bc05484a395126"
+  },
+  "settings": {
+    "scales": {
+      "block_position": 40,
+      "angle_degrees": 15,
+      "local_pusher": 30,
+      "gap": 20
+    },
+    "gate": {
+      "block_position": 60,
+      "angle_degrees": 15,
+      "local_pusher": 30,
+      "gap": 20
+    },
+    "case_seeds": [
+      100000,
+      100001,
+      100002,
+      100003
+    ],
+    "case_steps": [
+      0,
+      80,
+      160
+    ],
+    "candidate_images": 2
+  },
+  "old_mean": 0.22472250190183934,
+  "offline": {
+    "old": {
+      "frames": 2426,
+      "has_candidate": 1642,
+      "selected_passes": 1117,
+      "same_edge": 1651,
+      "mean_errors": [
+        29.17320636111227,
+        8.306184841798633,
+        37.80743750410514,
+        15.714309097464819
+      ]
+    },
+    "relative": {
+      "frames": 2426,
+      "has_candidate": 1642,
+      "selected_passes": 1461,
+      "same_edge": 2051,
+      "mean_errors": [
+        34.16558838658244,
+        8.933162716900716,
+        14.415327811438885,
+        4.705302178549599
+      ]
+    },
+    "gated": {
+      "frames": 2426,
+      "has_candidate": 1642,
+      "selected_passes": 1642,
+      "same_edge": 2192,
+      "mean_errors": [
+        34.69272043244073,
+        8.88052854101084,
+        14.57530481363431,
+        4.946660673194782
+      ]
+    }
+  },
+  "rollouts": {
+    "relative": {
+      "n": 50,
+      "mean": 0.28933044154424065,
+      "sd": 0.3499427787702996,
+      "mean_final": 0.2520125924652098,
+      "delta_vs_old": 0.06460793964240133,
+      "paired95": [
+        -0.030539449599624808,
+        0.1644931792871129
+      ],
+      "queries": 1881,
+      "with_candidate": 519,
+      "fallback": 0,
+      "same_edge": 1275,
+      "query_trace_sha256": "2ed2f93804a1987fb522f4463b0ecd62f862c3ffaff715136bb943d87d3786eb",
+      "case_count": 12,
+      "seconds": 29.053661999991164
+    },
+    "gated": {
+      "n": 50,
+      "mean": 0.3031296269060773,
+      "sd": 0.3528093365374489,
+      "mean_final": 0.2651909951634597,
+      "delta_vs_old": 0.07840712500423795,
+      "paired95": [
+        -0.0216201958078315,
+        0.1814384042116749
+      ],
+      "queries": 1881,
+      "with_candidate": 524,
+      "fallback": 1357,
+      "same_edge": 1293,
+      "query_trace_sha256": "26ad6952574fb2441c005a9967f63fd70e27ae803b90a4d332d7501f1841f359",
+      "case_count": 12,
+      "seconds": 28.767643600003794
+    }
+  },
+  "finished": "2026-11-13T03:26:02.327266+00:00"
+}

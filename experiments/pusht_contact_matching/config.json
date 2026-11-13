@@ -1,0 +1,7 @@
+{
+  "scales": {"block_position": 40, "angle_degrees": 15, "local_pusher": 30, "gap": 20},
+  "gate": {"block_position": 60, "angle_degrees": 15, "local_pusher": 30, "gap": 20},
+  "case_seeds": [100000, 100001, 100002, 100003],
+  "case_steps": [0, 80, 160],
+  "candidate_images": 2
+}

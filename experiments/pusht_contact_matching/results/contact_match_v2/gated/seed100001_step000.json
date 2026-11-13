@@ -1,0 +1,155 @@
+{
+  "query": {
+    "evaluation_seed": 100001,
+    "current_step": 0,
+    "current_state": [
+      365.0,
+      182.0,
+      234.9342544278338,
+      304.51253964625084,
+      5.185072167469633
+    ],
+    "matched_state": [
+      378.85650634765625,
+      303.23028564453125,
+      179.39784240722656,
+      278.0285339355469,
+      6.247574329376221
+    ],
+    "matched_episode": 132,
+    "local_frame": 7,
+    "source_index": 16067,
+    "bank_index": 391,
+    "geometry_distance": 0.1856200728154626,
+    "distance_components": [
+      0.05679620714423095,
+      0.01444128272478961,
+      0.11438258294644206
+    ],
+    "pusher_error": 122.01960877505418,
+    "block_error": 61.52800678233651,
+    "angle_error_degrees": 60.87688960077316,
+    "same_match": false,
+    "same_match_and_same_position": false,
+    "state_stall": false,
+    "pusher_motion_since_last_query": null,
+    "block_motion_since_last_query": null,
+    "angle_motion_since_last_query": null,
+    "episode_switch": false,
+    "boundary_padded": false,
+    "action_source_indices": [
+      16067,
+      16068,
+      16069,
+      16070,
+      16071,
+      16072,
+      16073,
+      16074
+    ],
+    "commands": [
+      [
+        349.0,
+        236.0
+      ],
+      [
+        331.0,
+        214.0
+      ],
+      [
+        314.0,
+        201.0
+      ],
+      [
+        289.0,
+        188.0
+      ],
+      [
+        266.0,
+        180.0
+      ],
+      [
+        243.0,
+        175.0
+      ],
+      [
+        211.0,
+        172.0
+      ],
+      [
+        188.0,
+        171.0
+      ]
+    ],
+    "state_sync_pusher_max_abs_error": 0.0,
+    "state_observation_snapshot_equal": true,
+    "state_read_ms": 0.41610002517700195,
+    "search_ms": 0.9685000404715538,
+    "extraction_ms": 0.04730001091957092,
+    "eligible_count": 0,
+    "selected_passes_gate": false,
+    "fallback": true,
+    "local_pusher_error": 40.96229501839965,
+    "gap_error": 26.07317303587496,
+    "same_edge": true
+  },
+  "candidates": [
+    {
+      "episode": 96,
+      "frame": 18,
+      "source": 11411,
+      "passes_gate": false,
+      "errors": [
+        95.64670228444564,
+        14.855660438537598,
+        152.86328558625723,
+        63.52011187131159
+      ],
+      "state": [
+        334.1414794921875,
+        217.70370483398438,
+        172.02078247070312,
+        232.46958923339844,
+        4.9257917404174805
+      ]
+    },
+    {
+      "episode": 132,
+      "frame": 7,
+      "source": 16067,
+      "passes_gate": false,
+      "errors": [
+        61.52800678233651,
+        60.87688446044922,
+        40.96229501839965,
+        26.07317303587496
+      ],
+      "state": [
+        378.85650634765625,
+        303.23028564453125,
+        179.39784240722656,
+        278.0285339355469,
+        6.247574329376221
+      ]
+    },
+    {
+      "episode": 132,
+      "frame": 8,
+      "source": 16068,
+      "passes_gate": false,
+      "errors": [
+        61.52800678233651,
+        60.87688446044922,
+        58.432170395401705,
+        15.439940734954291
+      ],
+      "state": [
+        367.2757263183594,
+        276.29193115234375,
+        179.39784240722656,
+        278.0285339355469,
+        6.247574329376221
+      ]
+    }
+  ]
+}
