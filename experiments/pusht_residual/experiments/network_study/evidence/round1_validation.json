@@ -1,0 +1,37 @@
+{
+  "selected": "e015",
+  "checkpoints": {
+    "e005": {
+      "n": 16,
+      "mean": 0.6006835169064133,
+      "final": 0.3526170436578763,
+      "success": 0,
+      "queries": 608,
+      "query_sha256": "e04ebe1dfb3fd0b3e19406862f54dbc13278fe32f15b75021ea05742eac77b0f"
+    },
+    "e015": {
+      "n": 16,
+      "mean": 0.8031636022642228,
+      "final": 0.3950043447483393,
+      "success": 0,
+      "queries": 608,
+      "query_sha256": "e4d972dc75a9cbc09c4908103df512a87c34bfda51dc009054736cb47a61d844"
+    },
+    "e035": {
+      "n": 16,
+      "mean": 0.549921502119977,
+      "final": 0.315195407460479,
+      "success": 0,
+      "queries": 608,
+      "query_sha256": "1ff93c35c18a614048882d71771d4d701cf39ceebc43299d832a28b6fba8144f"
+    },
+    "e070": {
+      "n": 16,
+      "mean": 0.49928136428896397,
+      "final": 0.21806129560683188,
+      "success": 0,
+      "queries": 608,
+      "query_sha256": "cfbc8a1498c94da9032e190cec21c8c0d43a9c043ea87deab0723df0f80b72bc"
+    }
+  }
+}

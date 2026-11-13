@@ -1,0 +1,19 @@
+{
+  "scales": [30, 100],
+  "model_seed": 42,
+  "eval_noise_seed": 1242,
+  "validation_seed_start": 92000,
+  "validation_count": 16,
+  "horizon": 16,
+  "obs_steps": 2,
+  "action_steps": 8,
+  "down_dims": [128, 256, 512],
+  "diffusion_steps": 100,
+  "inference_steps": 16,
+  "batch_size": 64,
+  "learning_rate": 0.0001,
+  "warmup_updates": 200,
+  "checkpoints": [1000, 2500, 5000],
+  "ema_power": 0.75,
+  "device": "cuda:0"
+}

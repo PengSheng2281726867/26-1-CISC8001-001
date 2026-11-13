@@ -3,6 +3,10 @@
 experiments/splits/*.json -text whitespace=cr-at-eol
 experiments/splits/*.sha256 -text whitespace=cr-at-eol
 
+# The Push-T DP run records exact checksums of these inputs.
+experiments/pusht_dp/run.py text eol=lf
+experiments/pusht_dp/config.json text eol=lf
+
 # Lift's protocol references and configuration are validated by SHA-256.
 experiments/alt_robomimic_lift/configs/alt_lift30.yaml -text
 experiments/alt_robomimic_lift/configs/evaluation.json -text

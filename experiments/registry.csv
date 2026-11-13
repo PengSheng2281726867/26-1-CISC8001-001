@@ -2,3 +2,5 @@ run_id,status,scale,model_seed,reason,mean_score,notes
 alt_030_split42_model42_smoke_v1,completed,30,42,untrained_ImageNet_integration_smoke,0.39167831266120906,evaluated
 alt_030_split42_model42_pilot_v1,completed,30,42,single_model_seed_scale_pilot,0.27442389936027484,evaluated
 alt_100_split42_model42_pilot_v1,completed,100,42,single_model_seed_scale_pilot,0.2745227068864431,evaluated
+dp_030_split42_model42_v1,completed,30,42,matched_visual_baseline,0.4155788144922729,selected_5000_updates
+dp_100_split42_model42_v1,completed,100,42,matched_visual_baseline,0.4819672125930293,selected_5000_updates

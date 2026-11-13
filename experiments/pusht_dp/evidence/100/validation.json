@@ -1,0 +1,38 @@
+{
+  "1000": {
+    "n": 16,
+    "mean_score": 0.1854491686454517,
+    "sd": 0.1917098269773443,
+    "mean_final_score": 0.0008789448330725828,
+    "successes": 0,
+    "runtime_seconds": 15.067145699867979,
+    "checkpoint_sha256": "13c624d3a0725957d131b31a93382dbdcdc1db3bde778f72f5fc3ee9cb416c50",
+    "training_seconds": 48.21070659998804,
+    "windows_seen": 63750,
+    "equivalent_epochs": 5.349051854337977
+  },
+  "2500": {
+    "n": 16,
+    "mean_score": 0.3199787655402433,
+    "sd": 0.23163721576943777,
+    "mean_final_score": 0.014904373180587167,
+    "successes": 0,
+    "runtime_seconds": 14.696679800050333,
+    "checkpoint_sha256": "7fb210c8f48c31700de7fb44df5a30c27317a74a01bde2419e2b2c332afd6968",
+    "training_seconds": 131.3048449999187,
+    "windows_seen": 159350,
+    "equivalent_epochs": 13.370531968451083
+  },
+  "5000": {
+    "n": 16,
+    "mean_score": 0.5481070622562454,
+    "sd": 0.27156315486747784,
+    "mean_final_score": 0.25692003626039334,
+    "successes": 0,
+    "runtime_seconds": 13.833478400018066,
+    "checkpoint_sha256": "8a7d66b439f4a248c42e989575f76e1eb8b9dfd5d0b392e46af654cb51780568",
+    "training_seconds": 254.65909439977258,
+    "windows_seen": 318700,
+    "equivalent_epochs": 26.741063936902165
+  }
+}

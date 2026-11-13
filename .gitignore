@@ -28,3 +28,5 @@ artifacts/datasets/robomimic/lift/ph/*
 !artifacts/datasets/robomimic/lift/ph/download_manifest.json
 !artifacts/datasets/robomimic/lift/ph/image_download_manifest.json
 # END tracked robomimic Lift PH metadata
+
+/experiments/pusht_residual/artifacts/

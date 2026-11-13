@@ -1,5 +1,7 @@
 # Push-T 的 ALT 适配与实验总览
 
+[同轨迹视觉 DP 对照](../experiments/pusht_dp/RESULTS.md) · [相对几何、坐标对齐与残差实验](../experiments/pusht_residual/README.md)
+
 ## 基线与评估协议
 
 ALT 的输入是一张当前 96×96 RGB 图像和推杆的当前二维坐标。ImageNet 初始化的 ResNet-18 生成 128 维图像特征，位置 MLP 生成 32 维特征。融合 MLP 输出单位化的 128 维向量。训练微调整个编码器，用 NT-Xent 拉近同一帧的两个光度增强视图。建库后，对训练帧做全库余弦 top-1 检索，回放同一示范从匹配帧开始的 8 步原始绝对推杆目标。

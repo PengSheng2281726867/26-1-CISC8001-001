@@ -1,0 +1,55 @@
+{
+  "query_episodes": [
+    96,
+    195,
+    159,
+    132,
+    167,
+    107,
+    25,
+    202,
+    149,
+    168,
+    75,
+    70,
+    106,
+    51,
+    9,
+    94,
+    152,
+    119,
+    198,
+    203,
+    201,
+    33,
+    3,
+    29,
+    178,
+    67,
+    112,
+    8,
+    54,
+    84
+  ],
+  "train_queries": 3596,
+  "validation_queries": 2286,
+  "updates_per_pass": 29,
+  "aligned": {
+    "rmse": 41.430442810058594,
+    "first_action_rmse": 27.06269073486328,
+    "p90_chunk_rmse": 66.86054992675781
+  },
+  "checkpoints": {
+    "matched": {
+      "updates": 435,
+      "effective_epochs": 15.0,
+      "last_batch_loss": 0.09216684103012085,
+      "sha256": "a2cff3cebe166c6e2e239bc890aaccce709cbcba405b171c837bd6a68c616123",
+      "offline": {
+        "rmse": 38.51773452758789,
+        "first_action_rmse": 21.80295181274414,
+        "p90_chunk_rmse": 61.01474380493164
+      }
+    }
+  }
+}

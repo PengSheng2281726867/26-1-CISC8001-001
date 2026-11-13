@@ -1,48 +1,69 @@
-# 机器人模仿学习实验｜ALT 与 Diffusion Policy
+# ALT 与 Diffusion Policy｜机器人模仿学习课程项目
 
-本仓库研究机器人用少量专家示范学习闭环控制时，**直接检索专家动作**与**学习生成动作**各有什么优势。目前有两个模拟任务。Push-T 用图像和推杆位置控制 T 形物块，只研究动作查找表（ALT）。Lift-PH 用两路图像和机械臂本体状态抓取并抬升方块，在相同示范与初始状态下比较 ALT 和扩散策略（DP-CNN）。
+当机器人只有少量专家示范时，我们想知道：**从记忆里找一段相似的动作，和训练网络为当前观测生成动作，分别需要多少示范和训练？** 我们用动作查找表（ALT）与扩散策略（Diffusion Policy，DP）在两个模拟任务上做闭环对比。每个直接对照共用专家轨迹与测试初始状态，同时记录训练预算和各自的模型设置。
 
-## 结果入口
-
-| 任务 | 已完成的比较 | 结果与复现 |
+| 任务 | 研究问题 | 入口 |
 | --- | --- | --- |
-| Lift-PH | ALT 与 DP 的 10、30 条正式测试，以及 10、50、100 条轮数验证 | [中文结果总览](experiments/lift_box_dp/RESULTS.md) · [实验索引](experiments/lift_box_dp/README.md) |
-| Push-T | 视觉 ALT、位姿监督、几何规则、动作长度与坐标迁移 | [中文实验总览](docs/pusht_results.md) · [当前帧与训练候选图集](docs/pusht_matching_gallery.md) |
+| Lift-PH 抬升方块 | 少量示范下，能否抬过高度线并保持？增加训练轮数有什么影响？ | [结果总览](experiments/lift_box_dp/RESULTS.md) · [复现索引](experiments/lift_box_dp/README.md) |
+| Push-T 推 T 形块 | 从图像与推杆坐标出发，检索动作和生成动作各能把 T 推到哪里？ | [视觉 ALT 与 DP 对照](experiments/pusht_dp/RESULTS.md) · [冻结划分](experiments/splits/pusht_v7_split42.json) |
+| Push-T 真值几何诊断 | 若准确知道 T 的位置和朝向，示范动作能否先对齐、再由小网络修正？ | [两组残差实验](experiments/pusht_residual/README.md) · [当前帧与训练候选图集](docs/pusht_matching_gallery.md) |
 
-## 实验发现
+## Lift-PH｜示范效率和训练效率
 
-- **Lift 的正式测试中，DP-30 更常完成短时抬升。** 保持至少 1 秒的成功数为 DP 49/50、ALT 34/50。10 条示范时为 DP 23/50、ALT 18/50，配对 95% 区间跨零。
-- **Lift 的轮数验证显示训练阶段会改变排序。** 用 100 条示范，约 770 次更新时 ALT 和 DP 分别为 17/24、12/24。第 40 轮分别为 8/24、24/24。DP-100 第 150 轮同样是 24/24，但终点仅 6/24。保持 1 秒指连续 20 个控制步高于桌面基准高度加 4 厘米。验证每局 250 步，正式测试每局 1,000 步。[评估定义与逐轮结果](experiments/lift_box_dp/RESULTS.md)
-- **Push-T 上未观察到明确的规模收益。** ALT 从 30 条增至 100 条，平均官方覆盖得分为 0.2744 和 0.2745，配对差的 95% 区间为 −0.0970 到 +0.0932。诊断发现相似图像有时检索到几何位置不匹配的动作。[检索失败分析](docs/retrieval_failure_analysis.md)
-- **Push-T 的动作对齐提高了接触率。** 固定原视觉 ALT-30 的匹配帧，用真实 T 位姿对齐 8 步动作后，接触数从 106/395 增至 279/395。段内最高覆盖小幅提升，段末覆盖未提高。[配对动作迁移诊断](experiments/pusht_action_transfer/RESULTS.md)
-- **Push-T 的相对几何让推杆匹配更准。** 离线相对位置误差从 37.81 降到约 14.5。同边筛选的官方均分为 0.3031，相对旧全局几何的配对区间跨零，闭环中约 72% 的查询需要回退。[规则对比与匹配图](docs/pusht_matching_gallery.md)
+正式测试每种设置 50 局，每局最多 1,000 步。「保持至少 1 秒」指连续 20 个控制步都高于桌面基准高度加 4 厘米。终点是否仍达标另算。
 
-## 仓库导航
+| 示范 | ALT 保持 ≥ 1 秒 | DP 保持 ≥ 1 秒 | 检查点（ALT / DP） |
+| ---: | ---: | ---: | --- |
+| 10 条 | 18/50 | 23/50 | 10 / 200 轮 |
+| 30 条 | 34/50 | 49/50 | 40 / 200 轮 |
 
-| 路径 | 内容 |
+10 条时差 5 局，配对 95% 区间跨零。30 条时 DP 多成功 15 局，两种规模的选模规则有差异。50 和 100 条另有 24 局轮数验证。在 100 条的验证中，约 770 次更新时 ALT 和 DP 分别为 17/24 和 12/24，第 40 轮分别为 8/24 和 24/24。这说明训练阶段能改变方法排序。DP-100 第 150 轮虽有 24/24 达到一秒保持，终点达标仅 6/24。短时抬升和持续保持应分别衡量。[逐轮结果与训练口径](experiments/lift_box_dp/RESULTS.md)
+
+## Push-T｜先比较视觉策略，再拆解检索失败
+
+视觉 ALT 用一张 RGB 图像与推杆二维坐标，在训练示范中做最近邻检索。视觉 DP 用最近两帧的同类输入，通过条件扩散生成动作。每次都执行最多 8 步绝对推杆目标，正式评估共 50 局，每局最多 300 步。主分数是每局最高归一化目标覆盖分的均值，末步覆盖和成功局数另报。
+
+| 示范 | 视觉 ALT | 视觉 DP | DP 减 ALT（配对 95% 区间） |
+| ---: | ---: | ---: | --- |
+| 30 条 | 0.2744 | **0.4156** | +0.1412［+0.0466，+0.2359］ |
+| 100 条 | 0.2745 | **0.4820** | +0.2074［+0.1252，+0.2896］ |
+
+DP 用 30 条的均分已高于 ALT 用 100 条。各 DP 规模训练 5,000 次更新，从 30 增至 100 条时均分多 0.0664，配对区间跨零。完整成功的局数仍少，DP 的 30 和 100 条组分别为 1/50 和 0/50。这里观察到的是覆盖得分的优势。DP 使用较窄的条件 U-Net 与 16 步 DDIM，两种方法的观测历史、批大小与选模规则有差异。[逐局比较与训练预算](experiments/pusht_dp/RESULTS.md)
+
+视觉 ALT 的匹配图显示，两张图看起来相似时，推杆也可能位于 T 的另一侧。我们试过给图像分支加 T 位姿监督。验证帧的平均 T 角差从 38.3° 降到 17.3°，推杆误差却变大，闭环均分也降到 0.178。离线几何阈值分析发现，30 条示范中只有 27.8% 的锚帧能找到跨轨迹、三项误差都达标的候选。这些结果把困难落到了三个具体量上：推杆相对 T 的位置、T 的桌面位置与朝向，以及训练库是否有可迁移的动作。[视觉适配与逐项诊断](docs/pusht_results.md) · [匹配图集](docs/pusht_matching_gallery.md)
+
+### 如果已知 T 的位姿，历史动作能复用到什么程度？
+
+这部分把仿真器提供的 **T 真值位置和朝向**用于规则检索与动作对齐。它是对检索和动作迁移的诊断。视觉 ALT 与 DP 的主对照仅使用图像和推杆位置，真实 T 位姿应由视觉系统估计。
+
+1. **规则匹配。** 用 T 坐标系里的推杆距离找历史动作，并兼顾 T 的位置和朝向。相对位置更匹配，原样回放仍只有约 0.251。
+2. **坐标对齐。** 把同一候选动作先表达在历史 T 的坐标系里，再按当前 T 的位姿转回桌面。这样即使 T 转过，示范里推横梁的动作仍会移到当前横梁上。固定相对检索规则，对齐把 50 局均分从 **0.251 提到 0.926**。
+3. **小网络修正。** 让网络学专家动作和对齐动作之间的差，尝试从最近示范迁移到当前状态。第一组实验中无界残差得 0.322，限制修正幅度后升到 0.618。第二组固定 30 条检索库，比较训练时长、增加监督示范和块内衰减。衰减残差比同预算普通残差从 **0.722 提到 0.862**，仍低于纯对齐的主分数。增加监督示范到 100 条、保持 435 次更新时得 0.624。这里可以看到修正网络有改进空间，也能看到离线动作更接近专家时，闭环分数仍可能下降。[坐标对齐与残差](experiments/pusht_residual/experiments/residual_study/REPORT.md) · [网络三轮迭代](experiments/pusht_residual/experiments/network_study/RESULTS.md)
+
+## 结构与复现
+
+| 内容 | 路径 |
 | --- | --- |
-| [experiments/lift_box_dp](experiments/lift_box_dp/README.md) | Lift 对比代码、配置、报告、冻结状态和小型逐局记录 |
-| [experiments/alt_robomimic_lift](experiments/alt_robomimic_lift/README.md) | 原始 Lift ALT 实现、数据划分、模拟器验证和动作块实验 |
-| [environments/robomimic_lift](environments/robomimic_lift/README.md) | Lift 的 WSL 旧版模拟器配置 |
-| [src](src)、[scripts](scripts)、[configs](configs) | Push-T ALT 实现和实验入口 |
-| [docs](docs)、[experiments/runs](experiments/runs)、[results](results) | Push-T 审计、运行记录及图表 |
+| Lift ALT 与 DP 的代码、训练轮数验证和正式成绩 | [experiments/lift_box_dp](experiments/lift_box_dp/README.md) |
+| Lift 原始 ALT、数据划分与模拟器 | [experiments/alt_robomimic_lift](experiments/alt_robomimic_lift/README.md) · [environments/robomimic_lift](environments/robomimic_lift/README.md) |
+| Push-T ALT、数据审计、原始运行记录 | [src](src) · [scripts](scripts) · [数据审计](docs/data_audit.md) · [运行记录](experiments/runs) |
+| Push-T DP 的训练、配对统计与证据 | [experiments/pusht_dp](experiments/pusht_dp/README.md) |
+| Push-T 位姿真值诊断、对齐与动作修正 | [experiments/pusht_residual](experiments/pusht_residual/README.md) · [匹配图集](docs/pusht_matching_gallery.md) |
 
-## 复现
-
-Lift-PH 图像数据共有 200 条独立示范，冻结 20 条离线验证和 180 条训练池。[Lift 划分](experiments/alt_robomimic_lift/configs/lift_ph_split42.json) 保存精确轨迹 ID。Lift 对比依赖同级 `DP/diffusion_policy` 参考源码、CUDA Python、既有 HDF5 数据和 WSL Ubuntu 中的 RoboSuite 1.2.0 / MuJoCo 2.0.0。进入 `experiments/lift_box_dp` 后按实验方法文档执行。重训使用新的运行 ID。
-
-Push-T 使用本地 DP 参考项目的 `pusht_cchi_v7_replay.zarr`。数据审计发现 206 条独立轨迹，当前划分可支持 30 和 100 条训练示范。300 和 500 条在当前数据下不可用。运行前核对 [数据审计](docs/data_audit.md)、[来源与版本](docs/upstream_provenance.md) 和 [配置](configs/alt_pusht_base.yaml)。
+Push-T v7 共 206 条独立示范，预留 20 条后，原计划的 30 和 100 条可对照，300 和 500 条超过当前训练池容量。项目记录了精确示范 ID、种子、训练步数和逐局成绩。运行依赖本地数据与 [参考源码](docs/upstream_provenance.md)，路径见 [基础配置](configs/alt_pusht_base.yaml)。从根目录运行的示例：
 
 ```powershell
-$python = '..\DP\.conda\pusht\python.exe'
-& $python -B scripts/run.py audit
-& $python -B scripts/run.py prepare-weights
-& $python -B scripts/run.py check
+$pushTPython = '..\DP\.conda\pusht\python.exe'
+& $pushTPython -B scripts/run.py audit
+& $pushTPython -B scripts/run.py prepare-weights
+& $pushTPython -B scripts/run.py check
 
-$run = 'alt_030_split42_model42_reproduction_v1'
-& $python -B scripts/run.py train --run-id $run --scale 30 --model-seed 42
-& $python -B scripts/run.py bank --run-id $run
-& $python -B scripts/run.py evaluate --run-id $run
+$altRun = 'alt_030_split42_model42_reproduction'
+& $pushTPython -B scripts/run.py train --run-id $altRun --scale 30 --model-seed 42
+& $pushTPython -B scripts/run.py bank --run-id $altRun
+& $pushTPython -B scripts/run.py evaluate --run-id $altRun
+
+& $pushTPython -B experiments/pusht_dp/run.py study --run-id split42_model42_reproduction
 ```
 
-Git 保存代码、冻结清单、逐局指标与校验和。原始数据、检查点、记忆库、视频和完整控制轨迹留在本地 `artifacts/`。复现既有模型需要对应的本地权重和数据。
+Lift 的 HDF5 数据、WSL 模拟器和执行命令见 [Lift 复现索引](experiments/lift_box_dp/README.md)。Git 保存小型结果与配置。原始数据、检查点、动作库和视频保存在本地。两项任务的正式模型对照目前均使用单训练种子，评估种子上的配对区间衡量的是固定模型的初始状态波动。

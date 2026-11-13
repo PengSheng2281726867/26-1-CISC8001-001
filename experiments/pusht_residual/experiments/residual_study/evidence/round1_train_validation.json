@@ -1,0 +1,22 @@
+{
+  "raw": {
+    "rmse": 47.39508819580078,
+    "first_action_rmse": 32.40852355957031,
+    "p90_chunk_rmse": 78.07068252563477
+  },
+  "aligned": {
+    "rmse": 48.65681076049805,
+    "first_action_rmse": 41.68826675415039,
+    "p90_chunk_rmse": 82.04743957519531
+  },
+  "residual": {
+    "rmse": 37.26883316040039,
+    "first_action_rmse": 22.44212532043457,
+    "p90_chunk_rmse": 62.42304039001465
+  },
+  "train_queries": 3596,
+  "train_pairs": 3596,
+  "validation_queries": 2286,
+  "checkpoint_sha256": "fd3d9e2d6c7c42ea010105b55b3cd84004a61276af73321ddd6e67141f810d34",
+  "round": 1
+}

@@ -1,0 +1,13 @@
+{
+  "selected": "matched",
+  "checkpoints": {
+    "matched": {
+      "n": 16,
+      "mean": 0.9194230902704068,
+      "final": 0.6486958410086444,
+      "success": 2,
+      "queries": 576,
+      "query_sha256": "645430fe331af634a4d282bf0d574dcb10c7de69ad8c1777171c695c5a009995"
+    }
+  }
+}

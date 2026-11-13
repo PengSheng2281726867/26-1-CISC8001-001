@@ -6,7 +6,7 @@ You are Codex, acting as the implementation, experiment, debugging, documentatio
 
 **Primary research question:** Does a contrastive-learning, nearest-neighbor action-retrieval policy work on image-based Push-T, and how does its closed-loop performance change when the number of independent expert demonstration trajectories increases from **30 → 100 → 300 → 500**?
 
-**For this project, work on ALT only.** Do not train or implement a Diffusion Policy (DP) comparison yet. However, preserve reproducible dataset splits and experiment definitions so a future DP study can use **exactly the same demonstration episode IDs and evaluation seeds**.
+**The original Push-T phases below cover the ALT series.** The subsequent user-authorized DP comparison lives in `experiments/pusht_dp` and reuses **exactly the same demonstration episode IDs and evaluation seeds**. Keep simulator ground-truth T pose confined to separately labeled diagnostics.
 
 First milestone: **an auditable, reproducible, closed-loop ALT-30 Push-T rollout**, not a high score at any cost. Continue autonomously through validated phases where possible; do not hide failures, adjust evaluation to inflate scores, or silently change the experimental method.
 
@@ -78,7 +78,7 @@ In addition, keep access to the source **2D expert action array**; do not duplic
 - near the end of a demonstration, do not cross into a different episode: use a clearly documented last-action padding policy or skip ineligible indices, and test it
 - record exact observation-to-action temporal alignment. Do not assume that observation frame `t` maps to action index `t` without inspecting the DP environment and dataset conventions; write a concrete test for off-by-one errors.
 
-For an ALT policy with **one** input frame, take the current/latest observation even if the environment wrapper presents a history tensor. Use the same **8-action execution horizon** for all ALT scales. The DP reference config commonly uses `horizon=16`, `n_obs_steps=2`, `n_action_steps=8`; **we are not training DP in this project**.
+For an ALT policy with **one** input frame, take the current/latest observation even if the environment wrapper presents a history tensor. Use the same **8-action execution horizon** for all ALT scales. The DP comparison uses `horizon=16`, `n_obs_steps=2`, `n_action_steps=8`.
 
 ### 2.4 Main data-scale study
 
@@ -256,7 +256,7 @@ Work in **gated phases**, finishing verification, documentation, and a meaningfu
 - Use several model random seeds if feasible; never obscure single-seed limitations.
 - Save per-run manifests and results, compare closed-loop scores, retrieval patterns, inference latency and bank growth; include failed and negative runs.
 - Commit after each scale (e.g. `exp: ALT-100 results`, `exp: ALT-300 results`, `exp: ALT-500 results`) **only if results actually exist**.
-- Final summary: describe where ALT succeeds/fails and what remains unproven. Do **not** train DP now.
+- Final summary: describe where ALT succeeds/fails and what remains unproven in the original ALT scale series.
 
 ### Git practice for all phases
 
