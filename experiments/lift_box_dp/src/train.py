@@ -54,13 +54,19 @@ def main():
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--study", action="store_true")
     parser.add_argument("--supplement", action="store_true")
-    parser.add_argument("--scale", type=int, choices=(10, 50, 100), default=10)
+    parser.add_argument("--scale", type=int, choices=(10, 30, 50, 100), default=10)
+    parser.add_argument("--matched-seed", type=int)
+    parser.add_argument("--matched-smoke", action="store_true")
     args = parser.parse_args()
-    if args.scale != 10 and not args.study:
+    fixed_budget = args.matched_seed is not None
+    if args.scale != 10 and not (args.study or fixed_budget):
         parser.error("Nondefault --scale requires --study")
     if args.supplement and not args.study:
         parser.error("--supplement requires --study")
-    if args.study:
+    if fixed_budget:
+        from matched_budget import matched
+        cfg, alt, dp, split, image = matched(args.scale, args.matched_seed, args.matched_smoke)
+    elif args.study:
         from epoch_study import study
         cfg, alt, dp, split, image = study(supplement=args.supplement, scale=args.scale, method="dp")
     else:
@@ -87,7 +93,7 @@ def main():
     data = ActionWindows(frames, cfg["horizon"])
     check_windows(data)
     batch_size = 4 if args.smoke else cfg["batch_size"]
-    loader = DataLoader(data, batch_size=batch_size, shuffle=True, pin_memory=True,
+    loader = DataLoader(data, batch_size=batch_size, shuffle=True, pin_memory=True, drop_last=fixed_budget,
                         generator=torch.Generator().manual_seed(cfg["shuffle_seed"]))
     validation = ActionWindows(LiftFrameStore(image, split["heldout_validation_episode_ids"]), cfg["horizon"])
     val_loader = DataLoader(validation, batch_size=batch_size, pin_memory=True)
@@ -100,9 +106,10 @@ def main():
     ema = EMAModel(ema_model, power=cfg["ema_power"])
     optimizer = torch.optim.AdamW(model.parameters(), lr=cfg["learning_rate"], betas=(0.95, 0.999),
                                   weight_decay=1e-6, fused=True)
-    epochs = 1 if args.smoke else cfg["epochs"]
+    cap = cfg.get("max_updates")
+    epochs = (cap + len(loader) - 1) // len(loader) if cap else (1 if args.smoke else cfg["epochs"])
     scheduler = get_cosine_schedule_with_warmup(optimizer, 0 if args.smoke else cfg.get("dp_warmup_steps", 500),
-                                                1 if args.smoke else epochs * len(loader))
+                                                cap if cap else (1 if args.smoke else epochs * len(loader)))
 
     def move(batch):
         return {"obs": {key: value.to(device, non_blocking=True) for key, value in batch["obs"].items()},
@@ -129,10 +136,10 @@ def main():
                 ema.step(model)
                 steps += 1
                 losses.append(loss.item())
-                if args.smoke:
+                if args.smoke or steps == cap:
                     break
             val_loss = None
-            if args.smoke or epoch % 10 == 0 or epoch == epochs:
+            if args.smoke or epoch == epochs or (epoch % 10 == 0 and not fixed_budget):
                 ema_model.eval()
                 with torch.no_grad(), torch.random.fork_rng(devices=[0]):
                     torch.manual_seed(45)
@@ -146,14 +153,14 @@ def main():
             metrics.writerow([epoch, steps, float(np.mean(losses)), val_loss, elapsed])
             stream.flush()
             print(f"epoch {epoch}/{epochs} loss={np.mean(losses):.5f} val={val_loss} elapsed={elapsed:.0f}s", flush=True)
-            if args.study and epoch in cfg["dp_epochs"]:
+            if (fixed_budget and steps == cap) or (args.study and epoch in cfg["dp_epochs"]):
                 snapshot = output / f"epoch{epoch:03d}.pt"
                 torch.save({"weights": ema_model.state_dict(), "config": cfg, "smoke": args.smoke,
                             "epoch": epoch}, snapshot)
                 saved[str(epoch)] = {"steps": steps, "checkpoint_sha256": sha256(snapshot)}
                 write_json(output / "checkpoints.json", saved)
-    checkpoint = output / ("epoch%03d.pt" % epochs if args.study and not args.smoke else "final_ema.pt")
-    if not args.study or args.smoke:
+    checkpoint = output / ("epoch%03d.pt" % epochs if (args.study or fixed_budget) and not args.smoke else "final_ema.pt")
+    if not (args.study or fixed_budget) or args.smoke:
         torch.save({"weights": ema_model.state_dict(), "config": cfg, "smoke": args.smoke}, checkpoint)
     write_json(output / "training.json", {
         "run_id": args.run_id, "smoke": args.smoke, "epochs": epochs, "steps": steps,

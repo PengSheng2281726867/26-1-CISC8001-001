@@ -199,10 +199,12 @@ def train_model(cfg, manifest, run_dir, artifacts, metadata):
     model.train()
     start = time.perf_counter()
     steps = 0
+    max_updates = t.get('max_updates')
+    epochs = (max_updates + len(loader) - 1) // len(loader) if max_updates else t['epochs']
     with (run_dir/'training_metrics.csv').open('x', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=['epoch', 'mean_nt_xent', 'optimizer_steps', 'epoch_seconds'])
         writer.writeheader()
-        for epoch in range(1, t['epochs']+1):
+        for epoch in range(1, epochs+1):
             loss_sum, batches = 0.0, 0
             epoch_start = time.perf_counter()
             for a, b, pos in loader:
@@ -221,6 +223,8 @@ def train_model(cfg, manifest, run_dir, artifacts, metadata):
                 loss_sum += loss.item()
                 batches += 1
                 steps += 1
+                if steps == max_updates:
+                    break
             row = {'epoch': epoch, 'mean_nt_xent': loss_sum/batches,
                    'optimizer_steps': steps, 'epoch_seconds': time.perf_counter()-epoch_start}
             writer.writerow(row)

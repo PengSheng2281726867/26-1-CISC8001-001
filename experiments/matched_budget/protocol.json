@@ -1,0 +1,15 @@
+{
+  "model_seeds": [42, 43, 44],
+  "batch_size": 32,
+  "checkpoint_selection": "last_optimizer_update",
+  "pusht": {"scales": [30, 100], "updates": 1000},
+  "lift": {
+    "scales": [10, 30, 100],
+    "updates": 800,
+    "validation_seed_start": 90000,
+    "validation_count": 24,
+    "validation_horizon": 250,
+    "sampling_seed": 46,
+    "workers": 8
+  }
+}

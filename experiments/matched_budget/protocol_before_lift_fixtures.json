@@ -1,0 +1,7 @@
+{
+  "model_seeds": [42, 43, 44],
+  "batch_size": 32,
+  "checkpoint_selection": "last_optimizer_update",
+  "pusht": {"scales": [30, 100], "updates": 1000},
+  "lift": {"scales": [10, 30, 100], "updates": 800}
+}

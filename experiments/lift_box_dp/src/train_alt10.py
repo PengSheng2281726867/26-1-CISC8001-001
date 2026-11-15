@@ -16,9 +16,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("run_id")
     parser.add_argument("--supplement", action="store_true")
-    parser.add_argument("--scale", type=int, choices=(10, 50, 100), default=10)
+    parser.add_argument("--scale", type=int, choices=(10, 30, 50, 100), default=10)
+    parser.add_argument("--matched-seed", type=int)
+    parser.add_argument("--matched-smoke", action="store_true")
     args = parser.parse_args()
-    cfg, alt, dp, split, image = study(supplement=args.supplement, scale=args.scale)
+    if args.matched_seed is None:
+        cfg, alt, dp, split, image = study(supplement=args.supplement, scale=args.scale)
+    else:
+        from matched_budget import matched
+        cfg, alt, dp, split, image = matched(args.scale, args.matched_seed, args.matched_smoke)
     add_references(alt, dp)
     from alt_lift.data import ContrastiveViews, LiftFrameStore, ProprioNormalizer
     from alt_lift.encoder import VisualProprioEncoder
@@ -40,22 +46,23 @@ def main():
     output = ROOT / "artifacts" / args.run_id
     output.mkdir(parents=True, exist_ok=False)
     write_json(output / "config.json", cfg)
-    _seed_everything(training["model_seed"])
+    _seed_everything(cfg["model_seed"] if args.matched_seed is not None else training["model_seed"])
     device = torch.device("cuda")
     store = LiftFrameStore(image, cfg["train_ids"])
     normalizer = ProprioNormalizer.fit(store.proprio)
     dataset = ContrastiveViews(store, normalizer, base["augmentation"])
-    loader = DataLoader(dataset, batch_size=training["batch_size"], shuffle=True,
+    loader = DataLoader(dataset, batch_size=training["batch_size"] if args.matched_seed is None else cfg["batch_size"], shuffle=True,
                         drop_last=training["drop_last"], pin_memory=True,
-                        generator=torch.Generator().manual_seed(training["dataloader_shuffle_seed"]))
+                        generator=torch.Generator().manual_seed(cfg["shuffle_seed"] if args.matched_seed is not None else training["dataloader_shuffle_seed"]))
     model = VisualProprioEncoder(base["model"]["variant"], pretrained_path=pretrained).to(device)
-    torch.manual_seed(training["augmentation_seed"])
+    torch.manual_seed(cfg["augmentation_seed"] if args.matched_seed is not None else training["augmentation_seed"])
     optimizer = torch.optim.Adam(model.parameters(), lr=training["learning_rate"],
                                  weight_decay=training["weight_decay"])
     start = time.perf_counter()
     steps = 0
     saved = {}
-    epochs = cfg["alt_epochs"]
+    cap = cfg.get("max_updates")
+    epochs = [(cap + len(loader) - 1) // len(loader)] if cap else cfg["alt_epochs"]
     with (output / "training.csv").open("x", newline="", encoding="utf-8") as stream:
         writer = csv.writer(stream)
         writer.writerow(["epoch", "steps", "train_loss", "wall_seconds"])
@@ -74,6 +81,8 @@ def main():
                 optimizer.step()
                 steps += 1
                 losses.append(loss.item())
+                if steps == cap:
+                    break
             writer.writerow([epoch, steps, float(np.mean(losses)), time.perf_counter() - start])
             stream.flush()
             if epoch in epochs:
@@ -89,7 +98,7 @@ def main():
                 saved[str(epoch)] = {"steps": steps, "checkpoint_sha256": sha256(checkpoint),
                                      "bank_sha256": sha256(bank_path)}
                 write_json(output / "checkpoints.json", saved)
-            if epoch % 10 == 0:
+            if epoch % 10 == 0 or epoch in epochs:
                 print(f"ALT epoch={epoch} steps={steps} loss={np.mean(losses):.5f}", flush=True)
     write_json(output / "training.json", {
         "train_ids": cfg["train_ids"], "train_frames": len(store), "steps": steps,

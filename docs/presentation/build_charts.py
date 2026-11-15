@@ -55,6 +55,50 @@ def finish(figure, stem):
     plt.close(figure)
 
 
+def fixed_budget():
+    evidence = ROOT / "experiments/matched_budget/evidence"
+    destination = HERE / "materials/matched_budget"
+    destination.mkdir(parents=True, exist_ok=True)
+    tasks = (
+        ("lift", "Lift-PH", "24 validation starts, 250 steps",
+         (("ever_success", "Ever lifted"), ("hold_success", "Held ≥1 s"), ("final_success", "Final step"))),
+        ("pusht", "Image Push-T", "50 test starts, at most 300 steps",
+         (("official_episode_score", "Peak coverage score"), ("final_score", "Final coverage score"))),
+    )
+    for task, title, evaluation, metrics in tasks:
+        source = evidence / f"{task}_models.csv"
+        rows = read_rows(source)
+        updates, = {int(row["optimizer_steps"]) for row in rows}
+        write_rows(destination / f"{task}.csv", [{**r, "source": source.relative_to(ROOT).as_posix()} for r in rows])
+        scales = sorted({int(row["demonstrations"]) for row in rows})
+        positions = np.arange(len(scales))
+        figure, axes = plt.subplots(1, len(metrics), figsize=(11.4, 4.5), sharey=True)
+        ceiling = 1.05 if task == "lift" else max(.5, max(float(row[key]) for row in rows for key, _ in metrics) + .05)
+        for axis, (key, label) in zip(axes, metrics):
+            for offset, method in ((-.09, "ALT"), (.09, "DP")):
+                values = np.array([[float(row[key]) for row in rows if row["method"] == method.lower()
+                                    and int(row["demonstrations"]) == scale] for scale in scales])
+                axis.plot(positions + offset, values.mean(axis=1), "D-", color=COLORS[method],
+                          linewidth=1.8, markersize=6, label=method)
+                for index, measurements in enumerate(values):
+                    points = positions[index] + offset + np.linspace(-.04, .04, len(measurements))
+                    axis.scatter(points, measurements, color=COLORS[method], s=21, alpha=.55)
+            style(axis, ceiling)
+            axis.set_ylim(-.024 * ceiling, ceiling)
+            axis.set_title(label, fontsize=13, weight="bold")
+            axis.set_xticks(positions, scales)
+            axis.set_xlabel("Demonstrations")
+        axes[0].set_ylabel("Fraction of episodes" if task == "lift" else "Mean normalized coverage")
+        handles, labels = axes[0].get_legend_handles_labels()
+        figure.legend(handles, labels, loc="upper right", bbox_to_anchor=(.97, .98), frameon=False, ncol=2)
+        figure.suptitle(f"{title} · {updates:,} optimizer updates per model", x=.08, y=.97,
+                        ha="left", fontsize=17, weight="bold")
+        figure.text(.08, .045, f"{evaluation}. Circles show individual training seeds and diamonds show their means.",
+                    color="#475569")
+        figure.subplots_adjust(left=.08, right=.97, bottom=.23, top=.77, wspace=.16)
+        finish(figure, destination / task)
+
+
 def lift():
     destination = HERE / "materials/lift"
     rows = []
@@ -241,3 +285,4 @@ if __name__ == "__main__":
     visual()
     geometry()
     diagrams()
+    fixed_budget()
