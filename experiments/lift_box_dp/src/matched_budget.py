@@ -23,8 +23,9 @@ def matched(scale, seed, smoke=False):
     return cfg, alt, dp, split, image
 
 
-def fixtures(split, alt):
-    design = read_json(PROTOCOL_PATH)["lift"]
+def fixtures(split, alt, design=None):
+    if design is None:
+        design = read_json(PROTOCOL_PATH)["lift"]
     original_path = FIXTURE_DIR / "validation_initial_states.json"
     extra_path = FIXTURE_DIR / "validation_extra16_initial_states.json"
     original, extra = read_json(original_path), read_json(extra_path)

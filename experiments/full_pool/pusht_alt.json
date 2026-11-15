@@ -1,0 +1,7 @@
+{
+  "train_count": 186,
+  "checkpoint_epochs": [2, 5, 10, 20, 40],
+  "loader_workers": 4,
+  "validation_seed_start": 92000,
+  "validation_count": 16
+}

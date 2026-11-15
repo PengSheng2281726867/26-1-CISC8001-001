@@ -99,6 +99,49 @@ def fixed_budget():
         finish(figure, destination / task)
 
 
+def full_pool():
+    evidence = ROOT / "experiments/full_pool/evidence"
+    destination = HERE / "materials/full_pool"
+    destination.mkdir(parents=True, exist_ok=True)
+    title_and_scale = (("lift", "Lift-PH", 180), ("pusht", "Image Push-T", 186))
+    rows = []
+    figure, axes = plt.subplots(1, 2, figsize=(12.0, 5.0))
+    positions = np.arange(3)
+    for axis, (task, title, scale) in zip(axes, title_and_scale):
+        path = evidence / f"{task}_comparison.json"
+        report = read_json(path)
+        for offset, method in ((-.18, "ALT"), (.18, "DP")):
+            record = report["methods"][method.lower()]
+            scores = record["test"]
+            n = report["n_test_starts"]
+            if task == "lift":
+                values = [scores[key]["rate"] for key in ("ever_success", "hold_success", "final_success")]
+                labels = [f"{v:.0%}" for v in values]
+                tick_labels = ("Ever lifted", "Held ≥1 s", "Final step")
+            else:
+                values = [scores["mean_score"], scores["mean_final_score"], scores["successes"] / n]
+                labels = [f"{values[0]:.3f}", f"{values[1]:.3f}", f"{values[2]:.0%}"]
+                tick_labels = ("Peak score", "Final score", "Strict success")
+            bars = axis.bar(positions + offset, values, .33, color=COLORS[method], label=method)
+            axis.bar_label(bars, labels=labels, padding=5, fontsize=10)
+            rows.extend({"task": task, "method": method, "demonstrations": scale, "metric": label,
+                         "value": result, "n_test": n, "selected_updates": record["selected_updates"],
+                         "source": path.relative_to(ROOT).as_posix()} for label, result in zip(tick_labels, values))
+        style(axis, 1.11)
+        axis.set_title(f"{title} · {scale} demonstrations", fontsize=14, weight="bold")
+        axis.set_xticks(positions, tick_labels)
+        axis.set_ylabel("Fraction of episodes" if task == "lift" else "Normalized score or success fraction")
+    handles, labels = axes[0].get_legend_handles_labels()
+    figure.legend(handles, labels, loc="upper right", bbox_to_anchor=(.97, .98), frameon=False, ncol=2)
+    figure.suptitle("Full demonstration pools and longer training", x=.08, y=.975,
+                    ha="left", fontsize=17, weight="bold")
+    figure.text(.08, .043, "One training seed per method. Checkpoints selected on validation. 50 test starts per model.",
+                color="#475569")
+    figure.subplots_adjust(left=.08, right=.975, bottom=.19, top=.76, wspace=.24)
+    finish(figure, destination / "outcomes")
+    write_rows(destination / "outcomes.csv", rows)
+
+
 def lift():
     destination = HERE / "materials/lift"
     rows = []
@@ -286,3 +329,4 @@ if __name__ == "__main__":
     geometry()
     diagrams()
     fixed_budget()
+    full_pool()

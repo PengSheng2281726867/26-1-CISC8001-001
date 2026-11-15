@@ -1,0 +1,13 @@
+{
+  "train_count": 180,
+  "alt_loader_workers": 4,
+  "alt_epochs": [2, 5, 10, 20, 40],
+  "dp_epochs": [10, 40, 80, 120, 150],
+  "dp_warmup_steps": 175,
+  "validation_seed_start": 90000,
+  "validation_count": 24,
+  "validation_horizon": 250,
+  "sampling_seed": 46,
+  "test_workers": 8,
+  "selection_order": ["hold_success", "ever_success", "final_success", "earlier_epoch"]
+}

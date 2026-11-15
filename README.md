@@ -2,7 +2,7 @@
 
 ## 先看 PPT 制作思路
 
-**汇报的 9 页叙事、逐页对应的实验和图表都在 [`docs/presentation/`](docs/presentation/README.md)。** 从原论文的 ALT 思路讲起，在不同任务和示范规模下对照 ALT 与 DP，再用 Push-T 的匹配失败引出坐标对齐和残差修正。制作 PPT 时，可以直接取用[模型架构图](docs/presentation/ARCHITECTURES.md)、[图表、截图和 CSV](docs/presentation/materials/)以及[两段仿真短片](docs/presentation/MEDIA.md)。
+**汇报的 10 页叙事、逐页对应的实验和图表都在 [`docs/presentation/`](docs/presentation/README.md)。** 从原论文的 ALT 思路讲起，先比较两项任务在固定短预算下的规模变化，再看完整训练池与长训练的成绩，最后用 Push‑T 的匹配失败引出坐标对齐和残差修正。[模型架构图](docs/presentation/ARCHITECTURES.md) · [图表、截图和 CSV](docs/presentation/materials/) · [两段仿真短片](docs/presentation/MEDIA.md)
 
 **不同示范规模下，ALT 和 DP 在控制要求不同的 Lift‑PH 与 Push‑T 上，闭环表现如何变化？** 我们比较动作查找表（ALT）与扩散策略（Diffusion Policy，DP）。Lift‑PH 侧重抓取、抬升和保持，Push‑T 侧重接触控制以及目标位置和朝向。每个直接对照共用专家轨迹和评估起点，并单独记录训练预算与模型设置。
 
@@ -10,7 +10,7 @@
 
 | 文件夹 | 里面有什么 |
 | --- | --- |
-| [`docs/presentation/`](docs/presentation/README.md) | 9 页汇报计划、逐页素材、PNG/SVG 图表、源数据 CSV、录像来源和图表生成脚本 |
+| [`docs/presentation/`](docs/presentation/README.md) | 10 页汇报计划、逐页素材、PNG/SVG 图表、源数据 CSV、录像来源和图表生成脚本 |
 | [`experiments/`](experiments/README.md) | 按任务整理的实验目录，包含方法、配置、逐局指标和复现记录。冻结示范划分见 [`splits/`](experiments/splits/)，Push-T ALT 的基线运行见 [`runs/`](experiments/runs/) |
 | [`src/`](src/) | [`alt/`](src/alt/) 放编码器、对比损失和动作检索库；[`pusht/`](src/pusht/) 放 Push-T 数据适配、策略接口和仿真评估 |
 | [`configs/`](configs/) · [`scripts/`](scripts/) · [`tests/`](tests/) | Push-T 基础与诊断配置；审计、训练、建库、评估和可视化入口；核心逻辑与策略接口测试 |
@@ -23,6 +23,7 @@
 | 任务 | 对应文件夹 | 主要内容 |
 | --- | --- | --- |
 | 两任务固定预算补测 | [`matched_budget/`](experiments/matched_budget/EXPERIMENT.md) | 同任务固定示范、更新次数、选模规则和评估起点，重复三个训练种子。[结果与原始指标](experiments/matched_budget/RESULTS.md) |
+| 两任务全量长训练 | [`full_pool/`](experiments/full_pool/EXPERIMENT.md) | Lift 180 条、视觉 Push‑T 186 条，各方法按独立验证选权重并正式测试。[结果与逐局证据](experiments/full_pool/RESULTS.md) |
 | Lift-PH 抬升方块 | [`lift_box_dp/`](experiments/lift_box_dp/README.md) · [`alt_robomimic_lift/`](experiments/alt_robomimic_lift/README.md) | ALT／DP 正式对照、不同示范规模与轮数验证，以及原始 Lift ALT 实现。[Lift 结果总览](experiments/lift_box_dp/RESULTS.md) |
 | 视觉 Push-T | [`pusht_dp/`](experiments/pusht_dp/README.md) · [`runs/`](experiments/runs/) | 同轨迹的视觉 ALT／DP 对照、DP 长训练补测和官方模型复评。[视觉对照结果](experiments/pusht_dp/RESULTS.md) |
 | Push-T 真值几何诊断 | [`pusht_contact_matching/`](experiments/pusht_contact_matching/README.md) · [`pusht_action_transfer/`](experiments/pusht_action_transfer/README.md) · [`pusht_residual/`](experiments/pusht_residual/README.md) | 接触侧规则、动作坐标迁移和两组残差实验。[当前帧与训练候选图集](docs/pusht_matching_gallery.md) |
@@ -32,6 +33,8 @@
 「保持至少 1 秒」指连续 20 个控制步都高于桌面基准高度加 4 厘米。终点是否仍达标另算。
 
 **固定 800 次更新时，30 和 100 条组的 ALT 更常保持一秒。** 10／30／100 条下 ALT 的保持率为 18.1%／59.7%／62.5%，DP 为 8.3%／11.1%／9.7%。三个种子共用 24 个验证起点、每局 250 步。10 条和各组的末步达标差异均有较大不确定性。[固定预算补测](experiments/matched_budget/RESULTS.md#liftph)
+
+**全量 180 条和长训练时，DP 的一秒保持为 50/50，ALT 为 39/50。** 两个入选检查点在 1,000 步正式测试的末步达标分别为 1/50 与 0/50。每方法使用一个训练种子。[全量长训练](experiments/full_pool/RESULTS.md#liftph)
 
 下表记录早期正式测试，每个设置 50 局、每局 1,000 步。
 
@@ -47,6 +50,8 @@
 视觉 ALT 用一张 RGB 图像与推杆二维坐标，在训练示范中做最近邻检索。视觉 DP 用最近两帧的同类输入，通过条件扩散生成动作。每次都执行最多 8 步绝对推杆目标，正式评估共 50 局，每局最多 300 步。主分数是每局最高归一化目标覆盖分的均值，末步覆盖和成功局数另报。
 
 **固定 1,000 次更新时，视觉 ALT 领先。** 30 条示范下最高分均值为 ALT 0.237、DP 0.152，100 条时为 ALT 0.321、DP 0.151。两个规模的排序均在三个训练种子中复现。ALT 随示范规模扩大提高了最高覆盖分，DP 的分数大致持平。[固定预算补测](experiments/matched_budget/RESULTS.md#视觉-pusht)
+
+**全量 186 条和长训练时，视觉 DP 的最高分为 0.945，ALT 为 0.451。** 末步均分为 0.878／0.376，严格成功为 26/50 对 5/50。验证选中 DP 的 25,000 次更新权重和 ALT 的第 2 轮权重。[全量长训练](experiments/full_pool/RESULTS.md#视觉-pusht)
 
 早期各自训练配方的结果如下。
 

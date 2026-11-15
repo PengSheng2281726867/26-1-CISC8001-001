@@ -1,0 +1,13 @@
+task,method,demonstrations,metric,value,n_test,selected_updates,source
+lift,ALT,180,Ever lifted,0.8,50,542,experiments/full_pool/evidence/lift_comparison.json
+lift,ALT,180,Held ≥1 s,0.78,50,542,experiments/full_pool/evidence/lift_comparison.json
+lift,ALT,180,Final step,0.0,50,542,experiments/full_pool/evidence/lift_comparison.json
+lift,DP,180,Ever lifted,1.0,50,5440,experiments/full_pool/evidence/lift_comparison.json
+lift,DP,180,Held ≥1 s,1.0,50,5440,experiments/full_pool/evidence/lift_comparison.json
+lift,DP,180,Final step,0.02,50,5440,experiments/full_pool/evidence/lift_comparison.json
+pusht,ALT,186,Peak score,0.4514836887333994,50,1450,experiments/full_pool/evidence/pusht_comparison.json
+pusht,ALT,186,Final score,0.3756274754148015,50,1450,experiments/full_pool/evidence/pusht_comparison.json
+pusht,ALT,186,Strict success,0.1,50,1450,experiments/full_pool/evidence/pusht_comparison.json
+pusht,DP,186,Peak score,0.9450543503442514,50,25000,experiments/full_pool/evidence/pusht_comparison.json
+pusht,DP,186,Final score,0.8777955639176152,50,25000,experiments/full_pool/evidence/pusht_comparison.json
+pusht,DP,186,Strict success,0.52,50,25000,experiments/full_pool/evidence/pusht_comparison.json

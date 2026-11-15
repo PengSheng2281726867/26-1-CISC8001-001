@@ -14,7 +14,7 @@ import time
 import traceback
 import numpy as np
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, RandomSampler
 import yaml
 from alt.encoder import FusionEncoder, make_augmentation
 from alt.loss import nt_xent
@@ -181,7 +181,7 @@ def fresh_model(cfg):
         embedding_dim=cfg['encoder']['embedding_dim']).to(device)
 
 
-def train_model(cfg, manifest, run_dir, artifacts, metadata):
+def train_model(cfg, manifest, run_dir, artifacts, metadata, on_checkpoint=None):
     event(run_dir, 'training', 'running')
     model = fresh_model(cfg)
     initial_conv = model.image_encoder.conv1.weight.detach().cpu().clone()
@@ -189,11 +189,14 @@ def train_model(cfg, manifest, run_dir, artifacts, metadata):
     episodes = manifest['train_subsets'][str(cfg['training']['scale'])]
     frames = ObservationFrames(data, episodes, make_augmentation(cfg['augmentation']))
     t = cfg['training']
-    if t['optimizer'] != 'Adam' or t['num_workers'] != 0:
-        raise ValueError('Audited pilot uses Adam and single-process loading')
-    loader = DataLoader(frames, batch_size=t['batch_size'], shuffle=True,
-                        generator=torch.Generator().manual_seed(t['shuffle_seed']), drop_last=True,
-                        num_workers=0)
+    if t['optimizer'] != 'Adam':
+        raise ValueError('Contrastive encoder training uses Adam')
+    shuffled = torch.Generator().manual_seed(t['shuffle_seed'])
+    loading = {'shuffle': True, 'generator': shuffled}
+    if t['num_workers']:
+        loading = {'sampler': RandomSampler(frames, generator=shuffled), 'num_workers': t['num_workers'],
+                   'persistent_workers': True, 'generator': torch.Generator().manual_seed(t['augmentation_seed'])}
+    loader = DataLoader(frames, batch_size=t['batch_size'], drop_last=True, **loading)
     optimizer = torch.optim.Adam(model.parameters(), lr=t['learning_rate'])
     torch.manual_seed(t['augmentation_seed'])
     model.train()
@@ -230,6 +233,9 @@ def train_model(cfg, manifest, run_dir, artifacts, metadata):
             writer.writerow(row)
             f.flush()
             print(json.dumps(row), flush=True)
+            if on_checkpoint is not None and epoch in t['checkpoint_epochs']:
+                on_checkpoint(model, data, epoch, steps)
+                model.train()
     training_seconds = time.perf_counter()-start
     if torch.equal(initial_conv, model.image_encoder.conv1.weight.detach().cpu()):
         raise ValueError('Pretrained backbone did not change during fine-tuning')

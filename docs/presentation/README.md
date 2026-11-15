@@ -6,23 +6,24 @@ Push‑T 的匹配失败案例引出后续探索：历史动作经过坐标对�
 
 [按实验查模型架构图（含 ImageGen 宽屏版）](ARCHITECTURES.md) · [两段仿真短片](MEDIA.md)
 
-## 正文 9 页
+## 正文 10 页
 
 | 页 | 标题 | 素材与讲法 |
 | ---: | --- | --- |
 | 1 | DP 在少量示范下会记住什么？ | 用 He 等人的 Fig. 4 展示推理动作和训练轨迹的相似度。说明这是作者在特定条件下观察到的现象，也是 ALT 的动机。将自己的问题落在两种策略在不同任务中的实测表现。[原论文 §3.4](https://arxiv.org/html/2505.05787v1#S3.SS4) |
 | 2 | 两种策略如何比较？ | 用流程图解释 DP 的条件去噪和 ALT 的编码、检索、回放。用两张截图交代两任务的控制要求。主对照在任务内比较示范规模，两方法共用示范和评估起点，固定更新数、取最后权重并重复三个种子。[策略流程 PNG](materials/methods/alt_vs_dp.png) · [Lift 截图](materials/lift/lift_video_still.png) · [Push‑T 截图](materials/pusht_geometry/pusht_video_still.png) · [实验设计](../../experiments/matched_budget/EXPERIMENT.md) |
 | 3 | Lift：抬起来、撑一秒、结束时仍在 | 主图比较 10、30、100 条，统一训练 800 次更新，每个模型验证 24 局、每局 250 步。放录像展示“曾达标、末步未达标”。[Lift ALT 架构](materials/architecture_imagegen/lift_alt.png) · [Lift DP 架构](materials/architecture_imagegen/lift_dp.png) · [主图 PNG](materials/matched_budget/lift.png) · [表格 CSV](materials/matched_budget/lift.csv) · [Lift 短片](MEDIA.md#lift-alt30) |
-| 4 | 视觉 Push‑T：能推多近，最后剩多少 | 主图比较 30、100 条，统一训练 1,000 次更新，每个模型在相同 50 个起点正式测试。用历史对照补充 DP 延长训练后的表现。[视觉 ALT 架构](materials/architecture_imagegen/pusht_alt.png) · [视觉 DP 架构](materials/architecture_imagegen/pusht_dp.png) · [主图 PNG](materials/matched_budget/pusht.png) · [表格 CSV](materials/matched_budget/pusht.csv) · [历史视觉对照](../../experiments/pusht_dp/RESULTS.md) |
-| 5 | 图像匹配的最近帧为什么会推错？ | 主讲 ALT‑30 种子 100000、第 296 步。匹配到示范 67 第 30 帧，余弦相似度 0.9924。请观众观察灰色 T 的朝向和蓝色推杆相对 T 的位置。引出“候选推法是否合适”和“动作能否搬过去”两个问题。[匹配图](../../results/visualizations/test_frame_matches_v1_alt30.png) · [帧来源](../../results/visualizations/test_frame_matches_v1.json) · [图集](../pusht_matching_gallery.md) |
-| 6 | 检索 → 坐标对齐 → 残差修正 | 示意从历史 T 横梁一侧开始的动作怎样旋转、平移到当前 T。小 MLP 读几何差和历史 8 步动作，预测逐步修正量。醒目标注**仿真真值 T 位姿**。可用一句话交代 DP 和 Flow Matching 带来的启发，实测模块称「残差回归」。[动作示意 PNG](materials/methods/action_transfer.png) · [规则检索流程](materials/architecture_imagegen/pusht_geometry.png) · [残差网络架构](materials/architecture_imagegen/pusht_residual.png) · [动作块迁移实验](../../experiments/pusht_action_transfer/RESULTS.md) · [Flow Matching](https://arxiv.org/abs/2210.02747) |
-| 7 | 哪一步带来最大改善？ | 固定相对几何检索规则，对比原样回放和坐标对齐。先看整局统计，再放 Push‑T 短片，展示一个接近目标后覆盖回落的回合。[主图 PNG](materials/pusht_geometry/alignment.png) · [表格 CSV](materials/pusht_geometry/alignment.csv) · [Push‑T 短片](MEDIA.md#push-t-aligned) |
-| 8 | 小网络有没有额外贡献？ | 对比纯对齐、普通残差、衰减残差。把最高分、末步分和成功局数一起读，指出衰减结构提高了普通残差的闭环得分。[主图 PNG](materials/pusht_geometry/residual.png) · [表格 CSV](materials/pusht_geometry/residual.csv) · [末步配对区间](materials/pusht_geometry/final_score_pairing.json) |
-| 9 | 结论与后续问题 | 短预算下，ALT 在两任务中都有规模收益，增益出现在哪段随任务而变。早期较长的 DP 配方取得过更高成绩。最后总结真值对齐和残差消融，引出从 RGB 估计 T 位姿后的动作迁移问题。[对照结论](../../experiments/matched_budget/RESULTS.md) |
+| 4 | 视觉 Push‑T：能推多近，最后剩多少 | 主图比较 30、100 条，统一训练 1,000 次更新，每个模型在相同 50 个起点正式测试。[视觉 ALT 架构](materials/architecture_imagegen/pusht_alt.png) · [视觉 DP 架构](materials/architecture_imagegen/pusht_dp.png) · [主图 PNG](materials/matched_budget/pusht.png) · [表格 CSV](materials/matched_budget/pusht.csv) |
+| 5 | 用完示范并延长训练，各方法能做到什么？ | Lift 用 180 条，一秒保持为 ALT 39/50、DP 50/50，末步达标为 0/50、1/50。视觉 Push‑T 用 186 条，严格成功为 ALT 5/50、DP 26/50，另看最高分和末步分。强调两组 ALT 最后都选第 2 轮，DP 的两个入选权重也早于训练上限。[主图 PNG](materials/full_pool/outcomes.png) · [表格 CSV](materials/full_pool/outcomes.csv) · [结果与检查点](../../experiments/full_pool/RESULTS.md) |
+| 6 | 图像匹配的最近帧为什么会推错？ | 主讲 ALT‑30 种子 100000、第 296 步。匹配到示范 67 第 30 帧，余弦相似度 0.9924。请观众观察灰色 T 的朝向和蓝色推杆相对 T 的位置。引出“候选推法是否合适”和“动作能否搬过去”两个问题。[匹配图](../../results/visualizations/test_frame_matches_v1_alt30.png) · [帧来源](../../results/visualizations/test_frame_matches_v1.json) · [图集](../pusht_matching_gallery.md) |
+| 7 | 检索 → 坐标对齐 → 残差修正 | 示意从历史 T 横梁一侧开始的动作怎样旋转、平移到当前 T。小 MLP 读几何差和历史 8 步动作，预测逐步修正量。醒目标注**仿真真值 T 位姿**。可用一句话交代 DP 和 Flow Matching 带来的启发，实测模块称「残差回归」。[动作示意 PNG](materials/methods/action_transfer.png) · [规则检索流程](materials/architecture_imagegen/pusht_geometry.png) · [残差网络架构](materials/architecture_imagegen/pusht_residual.png) · [动作块迁移实验](../../experiments/pusht_action_transfer/RESULTS.md) · [Flow Matching](https://arxiv.org/abs/2210.02747) |
+| 8 | 哪一步带来最大改善？ | 固定相对几何检索规则，对比原样回放和坐标对齐。先看整局统计，再放 Push‑T 短片，展示一个接近目标后覆盖回落的回合。[主图 PNG](materials/pusht_geometry/alignment.png) · [表格 CSV](materials/pusht_geometry/alignment.csv) · [Push‑T 短片](MEDIA.md#push-t-aligned) |
+| 9 | 小网络有没有额外贡献？ | 对比纯对齐、普通残差、衰减残差。把最高分、末步分和成功局数一起读，指出衰减结构提高了普通残差的闭环得分。[主图 PNG](materials/pusht_geometry/residual.png) · [表格 CSV](materials/pusht_geometry/residual.csv) · [末步配对区间](materials/pusht_geometry/final_score_pairing.json) |
+| 10 | 结论与后续问题 | 固定短预算下 ALT 已能从增加示范中获益。全量长训后 DP 在两项任务的主要指标领先，Lift 结束时仍达标依然少见。最后用几何消融说明动作对齐的收益，并引出从 RGB 估计 T 位姿后的检索迁移问题。[固定预算](../../experiments/matched_budget/RESULTS.md) · [全量长训](../../experiments/full_pool/RESULTS.md) |
 
 流程图和统计图同时提供 PNG 和同名 SVG。若要在 PPT 重绘或改中文标签，可直接使用配套 CSV。两张任务截图来自演示录像，Push‑T 截图是渲染画面。
 
-## 三组实验结论
+## 实验结论
 
 ### Lift｜固定短预算与三个达标指标
 
@@ -31,6 +32,10 @@ Push‑T 的匹配失败案例引出后续探索：历史动作经过坐标对�
 ### 视觉 Push‑T｜示范规模与训练预算
 
 固定 1,000 次更新时，30／100 条的 ALT 最高分分别为 **0.237／0.321**，DP 为 **0.152／0.151**。两个规模下，ALT 在三个训练种子均领先。早期视觉实验中 DP 以 5,000 次更新得到 0.416／0.482，ALT 在各自 40 轮得约 0.274。固定 100 条后，延长 DP 训练和学习率日程进一步提高了最高分和末步均分。[1,000 次更新补测](../../experiments/matched_budget/RESULTS.md#视觉-pusht) · [早期视觉对照](../../experiments/pusht_dp/RESULTS.md) · [长预算与官方复评](../../experiments/pusht_dp/LONG_TRAINING.md)
+
+### 全量示范｜长训练和验证选模
+
+全量实验在共同的独立验证起点选权重，每组 50 局正式测试，每方法一个训练种子。Lift DP 的一秒保持达 **50/50**，末步达标仅 **1/50**。视觉 Push‑T 的 DP 最高覆盖均分 **0.945**、末步均分 **0.878**、严格成功 **26/50**。最高覆盖和严格成功应在同一页同时呈现。视觉 DP 从 25,000 到 40,000 次更新的验证最高分由 0.985 回落到 0.932。[候选检查点与正式成绩](../../experiments/full_pool/RESULTS.md)
 
 ### 真值位姿诊断｜动作对齐与学习修正
 

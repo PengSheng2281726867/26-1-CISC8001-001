@@ -6,7 +6,7 @@ import time
 import numpy as np
 import torch
 import yaml
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, RandomSampler
 
 from common import ROOT, add_references, read_json, sha256, write_json
 from epoch_study import study
@@ -19,8 +19,17 @@ def main():
     parser.add_argument("--scale", type=int, choices=(10, 30, 50, 100), default=10)
     parser.add_argument("--matched-seed", type=int)
     parser.add_argument("--matched-smoke", action="store_true")
+    parser.add_argument("--full-pool", action="store_true")
+    parser.add_argument("--full-pool-smoke", action="store_true")
     args = parser.parse_args()
-    if args.matched_seed is None:
+    if args.full_pool and (args.supplement or args.matched_seed is not None):
+        parser.error("--full-pool selects a standalone training protocol")
+    if args.full_pool_smoke and not args.full_pool:
+        parser.error("--full-pool-smoke requires --full-pool")
+    if args.full_pool:
+        from full_pool import full_pool
+        cfg, alt, dp, split, image = full_pool(args.full_pool_smoke)
+    elif args.matched_seed is None:
         cfg, alt, dp, split, image = study(supplement=args.supplement, scale=args.scale)
     else:
         from matched_budget import matched
@@ -51,11 +60,18 @@ def main():
     store = LiftFrameStore(image, cfg["train_ids"])
     normalizer = ProprioNormalizer.fit(store.proprio)
     dataset = ContrastiveViews(store, normalizer, base["augmentation"])
-    loader = DataLoader(dataset, batch_size=training["batch_size"] if args.matched_seed is None else cfg["batch_size"], shuffle=True,
-                        drop_last=training["drop_last"], pin_memory=True,
-                        generator=torch.Generator().manual_seed(cfg["shuffle_seed"] if args.matched_seed is not None else training["dataloader_shuffle_seed"]))
+    batch_size = training["batch_size"] if args.matched_seed is None else cfg["batch_size"]
+    shuffle_seed = cfg["shuffle_seed"] if args.matched_seed is not None else training["dataloader_shuffle_seed"]
+    augmentation_seed = cfg["augmentation_seed"] if args.matched_seed is not None else training["augmentation_seed"]
+    shuffled = torch.Generator().manual_seed(shuffle_seed)
+    workers = cfg.get("alt_loader_workers", 0)
+    loading = {"shuffle": True, "generator": shuffled}
+    if workers:
+        loading = {"sampler": RandomSampler(dataset, generator=shuffled), "num_workers": workers,
+                   "persistent_workers": True, "generator": torch.Generator().manual_seed(augmentation_seed)}
+    loader = DataLoader(dataset, batch_size=batch_size, drop_last=training["drop_last"], pin_memory=True, **loading)
     model = VisualProprioEncoder(base["model"]["variant"], pretrained_path=pretrained).to(device)
-    torch.manual_seed(cfg["augmentation_seed"] if args.matched_seed is not None else training["augmentation_seed"])
+    torch.manual_seed(augmentation_seed)
     optimizer = torch.optim.Adam(model.parameters(), lr=training["learning_rate"],
                                  weight_decay=training["weight_decay"])
     start = time.perf_counter()

@@ -57,13 +57,22 @@ def main():
     parser.add_argument("--scale", type=int, choices=(10, 30, 50, 100), default=10)
     parser.add_argument("--matched-seed", type=int)
     parser.add_argument("--matched-smoke", action="store_true")
+    parser.add_argument("--full-pool", action="store_true")
+    parser.add_argument("--full-pool-smoke", action="store_true")
     args = parser.parse_args()
     fixed_budget = args.matched_seed is not None
+    if args.full_pool and (args.study or args.supplement or fixed_budget or args.smoke):
+        parser.error("--full-pool selects a standalone training protocol")
+    if args.full_pool_smoke and not args.full_pool:
+        parser.error("--full-pool-smoke requires --full-pool")
     if args.scale != 10 and not (args.study or fixed_budget):
         parser.error("Nondefault --scale requires --study")
     if args.supplement and not args.study:
         parser.error("--supplement requires --study")
-    if fixed_budget:
+    if args.full_pool:
+        from full_pool import full_pool
+        cfg, alt, dp, split, image = full_pool(args.full_pool_smoke)
+    elif fixed_budget:
         from matched_budget import matched
         cfg, alt, dp, split, image = matched(args.scale, args.matched_seed, args.matched_smoke)
     elif args.study:
@@ -116,6 +125,7 @@ def main():
                 "action": batch["action"].to(device, non_blocking=True)}
 
     saved = {}
+    save_epochs = args.study or args.full_pool
     steps = 0
     with (output / "training.csv").open("x", newline="", encoding="utf-8") as stream:
         metrics = csv.writer(stream)
@@ -153,14 +163,14 @@ def main():
             metrics.writerow([epoch, steps, float(np.mean(losses)), val_loss, elapsed])
             stream.flush()
             print(f"epoch {epoch}/{epochs} loss={np.mean(losses):.5f} val={val_loss} elapsed={elapsed:.0f}s", flush=True)
-            if (fixed_budget and steps == cap) or (args.study and epoch in cfg["dp_epochs"]):
+            if (fixed_budget and steps == cap) or (save_epochs and epoch in cfg["dp_epochs"]):
                 snapshot = output / f"epoch{epoch:03d}.pt"
                 torch.save({"weights": ema_model.state_dict(), "config": cfg, "smoke": args.smoke,
                             "epoch": epoch}, snapshot)
                 saved[str(epoch)] = {"steps": steps, "checkpoint_sha256": sha256(snapshot)}
                 write_json(output / "checkpoints.json", saved)
-    checkpoint = output / ("epoch%03d.pt" % epochs if (args.study or fixed_budget) and not args.smoke else "final_ema.pt")
-    if not (args.study or fixed_budget) or args.smoke:
+    checkpoint = output / ("epoch%03d.pt" % epochs if (save_epochs or fixed_budget) and not args.smoke else "final_ema.pt")
+    if not (save_epochs or fixed_budget) or args.smoke:
         torch.save({"weights": ema_model.state_dict(), "config": cfg, "smoke": args.smoke}, checkpoint)
     write_json(output / "training.json", {
         "run_id": args.run_id, "smoke": args.smoke, "epochs": epochs, "steps": steps,

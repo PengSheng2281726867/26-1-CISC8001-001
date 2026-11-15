@@ -1,5 +1,7 @@
 # Experiment ledger
 
+2026-11-16，完成全量示范和长训练对照。Lift 用 180 条，视觉 Push‑T 用 186 条。各方法按冻结验证规则选择检查点，共完成 384 局验证和 200 局正式测试。PPT 新增全量长训练一页，连接固定短预算与后续的匹配诊断。[方法](../experiments/full_pool/EXPERIMENT.md) · [结果和归档](../experiments/full_pool/RESULTS.md)
+
 2026-11-15，完成固定更新次数补测。Lift 比较 10／30／100 条示范和 800 次更新，视觉 Push‑T 比较 30／100 条和 1,000 次更新。各设置独立训练三个种子，共 30 个模型和 1,032 局闭环评估。主汇报图表改用同任务内的固定预算对照。采用不同训练配方的早期记录保留其各自的评估口径。[实验方法](../experiments/matched_budget/EXPERIMENT.md) · [结果与证据](../experiments/matched_budget/RESULTS.md)
 
 2026-10-20: Phase 0 source/data audit and Phase 1 implementation in progress. No training or rollout results yet. ALT main uses one RGB image plus current 2D pusher position; no Diffusion Policy training. Freeze 20 validation episodes before nested train-30/train-100; 300/500 are unavailable. Checkpoint selection is final epoch, independent of test rewards.

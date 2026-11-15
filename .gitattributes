@@ -10,6 +10,7 @@ experiments/pusht_dp/long_config.json text eol=lf
 
 # The fixed-budget results record the exact protocol snapshots.
 experiments/matched_budget/protocol*.json text eol=lf
+experiments/full_pool/*.json text eol=lf
 
 # Lift's protocol references and configuration are validated by SHA-256.
 experiments/alt_robomimic_lift/configs/alt_lift30.yaml -text
