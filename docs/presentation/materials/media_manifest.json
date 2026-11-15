@@ -1,0 +1,60 @@
+{
+  "release_tag": "presentation-media-v1",
+  "clips": [
+    {
+      "filename": "lift-alt30-seed100049.mp4",
+      "bytes": 938526,
+      "sha256": "8b073fdb98003a07427a99bece85122209f5ffe474e0611db62f2f79a6cd92e3",
+      "seconds": 11.1,
+      "fps": 20,
+      "frames": 222,
+      "poster": "docs/presentation/materials/lift/lift_video_still.png",
+      "seed": 100049,
+      "source": "experiments/alt_robomimic_lift/artifacts/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/videos/seed_100049.mp4",
+      "source_sha256": "99aed48802fdbec4e092429dcada1cdaab3151eabc30fe3f0a6957e29431b3ae",
+      "rollouts": "experiments/alt_robomimic_lift/experiments/runs/alt_lift_ph30_image_proprio_seed42_v1/evaluations/evaluation01/eval_rollouts.csv",
+      "excerpt_steps_inclusive": [
+        [
+          0,
+          150
+        ],
+        [
+          930,
+          1000
+        ]
+      ],
+      "first_success_step": 40,
+      "final_reward": 0.0,
+      "run": "standalone ALT-30 evaluation01"
+    },
+    {
+      "filename": "pusht-aligned-seed100003.mp4",
+      "bytes": 173257,
+      "sha256": "ff1745c55769c8d78991e37081c376c95036399f693e9ad5be5a818cd71274d9",
+      "seconds": 13.1,
+      "fps": 10,
+      "frames": 131,
+      "poster": "docs/presentation/materials/pusht_geometry/pusht_video_still.png",
+      "seed": 100003,
+      "source": "sso7bppn.mp4",
+      "source_sha256": "834786738f05b09c941dc3e72f180c09c4d60f2392e24d04dcde6b1798333430",
+      "rollouts": "experiments/pusht_residual/experiments/residual_study/evidence/round3_evaluate_aligned.csv",
+      "queries_sha256": "206316b07b2ffc06a666d7bcf3e9826433940981d5eb50925ee9f78a2a212031",
+      "mean_video_match_error": 0.8999204282407406,
+      "excerpt_steps_inclusive": [
+        [
+          159,
+          239
+        ],
+        [
+          251,
+          300
+        ]
+      ],
+      "peak_step": 201,
+      "peak": 0.930387846164104,
+      "final": 0.20284124708939014,
+      "run": "residual study round3_evaluate aligned"
+    }
+  ]
+}

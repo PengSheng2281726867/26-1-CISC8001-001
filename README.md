@@ -1,5 +1,7 @@
 # ALT 与 Diffusion Policy｜机器人模仿学习课程项目
 
+[PPT 流程与逐页素材](docs/presentation/README.md) · [完整实验目录](experiments/README.md) · [两段仿真短片](docs/presentation/MEDIA.md)
+
 当机器人只有少量专家示范时，我们想知道：**从记忆里找一段相似的动作，和训练网络为当前观测生成动作，分别需要多少示范和训练？** 我们用动作查找表（ALT）与扩散策略（Diffusion Policy，DP）在两个模拟任务上做闭环对比。每个直接对照共用专家轨迹与测试初始状态，同时记录训练预算和各自的模型设置。
 
 | 任务 | 研究问题 | 入口 |

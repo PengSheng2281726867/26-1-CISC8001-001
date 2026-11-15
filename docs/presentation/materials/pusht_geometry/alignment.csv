@@ -1,0 +1,3 @@
+label,n,peak,final,successes,source
+Replay as-is,50,0.2507379285944015,0.21832778219922352,1,experiments/pusht_residual/experiments/residual_study/evidence/round3_evaluate_raw.csv
+Pose alignment,50,0.9260582931506657,0.5716058563846935,8,experiments/pusht_residual/experiments/network_study/evidence/test_aligned_rollouts.csv

@@ -1,0 +1,7 @@
+demonstrations,method,epoch,protocol,horizon,n,ever,hold,final,source
+10,ALT,10,formal test,1000,50,19,18,0,experiments/lift_box_dp/evidence/alt10_epochs_v1/test_e010/rollouts.csv
+10,DP,200,formal test,1000,50,24,23,0,experiments/lift_box_dp/evidence/dp10_epochs_v1/test_e200/rollouts.csv
+30,ALT,40,formal test,1000,50,36,34,1,experiments/lift_box_dp/evidence/alt30_seed42_v1/eval01/rollouts.csv
+30,DP,200,formal test,1000,50,49,49,7,experiments/lift_box_dp/evidence/dp30_seed42_v1/eval01/rollouts.csv
+100,ALT,40,validation,250,24,10,8,1,experiments/lift_box_dp/experiments/exp_004_lift100_epochs/validation_alt100_epochs_v1.json
+100,DP,40,validation,250,24,24,24,2,experiments/lift_box_dp/experiments/exp_004_lift100_epochs/validation_dp100_epochs_v1.json

@@ -1,0 +1,6 @@
+label,n,peak,final,successes,source
+Pose alignment,50,0.9260582931506657,0.5716058563846935,8,experiments/pusht_residual/experiments/network_study/evidence/test_aligned_rollouts.csv
+"Alignment +
+ordinary residual",50,0.7220700498587944,0.3885677983480413,1,experiments/pusht_residual/experiments/network_study/evidence/test_round1_rollouts.csv
+"Alignment +
+tapered residual",50,0.8617250634332113,0.5827590694214106,11,experiments/pusht_residual/experiments/network_study/evidence/test_round3_rollouts.csv

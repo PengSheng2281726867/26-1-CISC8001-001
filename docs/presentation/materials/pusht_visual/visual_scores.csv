@@ -1,0 +1,9 @@
+label,n,peak,final,successes,source
+ALT · 30 demos,50,0.27442389936027484,0.08317385518421769,2,experiments/pusht_dp/evidence/comparison.json
+"DP · 30 demos
+5k updates",50,0.4155788144922729,0.22421534660431788,1,experiments/pusht_dp/evidence/comparison.json
+ALT · 100 demos,50,0.2745227068864431,0.037304969697196384,1,experiments/pusht_dp/evidence/comparison.json
+"DP · 100 demos
+5k updates",50,0.4819672125930293,0.18290029798812704,0,experiments/pusht_dp/evidence/comparison.json
+"DP · 100 demos
+15k updates",50,0.783502719332308,0.6269528598873999,12,experiments/pusht_dp/evidence_long/comparison.json
