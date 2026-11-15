@@ -2,7 +2,7 @@
 
 ## 先看 PPT 制作思路
 
-**汇报的 9 页叙事、逐页对应的实验和图表都在 [`docs/presentation/`](docs/presentation/README.md)。** 从原论文的 ALT 思路讲起，接着比较 Lift 与视觉 Push-T 的表现，再用 Push-T 的匹配失败引出坐标对齐和残差修正。制作 PPT 时，可以直接取用[图表、截图和 CSV](docs/presentation/materials/)，以及[两段仿真短片](docs/presentation/MEDIA.md)。
+**汇报的 9 页叙事、逐页对应的实验和图表都在 [`docs/presentation/`](docs/presentation/README.md)。** 从原论文的 ALT 思路讲起，接着比较 Lift 与视觉 Push-T 的表现，再用 Push-T 的匹配失败引出坐标对齐和残差修正。制作 PPT 时，可以直接取用[模型架构图](docs/presentation/ARCHITECTURES.md)、[图表、截图和 CSV](docs/presentation/materials/)以及[两段仿真短片](docs/presentation/MEDIA.md)。
 
 当机器人只有少量专家示范时，我们想知道：**从记忆里找一段相似的动作，和训练网络为当前观测生成动作，分别需要多少示范和训练？** 我们用动作查找表（ALT）与扩散策略（Diffusion Policy，DP）在两个模拟任务上做闭环对比。每个直接对照共用专家轨迹与测试初始状态，同时记录训练预算和各自的模型设置。
 
