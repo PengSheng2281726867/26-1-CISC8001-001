@@ -1,14 +1,30 @@
 # ALT 与 Diffusion Policy｜机器人模仿学习课程项目
 
-[PPT 流程与逐页素材](docs/presentation/README.md) · [完整实验目录](experiments/README.md) · [两段仿真短片](docs/presentation/MEDIA.md)
+## 先看 PPT 制作思路
+
+**汇报的 9 页叙事、逐页对应的实验和图表都在 [`docs/presentation/`](docs/presentation/README.md)。** 从原论文的 ALT 思路讲起，接着比较 Lift 与视觉 Push-T 的表现，再用 Push-T 的匹配失败引出坐标对齐和残差修正。制作 PPT 时，可以直接取用[图表、截图和 CSV](docs/presentation/materials/)，以及[两段仿真短片](docs/presentation/MEDIA.md)。
 
 当机器人只有少量专家示范时，我们想知道：**从记忆里找一段相似的动作，和训练网络为当前观测生成动作，分别需要多少示范和训练？** 我们用动作查找表（ALT）与扩散策略（Diffusion Policy，DP）在两个模拟任务上做闭环对比。每个直接对照共用专家轨迹与测试初始状态，同时记录训练预算和各自的模型设置。
 
-| 任务 | 研究问题 | 入口 |
+## 主要文件夹
+
+| 文件夹 | 里面有什么 |
+| --- | --- |
+| [`docs/presentation/`](docs/presentation/README.md) | 9 页汇报计划、逐页素材、PNG/SVG 图表、源数据 CSV、录像来源和图表生成脚本 |
+| [`experiments/`](experiments/README.md) | 按任务整理的实验目录，包含方法、配置、逐局指标和复现记录。冻结示范划分见 [`splits/`](experiments/splits/)，Push-T ALT 的基线运行见 [`runs/`](experiments/runs/) |
+| [`src/`](src/) | [`alt/`](src/alt/) 放编码器、对比损失和动作检索库；[`pusht/`](src/pusht/) 放 Push-T 数据适配、策略接口和仿真评估 |
+| [`configs/`](configs/) · [`scripts/`](scripts/) · [`tests/`](tests/) | Push-T 基础与诊断配置；审计、训练、建库、评估和可视化入口；核心逻辑与策略接口测试 |
+| [`docs/`](docs/) · [`results/`](results/) | 数据审计、实现说明、匹配图集与实验日志；配对统计、图表和诊断数据 |
+| [`environments/`](environments/) · [`licenses/`](licenses/) | Lift 的 WSL 模拟器配置、环境验证工具和上游许可 |
+| `artifacts/` | 本地实验产物，包括原始数据、检查点、完整日志和录像。汇报短片可从 [GitHub Release](https://github.com/PengSheng2281726867/26-1-CISC8001-001/releases/tag/presentation-media-v1) 下载 |
+
+### 常用实验入口
+
+| 任务 | 对应文件夹 | 主要内容 |
 | --- | --- | --- |
-| Lift-PH 抬升方块 | 少量示范下，能否抬过高度线并保持？增加训练轮数有什么影响？ | [结果总览](experiments/lift_box_dp/RESULTS.md) · [复现索引](experiments/lift_box_dp/README.md) |
-| Push-T 推 T 形块 | 从图像与推杆坐标出发，检索动作和生成动作各能把 T 推到哪里？ | [视觉 ALT 与 DP 对照](experiments/pusht_dp/RESULTS.md) · [冻结划分](experiments/splits/pusht_v7_split42.json) |
-| Push-T 真值几何诊断 | 若准确知道 T 的位置和朝向，示范动作能否先对齐、再由小网络修正？ | [两组残差实验](experiments/pusht_residual/README.md) · [当前帧与训练候选图集](docs/pusht_matching_gallery.md) |
+| Lift-PH 抬升方块 | [`lift_box_dp/`](experiments/lift_box_dp/README.md) · [`alt_robomimic_lift/`](experiments/alt_robomimic_lift/README.md) | ALT／DP 正式对照、不同示范规模与轮数验证，以及原始 Lift ALT 实现。[Lift 结果总览](experiments/lift_box_dp/RESULTS.md) |
+| 视觉 Push-T | [`pusht_dp/`](experiments/pusht_dp/README.md) · [`runs/`](experiments/runs/) | 同轨迹的视觉 ALT／DP 对照、DP 长训练补测和官方模型复评。[视觉对照结果](experiments/pusht_dp/RESULTS.md) |
+| Push-T 真值几何诊断 | [`pusht_contact_matching/`](experiments/pusht_contact_matching/README.md) · [`pusht_action_transfer/`](experiments/pusht_action_transfer/README.md) · [`pusht_residual/`](experiments/pusht_residual/README.md) | 接触侧规则、动作坐标迁移和两组残差实验。[当前帧与训练候选图集](docs/pusht_matching_gallery.md) |
 
 ## Lift-PH｜示范效率和训练效率
 
@@ -44,15 +60,7 @@ DP 用 30 条的均分已高于 ALT 用 100 条。各 DP 规模训练 5,000 次�
 2. **坐标对齐。** 把同一候选动作先表达在历史 T 的坐标系里，再按当前 T 的位姿转回桌面。这样即使 T 转过，示范里推横梁的动作仍会移到当前横梁上。固定相对检索规则，对齐把 50 局均分从 **0.251 提到 0.926**。
 3. **小网络修正。** 让网络学专家动作和对齐动作之间的差，尝试从最近示范迁移到当前状态。第一组实验中无界残差得 0.322，限制修正幅度后升到 0.618。第二组固定 30 条检索库，比较训练时长、增加监督示范和块内衰减。衰减残差比同预算普通残差从 **0.722 提到 0.862**，仍低于纯对齐的主分数。增加监督示范到 100 条、保持 435 次更新时得 0.624。这里可以看到修正网络有改进空间，也能看到离线动作更接近专家时，闭环分数仍可能下降。[坐标对齐与残差](experiments/pusht_residual/experiments/residual_study/REPORT.md) · [网络三轮迭代](experiments/pusht_residual/experiments/network_study/RESULTS.md)
 
-## 结构与复现
-
-| 内容 | 路径 |
-| --- | --- |
-| Lift ALT 与 DP 的代码、训练轮数验证和正式成绩 | [experiments/lift_box_dp](experiments/lift_box_dp/README.md) |
-| Lift 原始 ALT、数据划分与模拟器 | [experiments/alt_robomimic_lift](experiments/alt_robomimic_lift/README.md) · [environments/robomimic_lift](environments/robomimic_lift/README.md) |
-| Push-T ALT、数据审计、原始运行记录 | [src](src) · [scripts](scripts) · [数据审计](docs/data_audit.md) · [运行记录](experiments/runs) |
-| Push-T DP 的训练、配对统计与证据 | [experiments/pusht_dp](experiments/pusht_dp/README.md) |
-| Push-T 位姿真值诊断、对齐与动作修正 | [experiments/pusht_residual](experiments/pusht_residual/README.md) · [匹配图集](docs/pusht_matching_gallery.md) |
+## 复现
 
 Push-T v7 共 206 条独立示范，预留 20 条后，原计划的 30 和 100 条可对照，300 和 500 条超过当前训练池容量。项目记录了精确示范 ID、种子、训练步数和逐局成绩。运行依赖本地数据与 [参考源码](docs/upstream_provenance.md)，路径见 [基础配置](configs/alt_pusht_base.yaml)。从根目录运行的示例：
 
