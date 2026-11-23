@@ -25,7 +25,9 @@ def diagnose(run, source100=None):
     np.testing.assert_array_equal(query.local_frame_indices, held.local_indices)
     expert = {k: v.actions for k, v in held.episodes.items()}
     x, _, index = pairs(query, policy, expert)
-    head = Head().eval()
+    width = training["design"]["network"][0]
+    x = x[:, -width:]
+    head = Head(width).eval()
     head.load_state_dict(torch.load(ckpt, map_location="cpu", weights_only=True))
     with torch.inference_mode():
         delta = head(x).numpy()

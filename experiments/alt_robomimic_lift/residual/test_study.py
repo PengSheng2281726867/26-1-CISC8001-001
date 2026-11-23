@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from scipy.spatial.transform import Rotation
 
-from study import Head, correct, features, pairs
+from study import Head, correct, features, online, pairs
 
 
 class ResidualTests(unittest.TestCase):
@@ -43,6 +43,18 @@ class ResidualTests(unittest.TestCase):
             zero = Head()(torch.randn(1, 143)).numpy()
         np.testing.assert_array_equal(correct(prior, zero), prior)
         np.testing.assert_array_equal(correct(prior, np.full((1, 6), 3)), [[1, 1, 1, 1, 1, 1, -1]])
+
+    def test_numeric_head_receives_only_relative_state_and_action(self):
+        prior = np.arange(7, dtype=np.float32) / 10
+        def retrieved(embedding, include_embedding):
+            return prior, dict(bank_row=0, query_embedding=embedding, query_proprio=self.prop[0])
+        policy = SimpleNamespace(bank=self.bank, act=retrieved)
+        head = Head(15)
+        seen = []
+        head.register_forward_pre_hook(lambda module, args: seen.append(args[0].clone()))
+        online(policy, head)([self.z[0], -self.z[0]])
+        expected = np.tile(np.r_[np.zeros(8), prior], (2, 1))
+        np.testing.assert_array_equal(seen[0].numpy(), expected)
 
 
 if __name__ == "__main__":

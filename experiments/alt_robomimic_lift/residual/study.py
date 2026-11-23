@@ -89,14 +89,14 @@ def pairs(query, policy, expert):
 
 
 class Head(nn.Module):
-    def __init__(self):
+    def __init__(self, input_dim=143):
         super().__init__()
-        self.layers = nn.Sequential(nn.Linear(143, 64), nn.ReLU(), nn.Linear(64, 64),
+        self.layers = nn.Sequential(nn.Linear(input_dim, 64), nn.ReLU(), nn.Linear(64, 64),
                                     nn.ReLU(), nn.Linear(64, 6))
         nn.init.zeros_(self.layers[-1].weight)
         nn.init.zeros_(self.layers[-1].bias)
-        self.register_buffer("mean", torch.zeros(143))
-        self.register_buffer("scale", torch.ones(143))
+        self.register_buffer("mean", torch.zeros(input_dim))
+        self.register_buffer("scale", torch.ones(input_dim))
 
     def forward(self, x):
         return self.layers((x - self.mean) / self.scale)
@@ -108,7 +108,7 @@ def correct(prior, delta):
     return result
 
 
-def train(run, source100=None):
+def train(run, source100=None, no_embedding=False):
     policy, base, split, image, cfg = load_base(source100)
     run.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -119,7 +119,9 @@ def train(run, source100=None):
     np.save(run / "training_neighbor_rows.npy", rows)
     torch.manual_seed(DESIGN["residual_seed"])
     rng = torch.Generator().manual_seed(DESIGN["shuffle_seed"])
-    head = Head()
+    if no_embedding:
+        x, vx = x[:, 128:], vx[:, 128:]
+    head = Head(x.shape[1])
     head.mean.copy_(x.mean(0))
     head.scale.copy_(x.std(0, unbiased=False).clamp_min(0.001))
     opt = torch.optim.Adam(head.parameters(), lr=DESIGN["learning_rate"])
@@ -147,6 +149,8 @@ def train(run, source100=None):
     design = dict(DESIGN)
     if source100 is not None:
         design.update(base_run="alt100_epochs_v1/epoch040", test="paired fresh formal ALT-100 and ALT-100 plus MLP")
+    if no_embedding:
+        design.update(network=[15,64,64,6], features="8 relative proprioception and 7 retrieved action components")
     result = dict(design=design, source_sha256=sha256(__file__), protocol_sha256=sha256(HERE/"protocol.json"),
                   base_commit=subprocess.check_output(["git","rev-parse","HEAD"],cwd=LIFT,text=True).strip(),
                   base_checkpoint_sha256=base["checkpoint_sha256"], bank_sha256=base["bank_sha256"],
@@ -169,7 +173,7 @@ def online(policy, head):
         priors = np.stack(priors)
         x = features(np.stack([r["query_embedding"] for r in infos]), np.stack([r["query_proprio"] for r in infos]),
                      policy.bank, [r["bank_row"] for r in infos], priors)
-        return correct(priors, head(torch.from_numpy(x)).numpy())
+        return correct(priors, head(torch.from_numpy(x[:, -head.mean.numel():])).numpy())
     return act
 
 
@@ -198,7 +202,7 @@ def evaluate(run, source100=None):
         if not out.exists():
             out.mkdir()
             write_json(out/"protocol.json",protocol)
-            head = Head().eval()
+            head = Head(trained["design"]["network"][0]).eval()
             head.load_state_dict(torch.load(path,map_location="cpu",weights_only=True))
             run_rollouts(online(policy,head), cfg, LIFT, starts, horizon, min(len(starts),DESIGN["workers"]),
                          out, validation_fixtures=validation)
@@ -211,7 +215,7 @@ def evaluate(run, source100=None):
     write_json(run/"selection.json", dict(epoch=selected,metrics=metrics))
     print("Validation-selected epoch",selected,flush=True)
     score(selected,"test",test_cfg["test_seeds"],test_cfg["horizon"],None,split["evaluation_initial_state_contract"]["sha256"])
-    if source100 is not None:
+    if source100 is not None and trained["design"]["network"][0] != 15:
         out = run/"baseline"
         protocol = dict(config=cfg, seeds=test_cfg["test_seeds"], horizon=test_cfg["horizon"],
                         fixture_hash=split["evaluation_initial_state_contract"]["sha256"],
@@ -236,6 +240,8 @@ def summarize(run):
     ref = LIFT.parent / "lift_box_dp/evidence/alt30_seed42_v1/eval01"
     if len(tr["train_ids"]) == 100:
         ref = run/"baseline"
+        if tr["design"]["network"][0] == 15:
+            ref = run.parent/"lift100_residual_v1"/"baseline"
         base = read_json(ref/"protocol.json")
         if (any(base[key]!=protocol[key] for key in ("seeds","horizon","fixture_hash","config","bank","execution_horizon"))
                 or base["checkpoint"] != tr["base_checkpoint_sha256"]):
@@ -259,7 +265,7 @@ def verify_archive(ref,protocol,tr):
             raise ValueError("Archived baseline changed")
 
 
-def paired_summary(run,ref,result,protocol):
+def paired_counts(ref,result,protocol):
     with (ref/"rollouts.csv").open() as f:
         before = list(csv.DictReader(f))
     after = check_trace(result,protocol)
@@ -274,11 +280,32 @@ def paired_summary(run,ref,result,protocol):
         d = b-a
         paired[k] = dict(alt=int(a.sum()), residual=int(b.sum()), gained=int((d>0).sum()), lost=int((d<0).sum()),
                          difference=float(d.mean()), paired_bootstrap95=np.quantile(d[draws].mean(1),[.025,.975]).tolist())
+    return paired
+
+
+def paired_summary(run,ref,result,protocol):
+    paired = paired_counts(ref,result,protocol)
     out = HERE/"results"/run.name
+    fusion_comparison = None
+    if ref.parent != run and ref.name == "baseline":
+        old_epoch = read_json(ref.parent/"selection.json")["epoch"]
+        old_test = ref.parent/f"test_e{old_epoch}"
+        prior = read_json(old_test/"protocol.json")
+        keys = ("seeds","horizon","fixture_hash","config","bank","execution_horizon")
+        archive = HERE/"results"/ref.parent.name
+        if (any(prior[k]!=protocol[k] for k in keys) or sha256(old_test/"rollouts.csv")!=sha256(archive/"rollouts.csv")
+                or sha256(ref/"rollouts.csv")!=sha256(archive/"baseline_rollouts.csv")):
+            raise ValueError("Prior comparison does not match the archived paired experiment")
+        fusion_comparison = paired_counts(old_test,result,protocol)
+        for metric in fusion_comparison.values():
+            metric["fusion_mlp"] = metric.pop("alt")
+            metric["numeric_mlp"] = metric.pop("residual")
     out.mkdir(parents=True,exist_ok=False)
     for path in (run/"selection.json",run/"training.json",result/"rollouts.csv",result/"metrics.json",result/"protocol.json"):
         shutil.copyfile(path,out/path.name)
     write_json(out/"paired.json",paired)
+    if fusion_comparison is not None:
+        write_json(out/"numeric_vs_fusion.json",fusion_comparison)
     if ref == run/"baseline":
         for name in ("protocol.json","metrics.json","rollouts.csv"):
             shutil.copyfile(ref/name,out/("baseline_"+name))
@@ -289,6 +316,7 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("phase",choices=["train","evaluate","summarize"])
     parser.add_argument("run_id")
+    parser.add_argument("--no-embedding",action="store_true",help="Train a new head on numeric state differences and retrieved commands only")
     parser.add_argument("--alt100-source", type=Path, help="Directory of the frozen ALT-100 epoch 40 checkpoint and bank")
     args = parser.parse_args()
     if Path(args.run_id).name != args.run_id or args.run_id in (".",".."):
@@ -299,5 +327,7 @@ if __name__=="__main__":
     run = LIFT/"artifacts/residual"/args.run_id
     if args.phase == "summarize":
         summarize(run)
+    elif args.phase == "train":
+        train(run,args.alt100_source,args.no_embedding)
     else:
-        {"train":train,"evaluate":evaluate}[args.phase](run,args.alt100_source)
+        evaluate(run,args.alt100_source)
