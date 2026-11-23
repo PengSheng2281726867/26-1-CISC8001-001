@@ -1,0 +1,35 @@
+{
+  "hold_success": {
+    "alt": 34,
+    "residual": 19,
+    "gained": 6,
+    "lost": 21,
+    "difference": -0.3,
+    "paired_bootstrap95": [
+      -0.48,
+      -0.12
+    ]
+  },
+  "ever_success": {
+    "alt": 36,
+    "residual": 33,
+    "gained": 7,
+    "lost": 10,
+    "difference": -0.06,
+    "paired_bootstrap95": [
+      -0.22,
+      0.1
+    ]
+  },
+  "final_success": {
+    "alt": 1,
+    "residual": 0,
+    "gained": 0,
+    "lost": 1,
+    "difference": -0.02,
+    "paired_bootstrap95": [
+      -0.06,
+      0.0
+    ]
+  }
+}

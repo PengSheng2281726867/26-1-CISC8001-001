@@ -1,0 +1,5 @@
+# The run records SHA-256 over the exact protocol and entrypoint bytes.
+protocol.json text eol=lf
+study.py text eol=lf
+results/**/*.json -text whitespace=cr-at-eol
+results/**/*.csv -text whitespace=cr-at-eol

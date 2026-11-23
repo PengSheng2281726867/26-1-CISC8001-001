@@ -109,3 +109,7 @@
 - **Cause:** the original K=1 rollout schema predates the explicit `retrieval_queries` field used by the new chunk evaluator. K=1 queried once per environment step, as confirmed by its saved total of 50,000 queries and 50,000 steps.
 - **Correction:** the summary command derives K=1 queries from each row's step count, leaves its unrecorded action-padding count unavailable, and uses its logged first-hit steps plus the failure cap to calculate a clearly labeled counterfactual first-hit/cap step cost. It validates all row counts, success totals, confidence intervals, seed manifests, reset-state hashes, checkpoint/bank hashes, and chunk-run source hashes.
 - **Status:** corrected. The deterministic summary regeneration completed and the derived K=1 values are labeled separately from the actual 1,000-step baseline execution.
+
+## 2026-11-23 · Lift residual simulator access
+
+The preflight command `wsl.exe -d Ubuntu -- true` returned `Wsl/E_ACCESSDENIED` inside the sandbox before any rollout began. Running the same check with approved WSL access returned exit code 0. The standard simulator and the frozen reset fixtures were used for `lift30_residual_v1` with that permission.

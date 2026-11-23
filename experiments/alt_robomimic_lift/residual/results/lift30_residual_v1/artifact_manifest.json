@@ -1,0 +1,50 @@
+{
+  "implementation_commit": "180d9e9",
+  "artifacts": [
+    {
+      "path": "artifacts/residual/lift30_residual_v1/epoch20.pt",
+      "bytes": 59341,
+      "sha256": "7667b5e56e622bfc8f116fb3fe7570ce96771ce304f5a648e563791aa4fecae8"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/epoch40.pt",
+      "bytes": 59341,
+      "sha256": "164d327a4e1b4c67a935bd9f42256e04f172797df60ef29be1904b5f2398cb5f"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/epoch5.pt",
+      "bytes": 59327,
+      "sha256": "fd50bf65d4d992db3564b949e8bce93a6995f8268af14c88344a05b87ab9dbd1"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/heldout_queries.npz",
+      "bytes": 508434,
+      "sha256": "fb093a698a1af1f8685a513c1872b39bbeb575df55995e1cfe0a488b5c0e79b1"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/test_e5/actions.csv",
+      "bytes": 7535916,
+      "sha256": "2d9ab080d22f109b15b73d9c9986bfefd73331c1c0f77fb8995c1a6a0ac68b89"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/training_neighbor_rows.npy",
+      "bytes": 11776,
+      "sha256": "c4f35651001913b338342b6c2cb12fd00b99e8f49810772ed1c63f7256d9a0c2"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/validation_e20/actions.csv",
+      "bytes": 301452,
+      "sha256": "318e59a70b9f9052b275684abb40eea1f89aa5a3119ac1a2138cb7553ceab777"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/validation_e40/actions.csv",
+      "bytes": 304646,
+      "sha256": "0bb663f0fb7839f802ce9d0a3ab9fb298cdbc4d6d7495efb46d2c76ec28ba254"
+    },
+    {
+      "path": "artifacts/residual/lift30_residual_v1/validation_e5/actions.csv",
+      "bytes": 303149,
+      "sha256": "733d0511d88ee7352486987555a3474b15d2ce06eab6a71dc2c9453c5fff5e57"
+    }
+  ]
+}

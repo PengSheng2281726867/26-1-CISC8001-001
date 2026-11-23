@@ -2,6 +2,8 @@
 
 本实验固定 30 条示范训练的双相机 ALT 编码器和余弦检索记忆库。原 ALT 直接回放最相似帧的动作。实验组仅训练一个小型 MLP，预测平移和旋转的六维修正量。两组均按 20 Hz 每步重新检索，夹爪命令取自被检索帧。图像和机器人本体状态是唯一在线观测。
 
+首轮正式测试中，连续保持至少一秒由原 ALT 的 34/50 降到 19/50；留出示范上的动作误差下降。见 [首轮实验报告与逐局证据](results/lift30_residual_v1/REPORT.md)。
+
 ## 训练样本与网络
 
 每个训练帧作为一次查询。检索时屏蔽同一整条轨迹，在另外 29 条轨迹中找余弦最近邻。两份动作都取自各自查询时刻的 `actions[t]`。监督标签是当前专家命令前六维减去检索命令前六维，单位为归一化 OSC 控制命令。
@@ -21,6 +23,7 @@ $study = 'experiments/alt_robomimic_lift/residual/study.py'
 & $liftPython -B $study train lift30_residual_repeat
 & $liftPython -B $study evaluate lift30_residual_repeat
 & $liftPython -B $study summarize lift30_residual_repeat
+& $liftPython -B experiments/alt_robomimic_lift/residual/diagnose_actions.py lift30_residual_repeat
 ```
 
-训练检查点、近邻索引、逐步动作和奖励保存在 Lift 目录的 `artifacts/residual/<run_id>/`。第三条实验命令会核对逐步动作与成功记录，并写出轻量化逐局证据与配对差值。协议细节见 [protocol.json](protocol.json)。
+训练检查点、近邻索引、逐步动作和奖励保存在 Lift 目录的 `artifacts/residual/<run_id>/`。汇总命令会核对逐步动作与成功记录，并写出轻量化逐局证据与配对差值。最后一条命令分开计算平移与旋转误差，并统计夹爪命令与专家不一致的帧数。协议细节见 [protocol.json](protocol.json)。
