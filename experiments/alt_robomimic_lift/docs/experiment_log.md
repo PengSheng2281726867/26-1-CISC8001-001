@@ -15,3 +15,4 @@
 | 2026-11-23 | Lift-100 visual retrieval and MLP | Completed | Same 100 demonstrations for all components. Paired formal one-second hold 31/50 for ALT and 21/50 for residual. [Report](../residual/results/lift100_residual_v1/REPORT.md). |
 | 2026-11-23 | Lift-100 numeric-only residual head | Completed | Identical visual retrieval bank. Paired formal hold 19/50 for numeric, 21/50 for fused and 31/50 for ALT. [Report](../residual/results/lift100_numeric_v1/REPORT.md). |
 | 2026-11-23 | Lift-100 inference-only motion masks | Completed | Hold 17/50 for translation, 21/50 for rotation, 19/50 for all six residuals, and 31/50 for pure ALT. [Report](../residual/results/lift100_motion_mask_v1/REPORT.md). |
+| 2026-11-23 | Lift-100 grasp-phase retrieval audit | Completed | Contact-below-threshold top-1 mismatch 1007/1140. Top-five phase reranking held 32/50 vs original 31/50. [Report](../residual/results/lift100_phase_v1/REPORT.md). |
