@@ -166,14 +166,17 @@ def train(run, source100=None, no_embedding=False):
     print("Training complete", len(x), len(vx), logs[-1], flush=True)
 
 
-def online(policy, head):
+def online(policy, head, correction_mask=None):
     @torch.inference_mode()
     def act(observations):
         priors, infos = zip(*(policy.act(obs, include_embedding=True) for obs in observations))
         priors = np.stack(priors)
         x = features(np.stack([r["query_embedding"] for r in infos]), np.stack([r["query_proprio"] for r in infos]),
                      policy.bank, [r["bank_row"] for r in infos], priors)
-        return correct(priors, head(torch.from_numpy(x[:, -head.mean.numel():])).numpy())
+        delta = head(torch.from_numpy(x[:, -head.mean.numel():])).numpy()
+        if correction_mask is not None:
+            delta = np.where(correction_mask, delta, 0)
+        return correct(priors, delta)
     return act
 
 

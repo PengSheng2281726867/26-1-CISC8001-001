@@ -56,6 +56,19 @@ class ResidualTests(unittest.TestCase):
         expected = np.tile(np.r_[np.zeros(8), prior], (2, 1))
         np.testing.assert_array_equal(seen[0].numpy(), expected)
 
+    def test_motion_masks_preserve_the_other_commands(self):
+        prior = np.zeros(7, dtype=np.float32)
+        prior[6] = -1
+        info = dict(bank_row=0, query_embedding=self.z[0], query_proprio=self.prop[0])
+        policy = SimpleNamespace(bank=self.bank, act=lambda obs, include_embedding: (prior, info))
+        head = Head(15)
+        with torch.no_grad():
+            head.layers[-1].bias.fill_(0.5)
+        translation = online(policy, head, [True]*3 + [False]*3)([None])
+        rotation = online(policy, head, [False]*3 + [True]*3)([None])
+        np.testing.assert_array_equal(translation, [[.5, .5, .5, 0, 0, 0, -1]])
+        np.testing.assert_array_equal(rotation, [[0, 0, 0, .5, .5, .5, -1]])
+
 
 if __name__ == "__main__":
     unittest.main()
