@@ -2,6 +2,8 @@
 
 This folder contains a Lift-specific Action Lookup Table adaptation. It is isolated from the earlier Push-T work. This study does not train Diffusion Policy.
 
+在固定视觉检索器上学习六维动作偏差的后续实验见 [Lift 视觉检索与单步动作修正](residual/README.md)。
+
 ## Phase 0 status
 
 Phase 0 passed with a documented numerical replay limitation. The local RoboMimic 0.2.0 Lift-PH image file contains 200 independent demonstrations and is already usable; no image rendering conversion was needed. The dataset's recorded environment is an older RoboSuite `offline_study` setup, and the matching local simulator is RoboSuite 1.2.0 / MuJoCo 2.0.0. The source metadata does not identify a collection commit. See [the Phase 0 audit](docs/phase0_data_environment_audit.md) and [source provenance](docs/upstream_provenance.md).

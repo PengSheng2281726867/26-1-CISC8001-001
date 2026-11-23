@@ -1,0 +1,17 @@
+{
+  "base_run": "alt_lift_ph30_image_proprio_seed42_v1",
+  "residual_seed": 42,
+  "shuffle_seed": 43,
+  "epochs": [5, 20, 40],
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "loss": "mean squared error on six normalized controller-command differences",
+  "features": "128 query-minus-neighbor embedding, 3 world translation differences, 3 world relative rotation-vector components, 2 finger differences, 7 original neighbor actions",
+  "input_scaling": "training-pairs column mean and standard deviation with 0.001 minimum standard deviation",
+  "network": [143, 64, 64, 6],
+  "validation_count": 8,
+  "validation_horizon": 250,
+  "selection": ["hold_success", "ever_success", "final_success", "earliest_epoch"],
+  "test": "existing 50 frozen starts, 1000 steps each, same encoder and bank as the archived ALT-30 comparator",
+  "workers": 4
+}

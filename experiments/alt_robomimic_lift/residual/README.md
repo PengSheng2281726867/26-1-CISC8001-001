@@ -1,0 +1,26 @@
+# Lift 视觉检索与单步动作修正
+
+本实验固定 30 条示范训练的双相机 ALT 编码器和余弦检索记忆库。原 ALT 直接回放最相似帧的动作。实验组仅训练一个小型 MLP，预测平移和旋转的六维修正量。两组均按 20 Hz 每步重新检索，夹爪命令取自被检索帧。图像和机器人本体状态是唯一在线观测。
+
+## 训练样本与网络
+
+每个训练帧作为一次查询。检索时屏蔽同一整条轨迹，在另外 29 条轨迹中找余弦最近邻。两份动作都取自各自查询时刻的 `actions[t]`。监督标签是当前专家命令前六维减去检索命令前六维，单位为归一化 OSC 控制命令。
+
+输入含 128 维融合特征差、3 维世界坐标位置差、3 维相对旋转向量、2 维手指位置差和 7 维历史命令。旋转由 `R_query × R_neighbor⁻¹` 得到。各输入列仅用训练对拟合标准化参数。两层宽度 64 的 ReLU 网络输出六维残差，末层权重与偏置从零开始。执行时将残差加回历史命令，对前六维限制到控制器范围，原样传递第七维夹爪指令。
+
+20 条独立留出示范供离线诊断。训练阶段每个检查点报告的 RMSE 是六维残差预测相对监督标签的误差，计算于执行裁剪之前。选模使用另行冻结的 8 个仿真起点，各跑 250 步，在第 5、20、40 轮之间首先比较连续保持至少 20 步的局数，再比较曾经达标、末步达标和较早轮数。正式测试使用预先保存的 50 个测试起点，每局 1,000 步。对照组复用相同模型、记忆库、初始化和控制协议下已有的逐局结果。
+
+## 复现
+
+从仓库根目录在 PowerShell 执行。训练环境需要 CUDA PyTorch、TorchVision、SciPy 和 h5py。仿真需要仓库原有的 WSL Ubuntu Lift 环境。完整训练和评测依赖本地原始 HDF5、冻结 ALT 权重与记忆库。每次训练取新的运行名。
+
+```powershell
+$liftPython = '../DP/.conda/pusht/python.exe'
+$study = 'experiments/alt_robomimic_lift/residual/study.py'
+& $liftPython -B experiments/alt_robomimic_lift/residual/test_study.py
+& $liftPython -B $study train lift30_residual_repeat
+& $liftPython -B $study evaluate lift30_residual_repeat
+& $liftPython -B $study summarize lift30_residual_repeat
+```
+
+训练检查点、近邻索引、逐步动作和奖励保存在 Lift 目录的 `artifacts/residual/<run_id>/`。第三条实验命令会核对逐步动作与成功记录，并写出轻量化逐局证据与配对差值。协议细节见 [protocol.json](protocol.json)。

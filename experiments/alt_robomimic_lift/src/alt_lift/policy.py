@@ -25,7 +25,7 @@ class ActionRetrievalPolicy:
     def reset(self) -> None:
         self.query_count = 0
 
-    def act(self, observation: Mapping[str, np.ndarray], chunk_length: int = 1):
+    def act(self, observation: Mapping[str, np.ndarray], chunk_length: int = 1, *, include_embedding: bool = False):
         # Read only the current two RGB images and the current three proprio keys.
         preprocess_start = time.perf_counter()
         images = torch.stack(
@@ -73,4 +73,6 @@ class ActionRetrievalPolicy:
             "preprocess_seconds": preprocess_seconds,
             "action_extraction_seconds": action_seconds,
         }
+        if include_embedding:
+            info["query_embedding"] = embedding[0].detach().cpu().numpy()
         return actions[0].copy(), info
