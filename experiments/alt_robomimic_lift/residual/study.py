@@ -39,17 +39,25 @@ def features(z, prop, bank, rows, prior):
                             relative.as_rotvec(), prop[:, 7:] - other[:, 7:], prior)).astype("float32")
 
 
-def load_base():
+def load_base(source100=None):
     cfg, alt, _, split, image = contract()
     assert alt == LIFT
     record = read_json(LIFT / "experiments/runs" / BASE / "artifact_manifest.json")
     source = LIFT / "artifacts/runs" / BASE
     bank_path, encoder_path = source / "memory_bank.npz", source / "checkpoint_final.pt"
+    scale = "30"
+    if source100 is not None:
+        scale = "100"
+        evidence = LIFT.parent / "lift_box_dp/evidence/alt100_epochs_v1"
+        record = {**record, **read_json(evidence/"checkpoints.json")["40"]}
+        bank_path, encoder_path = source100/"epoch040_bank.npz", source100/"epoch040.pt"
+        if read_json(evidence/"config.json")["train_ids"] != split["train_subsets"][scale]:
+            raise ValueError("Archived ALT-100 uses another training split")
     if (sha256(bank_path) != record["bank_sha256"] or sha256(encoder_path) != record["checkpoint_sha256"]
             or record["split_manifest_sha256"] != cfg["split_sha256"]):
         raise ValueError("Frozen Lift artifacts do not match")
     bank = MemoryBank.load(bank_path)
-    train = split["train_subsets"]["30"]
+    train = split["train_subsets"][scale]
     if set(bank.episode_ids) != set(train) or set(train) & set(split["heldout_validation_episode_ids"]):
         raise ValueError("Invalid demonstration split")
     with h5py.File(image, "r") as data:
@@ -100,8 +108,8 @@ def correct(prior, delta):
     return result
 
 
-def train(run):
-    policy, base, split, image, cfg = load_base()
+def train(run, source100=None):
+    policy, base, split, image, cfg = load_base(source100)
     run.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
     x, y, rows = pairs(policy.bank, policy, policy.actions_by_episode)
@@ -136,11 +144,14 @@ def train(run):
             path = run / f"epoch{epoch}.pt"
             torch.save(head.state_dict(), path)
             checkpoints[str(epoch)] = sha256(path)
-    result = dict(design=DESIGN, source_sha256=sha256(__file__), protocol_sha256=sha256(HERE/"protocol.json"),
+    design = dict(DESIGN)
+    if source100 is not None:
+        design.update(base_run="alt100_epochs_v1/epoch040", test="paired fresh formal ALT-100 and ALT-100 plus MLP")
+    result = dict(design=design, source_sha256=sha256(__file__), protocol_sha256=sha256(HERE/"protocol.json"),
                   base_commit=subprocess.check_output(["git","rev-parse","HEAD"],cwd=LIFT,text=True).strip(),
                   base_checkpoint_sha256=base["checkpoint_sha256"], bank_sha256=base["bank_sha256"],
                   split_sha256=cfg["split_sha256"], dataset_fingerprint=base["dataset_fingerprint"],
-                  train_ids=split["train_subsets"]["30"], holdout_ids=list(held.episode_ids),
+                  train_ids=list(policy.actions_by_episode), holdout_ids=list(held.episode_ids),
                   train_frames=len(x), heldout_frames=len(vx), zero_identity_observations=len(held.episode_ids),
                   policy_python=platform.python_version(), torch=str(torch.__version__), gpu=torch.cuda.get_device_name(),
                   parameters=sum(p.numel() for p in head.parameters()), train_seconds=time.perf_counter()-started,
@@ -162,10 +173,11 @@ def online(policy, head):
     return act
 
 
-def evaluate(run):
-    policy, base, split, _, cfg = load_base()
+def evaluate(run, source100=None):
+    policy, base, split, _, cfg = load_base(source100)
     trained = read_json(run/"training.json")
-    if trained["design"] != DESIGN or trained["bank_sha256"] != base["bank_sha256"]:
+    if (trained["protocol_sha256"] != sha256(HERE/"protocol.json")
+            or trained["bank_sha256"] != base["bank_sha256"]):
         raise ValueError("Incompatible training run")
     _, seeds, records, hashes = fixtures(split, LIFT)
     seeds = seeds[:DESIGN["validation_count"]]
@@ -199,6 +211,21 @@ def evaluate(run):
     write_json(run/"selection.json", dict(epoch=selected,metrics=metrics))
     print("Validation-selected epoch",selected,flush=True)
     score(selected,"test",test_cfg["test_seeds"],test_cfg["horizon"],None,split["evaluation_initial_state_contract"]["sha256"])
+    if source100 is not None:
+        out = run/"baseline"
+        protocol = dict(config=cfg, seeds=test_cfg["test_seeds"], horizon=test_cfg["horizon"],
+                        fixture_hash=split["evaluation_initial_state_contract"]["sha256"],
+                        bank=base["bank_sha256"], checkpoint=base["checkpoint_sha256"], execution_horizon=1)
+        if out.exists() and read_json(out/"protocol.json") != protocol:
+            raise ValueError("Baseline protocol changed")
+        if out.exists() and not (out/"metrics.json").exists():
+            out.rename(out.with_name("baseline_incomplete_"+str(time.time_ns())))
+        if not out.exists():
+            out.mkdir()
+            write_json(out/"protocol.json",protocol)
+            run_rollouts(lambda observations: np.stack([policy.act(o)[0] for o in observations]),cfg,LIFT,
+                         protocol["seeds"],protocol["horizon"],DESIGN["workers"],out)
+        check_trace(out,protocol)
 
 
 def summarize(run):
@@ -207,6 +234,19 @@ def summarize(run):
     result = run/f"test_e{sel['epoch']}"
     protocol = read_json(result/"protocol.json")
     ref = LIFT.parent / "lift_box_dp/evidence/alt30_seed42_v1/eval01"
+    if len(tr["train_ids"]) == 100:
+        ref = run/"baseline"
+        base = read_json(ref/"protocol.json")
+        if (any(base[key]!=protocol[key] for key in ("seeds","horizon","fixture_hash","config","bank","execution_horizon"))
+                or base["checkpoint"] != tr["base_checkpoint_sha256"]):
+            raise ValueError("Unpaired ALT-100 comparator")
+        check_trace(ref,base)
+    else:
+        verify_archive(ref,protocol,tr)
+    paired_summary(run,ref,result,protocol)
+
+
+def verify_archive(ref,protocol,tr):
     base = read_json(ref/"protocol.json")
     if (base["test_seeds"] != protocol["seeds"] or base["horizon"] != protocol["horizon"]
             or base["initial_states_sha256"] != protocol["fixture_hash"] or base["config"] != protocol["config"]
@@ -217,6 +257,9 @@ def summarize(run):
     for filename in ("protocol.json", "rollouts.csv", "metrics.json"):
         if sha256(ref/filename) != verified["alt"]["file_sha256"][filename]:
             raise ValueError("Archived baseline changed")
+
+
+def paired_summary(run,ref,result,protocol):
     with (ref/"rollouts.csv").open() as f:
         before = list(csv.DictReader(f))
     after = check_trace(result,protocol)
@@ -236,6 +279,9 @@ def summarize(run):
     for path in (run/"selection.json",run/"training.json",result/"rollouts.csv",result/"metrics.json",result/"protocol.json"):
         shutil.copyfile(path,out/path.name)
     write_json(out/"paired.json",paired)
+    if ref == run/"baseline":
+        for name in ("protocol.json","metrics.json","rollouts.csv"):
+            shutil.copyfile(ref/name,out/("baseline_"+name))
     print(paired)
 
 
@@ -243,10 +289,15 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("phase",choices=["train","evaluate","summarize"])
     parser.add_argument("run_id")
+    parser.add_argument("--alt100-source", type=Path, help="Directory of the frozen ALT-100 epoch 40 checkpoint and bank")
     args = parser.parse_args()
     if Path(args.run_id).name != args.run_id or args.run_id in (".",".."):
         parser.error("Use a single directory name for the run")
     torch.set_num_threads(2)
     torch.set_float32_matmul_precision("high")
     torch.backends.cudnn.allow_tf32 = True
-    {"train":train,"evaluate":evaluate,"summarize":summarize}[args.phase](LIFT/"artifacts/residual"/args.run_id)
+    run = LIFT/"artifacts/residual"/args.run_id
+    if args.phase == "summarize":
+        summarize(run)
+    else:
+        {"train":train,"evaluate":evaluate}[args.phase](run,args.alt100_source)

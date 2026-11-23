@@ -9,9 +9,11 @@ from study import (DESIGN, LIFT, Head, LiftFrameStore, MemoryBank, correct, load
                    pairs, read_json, sha256, write_json)
 
 
-def diagnose(run):
-    policy, _, split, image, _ = load_base()
+def diagnose(run, source100=None):
+    policy, base, split, image, _ = load_base(source100)
     training = read_json(run / "training.json")
+    if training["bank_sha256"] != base["bank_sha256"]:
+        raise ValueError("The diagnostic must use the training run's exact retrieval bank")
     epoch = read_json(run / "selection.json")["epoch"]
     ckpt = run / f"epoch{epoch}.pt"
     if sha256(ckpt) != training["checkpoints"][str(epoch)]:
@@ -47,7 +49,9 @@ def diagnose(run):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("run_id")
-    run_id = parser.parse_args().run_id
+    parser.add_argument("--alt100-source", type=Path)
+    args = parser.parse_args()
+    run_id = args.run_id
     if Path(run_id).name != run_id or run_id in (".", ".."):
         parser.error("Use a single directory name for the run")
-    diagnose(LIFT / "artifacts/residual" / run_id)
+    diagnose(LIFT / "artifacts/residual" / run_id, args.alt100_source)
