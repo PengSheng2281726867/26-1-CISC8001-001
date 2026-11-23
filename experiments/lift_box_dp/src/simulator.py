@@ -11,7 +11,7 @@ import h5py
 from common import IMAGE_KEYS, PROPRIO_KEYS, add_references, contract, read_json, sha256
 
 
-def serve(input_stream, output_stream):
+def serve(input_stream, output_stream, observation_fields=None, extra_command=None):
     cfg, alt, _, split, image = contract()
     add_references(alt)
     sys.path.insert(0, str(alt / "scripts"))
@@ -42,6 +42,13 @@ def serve(input_stream, output_stream):
     env = env_utils.create_env_from_metadata(env_meta=meta, render=False,
                                              render_offscreen=True, use_image_obs=True)
     env.postprocess_visual_obs = False
+
+    def policy_observation(obs):
+        result = {key: obs[key] for key in IMAGE_KEYS + PROPRIO_KEYS}
+        if observation_fields is not None:
+            result.update(observation_fields(env))
+        return result
+
     try:
         while True:
             command, value = pickle.load(input_stream)
@@ -49,7 +56,7 @@ def serve(input_stream, output_stream):
                 return
             if command == "reset":
                 obs = reset_to_frozen_seed(env, value, fixtures[value])
-                result = {key: obs[key] for key in IMAGE_KEYS + PROPRIO_KEYS}
+                result = policy_observation(obs)
             elif command == "validation_fixture":
                 if value in fixtures:
                     raise ValueError("Validation seed overlaps the frozen test set")
@@ -64,11 +71,13 @@ def serve(input_stream, output_stream):
                 if seed in fixtures or seed != fixture["seed"]:
                     raise ValueError("Invalid independent validation seed")
                 obs = reset_to_frozen_seed(env, seed, fixture)
-                result = {key: obs[key] for key in IMAGE_KEYS + PROPRIO_KEYS}
+                result = policy_observation(obs)
             elif command == "step":
                 obs, reward, done, _ = env.step(value)
-                result = ({key: obs[key] for key in IMAGE_KEYS + PROPRIO_KEYS},
+                result = (policy_observation(obs),
                           bool(env.is_success()["task"]), float(reward), bool(done))
+            elif extra_command is not None:
+                result = extra_command(env, image, split, command, value)
             else:
                 raise ValueError("Unknown simulator command")
             pickle.dump(result, output_stream, protocol=4)
@@ -78,8 +87,12 @@ def serve(input_stream, output_stream):
             env.env.close()
 
 
-if __name__ == "__main__":
+def serve_stdio(**kwargs):
     # Keep legacy simulator diagnostics out of the private binary subprocess pipe.
     with os.fdopen(os.dup(1), "wb") as responses:
         os.dup2(2, 1)
-        serve(sys.stdin.buffer, responses)
+        serve(sys.stdin.buffer, responses, **kwargs)
+
+
+if __name__ == "__main__":
+    serve_stdio()

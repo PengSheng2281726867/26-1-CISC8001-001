@@ -16,12 +16,12 @@ from model import batch_observations, make_model
 
 
 class Simulator:
-    def __init__(self, alt, stderr_path):
+    def __init__(self, alt, stderr_path, entrypoint=None):
         self.log = stderr_path.open("wb")
         self.process = subprocess.Popen(
             ["wsl.exe", "-d", "Ubuntu", "--", "env", "LP_NUM_THREADS=2", "OMP_NUM_THREADS=1",
              "OPENBLAS_NUM_THREADS=1", "bash", wsl_path(alt / "scripts/with_legacy_env.sh"),
-             wsl_path(ROOT / "src/simulator.py")],
+             wsl_path(entrypoint or ROOT / "src/simulator.py")],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.log,
         )
 
@@ -137,7 +137,7 @@ def main():
     run_rollouts(act, cfg, alt, seeds, horizon, workers, output)
 
 
-def run_rollouts(act, cfg, alt, seeds, horizon, workers, output, validation_fixtures=None):
+def run_rollouts(act, cfg, alt, seeds, horizon, workers, output, validation_fixtures=None, *, simulator_factory=Simulator):
     torch.manual_seed(cfg["sampling_seed"])
     start = time.perf_counter()
     results = []
@@ -145,7 +145,7 @@ def run_rollouts(act, cfg, alt, seeds, horizon, workers, output, validation_fixt
         pool = stack.enter_context(ThreadPoolExecutor(max_workers=workers))
         simulators = []
         for i in range(workers):
-            simulator = Simulator(alt, output / f"simulator{i}.log")
+            simulator = simulator_factory(alt, output / f"simulator{i}.log")
             stack.callback(simulator.close)
             simulators.append(simulator)
         episodes = stack.enter_context((output / "rollouts.csv").open("x", newline="", encoding="utf-8"))
