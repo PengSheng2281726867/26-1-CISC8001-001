@@ -1,0 +1,26 @@
+{
+  "heldout_frames": 993,
+  "epoch": 40,
+  "rmse_in_controller_units": {
+    "translation": {
+      "alt": 0.2754963332010986,
+      "residual_after_clip": 0.22461346947813968
+    },
+    "rotation": {
+      "alt": 0.06769457231174468,
+      "residual_after_clip": 0.05473469135296509
+    },
+    "pose6": {
+      "alt": 0.20060008066763182,
+      "residual_after_clip": 0.16347338790841698
+    }
+  },
+  "gripper_sign_disagreement_frames": 120,
+  "frames_with_any_motion_clipping": 24,
+  "selection": [
+    "hold_success",
+    "ever_success",
+    "final_success",
+    "earliest_epoch"
+  ]
+}
