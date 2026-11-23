@@ -1,0 +1,181 @@
+{
+  "translation": {
+    "vs_alt": {
+      "hold_success": {
+        "alt": 31,
+        "residual": 17,
+        "gained": 3,
+        "lost": 17,
+        "difference": -0.28,
+        "paired_bootstrap95": [
+          -0.44,
+          -0.12
+        ]
+      },
+      "ever_success": {
+        "alt": 34,
+        "residual": 25,
+        "gained": 3,
+        "lost": 12,
+        "difference": -0.18,
+        "paired_bootstrap95": [
+          -0.32,
+          -0.04
+        ]
+      },
+      "final_success": {
+        "alt": 0,
+        "residual": 0,
+        "gained": 0,
+        "lost": 0,
+        "difference": 0.0,
+        "paired_bootstrap95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "vs_full": {
+      "hold_success": {
+        "alt": 19,
+        "residual": 17,
+        "gained": 5,
+        "lost": 7,
+        "difference": -0.04,
+        "paired_bootstrap95": [
+          -0.18,
+          0.1
+        ]
+      },
+      "ever_success": {
+        "alt": 29,
+        "residual": 25,
+        "gained": 4,
+        "lost": 8,
+        "difference": -0.08,
+        "paired_bootstrap95": [
+          -0.22,
+          0.06
+        ]
+      },
+      "final_success": {
+        "alt": 0,
+        "residual": 0,
+        "gained": 0,
+        "lost": 0,
+        "difference": 0.0,
+        "paired_bootstrap95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "rotation": {
+    "vs_alt": {
+      "hold_success": {
+        "alt": 31,
+        "residual": 21,
+        "gained": 4,
+        "lost": 14,
+        "difference": -0.2,
+        "paired_bootstrap95": [
+          -0.36,
+          -0.04
+        ]
+      },
+      "ever_success": {
+        "alt": 34,
+        "residual": 22,
+        "gained": 3,
+        "lost": 15,
+        "difference": -0.24,
+        "paired_bootstrap95": [
+          -0.4,
+          -0.08
+        ]
+      },
+      "final_success": {
+        "alt": 0,
+        "residual": 0,
+        "gained": 0,
+        "lost": 0,
+        "difference": 0.0,
+        "paired_bootstrap95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "vs_full": {
+      "hold_success": {
+        "alt": 19,
+        "residual": 21,
+        "gained": 11,
+        "lost": 9,
+        "difference": 0.04,
+        "paired_bootstrap95": [
+          -0.14,
+          0.22
+        ]
+      },
+      "ever_success": {
+        "alt": 29,
+        "residual": 22,
+        "gained": 6,
+        "lost": 13,
+        "difference": -0.14,
+        "paired_bootstrap95": [
+          -0.3,
+          0.02
+        ]
+      },
+      "final_success": {
+        "alt": 0,
+        "residual": 0,
+        "gained": 0,
+        "lost": 0,
+        "difference": 0.0,
+        "paired_bootstrap95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "rotation_vs_translation": {
+    "hold_success": {
+      "alt": 17,
+      "residual": 21,
+      "gained": 9,
+      "lost": 5,
+      "difference": 0.08,
+      "paired_bootstrap95": [
+        -0.06,
+        0.22
+      ]
+    },
+    "ever_success": {
+      "alt": 25,
+      "residual": 22,
+      "gained": 6,
+      "lost": 9,
+      "difference": -0.06,
+      "paired_bootstrap95": [
+        -0.22,
+        0.08
+      ]
+    },
+    "final_success": {
+      "alt": 0,
+      "residual": 0,
+      "gained": 0,
+      "lost": 0,
+      "difference": 0.0,
+      "paired_bootstrap95": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

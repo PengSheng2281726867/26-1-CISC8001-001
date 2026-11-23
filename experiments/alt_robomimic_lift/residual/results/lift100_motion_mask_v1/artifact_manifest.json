@@ -1,0 +1,12 @@
+[
+  {
+    "path": "artifacts/residual/lift100_motion_mask_v1/translation/actions.csv",
+    "bytes": 7524363,
+    "sha256": "3d77939a34111063e5a6cdfa5bb4d507fd813ea4f5440367309c9f1888ced519"
+  },
+  {
+    "path": "artifacts/residual/lift100_motion_mask_v1/rotation/actions.csv",
+    "bytes": 6236654,
+    "sha256": "0d7a5f14d3f375230451e60920f34343ba3e123fd394a1eccafa835dbdd6f3ea"
+  }
+]
