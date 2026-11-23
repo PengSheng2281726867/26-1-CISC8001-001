@@ -1,0 +1,47 @@
+[
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\epoch20.pt",
+    "bytes": 25549,
+    "sha256": "B06A33A8BB93B537A6BCBA3332272FDC891F2237AEE524618F1E1D617DDE853C"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\epoch40.pt",
+    "bytes": 25549,
+    "sha256": "68221F784E233BC7291D770624D83BB27BB3A8FEC45FB578B090378568EF2536"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\epoch5.pt",
+    "bytes": 25535,
+    "sha256": "4D4A5A35804F56B4034EAEA2DE99FD461536CAA9633CC663AC903DAD393C1F1D"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\heldout_queries.npz",
+    "bytes": 508322,
+    "sha256": "F43543BC011A352DCD459FC35116137891BED8F4214768B348342C80F68E01F4"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\training_neighbor_rows.npy",
+    "bytes": 39184,
+    "sha256": "25E999BF9BACD6B0FA6E59AA1DAF2A4B8C8E632A874343C2E39343306AC56661"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\test_e5\\actions.csv",
+    "bytes": 7217376,
+    "sha256": "58C2E5AA9A724316697CE0A94D032977293D3A9091C615E071BB7B6CF8991EB6"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\validation_e20\\actions.csv",
+    "bytes": 300642,
+    "sha256": "BCEBC19EC533225B507F175634BD1D2E3BAD99BC9644E43B6E1E75F7EEA7544A"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\validation_e40\\actions.csv",
+    "bytes": 292399,
+    "sha256": "B1EE3B6986E9FEE3BD3F820C90BA4E484466E4FD543599DB17DDD46A8F8A023C"
+  },
+  {
+    "path": "artifacts\\residual\\lift100_numeric_v1\\validation_e5\\actions.csv",
+    "bytes": 308353,
+    "sha256": "2958A27BA357A9D315EBA91AF593A43DBDD97A22B9DB2AE64485F858DF34E95E"
+  }
+]
