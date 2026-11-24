@@ -1,0 +1,17 @@
+[
+  {
+    "path": "artifacts/residual/lift100_visual_phase_v1/classifier.pt",
+    "bytes": 109557,
+    "sha256": "daa771b2a748b417575de210f8f46bf1b4f28c1f635eec7ad5928141d45a56e4"
+  },
+  {
+    "path": "artifacts/residual/lift100_visual_phase_v1/holdout_stages.json",
+    "bytes": 10501,
+    "sha256": "5e630355304f5a46ca404b7b6be425d0598697b1f9f7797936a7657a11f7f8bb"
+  },
+  {
+    "path": "artifacts/residual/lift100_visual_phase_v1/formal/actions.csv",
+    "bytes": 6058430,
+    "sha256": "fd57f261c9435ee1a80eed1a4f7e9484c6efa683c4faf0398f8cc7573b06f868"
+  }
+]

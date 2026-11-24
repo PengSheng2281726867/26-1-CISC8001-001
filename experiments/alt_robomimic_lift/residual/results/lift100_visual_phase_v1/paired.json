@@ -1,0 +1,72 @@
+{
+  "oracle_phase_visual_position": {
+    "hold_success": {
+      "alt": 49,
+      "residual": 47,
+      "gained": 0,
+      "lost": 2,
+      "difference": -0.04,
+      "paired_bootstrap95": [
+        -0.1,
+        0.0
+      ]
+    },
+    "ever_success": {
+      "alt": 49,
+      "residual": 48,
+      "gained": 0,
+      "lost": 1,
+      "difference": -0.02,
+      "paired_bootstrap95": [
+        -0.06,
+        0.0
+      ]
+    },
+    "final_success": {
+      "alt": 0,
+      "residual": 0,
+      "gained": 0,
+      "lost": 0,
+      "difference": 0.0,
+      "paired_bootstrap95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "oracle_phase_direct_replay": {
+    "hold_success": {
+      "alt": 39,
+      "residual": 47,
+      "gained": 10,
+      "lost": 2,
+      "difference": 0.16,
+      "paired_bootstrap95": [
+        0.04,
+        0.28
+      ]
+    },
+    "ever_success": {
+      "alt": 39,
+      "residual": 48,
+      "gained": 10,
+      "lost": 1,
+      "difference": 0.18,
+      "paired_bootstrap95": [
+        0.06,
+        0.3
+      ]
+    },
+    "final_success": {
+      "alt": 0,
+      "residual": 0,
+      "gained": 0,
+      "lost": 0,
+      "difference": 0.0,
+      "paired_bootstrap95": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}
