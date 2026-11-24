@@ -89,7 +89,7 @@ def translated_command(prior, delta_m):
     return command
 
 
-def policy_for(policy, phase, offset, waypoint, available, actions, head, variant, counters):
+def policy_for(policy, phase, offset, waypoint, available, actions, head, variant, counters, estimate_offset=None):
     indices = [np.flatnonzero(phase == k) for k in range(3)]
     embeddings = [policy.search.embeddings[torch.as_tensor(rows,device=policy.device)] for rows in indices]
 
@@ -105,7 +105,10 @@ def policy_for(policy, phase, offset, waypoint, available, actions, head, varian
             eligible = k == 0 and available[row] and prior[6] < 0
             counters["eligible_steps"] += int(eligible)
             if variant != "phase_replay" and eligible:
-                now = obs["oracle_cube_center"]-info["query_proprio"][:3]
+                if estimate_offset is None:
+                    now = obs["oracle_cube_center"]-info["query_proprio"][:3]
+                else:
+                    now = estimate_offset(obs, info["query_proprio"])
                 delta = now-offset[row]
                 if variant == "geometry_mlp":
                     x = torch.tensor(np.concatenate((now,offset[row],waypoint[row]))*10,dtype=torch.float32)

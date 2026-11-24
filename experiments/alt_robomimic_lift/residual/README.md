@@ -18,6 +18,12 @@
 
 执行前需要已有阶段诊断的本地 `artifacts/residual/lift100_phase_v1/bank_phases.json`。该标签文件可用 `phase_study.py` 重新生成。添加 `--smoke` 并使用独立运行名可做短程验证。
 
+视觉定位消融见 `visual_geometry.py`。轻量共享 CNN 从两张 RGB 图像提取空间关键点和全局特征，与机器人本体状态一起回归「方块中心减末端位置」的三维向量。使用同一组 100 条示范训练，20 条独立留出示范用于选检查点。实时查询与历史记忆均由定位网络估计位置，阶段仍来自仿真器。正式结果与本地 `lift100_waypoint_v1` 两组对照配对。
+
+```powershell
+& $liftPython -B experiments/alt_robomimic_lift/residual/visual_geometry.py lift100_visual_geometry_repeat --alt100-source ../lift-box-dp/artifacts/alt100_epochs_v1
+```
+
 100 条示范上的输入消融保持 ALT 的视觉检索。训练时给 `train` 增加 `--no-embedding` 和 `--alt100-source`，使用新的运行目录。从头训练的 15→64→64→6 映射只接收 8 维相对本体状态和 7 维历史命令。评测和诊断从训练记录读取输入宽度，使用同一 ALT-100 来源。消融汇总会读取并校验既有 `lift100_residual_v1` 的逐局结果。
 
 每个训练帧作为一次查询。检索时屏蔽同一整条轨迹，在另外 29 条轨迹中找余弦最近邻。两份动作都取自各自查询时刻的 `actions[t]`。监督标签是当前专家命令前六维减去检索命令前六维，单位为归一化 OSC 控制命令。
