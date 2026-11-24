@@ -1,0 +1,72 @@
+{
+  "phase_replay": {
+    "hold_success": {
+      "alt": 39,
+      "residual": 49,
+      "gained": 10,
+      "lost": 0,
+      "difference": 0.2,
+      "paired_bootstrap95": [
+        0.1,
+        0.32
+      ]
+    },
+    "ever_success": {
+      "alt": 39,
+      "residual": 49,
+      "gained": 10,
+      "lost": 0,
+      "difference": 0.2,
+      "paired_bootstrap95": [
+        0.1,
+        0.32
+      ]
+    },
+    "final_success": {
+      "alt": 0,
+      "residual": 0,
+      "gained": 0,
+      "lost": 0,
+      "difference": 0.0,
+      "paired_bootstrap95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "geometry": {
+    "hold_success": {
+      "alt": 50,
+      "residual": 49,
+      "gained": 0,
+      "lost": 1,
+      "difference": -0.02,
+      "paired_bootstrap95": [
+        -0.06,
+        0.0
+      ]
+    },
+    "ever_success": {
+      "alt": 50,
+      "residual": 49,
+      "gained": 0,
+      "lost": 1,
+      "difference": -0.02,
+      "paired_bootstrap95": [
+        -0.06,
+        0.0
+      ]
+    },
+    "final_success": {
+      "alt": 1,
+      "residual": 0,
+      "gained": 0,
+      "lost": 1,
+      "difference": -0.02,
+      "paired_bootstrap95": [
+        -0.06,
+        0.0
+      ]
+    }
+  }
+}

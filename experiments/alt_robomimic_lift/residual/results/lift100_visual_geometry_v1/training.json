@@ -1,0 +1,115 @@
+{
+  "selected_epoch": 40,
+  "history": [
+    {
+      "epoch": 5,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        4.5008063316345215,
+        4.244483470916748,
+        5.263576507568359
+      ],
+      "vector_rmse_mm": 8.122693061828613,
+      "median_euclidean_mm": 6.535750865936279,
+      "p90_euclidean_mm": 12.507938385009766
+    },
+    {
+      "epoch": 10,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        3.2910852432250977,
+        3.295842409133911,
+        3.543029308319092
+      ],
+      "vector_rmse_mm": 5.852083206176758,
+      "median_euclidean_mm": 4.595874309539795,
+      "p90_euclidean_mm": 9.207881927490234
+    },
+    {
+      "epoch": 15,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        3.0781848430633545,
+        2.8455703258514404,
+        3.1381216049194336
+      ],
+      "vector_rmse_mm": 5.2364397048950195,
+      "median_euclidean_mm": 4.16059684753418,
+      "p90_euclidean_mm": 8.25605583190918
+    },
+    {
+      "epoch": 20,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        2.641954183578491,
+        2.451859474182129,
+        2.5499045848846436
+      ],
+      "vector_rmse_mm": 4.415150165557861,
+      "median_euclidean_mm": 3.628598690032959,
+      "p90_euclidean_mm": 6.73071813583374
+    },
+    {
+      "epoch": 25,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        2.636052370071411,
+        2.1912968158721924,
+        2.3966970443725586
+      ],
+      "vector_rmse_mm": 4.1826677322387695,
+      "median_euclidean_mm": 3.2374837398529053,
+      "p90_euclidean_mm": 6.213740825653076
+    },
+    {
+      "epoch": 30,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        2.5396835803985596,
+        1.9503405094146729,
+        2.4340484142303467
+      ],
+      "vector_rmse_mm": 4.022239685058594,
+      "median_euclidean_mm": 3.0118825435638428,
+      "p90_euclidean_mm": 6.371222019195557
+    },
+    {
+      "epoch": 35,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        2.511220932006836,
+        2.0571658611297607,
+        2.1688411235809326
+      ],
+      "vector_rmse_mm": 3.9041049480438232,
+      "median_euclidean_mm": 3.0976555347442627,
+      "p90_euclidean_mm": 6.032886981964111
+    },
+    {
+      "epoch": 40,
+      "frames": 993,
+      "per_axis_rmse_mm": [
+        2.3739733695983887,
+        1.6310036182403564,
+        2.3258724212646484
+      ],
+      "vector_rmse_mm": 3.702108144760132,
+      "median_euclidean_mm": 2.9141788482666016,
+      "p90_euclidean_mm": 5.633867263793945
+    }
+  ],
+  "constant_baseline": {
+    "frames": 993,
+    "per_axis_rmse_mm": [
+      41.251182556152344,
+      11.774877548217773,
+      68.01374053955078
+    ],
+    "vector_rmse_mm": 80.41254425048828,
+    "median_euclidean_mm": 70.81208038330078,
+    "p90_euclidean_mm": 134.1182098388672
+  },
+  "parameters": 24491,
+  "train_frames": 4882,
+  "checkpoint_sha256": "f9ee89017dcbcaff92c5b12d0b6b4b5270fc165fbec99401c298e6b6f594f074"
+}

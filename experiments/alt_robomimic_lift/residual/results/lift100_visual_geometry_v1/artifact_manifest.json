@@ -1,0 +1,17 @@
+[
+  {
+    "path": "artifacts/residual/lift100_visual_geometry_v1/locator.pt",
+    "bytes": 109086,
+    "sha256": "f9ee89017dcbcaff92c5b12d0b6b4b5270fc165fbec99401c298e6b6f594f074"
+  },
+  {
+    "path": "artifacts/residual/lift100_visual_geometry_v1/visual_bank_offsets.npy",
+    "bytes": 58712,
+    "sha256": "350b8f569b5aae2d7d43134f2c3a6a0755a933430b922a524b0d295b0613b55b"
+  },
+  {
+    "path": "artifacts/residual/lift100_visual_geometry_v1/formal/actions.csv",
+    "bytes": 6998718,
+    "sha256": "2b949e2f925a0d66db959ede656cec3dbb37344958afec2fef624c55c22c3444"
+  }
+]
