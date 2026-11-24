@@ -20,6 +20,12 @@
 
 视觉定位消融见 `visual_geometry.py`。轻量共享 CNN 从两张 RGB 图像提取空间关键点和全局特征，与机器人本体状态一起回归「方块中心减末端位置」的三维向量。使用同一组 100 条示范训练，20 条独立留出示范用于选检查点。实时查询与历史记忆均由定位网络估计位置，阶段仍来自仿真器。正式结果与本地 `lift100_waypoint_v1` 两组对照配对。
 
+完整的在线视觉与本体状态输入实验见 `visual_phase.py`。它冻结既有定位权重，训练独立阶段分类器，使用当前相机图像和机器人本体状态估计阶段。训练示范的标签预先写入检索库。在线接口只提供两路 RGB、末端位置与朝向、手指位置。复现命令如下，需要先完成上述视觉定位和阶段标注实验。
+
+```powershell
+& $liftPython -B experiments/alt_robomimic_lift/residual/visual_phase.py lift100_visual_phase_repeat --alt100-source ../lift-box-dp/artifacts/alt100_epochs_v1
+```
+
 ```powershell
 & $liftPython -B experiments/alt_robomimic_lift/residual/visual_geometry.py lift100_visual_geometry_repeat --alt100-source ../lift-box-dp/artifacts/alt100_epochs_v1
 ```

@@ -20,7 +20,8 @@ def observe(env):
 
 
 def label_demonstrations(env, image, split, command, episode_ids):
-    if command != "label_demonstrations" or episode_ids != split["train_subsets"]["100"]:
+    allowed = (split["train_subsets"]["100"], split["heldout_validation_episode_ids"])
+    if command != "label_demonstrations" or episode_ids not in allowed:
         raise ValueError("Unexpected phase-audit request")
     result = {}
     max_height_error = 0.0

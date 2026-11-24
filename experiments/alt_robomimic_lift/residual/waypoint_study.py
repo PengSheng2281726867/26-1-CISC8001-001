@@ -89,7 +89,8 @@ def translated_command(prior, delta_m):
     return command
 
 
-def policy_for(policy, phase, offset, waypoint, available, actions, head, variant, counters, estimate_offset=None):
+def policy_for(policy, phase, offset, waypoint, available, actions, head, variant, counters,
+               estimate_offset=None, estimate_phase=None):
     indices = [np.flatnonzero(phase == k) for k in range(3)]
     embeddings = [policy.search.embeddings[torch.as_tensor(rows,device=policy.device)] for rows in indices]
 
@@ -98,7 +99,7 @@ def policy_for(policy, phase, offset, waypoint, available, actions, head, varian
         commands = []
         for obs in observations:
             _, info = policy.act(obs, include_embedding=True)
-            k = obs["oracle_phase"]
+            k = obs["oracle_phase"] if estimate_phase is None else estimate_phase(obs, info["query_proprio"])
             q = torch.as_tensor(info["query_embedding"], device=policy.device)
             row = indices[k][int(torch.argmax(torch.mv(embeddings[k],q)))]
             prior = actions[row]
