@@ -10,6 +10,14 @@
 
 阶段诊断见 `phase_study.py`。它用相同的 ALT-100 视觉排名比较直接回放与前五名同阶段筛选。历史阶段由保存的示范状态恢复，当前阶段由仿真器实时判断。使用官方高度阈值与 RoboSuite 双指垫接触检查。该实验测量真实阶段信息的作用。
 
+物体相对目标实验见 `waypoint_study.py`。它在整个同阶段记忆库内检索，比较直接回放、几何对齐和几何对齐加可学习修正。三组使用仿真器阶段，后两组额外使用真值方块位置。这是独立的真值诊断。
+
+```powershell
+& $liftPython -B experiments/alt_robomimic_lift/residual/waypoint_study.py lift100_waypoint_repeat --alt100-source ../lift-box-dp/artifacts/alt100_epochs_v1
+```
+
+执行前需要已有阶段诊断的本地 `artifacts/residual/lift100_phase_v1/bank_phases.json`。该标签文件可用 `phase_study.py` 重新生成。添加 `--smoke` 并使用独立运行名可做短程验证。
+
 100 条示范上的输入消融保持 ALT 的视觉检索。训练时给 `train` 增加 `--no-embedding` 和 `--alt100-source`，使用新的运行目录。从头训练的 15→64→64→6 映射只接收 8 维相对本体状态和 7 维历史命令。评测和诊断从训练记录读取输入宽度，使用同一 ALT-100 来源。消融汇总会读取并校验既有 `lift100_residual_v1` 的逐局结果。
 
 每个训练帧作为一次查询。检索时屏蔽同一整条轨迹，在另外 29 条轨迹中找余弦最近邻。两份动作都取自各自查询时刻的 `actions[t]`。监督标签是当前专家命令前六维减去检索命令前六维，单位为归一化 OSC 控制命令。

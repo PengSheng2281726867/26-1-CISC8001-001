@@ -4,5 +4,7 @@ study.py text eol=lf
 ablate_motion.py text eol=lf
 phase_study.py text eol=lf
 phase_simulator.py text eol=lf
+waypoint_study.py text eol=lf
+waypoint_simulator.py text eol=lf
 results/**/*.json -text whitespace=cr-at-eol
 results/**/*.csv -text whitespace=cr-at-eol
