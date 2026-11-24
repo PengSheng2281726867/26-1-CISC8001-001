@@ -113,3 +113,4 @@
 ## 2026-11-23 · Lift residual simulator access
 
 The preflight command `wsl.exe -d Ubuntu -- true` returned `Wsl/E_ACCESSDENIED` inside the sandbox before any rollout began. Running the same check with approved WSL access returned exit code 0. The standard simulator and the frozen reset fixtures were used for `lift30_residual_v1` with that permission.
+2026-11-24：目标点实验的临时 Python 限幅断言误将普通列表传给只在内部接收 NumPy 向量的 translated_command，触发 TypeError。用与在线调用一致的 NumPy 输入重跑，平移尺度、限幅、零修正及旋转和夹爪保留检查均通过；正式协议和源码未改动。

@@ -1,0 +1,7 @@
+{
+  "pairs": 3305,
+  "target_zero_rmse_m": 0.01603051573038101,
+  "train_rmse_m": 0.0045061659067869185,
+  "checkpoint_sha256": "3d24fe943ebbb0e8d052011b2e4f5cd562630eb1d79a7c7d5ffbcd2e708f5659",
+  "pairs_sha256": "637aa482797d9bb8c8f03f4e36a97d282c57ba63582914a1b1cc303487c46e35"
+}

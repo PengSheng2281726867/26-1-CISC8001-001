@@ -1,0 +1,27 @@
+[
+  {
+    "path": "artifacts/residual/lift100_waypoint_v1/head.pt",
+    "bytes": 8561,
+    "sha256": "3d24fe943ebbb0e8d052011b2e4f5cd562630eb1d79a7c7d5ffbcd2e708f5659"
+  },
+  {
+    "path": "artifacts/residual/lift100_waypoint_v1/training_pairs.npy",
+    "bytes": 53008,
+    "sha256": "637aa482797d9bb8c8f03f4e36a97d282c57ba63582914a1b1cc303487c46e35"
+  },
+  {
+    "path": "artifacts/residual/lift100_waypoint_v1/phase_replay/actions.csv",
+    "bytes": 6152181,
+    "sha256": "98595e9ca1333fc606ec036a3cefefb5d0f9c93554acdf4d0d4454510828baed"
+  },
+  {
+    "path": "artifacts/residual/lift100_waypoint_v1/geometry/actions.csv",
+    "bytes": 6154176,
+    "sha256": "e0e4bc1a71a214e5919fd42ad84672b02c2dd7faa34595484bcf529b842f6160"
+  },
+  {
+    "path": "artifacts/residual/lift100_waypoint_v1/geometry_mlp/actions.csv",
+    "bytes": 6414037,
+    "sha256": "6f7b8ca87420e6d05f25e7ab7717e1bb7c8f65f2ee49b23a29291cf785b3a1a7"
+  }
+]

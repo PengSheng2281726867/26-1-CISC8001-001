@@ -1,0 +1,13 @@
+{
+  "shared_ever_success_n": 40,
+  "first_success_step": {
+    "geometry_median": 45.5,
+    "mlp_median": 50.5,
+    "paired_delta_median": 3.0
+  },
+  "longest_hold_steps": {
+    "geometry_median": 446.0,
+    "mlp_median": 482.0,
+    "paired_delta_median": 26.5
+  }
+}
